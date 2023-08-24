@@ -10,8 +10,11 @@
 <link rel="stylesheet" href="common.css">
 </head>
 <body>
-  <div class="back d-flex">
+  <div class="background d-flex">
   <div class="aside h3">
+    <div class="logo">
+      <img src="coderabbit_logo.svg" alt="">
+    </div>
     <p><i class="bi bi-grid-1x2-fill"></i> 대시보드</p>
     <p><i class="bi bi-bar-chart"></i> 매출 관리</p>
     <p><i class="bi bi-mortarboard-fill"></i> 강좌 관리</p>
@@ -20,35 +23,100 @@
     <p><i class="bi bi-layout-text-sidebar-reverse"></i> 게시판 관리</p>
   </div>
   <div class="main">
-      <div class="container p-5 gy-3">
-          <div class="icon_test mb-3">
-              <i class="bi bi-apple"></i>
-              <i class="bi bi-bar-chart-line"></i>
-              <i class="bi bi-bell"></i>
-              <i class="bi bi-calendar-week"></i>
-              <i class="bi bi-card-image"></i>
-              <div class="btns mb-3">
-                  <span class="btn btn-primary">닫기</span>
-                  <span class="btn btn-primary">닫기</span>
-                  <span class="btn btn-primary">대분류 등록</span>
-                  <span class="btn btn-primary">중분류 등록</span>
-                  <span class="btn btn-primary">소분류 등록</span>
-              </div>
-              <form>
-                  <input type="text" class="form-control">
-              </form>
-  
-              <select class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-              </select>
-          </div>
-      </div>
-  </div>
+    <div class="typography">
+      <h1>Typography</h1>
+      <p class="h1">코드래빗 - 어텐션 36px</p>
+      <p class="h2">코드래빗 - 어텐션 28px</p>
+      <p class="h3">코드래빗 - 어텐션 24px</p>
+      <p class="text1">코드래빗 - 어텐션 20px</p>
+      <p class="text2">코드래빗 - 어텐션 18px</p>
+      <p class="text3">코드래빗 - 어텐션 16px</p>
+      <p class="text4">코드래빗 - 어텐션 14px</p>
+    </div>
 
-  
+    <div class="icon">
+      <h1>Icon</h1>
+      <i class="bi bi-apple"></i>
+      <i class="bi bi-bar-chart-line"></i>
+      <i class="bi bi-bell"></i>
+      <i class="bi bi-calendar-week"></i>
+      <i class="bi bi-card-image"></i>
+    </div>
+
+    <div class="color">
+      <h1>Color</h1>
+      <p style="background:var(--white); line-height: 24px;">white</p>
+      <p style="background:var(--black); line-height: 24px; color: #fff;">black</p>
+      <p style="background:var(--dark-gray); line-height: 24px; color: #fff;">dark-gray</p>
+      <p style="background:var(--gray); line-height: 24px; color: #fff;">gray</p>
+      <p style="background:var(--light-gray); line-height: 24px; ">light-gray</p>
+      <p style="background:var(--blue-Gray); line-height: 24px;">blue-Gray</p>
+      <p style="background:var(--dark-blue); line-height: 24px; color: #fff;">dark-blue</p>
+      <p style="background:var(--mint); line-height: 24px; color: #fff;">mint</p>
+      <p style="background:var(--red); line-height: 24px; color: #fff;">red</p>
+      <p style="background:var(--orange); line-height: 24px; color: #fff;">orange</p>
+    </div>
+
+    <div class="Form">
+      <h1>Form</h1>
+      <form>
+        <p>Default</p>
+        <label for=""></label>
+        <input type="text" class="form-control" placeholder="입력폼">
+      </form>
+    </div>
+
+    <div class="select">
+      <h1>Select</h1>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+
+    <div class="button">
+      <h1>Button</h1>
+      <div class="btns">
+        <span class="btn btn-primary">닫기</span>
+        <span class="btn btn-primary">닫기</span>
+        <span class="btn btn-primary">대분류 등록</span>
+        <span class="btn btn-primary">중분류 등록</span>
+        <span class="btn btn-primary">소분류 등록</span>
+      </div>
+    </div>
+
+    <div class="checkbox">
+      <h1>Checkbox</h1>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Default checkbox
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+          Checked checkbox
+        </label>
+      </div>
+    </div>
+
+    <div class="toggle">
+      <h1>Toggle</h1>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+        <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+      </div>
+    </div>
+
+    <div style="height: 70px;"></div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
 
 :root{
+    --bs-border-color: var(--gray);
     --bs-border-width: 2px;
     --h1-size: 36px;
     --h2-size: 28px;
@@ -13,8 +14,6 @@
     --text3-size: 16px;
     --text4-size: 14px;
 
-    --inner-margin: 48px;
-
     --white: #fff;
     --black: #1c1c1c;
     --dark-gray: #505050;
@@ -22,28 +21,26 @@
     --light-gray: #dedede;
     --blue-Gray: #E6ECEC;
     --dark-blue: #252a38;
-    --mint-main: #2ac1bc;
-    --mint-sub1: #32af8f;
-    --mint-sub2: #3fcdb6;
+    --mint: #2ac1bc;
     --red: #e95b5a;
     --orange: #f1511e;
 }
 
-.container{
-    margin: var(--inner-margin);
-}
-
+/* Typography */
 .h1{
     font-size: var(--h1-size);
     font-weight: 700;
+    line-height: 40px;
 }
 .h2{
     font-size: var(--h2-size);
     font-weight: 700;
+    line-height: 40px;
 }
 .h3{
     font-size: var(--h3-size);
-    font-weight: 500;
+    font-weight: 700;
+    line-height: 40px;
 }
 .text1{
     font-size: var(--text1-size);
@@ -62,28 +59,73 @@
     font-weight: 500;
 }
 
+/* Icon */
+.icon_test{
+    font-size: 32px;
+    color: var(--dark-gray);
+}
+.icon_test i{
+    padding: 0 5px;
+}
+.icon_test i:hover{
+    color: var(--black);
+    border-radius: 4px;
+}
 
+/* Form, Select, Checkbox, Toggle */
+.form-check-input:checked {
+    background-color: var(--red);
+    border-color: var(--red);
+}
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus{
+    box-shadow: 0px 0px 0px 5px rgba(42, 193, 188, 0.35);
+    border-color: var(--mint);
+    border-width: 2px;
+}
+
+/* Button */
+.btn {
+    --bs-btn-font-weight: 700;
+}
+.btn-primary {
+    --bs-btn-bg: var(--mint);
+    --bs-btn-border-color: var(--mint);
+    --bs-btn-hover-color: var(--mint);
+    --bs-btn-hover-bg: transparent;
+    --bs-btn-hover-border-color: var(--mint);
+    --bs-btn-active-bg: var(--mint);
+    --bs-btn-active-border-color: var(--mint);
+    --bs-btn-disabled-bg: var(--mint);
+    --bs-btn-disabled-border-color: var(--mint);
+}
+
+/* Layout */
 body{
     background-color: var(--dark-blue);
     font-family: 'Inter', sans-serif;
 }
-.back{
+.background{
     max-width: 1920px;
-    background-color: var(--blue-Gray);
+    background-color: var(--white);
     margin: 1% 3% 0%;
     border-radius: 24px;
-    /* overflow: hidden; */
 }
 .aside{
-    position: fixed;
     width: 15%;
 }
 .aside p{
     width: 100%;
-    margin: 24px auto;
-    padding: 10px;
+    text-align: center;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
+    margin-top: 25%;
+    
+}
+.aside .logo{
+    margin: 30% 0;
+    text-align: center;
 }
 .aside p:hover{
     background: var(--dark-blue);
@@ -97,52 +139,10 @@ body{
     background: var(--dark-blue);
     opacity: 1;
 }
-.main{
-    width: 1320px;
-    box-sizing: border-box;
-}
-.box{
-    height: 24px;
-    background: var(--dark-gray);
-}
-.icon_test{
-    font-size: 32px;
-    color: var(--dark-gray);
-}
-.icon_test i{
-    padding: 0 5px;
-}
-.icon_test i:hover{
-    color: var(--black);
-    background: #ebebeb;
-    border-radius: 4px;
-}
 
-.btn {
-    --bs-btn-font-weight: 700;
-}
-.btn-primary {
-    --bs-btn-bg: var(--mint-main);
-    --bs-btn-border-color: var(--mint-main);
-    --bs-btn-hover-color: var(--mint-main);
-    --bs-btn-hover-bg: transparent;
-    --bs-btn-hover-border-color: var(--mint-main);
-    --bs-btn-active-bg: var(--mint-main);
-    --bs-btn-active-border-color: var(--mint-main);
-    --bs-btn-disabled-bg: var(--mint-main);
-    --bs-btn-disabled-border-color: var(--mint-main);
-}
-.form-check-input:checked {
-    background-color: var(--red);
-    border-color: var(--red);
-}
-.form-control:focus,
-.form-select:focus,
-.form-check-input:focus{
-    box-shadow: 0px 0px 0px 5px rgba(42, 193, 188, 0.35);
-    border-color: var(--mint-main);
-    border-width: 2px;
-}
+
+
+
 
 
 /* 서은 */
