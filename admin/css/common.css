@@ -194,7 +194,7 @@ i.bi{
   color: var(--mint);
 }
 
-/* FORM, SELECT, CHECKBOX, TOGGLE */
+/* FORM, SELECT, TOGGLE */
 .form-check-input:checked {
     background-color: var(--mint);
     border-color: var(--mint);
@@ -251,6 +251,21 @@ input.form-control::placeholder{
     --bs-btn-disabled-border-color: var(--dark-gray);
 }
 
+/* BOX-SHADOW */
+.box_shadow{
+  background: var(--white);
+  box-shadow: 2px 3px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* BORDER-RADIUS */
+.radius_medium{
+  border-radius: 12px;
+}
+.radius_large{
+  border-radius: 24px;
+}
+
+/* PAGINATION */
 .page-link {
     position: relative;
     display: block;
@@ -288,7 +303,3 @@ input.form-control::placeholder{
     /* list-style: none; */
 }
 
-
-
-
-/* 서은 */
