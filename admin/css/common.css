@@ -10,9 +10,10 @@
   --bs-border-width: 2px;
 
   /* TYPOGRAPHY */
-  --h1-size: 36px;
-  --h2-size: 28px;
-  --h3-size: 24px;
+  --tt-size-01: 36px;
+  --tt-size-02: 28px;
+  --tt-size-03: 24px;
+
   --text1-size: 20px;
   --text2-size: 18px;
   --text3-size: 16px;
@@ -77,18 +78,18 @@ body{
 }
 
 /* TYPOGRAPHY */
-.h1{
-  font-size: var(--h1-size);
+.tt_01{
+  font-size: var(--tt-size-01);
   font-weight: 700;
   line-height: 40px;
 }
-.h2{
-  font-size: var(--h2-size);
+.tt_02{
+  font-size: var(--tt-size-02);
   font-weight: 700;
   line-height: 40px;
 }
-.h3{
-  font-size: var(--h3-size);
+.tt_03{
+  font-size: var(--tt-size-03);
   font-weight: 700;
   line-height: 40px;
 }
