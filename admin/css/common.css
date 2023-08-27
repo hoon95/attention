@@ -62,7 +62,10 @@ body{
   border-bottom-right-radius: 12px;
   padding: 5% 0 5% 18%;
   margin-top: 10%;  
+}
+.aside li a{
   color: var(--dark-blue);
+  text-decoration: none;
 }
 .aside .logo{
   margin: 30% 0 20%;
@@ -70,8 +73,11 @@ body{
 }
 .aside li:hover{
   background: var(--dark-blue);
+}
+.aside li:hover a{
   color: var(--white);
 }
+
 .main{
   width: 85%; 
   padding: 2.5%;
