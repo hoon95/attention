@@ -30,3 +30,8 @@
     </ul>
   </nav>
   <div class="main">
+    <div class="profile">
+      <i class="bi bi-bell icon_gray"></i>
+      <i class="bi bi-emoji-sunglasses icon_gray"></i>
+      <span class="tt_03">admin</span>
+    </div>
