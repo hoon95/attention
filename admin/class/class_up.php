@@ -2,23 +2,6 @@
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" class_href="../css/common.css">
-  <link rel="stylesheet" class_href="../css/class_up.css">
-  <!-- include summernote css/js -->
-  <!-- <link class_href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
-  <link rel="stylesheet" class_href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css"
-    integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"
-    integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
  
@@ -46,7 +29,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
         <table class="table">
       <tbody>
         <tr>
-          <th class="h3">강좌난의도</th>
+          <th class="h3">강좌난이도</th>
           <td>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
               <button type="button" class="btn class_btn_bd_color gray">초급</button>
