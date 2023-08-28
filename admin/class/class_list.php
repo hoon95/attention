@@ -1,35 +1,26 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/dbcon.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-  <div>
+
+<div>
   <h1 class="h1 mt-5 class_m_pd text-center">강좌리스트</h1>
-  
+
   <!-- 카테고리 관리 & 검색 form -->
   <form action="">
-    <div class="d-flex justify-content-between class_sm-m">
+    <div class="d-flex justify-content-between class_sm_m">
       <span class="btn btn-primary">카테고리 관리</span>
       <span class="btn btn-primary">강좌 등록</span>
     </div>
-    <div class="d-flex justify-content-between class_sm-m">
+    <div class="d-flex justify-content-between class_sm_m">
       <span class="d-flex">
         <select class="form-select" aria-label="Default select example"><option selected>대분류</option></select>
-        <select class="form-select class_sm-ml" aria-label="Default select example"><option selected>중분류</option></select>
-        <select class="form-select class_sm-ml" aria-label="Default select example"><option selected>소분류</option></select>
+        <select class="form-select class_sm_ml" aria-label="Default select example"><option selected>중분류</option></select>
+        <select class="form-select class_sm_ml" aria-label="Default select example"><option selected>소분류</option></select>
       </span>
       <span>
         <input type="text" class="form-control" name="search_form" id="search_form">
-        <button class="btn btn-primary class_sm-ml">검색</button>
+        <button class="btn btn-primary class_sm_ml">검색</button>
       </span>
     </div>
 
@@ -49,7 +40,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
               <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
               <label class="form-check-label" for="flexSwitchCheckDefault">강좌 공개</label>
             </div>
-          
+
             <div>
               <i class="bi bi-pencil-square icon_mint"></i>
               <i class="bi bi-trash-fill icon_red"></i>
@@ -66,10 +57,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
       </ul>
     </nav> 
     <!-- /pagenation -->
-  </form> 
-  
-
+  </form>
 
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/footer.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>

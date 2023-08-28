@@ -1,15 +1,11 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/dbcon.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 ?>
 
-
- 
-</head>
-<body>
-  <div>
+<div>
   <h1 class="h1 mt-5 class_m_pd text-center">강좌 등록</h1>
-  
+
   <form action="" method="POST">
     <table class="table">
       <tbody>
@@ -63,7 +59,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
           <th class="h3">강좌영상</th>
           <td>
             <input type="text" class="form-control class_form_wd" placeholder="동영상 주소를 입력하세요">
-            <!-- <button class="class_video"><i class="bi bi-plus-circle icon_gray"></i></button> -->
+            <button class="class_video"><i class="bi bi-plus-circle icon_gray"></i></button>
           </td>
         </tr>
         <tr>
@@ -116,5 +112,5 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
       });
   </script>
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/footer.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>

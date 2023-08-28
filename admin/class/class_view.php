@@ -1,20 +1,11 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/dbcon.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/admin/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/admin/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../css/common.css">
-  <link rel="stylesheet" href="../css/class_view.css">
-</head>
-<body>
-  <div>
+
+<div>
   <h1 class="h1 mt-5 class_m_pd text-center">강좌상세보기</h1>
-  
+
   <!-- 카테고리 관리 & 검색 form -->
   <table class="table">
       <tbody>
@@ -45,7 +36,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
             <div class="text1 class_bold">강좌소개</div>
           </td>
           <td>
-            
+
           <div class="text1 class_sm_pd">더미 텍스트</div>
             <div class="text1 class_sm_pd">더미 텍스트</div>
             <div class="text1">더미 텍스트</div>
@@ -53,11 +44,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/header.php';
         </tr>
       </tbody>
     </table>
-  
+
     <hr class="class_hr">  <div class="d-flex justify-content-end">
       <button class="btn btn-dark sm-ml">닫기</button>
     </div>
 
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/footer.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>
