@@ -33,12 +33,18 @@
   width: 100%;
   height: 120px;
 }
-input::placeholder {
-  color: var(--dark_gray);
+input::placeholder{
+  color:transparent;
 }
 table th tr{
   vertical-align: top;
 }
 table th{
   width: 160px;
+}
+.note-editing-area{
+  background-color: var(--white);
+}
+th{
+  vertical-align: top;
 }

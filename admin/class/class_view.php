@@ -1,9 +1,12 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/admin/dbcon.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/inc/admin/header.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 ?>
 
-<div>
+<div class="common_pd">
+  <div>
+
+</div>
   <h1 class="h1 mt-5 class_m_pd text-center">강좌상세보기</h1>
 
   <!-- 카테고리 관리 & 검색 form -->
