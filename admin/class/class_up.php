@@ -57,9 +57,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
         </tr>
         <tr>
           <th class="h3">강좌영상</th>
-          <td>
+          <td class="class_video d-flex align-items-center">
             <input type="text" class="form-control class_form_wd" placeholder="동영상 주소를 입력하세요">
-            <button class="class_video"><i class="bi bi-plus-circle icon_gray"></i></button>
+            <button><i class="bi bi-plus-circle icon_gray"></i></button>
           </td>
         </tr>
         <tr>
