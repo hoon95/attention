@@ -1,0 +1,44 @@
+.table{
+  --bs-table-bg:var(--blue-Gray);
+}
+.class_form_wd{
+  display: inline-block;
+  width: 232px;
+}
+.class_btn_bd_color{
+  border-color: var(--gray);
+  background-color: var(--white);
+}
+.class_btn_bd_color:hover{
+  background-color: var(--mint);
+  color: var(--white);
+}
+.class_hr{
+  color: var(--gray);
+  padding: 2px 0;
+}
+.class_m_pd{
+  padding-bottom: 40px;
+}
+.class_sm_ml{
+  margin-left: 24px;
+}
+.label_h{
+  line-height: 38.48px;
+}
+.class_video i{
+  display: block;
+}
+.class_add_img{
+  width: 100%;
+  height: 120px;
+}
+input::placeholder {
+  color: var(--dark_gray);
+}
+table th tr{
+  vertical-align: top;
+}
+table th{
+  width: 160px;
+}
