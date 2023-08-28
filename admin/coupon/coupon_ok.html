@@ -38,33 +38,65 @@
 								</tr>
 								<tr class="space">
 									<th><label for="coup_thumbnail"><h3 class="tt_03">첨부파일</h3></label></th>
-									<td><input type="file" id="coup_thumbnail" name="coup_thu" class="form-control"></td>
+									<td class="d-flex align-items-end coup_thumbnail_box">
+										<div class="coup_thumbnail">
+											<span>이미지 등록 부분 나중에 php에서 img 나오게 설정해야함</span>
+											<!-- <img src="" alt=""> -->
+										</div>
+										<!-- <input type="file" id="coup_thumbnail" name="coup_thumbnail" class="form-control coup_hidden">      -->
+										<input type="file" class="coup_hidden" name="" id="">
+										<button type="button" class="btn btn-secondary coup_img">첨부파일</button>
+									</td>
 								</tr>
 								<tr class="space">
 									<th><label for="coup_price"><h3 class="tt_03">할인액</h3></label></th>
 									<td><input type="number" id="coup_price"  min="10000" max="1000000" step="10000" name="coup_price" class="form-control" required></td>
 								</tr>
 								<tr class="space">
-									<th><label for="coupon_type"><h3 class="tt_03">쿠폰설정</h3></label></th>
-										<td class="coupon_type_box d-flex">
-											<div>
-													<input type="radio" name="coupon_type" checked value="활성화" id="price">
-													<label for="price" class="coupon_type">활성화</label>
+									<th><label for="coup_type"><h3 class="tt_03">쿠폰설정</h3></label></th>
+										<td class="coupon_status_box d-flex">
+											<div class="coup_type">
+												<input type="radio" name="coupon_status" checked value="활성화" id="price">
+												<label for="price" class="coupon_status">활성화</label>
 											</div>
-											<div>
-													<input type="radio" name="coupon_type" value="비활성화" id="ratio">
-													<label for="ratio" class="coupon_type">비활성화</label>
+											<div class="coup_type">
+												<input type="radio" name="coupon_status" value="비활성화" id="ratio">
+												<label for="ratio" class="coupon_status">비활성화</label>
 											</div>
 									</td>
 								</tr>
+								<tr class="space">
+									<th><label for="coup_type"><h3 class="tt_03">기한</h3></label></th>
+										<td class="coup_type_box d-flex">
+											<div class="d-flex">
+												<div class="coup_type">
+													<input type="radio" name="coup_type" checked value="활성화" id="price">
+													<label for="price" class="coup_type_date">무제한</label>
+												</div>
+												<div class="coup_type">
+													<input type="radio" name="coup_type" value="비활성화" id="ratio">
+													<label for="ratio" class="coup_type_date">제한</label>
+												</div>
+											</div>
+											<div class="coup_type_date_box d-flex align-items-center">
+												<input type="number" id="coup_type_date"  min="1" max="24" step="1" name="coup_type" class="form-control" required>
+												<span>개월</span>
+											</div>
+										</td>
+								</tr>
 							</tbody>
 						</table>
+						<div class="coup_button d-flex justify-content-end">
+							<button class="btn btn-primary">등록</button>
+							<button class="btn btn-dark">닫기</button>
+						</div>
 					</form>
 			</div>
 		</div>
 	</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  <script src="../js/common.js"></script>
+	<script src="/admin/coupon/js/common.js"></script>
+  <script src="/admin/coupon/js/coup.js"></script>
 </body>
 </html>

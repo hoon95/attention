@@ -7,6 +7,9 @@ h2.h1 {
 .common_select_box {
 	margin-bottom: calc(var(--base-unit)*2);
 }
+.coup_searchbox {
+	width: 23%;
+}
 .row-cols-2 {
 	justify-content: space-between;
 }

@@ -30,21 +30,21 @@
 			<h2 class="h1">쿠폰 관리</h2>
 			<div class="d-flex align-items-center justify-content-between common_select_box">
 				<div class="common_select coupon_select">
-					<fieldset class="d-flex align-items-center justify-content-between">
+					<div class="d-flex align-items-center justify-content-between">
 						<select name="select" id="select">
 							<option selected disabled>쿠폰 활성화 선택</option>
 							<option>전체 쿠폰</option>
 							<option>활성된 쿠폰</option>
 							<option>비활성된 쿠폰</option>
 							<option>마감임박 쿠폰</option>
-					</select>
-					</fieldset>
+						</select>
+					</div>
 				</div>
-				<div class="d-flex align-items-center justify-content-between">
-					<form class="common_search">
-						<input type="text" class="form-control" placeholder="입력폼">
-						<i class="bi bi-search icon_gray"></i>
-					</form>
+				<div class="d-flex align-items-center justify-content-between coup_searchbox">
+					<div class="seach">
+						<input type="text" name="seach_form" id="seach_form" class="form-control" placeholder="제목 및 내용 입력">
+						<button type="button"><i class="bi bi-search icon_gray"></i></button>
+					</div>	
 					<button class="btn btn-primary">쿠폰등록</button>
 				</div>
 			</div>
@@ -186,5 +186,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="/admin/coupon/js/common.js"></script>
+  <script src="/admin/coupon/js/coup.js"></script>
 </body>
 </html>
