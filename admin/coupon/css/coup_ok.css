@@ -13,3 +13,42 @@ table {
 	height: 140px;
 	border-radius: 6px;
 }
+input[type="radio"] {
+  display: none;
+}
+/* .coupon_type {
+  display: inline-block;
+  width: 72px;
+  height: 40px;
+  border-radius: 6px 0px 0px 6px;
+  border: 2px solid var(--gray);
+
+  background: var(--white);
+  line-height: 40px;
+}
+.coupon_type_box > div:last-child .coupon_type  {
+  border-radius: 0px 6px 6px 0px;
+  border-left: 1px solid var(--gray);
+} */
+.coupon_type_container {
+  display: flex;
+  align-items: center;
+}
+
+.coupon_type {
+  display: inline-block;
+  width: 72px;
+  height: 40px;
+  border-radius: 6px 0px 0px 6px;
+  border: 2px solid var(--gray);
+  background: var(--white);
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  border-right: 1px solid var(--gray);
+}
+
+.coupon_type_box > div:last-child .coupon_type  {
+  border-radius: 0px 6px 6px 0px;
+  border-left: 1px solid var(--gray);
+}

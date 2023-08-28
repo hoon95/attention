@@ -32,21 +32,30 @@
 					<form action="" class="coup_text">
 						<table>
 							<tbody>
-								<tr>
+								<tr class="space">
 									<th><label for="coup_name"><h3 class="tt_03">쿠폰명</h3></label></th>
-									<td><input type="text" id="coup_name" name="coup_name" class="form-control"></td>
+									<td><input type="text" id="coup_name" name="coup_name" class="form-control" placeholder="이름을 입력해주세요"></td>
 								</tr>
-								<tr>
+								<tr class="space">
 									<th><label for="coup_thumbnail"><h3 class="tt_03">첨부파일</h3></label></th>
-									<td><input type="text" id="coup_thumbnail" name="coup_thu" class="form-control"></td>
+									<td><input type="file" id="coup_thumbnail" name="coup_thu" class="form-control"></td>
 								</tr>
-								<tr>
+								<tr class="space">
 									<th><label for="coup_price"><h3 class="tt_03">할인액</h3></label></th>
-									<td><input type="text" id="coup_price" name="coup_price" class="form-control"></td>
+									<td><input type="number" id="coup_price"  min="10000" max="1000000" step="10000" name="coup_price" class="form-control" required></td>
 								</tr>
-								<tr>
-									<th><label for="coup_price"><h3 class="tt_03">무제한</h3></label></label></th>
-									<td><input type="text" id="coup_price" name="coup_price" class="form-control"></td>
+								<tr class="space">
+									<th><label for="coupon_type"><h3 class="tt_03">쿠폰설정</h3></label></th>
+										<td class="coupon_type_box d-flex">
+											<div>
+													<input type="radio" name="coupon_type" checked value="활성화" id="price">
+													<label for="price" class="coupon_type">활성화</label>
+											</div>
+											<div>
+													<input type="radio" name="coupon_type" value="비활성화" id="ratio">
+													<label for="ratio" class="coupon_type">비활성화</label>
+											</div>
+									</td>
 								</tr>
 							</tbody>
 						</table>
