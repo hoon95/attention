@@ -4,43 +4,12 @@ h2.h1 {
 	text-align: center;
 	margin-bottom: calc(var(--base-unit)*2);
 }
-.common_select_box {
-	margin-bottom: calc(var(--base-unit)*2);
+table {
+  width: 100%;
 }
-.row-cols-2 {
-	justify-content: space-between;
-}
-.row-cols-2 > * {
-	width: 49%;
-}
-.row {
-	gap: 20px 0;
-}
-.row>* {
-	padding: 20px;
-	border-radius: 12px;
-}
-.thumbnail {
-	gap: 20px;
-}
-.thumbnail img {
+.coup_thumbnail img {
 	display: inline-block;
 	width: 226px;
 	height: 140px;
 	border-radius: 6px;
-}
-/* .coup_content > div {
-	margin: 12px 0;
-} */
-.coup_content .coup_text > *{
-	margin: var(--base-unit) 0;
-}
-.coup_content .coup_icon {
-	gap: calc(var(--base-unit)/2) 0;
-}
-.coup_content .coup_common_icon {
-	gap: 0 calc(var(--base-unit)/2);
-}
-.coup_modal .modal-body .form-control {
-	width: 80%;
 }

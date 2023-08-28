@@ -82,7 +82,9 @@ body{
   width: 85%; 
   padding: 2.5%;
 }
-
+.common_pd {
+  padding: 0 5%;
+}
 /* TYPOGRAPHY */
 .tt_01{
   font-size: var(--tt-size-01);
