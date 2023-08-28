@@ -20,6 +20,7 @@
   --text4-size: 14px;
 
   /* COLOR */
+  --bs-body-color: #1c1c1c;
   --white: #fff;
   --black: #1c1c1c;
   --dark-gray: #505050;
@@ -34,6 +35,11 @@
   /* BOX-SHADOW */
   --mint-focus: 0px 0px 0px 5px rgba(42, 193, 188, 0.35);
   --card-shadow: 2px 3px 15px 0px rgba(0, 0, 0, 0.15);
+}
+
+a{
+  color: var(--dark);
+  text-decoration: none;
 }
 
 /* LAYOUT */
@@ -82,39 +88,43 @@ body{
   width: 85%; 
   padding: 2.5%;
 }
-.common_pd {
-  padding: 0 5%;
+.common_pd{
+  padding: 0 8%;
 }
+.space{ /* table tr에 적용 가능 */
+  border-top: var(--base-unit) solid transparent;
+}
+
 /* TYPOGRAPHY */
 .tt_01{
-  font-size: var(--tt-size-01);
+  font-size: var(--tt-size-01); /* 36px */
   font-weight: 700;
   line-height: 40px;
 }
 .tt_02{
-  font-size: var(--tt-size-02);
+  font-size: var(--tt-size-02); /* 28px */
   font-weight: 700;
   line-height: 40px;
 }
 .tt_03{
-  font-size: var(--tt-size-03);
+  font-size: var(--tt-size-03); /* 24px */
   font-weight: 700;
   line-height: 40px;
 }
 .text1{
-  font-size: var(--text1-size);
+  font-size: var(--text1-size); /* 20px */
   font-weight: 500;
 }
 .text2{
-  font-size: var(--text2-size);
+  font-size: var(--text2-size); /* 18px */
   font-weight: 500;
 }
 .text3{
-  font-size: var(--text3-size);
+  font-size: var(--text3-size); /* 16px */
   font-weight: 500;
 }
 .text4{
-  font-size: var(--text4-size);
+  font-size: var(--text4-size); /* 14px */
   font-weight: 500;
 }
 
@@ -215,8 +225,22 @@ input.form-control::placeholder{
 input:focus::placeholder{
   color:transparent;
 }
+.seach{
+  position: relative;
+}
+.seach button{
+  position: absolute;
+  background: var(--white);
+  padding: 1px 0;
+  top: 6px;
+  right: 2px;
+}
 
 /* BUTTON */
+button{
+  background: transparent;
+  border: none;
+}
 .btn {
   --bs-btn-font-weight: 700;
 }
