@@ -40,7 +40,9 @@ input[type="radio"] {
 }
 
 .coup_type {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 72px;
   height: 40px;
   border-radius: 6px 0px 0px 6px;
