@@ -61,3 +61,25 @@ h2.h1 {
 .coup_modal .modal-body .form-control {
 	width: 80%;
 }
+.coup_modal form td {
+	width: 80%;
+}
+.coup_hidden {
+  display: none;
+}
+.coup_modal form table {
+	width: 100%;
+}
+
+.coup_gap  {
+	gap: 24px;
+}
+.coup_type_date_box {
+	width: 60%;
+}
+
+.bi {
+    color: var(--dark);
+    font-size: 24px;
+    padding: 0 5px;
+}

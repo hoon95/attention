@@ -39,7 +39,7 @@ input[type="radio"] {
   gap: 48px;
 }
 
-.coup_type {
+.coup_type > label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -47,18 +47,27 @@ input[type="radio"] {
   height: 40px;
   border-radius: 6px 0px 0px 6px;
   border: 2px solid var(--gray);
-  background: var(--white);
+  background-color: var(--white);
   line-height: 40px;
   text-align: center;
   cursor: pointer;
   border-right: 1px solid var(--gray);
 }
 
-.coupon_status_box .coup_type + .coup_type,
-.coup_type_box .coup_type + .coup_type  {
+.coup_type:last-child label {
   border-radius: 0px 6px 6px 0px;
   border-left: 1px solid var(--gray);
   border-right: 2px solid var(--gray);
+}
+
+.coupon_status_box input[type="radio"]:checked + label {
+  border: 2px solid var(--mint);
+  background-color: var(--mint);
+}
+
+.coup_type_box input[type="radio"]:checked + label {
+  border: 2px solid var(--mint);
+  background-color: var(--mint);
 }
 
 .coup_type_date_box {
@@ -66,7 +75,7 @@ input[type="radio"] {
  gap: 12px;
 }
 .coup_type_date_box .form-control {
-  width: 60%;
+  width: 22%;
 }
 .coup_button {
   gap: 12px;
