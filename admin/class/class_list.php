@@ -1,5 +1,4 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 ?>
 

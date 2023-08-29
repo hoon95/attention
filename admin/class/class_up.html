@@ -45,13 +45,13 @@
                         <!-- <option value="1">대분류</option> -->
                       </select>
                     </span>
-                    <span class="select class_ss_mtl">
+                    <span class="select class_ss_ml">
                       <select name="select" class="select_from">
                         <option selected disabled>중분류</option>
                         <!-- <option value="1">중분류</option> -->
                       </select>
                     </span>
-                    <span class="select class_ss_mtl">
+                    <span class="select class_ss_ml">
                       <select name="select" class="select_from">
                         <option selected disabled>소분류</option>
                         <!-- <option value="1">소분류</option> -->
@@ -67,8 +67,8 @@
                 </tr>
                 </tbody>
             </table>
-                <hr class="class_hr">
-                <table class="table">
+            <hr class="class_hr">
+            <table class="table class_s_mt">
               <tbody>
                 <tr>
                   <th class="tt_03">강좌난이도</th>
@@ -87,24 +87,24 @@
                       <button type="button" class="btn class_btn_bd_color text3 dark_gray">무료</button>
                       <button type="button" class="btn class_btn_bd_color text3 dark_gray">유료</button>
                     </div>
-                    <input type="number" class="form-control class_form_wd class_sm_ml" placeholder="금액">
+                    <input type="number" class="form-control class_sform_wd class_sm_ml" placeholder="금액">
                   </td>
                 </tr>
                 <tr>
-                  <th class="tt_03">수강기간</th>
+                  <th class="tt_03">수강기한</th>
                   <td class="class_label_h">
                     <div class="btn-group" role="group" aria-label="Basic outlined example">
                     <button type="button" class="btn class_btn_bd_color text3 dark_gray">무제한</button>
                       <button type="button" class="btn class_btn_bd_color text3 dark_gray">제한</button>
                     </div>
-                    <input type="number" class="form-control class_form_wd class_sm_ml">
+                    <input type="number" class="form-control class_sform_wd class_sm_ml" value="1">
                     <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
                   </td>
                 </tr>
                 <tr>
                   <th class="tt_03">강좌영상</th>
                   <td class="class_video d-flex align-items-center">
-                    <input type="text" class="form-control class_form_wd" placeholder="동영상 주소를 입력하세요">
+                    <input type="text" class="form-control class_lform_wd" placeholder="동영상 주소를 입력하세요">
                     <button><i class="bi bi-plus-circle icon_gray"></i></button>
                   </td>
                 </tr>
@@ -120,7 +120,7 @@
                 </tbody>
             </table>
                 <hr class="class_hr">
-                <table class="table">
+                <table class="table class_s_mt">
               <tbody>
                 <tr>
                   <th class="tt_03">강좌소개</th>
@@ -147,10 +147,33 @@
               </tbody>
             </table>
             <hr class="class_hr">
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end class_s_mt">
               <button class="btn btn-primary">등록</button>
               <button class="btn btn-dark class_sm_ml">닫기</button>
             </div>
+
+            <tr>
+              <th class="tt_03">수강기한</th>
+              <td class="class_label_h">
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <button type="button" class="btn class_btn_bd_color text3 dark_gray">무제한</button>
+                  <button type="button" class="btn class_btn_bd_color text3 dark_gray">제한</button>
+                </div>
+                <input type="number" class="form-control class_sform_wd class_sm_ml" value="1">
+                <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
+              </td>
+            </tr>
+
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+              <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio1" autocomplete="off" checked>
+              <label class="btn btn-outline-primary class_btn_bd_color text3  dark_gray" for="btnradio1">무제한</label>
+            
+              <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio2" autocomplete="off">
+              <label class="btn btn-outline-primary class_btn_bd_color text3 dark_gray" for="btnradio2">제한</label>
+            
+            </div>
+
+            
           </form>
     </div>
   </div>

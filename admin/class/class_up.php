@@ -42,7 +42,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                 <button type="button" class="btn class_btn_bd_color gray">무료</button>
                 <button type="button" class="btn class_btn_bd_color gray">유료</button>
               </div>
-              <input type="number" class="form-control class_form_wd class_sm_ml" placeholder="금액">
+              <input type="number" class="form-control class_price_wd class_sm_ml" placeholder="금액">
             </td>
           </tr>
           <tr>
