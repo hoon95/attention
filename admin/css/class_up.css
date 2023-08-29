@@ -15,13 +15,21 @@
 }
 .class_hr{
   color: var(--gray);
-  padding: 2px 0;
 }
 .class_m_pd{
   padding-bottom: 40px;
 }
+.class_ss_mt{
+  margin-top: 10px;
+}
+.class_ss_ml{
+  margin-left: 15.75px;
+}
 .class_sm_ml{
   margin-left: 24px;
+}
+.class_ss_mb{
+  margin-bottom: 1px;
 }
 .label_h{
   line-height: 38.48px;
@@ -33,8 +41,10 @@
   width: 100%;
   height: 120px;
 }
-input::placeholder{
-  color:transparent;
+.class_add_img i{
+  width: 38.14px;
+  height: 39.77px;
+  padding-right: 23px;
 }
 table th tr{
   vertical-align: top;
@@ -47,4 +57,7 @@ table th{
 }
 th{
   vertical-align: top;
+}
+input.form-control::placeholder{
+  color: var(--dark-gray);
 }

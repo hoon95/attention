@@ -4,7 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 ?>
 
 <div>
-  <h1 class="h1 mt-5 class_m_pd text-center">강좌리스트</h1>
+  <p class="tt_01 class_ss_m class_m_pd text-center">강좌리스트</p>
 
   <!-- 카테고리 관리 & 검색 form -->
   <form action="">
