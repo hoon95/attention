@@ -78,13 +78,9 @@ input.form-control::placeholder{
   border-color: var(--gray);
   background-color: var(--white);
 }
-.btn-check:checked+.btn 
-  {
-  box-shadow: none;
-}
-.btn-check:checked:last-child{
+/* .btn-check:checked+.btn {
   box-shadow: var(--mint-focus);
-}
+} */
 .btn-check+.btn:hover {
   color: var(--dark-gray);
   background-color: var(--white);
@@ -93,5 +89,6 @@ input.form-control::placeholder{
 .btn-check:checked+.btn:hover{
   background-color: var(--mint);
   color: var(--white);
-  border-color: var(--mint); box-shadow: var(--mint-focus);
+  border-color: var(--mint);
+  box-shadow: var(--mint-focus);
 } 
