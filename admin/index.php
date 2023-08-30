@@ -1,5 +1,11 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+    $class_query = "SELECT name, COUNT(sid) AS average_class FROM sales GROUP BY name ORDER BY average_class DESC LIMIT 3";
+    $class_result = $mysqli->query($class_query);
+
+    while($class_object = $class_result->fetch_object()){
+        $class[] = $class_object;
+    }
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="/attention/admin/css/index.css">
@@ -8,8 +14,23 @@
     <div class="dash_box_top d-flex justify-content-between">
         <div class="box_shadow radius_medium d-flex flex-column justify-content-between">
             <h3 class="text1 sales_summary">매출 요약</h3>
+            <?php
+                $sales_query = "SELECT DATE_FORMAT(regdate, '%Y-%m-%d') AS date, ROUND(SUM(price)) AS average_sales FROM sales WHERE DATE_FORMAT(regdate, '%Y-%m-%d') = '2023-08-28' GROUP BY date";
+                $sales_result = $mysqli->query($sales_query);
+                
+                while($sales_object = $sales_result->fetch_object()){
+                    $sales[] = $sales_object;
+                }
+                // var_dump($sales);
+            ?>
             <p class="text1 sales_amount">₩47,000,000</p>
-            <p class="gray sales_date">(2023.08.21~2023.08.25)</p>
+            <div class="gray sales_date">
+                <span>(</span>
+                <span class="sales_start_date"></span>
+                <span>~</span>
+                <span class="sales_end_date"></span>
+                <span>)</span>
+            </div>
             <div class="d-flex text4">
                 <span>지난 주 대비</span>
                 <span class="sales_per">3.4</span>%
@@ -37,21 +58,23 @@
                 <p class="text4">가장 인기있는 강좌 Top 3</p>
             </div>
             <div class="pop_class_list d-flex flex-column">
-                <div class="top1_class d-flex justify-content-between align-items-center">
-                    <img src="/attention/admin/img/dashboard/JS_logo.png" alt="자바스크립트">
-                    <p class="text2">JavaScript</p>
-                    <span class="gray">2,900명</span>
+                <?php foreach($class as $item){ ?>
+                <div class="top_class d-flex justify-content-between align-items-center">
+                    <img src="/attention/admin/img/dashboard/<?= $item->name ?>.png" alt="<?= $item->name ?>">
+                    <p class="text2"><?= $item->name ?></p>
+                    <span class="gray"><?= $item->average_class ?>명</span>
                 </div>
-                <div class="top2_class d-flex justify-content-between align-items-center">
+                <?php } ?>
+                <!-- <div class="top_class d-flex justify-content-between align-items-center">
                     <img src="/attention/admin/img/dashboard/React_logo.png" alt="리액트">
                     <p class="text2">React</p>
                     <span class="gray">1,700명</span>
                 </div>
-                <div class="top3_class d-flex justify-content-between align-items-center">
+                <div class="top_class d-flex justify-content-between align-items-center">
                     <img src="/attention/admin/img/dashboard/Redux_logo.png" alt="리덕스">
                     <p class="text2">Redux</p>
                     <span class="gray">1,040명</span>
-                </div>
+                </div> -->
                 
             </div>
         </div>
@@ -128,12 +151,34 @@
     
     // 매출 달력
     flatpickr("#datepicker", {
-        defaultDate: new Date()
+        defaultDate: new Date(),
+        inline: true
     });
-    $('#datepicker').trigger('click');
-    $('#datapicker').mousedown(function(e){
-        e.stopPropagation();
-    })
+
+    // 날짜 값 받아오기
+    document.getElementById("datepicker").addEventListener("change", function(e){
+        let selectedDate = e.target.value;
+        let sales_start_date = document.querySelector('.sales_start_date');
+        let sales_end_date = document.querySelector('.sales_end_date');
+        let modify_year_month = selectedDate.substring(0,7);
+        // let modify_date = Number(selectedDate.substring(8,10))-7;
+        let modify_date = 0;
+        if(modify_date.length == 1){
+            modify_date = '0'+(Number(selectedDate.substring(8,10))-7);
+        }else if(modify_date.length == 2){
+            modify_date = Number(selectedDate.substring(8,10))-7;
+        }
+
+        sales_start_date.innerHTML = modify_year_month+'-'+ modify_date;
+        sales_end_date.innerHTML = selectedDate;
+        console.log(selectedDate);
+    });
+
+    
+    // $('#datepicker').trigger('click');
+    // $('#datapicker').mousedown(function(e){
+    //     e.stopPropagation();
+    // })
 
     // var datepickerOpen = false;
             
@@ -152,6 +197,7 @@
     //     $("#datepicker").datepicker("show");
     // });
     // /매출 달력
+
 
     // 접속자 수 누적 그래프
     const aname = ['']

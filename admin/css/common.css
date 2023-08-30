@@ -59,7 +59,7 @@ body{
 }
 .aside{
   width: 15%;
-  max-height: 920px;
+  min-height: 920px;
 }
 .aside li{
   width: 100%;
@@ -209,6 +209,10 @@ i.bi{
 }
 
 /* FORM, SELECT, TOGGLE */
+.form-check-input{
+  width: 42px !important;
+  height: 20px !important;
+}
 .form-check-input:checked {
   background-color: var(--mint);
   border-color: var(--mint);
