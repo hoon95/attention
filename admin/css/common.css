@@ -59,7 +59,8 @@ body{
 }
 .aside{
   width: 15%;
-  min-height: 920px;
+  height: 100vh;
+  max-height: 920px;
 }
 .aside li{
   width: 100%;
