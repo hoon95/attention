@@ -73,19 +73,24 @@
                 <tr>
                   <th class="tt_03">강좌난이도</th>
                   <td>
-                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                      <button type="button" class="btn class_btn_bd_color text3 dark_gray">초급</button>
-                      <button type="button" class="btn class_btn_bd_color text3 dark_gray">중급</button>
-                      <button type="button" class="btn class_btn_bd_color text3 dark_gray">상급</button>
+                    <div class="btn-group" aria-label="Basic radio toggle button group">
+                      <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio1" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="btnradio1">초급</label>
+                      <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio2" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="btnradio2">중급</label>
+                      <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio3" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="btnradio3">상급</label>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <th class="tt_03">가격</th>
                   <td>
-                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                      <button type="button" class="btn class_btn_bd_color text3 dark_gray">무료</button>
-                      <button type="button" class="btn class_btn_bd_color text3 dark_gray">유료</button>
+                    <div class="btn-group" aria-label="Basic radio toggle button group">
+                      <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio4" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="btnradio4">무료</label>
+                      <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio5" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="btnradio5">유료</label>
                     </div>
                     <input type="number" class="form-control class_sform_wd class_sm_ml" placeholder="금액">
                   </td>
@@ -93,9 +98,11 @@
                 <tr>
                   <th class="tt_03">수강기한</th>
                   <td class="class_label_h">
-                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="btn class_btn_bd_color text3 dark_gray">무제한</button>
-                      <button type="button" class="btn class_btn_bd_color text3 dark_gray">제한</button>
+                    <div class="btn-group" aria-label="Basic radio toggle button group">
+                      <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio6" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="btnradio6">무제한</label>
+                      <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio7" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="btnradio7">제한</label>
                     </div>
                     <input type="number" class="form-control class_sform_wd class_sm_ml" value="1">
                     <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
@@ -111,9 +118,11 @@
                 <tr>
                   <th class="tt_03">공개 여부</th>
                   <td>
-                    <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="btn class_btn_bd_color text3 dark_gray">공개</button>
-                      <button type="button" class="btn class_btn_bd_color text3 dark_gray">비공개</button>
+                    <div class="btn-group" aria-label="Basic radio toggle button group">
+                      <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio8" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="btnradio8">공개</label>
+                      <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio9" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="btnradio9">비공개</label>
                     </div>
                     </td>
                 </tr>
@@ -150,30 +159,7 @@
             <div class="d-flex justify-content-end class_s_mt">
               <button class="btn btn-primary">등록</button>
               <button class="btn btn-dark class_sm_ml">닫기</button>
-            </div>
-
-            <tr>
-              <th class="tt_03">수강기한</th>
-              <td class="class_label_h">
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                <button type="button" class="btn class_btn_bd_color text3 dark_gray">무제한</button>
-                  <button type="button" class="btn class_btn_bd_color text3 dark_gray">제한</button>
-                </div>
-                <input type="number" class="form-control class_sform_wd class_sm_ml" value="1">
-                <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
-              </td>
-            </tr>
-
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio1" autocomplete="off" checked>
-              <label class="btn btn-outline-primary class_btn_bd_color text3  dark_gray" for="btnradio1">무제한</label>
-            
-              <input type="radio" class="btn-check form-check-input" name="btnradio" id="btnradio2" autocomplete="off">
-              <label class="btn btn-outline-primary class_btn_bd_color text3 dark_gray" for="btnradio2">제한</label>
-            
-            </div>
-
-            
+            </div>            
           </form>
     </div>
   </div>

@@ -17,14 +17,7 @@
   display: inline-block;
   width: 267px;
 }
-.class_btn_bd_color{
-  border-color: var(--gray);
-  background-color: var(--white);
-}
-.class_btn_bd_color:hover{
-  background-color: var(--mint);
-  color: var(--white);
-}
+
 .class_hr{
   color: var(--gray);
   margin: 0;
@@ -81,8 +74,22 @@ input.form-control::placeholder{
 .table>:not(caption)>*>*{
   padding: 0 0.5rem 20px;
 }
-.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+.class_btn_bd_color{
+  border-color: var(--gray);
+  background-color: var(--white);
+}
+.class_btn_bd_color:hover{
+  background-color: var(--white);
   color: var(--white);
+}
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+  /* color: var(--white);
     background-color: var(--mint);
-    border-color: var(--mint);
+    border-color: var(--mint); */
+    box-shadow: var(--mint-focus);
+  border-color: var(--mint);
+}
+.btn-check+.btn:hover{
+  background-color: var(--white);
+  color: var(--dark-gray);
 }

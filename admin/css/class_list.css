@@ -1,24 +1,25 @@
 .aside{
   max-height: none;
 }
-.class_form_wd{
-  display: inline-block;
-  width: 232px;
-}
-.form_select{
-  width: 232px;
-}
 .table{
   border-radius: 12px;
   padding: 0;
+  margin: 0;
 }
 .class_table tr{
   border-radius: 12px;
   box-shadow: 4px 5px 17px 0px rgba(0, 0, 0, 0.15);
-  margin-bottom: 4px;
+  margin-bottom: 7px;
+}
+.form-control{
+  display: inline-block;
+  width: 232px;
 }
 .class_ss_mt{
   margin-top: 10px;
+}
+.class_sm_m{
+  margin-bottom: 20px;
 }
 .class_ss_ml{
   margin-left: 15.75px;
@@ -29,18 +30,11 @@
 .class_sm_ml{
   margin-left: 24px;
 }
-.class_m_pd{
-  padding-bottom: 40px;
-}
-.class_sm_m{
-  margin-bottom: 20px;
-}
 .class_sm_mtb{
   margin: 20px 0 20px 48px;
 }
-.form-control{
-  display: inline-block;
-  width: 232px;
+.class_m_pd{
+  padding-bottom: 40px;
 }
 .class_list_img{
   margin-left: 39px;
@@ -62,4 +56,7 @@
 }
 .class_button{
   margin: 8px 18px 11px 0;
+}
+.pagination{
+  margin-top: 13px;
 }
