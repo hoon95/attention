@@ -18,6 +18,7 @@
 }
 .flatpickr-calendar{
     width: 100%;
+    box-shadow: none;
 }
 .flatpickr-innerContainer{
     justify-content: center;
@@ -29,8 +30,8 @@
     right: 10% !important;
 }
 .flatpickr-monthDropdown-months{
-    height: fit-content;
     appearance: none !important;
+    line-height: initial !important;
 }
 /* /flatpickr 옵션 수정 */
 .sales_summary, .access_num, .pop_class_title, .recent_board_title, .member_num{
