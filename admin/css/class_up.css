@@ -78,18 +78,20 @@ input.form-control::placeholder{
   border-color: var(--gray);
   background-color: var(--white);
 }
-.class_btn_bd_color:hover{
-  background-color: var(--white);
-  color: var(--white);
+.btn-check:checked+.btn 
+  {
+  box-shadow: none;
 }
-.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
-  /* color: var(--white);
-    background-color: var(--mint);
-    border-color: var(--mint); */
-    box-shadow: var(--mint-focus);
-  border-color: var(--mint);
+.btn-check:checked:last-child{
+  box-shadow: var(--mint-focus);
 }
-.btn-check+.btn:hover{
-  background-color: var(--white);
+.btn-check+.btn:hover {
   color: var(--dark-gray);
+  background-color: var(--white);
+  border-color: var(--gray);
 }
+.btn-check:checked+.btn:hover{
+  background-color: var(--mint);
+  color: var(--white);
+  border-color: var(--mint); box-shadow: var(--mint-focus);
+} 
