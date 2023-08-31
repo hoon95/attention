@@ -40,8 +40,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       </tbody>
     </table>
     <div class="mt-5 text-end">
-      <button class="btn btn-primary mx-4">등록</button>
-      <button class="btn btn-dark">닫기</button>
+      <button type="submit" class="btn btn-primary mx-4">등록</button>
+      <a href="/attention/admin/notice/notice.php" class="btn btn-dark">닫기</a>
     </div>
   </form>
 </div> <!-- /notice_write -->

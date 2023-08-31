@@ -1,5 +1,22 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+
+  // $sql = "SELECT * from notice where 1=1" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
+
+  $sql = "SELECT * from notice order by idx desc limit 0, 10" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
+
+  // $order = " order by idx desc";//최근순 정렬
+  // $limit = " limit $statLimit, $endLimit";
+
+  // $query = $sql.$order.$limit; //쿼리 문장 조합
+
+  // var_dump($query);
+  
+  $result = $mysqli -> query($sql);
+  
+  while($rs = $result -> fetch_object()){
+    $rsc[] = $rs;
+  }
 ?>
 
 <link rel="stylesheet" href="/attention/admin/css/notice.css">
@@ -22,7 +39,7 @@
         <button type="button"><i class="bi bi-search icon_gray"></i></button>
       </div>
 
-      <a class="btn btn-primary" href="#">글 작성</a>
+      <a class="btn btn-primary" href="/attention/admin/notice/notice_write.php">글 작성</a>
     </div>
   </div>
 
@@ -37,98 +54,31 @@
         </tr>
       </thead>
       <tbody>
-        <!-- 반복 -->
+        <?php
+          if(isset($rsc)){
+            foreach($rsc as $item){            
+        ?>
+        <!-- 게시물 생성 -->
         <tr class="board_bd">
-          <td class="text-center">10</td>
-          <td><a href="" class="a_link">관리자 게시판에는 어떤 글이 있나..</a></td>
-          <td class="text-center">2023-08-27</td>
+          <td class="text-center"><?= $item -> idx; ?></td>
+          <td><a href="" class="a_link"><?= $item -> title; ?></a></td>
+          <td class="text-center"><?= $item -> date; ?></td>
           <td class="text-center">
-            <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
+            <a href="/attention/admin/notice/notice.modify.php"><i class="bi bi-pencil-square icon_mint"></i></a>
             <button type="button"><i class="bi bi-trash-fill icon_red"></i></button>
           </td>
         </tr>
-        <!-- /반복 -->
-        <tr class="board_bd">
-          <td class="text-center">9</td>
-          <td>안녕하세요</td>
-          <td class="text-center">2023-08-27</td>
-          <td class="text-center">
-            <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
-            <button type="button"><i class="bi bi-trash-fill icon_red"></i></button>
-          </td>
+        <?php
+          } //foreach
+        } else {    
+        ?>  
+        <tr>
+          <td>조회 결과가 없습니다.</td>
         </tr>
-        <tr class="board_bd">
-          <td class="text-center">8</td>
-          <td>안녕하세요</td>
-          <td class="text-center">2023-08-27</td>
-          <td class="text-center">
-            <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
-            <button type="button"><i class="bi bi-trash-fill icon_red"></i></button>
-          </td>
-        </tr>
-        <tr class="board_bd">
-          <td class="text-center">7</td>
-          <td>안녕하세요</td>
-          <td class="text-center">2023-08-27</td>
-          <td class="text-center">
-            <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
-            <button type="button"><i class="bi bi-trash-fill icon_red"></i></button>
-          </td>
-        </tr>
-        <tr class="board_bd">
-          <td class="text-center">6</td>
-          <td>안녕하세요</td>
-          <td class="text-center">2023-08-27</td>
-          <td class="text-center">
-            <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
-            <button type="button"><i class="bi bi-trash-fill icon_red"></i></button>
-          </td>
-        </tr>
-        <tr class="board_bd">
-          <td class="text-center">5</td>
-          <td>안녕하세요</td>
-          <td class="text-center">2023-08-27</td>
-          <td class="text-center">
-            <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
-            <button type="button"><i class="bi bi-trash-fill icon_red"></i></button>
-          </td>
-        </tr>
-        <tr class="board_bd">
-          <td class="text-center">4</td>
-          <td>안녕하세요</td>
-          <td class="text-center">2023-08-27</td>
-          <td class="text-center">
-            <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
-            <button type="button"><i class="bi bi-trash-fill icon_red"></i></button>
-          </td>
-        </tr>
-        <tr class="board_bd">
-          <td class="text-center">3</td>
-          <td>안녕하세요</td>
-          <td class="text-center">2023-08-27</td>
-          <td class="text-center">
-            <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
-            <button type="button"><i class="bi bi-trash-fill icon_red"></i></button>
-          </td>
-        </tr>
-        <tr class="board_bd">
-          <td class="text-center">2</td>
-          <td>안녕하세요</td>
-          <td class="text-center">2023-08-27</td>
-          <td class="text-center">
-            <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
-            <button type="button"><i class="bi bi-trash-fill icon_red"></i></button>
-          </td>
-        </tr>
-        <tr class="board_bd">
-          <td class="text-center">1</td>
-          <td>안녕하세요</td>
-          <td class="text-center">2023-08-27</td>
-          <td class="text-center">
-            <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
-            <button type="button"><i class="bi bi-trash-fill icon_red"></i></button>
-          </td>
-        </tr>            
+        <?php
+          }  
+        ?>  
+        <!-- /게시물 생성 -->
       </tbody>
     </table>
 
@@ -151,11 +101,7 @@
   </form>
 </div><!-- /notice -->
 
-<script>
-    $( function() {
-      $( "#select" ).selectmenu();
-    } );
-  </script>
+
 
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
