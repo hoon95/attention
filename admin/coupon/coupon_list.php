@@ -11,6 +11,7 @@
     $rsc[] = $rs;
   }
 ?>
+<link rel="stylesheet" href="/attention/admin/coupon/css/coup.css">
 <link rel="stylesheet" href="/attention/admin/coupon/css/coup_ok.css">
 <h2 class="h1">쿠폰 관리</h2>
 	<div class="d-flex align-items-center justify-content-between common_select_box">
@@ -55,25 +56,19 @@
 						<div class="coup_text">
 							<h3 class="text2"><?= $item -> coupon_name ?></h3>
 							<p class="text3"><?= $item -> coupon_price ?></p>
-							<p class="text4 coup_board coup_board_date">
+							<p class="text4 <?php if ($item->regdate == '무제한') echo 'coup_board'; ?>">
 								<?php 
-									 var_dump($item->regdate);
-								if($item->coupon_type == '무제한'){
-									 echo "무제한"; 
-								
-									} 
-								 else {
-									echo "기한";
-								 }
+										if ($item->regdate == '무제한') {
+											echo "무제한"; 
+										} else {
+											echo "기한: " . $item->regdate . "개월";
+										}
 								?> 
-								
-							</p>
+						</p>
 						</div>
 						<div class="coup_icon d-flex flex-column align-items-end justify-content-lg-end">
 							<div class="form-check form-switch">
-								<!-- <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"> -->
-								<input class="form-check-input" type="checkbox" role="switch" value="<?php echo $item->status ?>" <?php if($item->status){ echo "checked"; } ?> name="<?= $item-> cid ?>" id="<?= $item-> cid ?>">
-								
+								<input class="form-check-input" type="checkbox" role="switch" value="<?= $item->status ?>" name="<?= $item->cid ?>" id="<?= $item->cid ?>" <?php if ($item->status == "활성화") echo "checked"; ?>>							
 							</div>
 							<div class="coup_common_icon d-flex">
 								<button type="button" class="bi bi-pencil-square icon_mint" data-bs-toggle="modal" data-bs-target="#myModal"></button>
@@ -102,56 +97,42 @@
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">쿠폰 등록</h5>
+					<h5 class="modal-title" id="exampleModalLabel">쿠폰 관리</h5>
 				</div>
 				<div class="modal-body">
 					<form action="" class="coup_text">
 						<table>
 							<tbody>
 								<tr class="space">
-									<th><label for="coup_name"><h3 class="tt_03">쿠폰명</h3></label></th>
-									<td><input type="text" id="coup_name" name="coup_name" class="form-control" placeholder="이름을 입력해주세요"></td>
+									<th><h3 class="tt_03">쿠폰명</h3></th>
+									<td><input type="text" id="coupon_name" name="coupon_name" class="form-control" placeholder="이름을 입력해주세요" required></td>
 								</tr>
 								<tr class="space">
-									<th><label for="coup_thumbnail"><h3 class="tt_03">첨부파일</h3></label></th>
-									<td class="coup_thumbnail_box">
-										<!-- <input type="file" id="coup_thumbnail" name="coup_thumbnail" class="form-control coup_hidden">      -->
-										<input type="file" class="coup_hidden" name="" id="">
+									<th><h3 class="tt_03">첨부파일</h3></th>
+									<td class="d-flex align-items-end coup_thumbnail_box">
+										<input type="file" class="coup_hidden" name="coupon_image" id="coupon_image" required>
 										<button type="button" class="btn btn-secondary coup_img">첨부파일</button>
 									</td>
 								</tr>
 								<tr class="space">
-									<th><label for="coup_price"><h3 class="tt_03">할인액</h3></label></th>
-									<td><input type="number" id="coup_price"  min="10000" max="1000000" step="10000" name="coup_price" class="form-control" required></td>
+									<th><h3 class="tt_03">할인액</h3></th>
+									<td><input type="number" id="coupon_price"  min="10000" max="1000000" step="10000" name="coupon_price" class="form-control" required></td>
 								</tr>
-								<!-- <tr class="space">
-									<th><label for="coup_type"><h3 class="tt_03">쿠폰설정</h3></label></th>
-										<td class="coupon_status_box coup_gap d-flex">
-											<div class="coup_type">
-												<input type="radio" name="coupon_status" checked value="활성화" id="price">
-												<label for="price" class="coupon_status">활성화</label>
-											</div>
-											<div class="coup_type">
-												<input type="radio" name="coupon_status" value="비활성화" id="ratio">
-												<label for="ratio" class="coupon_status">비활성화</label>
-											</div>
-									</td>
-								</tr> -->
 								<tr class="space">
-									<th><label for="coup_type"><h3 class="tt_03">기한</h3></label></th>
-										<td class="coup_type_box d-flex align-items-center justify-content-between">
-											<div class="coup_gap d-flex">
-												<div class="coup_type">
-													<input type="radio" name="coup_type" checked value="활성화" id="price">
-													<label for="price" class="coup_type_date">무제한</label>
+									<th><h3 class="tt_03">기한</h3></th>
+										<td class="coup_type_box d-flex">
+											<div class="d-flex">
+												<div class="coup_type coup_date">
+													<input type="radio" name="regdate" checked value="무제한" id="infinite_date_box">
+													<label for="infinite_date_box" class="infinite_date">무제한</label>
 												</div>
-												<div class="coup_type">
-													<input type="radio" name="coup_type" value="비활성화" id="ratio">
-													<label for="ratio" class="coup_type_date">제한</label>
+												<div class="coup_type coup_date">
+													<input type="radio" name="regdate" value="제한" id="day_date_box">
+													<label for="day_date_box" class="day_date">제한</label>
 												</div>
 											</div>
-											<div class="coup_type_date_box d-flex align-items-center coup_gap">
-												<input type="number" id="coup_type_date"  min="1" max="24" step="1" name="coup_type" class="form-control" required>
+											<div class="coup_type_date_box d-flex align-items-center">
+												<input type="number" id="regdate_box" name="regdate"  min="1" max="24" step="1"  class="form-control" required disabled>
 												<span>개월</span>
 											</div>
 										</td>
@@ -181,6 +162,26 @@
 	});
 	console.log($this);
 </script>	 -->
+<script>
+	$(function() {
+		$("#select").selectmenu();
+	})
+</script>
+<script>
+	// modal
+	$(".infinite_date").on("click", function () {
+			$("#regdate_box").prop("disabled", true);
+	});
+
+	$(".day_date").on("click", function () {
+			$("#regdate_box").prop("disabled", false);
+	});
+	// /modal
+
+	// let check = $('.coup_icon input').val();
+	// if(check == '활성화')
+
+</script>
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/footer.php';
 ?>

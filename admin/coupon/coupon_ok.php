@@ -2,11 +2,11 @@
 //   session_start(); 
 //   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
+  // var_dump($_POST);
 
   $coupon_name = $_POST['coupon_name'];
-  $coupon_type = $_POST['coupon_type']; //제한 무제한 타입
   $coupon_price = $_POST['coupon_price']?? 0;
-  $status = $_POST['status']?? 0; //활성화 비활성화
+  $status = $_POST['status']; //활성화 비활성화
   $regdate = $_POST['regdate']?? 0;  //무제한 클릭시 기간
 
 
@@ -49,14 +49,17 @@
   try{
 
   $sql = "INSERT INTO coupons 
-    (coupon_name, coupon_image, coupon_type, coupon_price,  status, regdate) 
+    (coupon_name, coupon_image, coupon_price,  status, regdate) 
     VALUES 
-    ('{$coupon_name}', '{$coupon_image}', '{$coupon_type}', {$coupon_price}, '{$status}', '{$regdate}')";
- 
+    ('{$coupon_name}', '{$coupon_image}', {$coupon_price}, '{$status}' , '{$regdate}')";
+  // var_dump($sql);
   $result = $mysqli -> query($sql);
+  
 
   $mysqli->commit();//디비에 커밋한다.
 
+
+  
   if($result){
     echo "<script>
       alert('쿠폰등록완료');
