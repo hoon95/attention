@@ -104,13 +104,13 @@
 			console.log(return_data);
 
 			if (return_data.result == 'image') {
-			alert('이미지파일만 첨부할 수 있습니다.');
+			alert('이미지 파일만 첨부할 수 있습니다.');
 			return;
 			} else if (return_data.result == 'size') {
 			alert('10메가 이하만 첨부할 수 있습니다.');
 			return;
 			} else if (return_data.result == 'error') {
-			alert('관리자에게 문의하세요');
+			alert('이미지 확인해주세요');
 			return;
 			} else {
 			//첨부이미지 테이블에 저장하면 할일
@@ -121,7 +121,7 @@
 					<img src="/attention/pdata/${return_data.savefile}" alt="">
 				</div>
 			`;
-			$('#file_table_id').append(html);
+			$('#file_table_id').html(html);
 			}
 		}
 

@@ -55,11 +55,11 @@
 					<div class="d-flex justify-content-between">
 						<div class="coup_text">
 							<h3 class="text2"><?= $item -> coupon_name ?></h3>
-							<p class="text3"><?= $item -> coupon_price ?></p>
+							<p class="text3">할인액: <?= $item -> coupon_price ?>원</p>
 							<p class="text4 <?php if ($item->regdate == '무제한') echo 'coup_board'; ?>">
 								<?php 
 										if ($item->regdate == '무제한') {
-											echo "무제한"; 
+											echo "무기한"; 
 										} else {
 											echo "기한: " . $item->regdate . "개월";
 										}
@@ -71,8 +71,8 @@
 								<input class="form-check-input" type="checkbox" role="switch" value="<?= $item->status ?>" name="<?= $item->cid ?>" id="<?= $item->cid ?>" <?php if ($item->status == "활성화") echo "checked"; ?>>							
 							</div>
 							<div class="coup_common_icon d-flex">
-								<button type="button" class="bi bi-pencil-square icon_mint" data-bs-toggle="modal" data-bs-target="#myModal"></button>
-								<button type="button" class="bi bi-trash-fill icon_red"></button>
+								<a href = "coupon_modify.php" class="bi bi-pencil-square icon_mint"></a>
+								<a href = "coupon_delete.php" class="bi bi-trash-fill icon_red"></a>
 							</div>
 						</div>
 					</div>
@@ -90,85 +90,14 @@
         }  
       ?>  
 	</div>
-	<!-- 쿠폰 리스트 form - 기서은 -->
 
-	<!-- 쿠폰 수정 모달 - 기서은 -->
-	<div class="modal fade coup_modal" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-bs-config='{"delay":0, "title":"Custom Title"}'>
-		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">쿠폰 관리</h5>
-				</div>
-				<div class="modal-body">
-					<form action="" class="coup_text">
-						<table>
-							<tbody>
-								<tr class="space">
-									<th><h3 class="tt_03">쿠폰명</h3></th>
-									<td><input type="text" id="coupon_name" name="coupon_name" class="form-control" placeholder="이름을 입력해주세요" required></td>
-								</tr>
-								<tr class="space">
-									<th><h3 class="tt_03">첨부파일</h3></th>
-									<td class="d-flex align-items-end coup_thumbnail_box">
-										<input type="file" class="coup_hidden" name="coupon_image" id="coupon_image" required>
-										<button type="button" class="btn btn-secondary coup_img">첨부파일</button>
-									</td>
-								</tr>
-								<tr class="space">
-									<th><h3 class="tt_03">할인액</h3></th>
-									<td><input type="number" id="coupon_price"  min="10000" max="1000000" step="10000" name="coupon_price" class="form-control" required></td>
-								</tr>
-								<tr class="space">
-									<th><h3 class="tt_03">기한</h3></th>
-										<td class="coup_type_box d-flex">
-											<div class="d-flex">
-												<div class="coup_type coup_date">
-													<input type="radio" name="regdate" checked value="무제한" id="infinite_date_box">
-													<label for="infinite_date_box" class="infinite_date">무제한</label>
-												</div>
-												<div class="coup_type coup_date">
-													<input type="radio" name="regdate" value="제한" id="day_date_box">
-													<label for="day_date_box" class="day_date">제한</label>
-												</div>
-											</div>
-											<div class="coup_type_date_box d-flex align-items-center">
-												<input type="number" id="regdate_box" name="regdate"  min="1" max="24" step="1"  class="form-control" required disabled>
-												<span>개월</span>
-											</div>
-										</td>
-								</tr>
-							</tbody>
-						</table>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary">저장</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- /쿠폰 수정 모달 - 기서은 -->
-
-<!-- <script>
-	$('.coupon_status_box input[type="radio"]').click(function(){
-		let $this = $(this);
-		if($this.prop('checked')){//체크해서 활성되면
-			$this.val('1');
-	
-		} else{
-			$this.val('0');
-		}
-	});
-	console.log($this);
-</script>	 -->
 <script>
 	$(function() {
 		$("#select").selectmenu();
 	})
 </script>
 <script>
-	// modal
+	// 무기한, 제한 설정
 	$(".infinite_date").on("click", function () {
 			$("#regdate_box").prop("disabled", true);
 	});
@@ -176,12 +105,9 @@
 	$(".day_date").on("click", function () {
 			$("#regdate_box").prop("disabled", false);
 	});
-	// /modal
-
-	// let check = $('.coup_icon input').val();
-	// if(check == '활성화')
+	// /무기한, 제한 설정
 
 </script>
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/footer.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>
