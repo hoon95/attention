@@ -41,7 +41,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </table>
     <div class="mt-5 text-end">
       <button type="submit" class="btn btn-primary mx-4">등록</button>
-      <a href="/attention/admin/notice/notice.php" class="btn btn-dark">닫기</a>
+      <a href="notice.php" class="btn btn-dark close_btn">닫기</a>
     </div>
   </form>
 </div> <!-- /notice_write -->
@@ -55,6 +55,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     height: 500
     // placeholder: '내용을 입력하세요.'
   });
+  // $('.close_btn')
 </script>
 
 <?php

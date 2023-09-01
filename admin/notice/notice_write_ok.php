@@ -15,7 +15,7 @@
   $content = $_POST['content'];
   $date = date('Y-m-d');
 
-  
+
   if($_FILES['file']['name']){
     //파일 사이즈 검사
     if($_FILES['file']['size']> 10240000){
@@ -32,7 +32,7 @@
     $ext = pathinfo($filename, PATHINFO_EXTENSION); //확장자
     $newfilename = date("YmdHis").substr(rand(), 0,6); //파일명 datetime명으로 변경
     $notice_file = $newfilename.".".$ext; //변경된 파일명 + 확장자
-
+    
     if(move_uploaded_file($_FILES['file']['tmp_name'], $save_dir.$notice_file)){  
       $notice_file = "/attention/pdata/notice/".$notice_file;
     } else{

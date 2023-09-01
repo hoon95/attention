@@ -103,14 +103,20 @@
         <tr class="board_bd" data-id="<?= $item -> idx; ?>">
           <td class="text-center"><?= $item -> idx; ?></td>
 
-          <td><a href="" class="a_link"><?= $item -> title; ?></a></td>
+          <td>
+            <a href="" class="a_link"><?= $item -> title; ?></a>
+          </td>
 
           <!-- bbs 아이콘 출력, abc product 참고 -->
 
           <td class="text-center"><?= $item -> date; ?></td>
           <td class="text-center">
-            <a href="notice_modify.php?idx=<?= $item -> idx; ?>"><i class="bi bi-pencil-square icon_mint"></i></a>
-            <button type="button" class="del_btn"><i class="bi bi-trash-fill icon_red"></i></button>
+            <a href="notice_modify.php?idx=<?= $item -> idx; ?>">
+              <i class="bi bi-pencil-square icon_mint"></i>
+            </a>
+            <button type="button" class="del_btn">
+              <i class="bi bi-trash-fill icon_red"></i>
+            </button>
           </td>
         </tr>
         <?php
