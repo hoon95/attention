@@ -19,7 +19,7 @@
 
     echo "<script>
       alert('관리자님 어서오세요 :)');
-      location.href = '/attention/admin/index.php';
+      location.href = '/attention/admin/dashboard/index.php';
     </script>";
   } else{
     echo "<script>

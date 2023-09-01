@@ -1,6 +1,6 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
     
     $class_query = "SELECT name, COUNT(sid) AS average_class FROM sales GROUP BY name ORDER BY average_class DESC LIMIT 3";
     $class_result = $mysqli->query($class_query);
@@ -35,7 +35,7 @@
                 <span>)</span>
             </div>
             <div class="d-flex text4">
-                <span>지난 주 대비</span>
+                <span>지난 주 대비 </span>
                 <span class="sales_per"></span>
                 <span> % </span>
                 <span class="sales_updown"></span>
