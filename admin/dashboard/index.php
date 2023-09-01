@@ -6,6 +6,13 @@
     while($class_object = $class_result->fetch_object()){
         $class[] = $class_object;
     }
+
+    $board_query = "SELECT title FROM notice ORDER BY idx DESC LIMIT 0,4";
+    $board_result = $mysqli-> query($board_query);
+
+    while($board_object = $board_result->fetch_object()){
+        $board[] = $board_object;
+    }
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="/attention/admin/css/index.css">
@@ -27,8 +34,9 @@
             </div>
             <div class="d-flex text4">
                 <span>지난 주 대비</span>
-                <span class="sales_per">3.4</span>%
-                <span class="sales_updown">상승</span>
+                <span class="sales_per"></span>
+                <span> % </span>
+                <span class="sales_updown"></span>
             </div>
             <canvas id="sales_chart"></canvas>
         </div>
@@ -59,17 +67,6 @@
                     <span class="gray"><?= $item->average_class ?>명</span>
                 </div>
                 <?php } ?>
-                <!-- <div class="top_class d-flex justify-content-between align-items-center">
-                    <img src="/attention/admin/img/dashboard/React_logo.png" alt="리액트">
-                    <p class="text2">React</p>
-                    <span class="gray">1,700명</span>
-                </div>
-                <div class="top_class d-flex justify-content-between align-items-center">
-                    <img src="/attention/admin/img/dashboard/Redux_logo.png" alt="리덕스">
-                    <p class="text2">Redux</p>
-                    <span class="gray">1,040명</span>
-                </div> -->
-                
             </div>
         </div>
 
@@ -79,22 +76,23 @@
                 <p class="text4">최근 등록된 게시글을 확인하세요</p>
             </div>
             <div class="recent_board_ul d-flex flex-column">
+                <?php
+                if(isset($board)){
+                    foreach($board as $item){
+                ?>
                 <div class="recent_board_list d-flex justify-content-between">
-                    <p class="text4 gray">다가오는 추석 풍성한 이벤트</p>
+                    <p class="text4 gray"><?php if(mb_strlen($item->title)>=20){
+                        echo mb_substr($item->title, 0, 20).'...';
+                    }else{
+                        echo $item->title;
+                    }
+                    ?></p>
                     <p class="text4 recent_board_type">공지사항</p>
                 </div>
-                <div class="recent_board_list d-flex justify-content-between">
-                    <p class="text4 gray">다가오는 추석 풍성한 이벤트</p>
-                    <p class="text4 recent_board_type">공지사항</p>
-                </div>
-                <div class="recent_board_list d-flex justify-content-between">
-                    <p class="text4 gray">다가오는 추석 풍성한 이벤트</p>
-                    <p class="text4 recent_board_type">공지사항</p>
-                </div>
-                <div class="recent_board_list d-flex justify-content-between">
-                    <p class="text4 gray">다가오는 추석 풍성한 이벤트</p>
-                    <p class="text4 recent_board_type">공지사항</p>
-                </div>
+                <?php
+                    }
+                }
+                ?>
             </div>
         </div>
         <div class="box_shadow radius_medium">
