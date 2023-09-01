@@ -1,0 +1,98 @@
+/* Header */
+.main {max-height: 920px;}
+.profile {text-align: right;}
+
+/* Category Main body area */
+.cate_main {width: 100%;}
+.cate_section {text-align: center;}
+.cate_field {
+  padding: 20px 24px; height: 460px;
+  border: var(--bs-border-width) solid var(--gray);
+}
+.cate_filter dt {line-height: 24px;}
+.cate_icon dd, .cate_icon button {height: 24px;}
+.cate_icon .cate_modify {margin-right: 16px;}
+.btns {margin: 40px auto;}
+.cate_close {margin-bottom: 40px;}
+
+/* Category Modal Common */
+div.modal {
+  margin: 0 auto;
+  background-color: rgba(37,42,56,.8);
+  --bs-modal-footer-border-color: none;
+}
+
+/* Only 대분류등록 Modal (⊃ Bootstrap) */
+.modal.show .modal-dialog {
+  display: inline-block; width: 20vw; margin: 0; position: flxed;
+  left: calc(50% - 10vw);
+  top: calc(50% - 20vh);
+}
+.modal-header {
+  justify-content: center; border-bottom: none; 
+  --bs-modal-header-padding: 0; margin: 40px auto 24px; 
+}
+div.modal-body {--bs-modal-padding: 0;}
+.cate_modal_input {width: 86%; margin: 0 auto;}
+.modal-footer {padding: 0; margin: 36px 7% 40px 0;}
+.modal-footer button {margin: 0;}
+.modal-footer button.cate_modal_reg {margin-right: 10px;}
+
+/* 중분류 & 소분류 등록 Modal (⊃ almost CSS)*/
+.cate_css_modal {
+  position: fixed; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(37, 42, 56, .8);
+  visibility: hidden;
+  opacity: 0; 
+  transform: translate(0, -50px);
+  transition: opacity .15s linear, transform .3s ease-out;
+}
+.cate_css_modal.visible {
+  opacity: 1; 
+  visibility: visible;
+  transform: none;
+}
+
+.cate_modal_main {
+  background-color: #fff; display: inline-block; width: 20vw; 
+  border: 2px solid rgba(0, 0, 0, 0.175); border-radius: 8px;
+  background-clip: padding-box;
+  position: relative; 
+  left: calc(50% - 10vw); 
+  top: calc(50% - 15vh);
+  transform: translate(0, -50px);
+  transition: transform .3s ease-out;
+}
+.cate_modal_main.visible {
+  visibility: visible;
+  transform: none;
+}
+
+.modal_title {margin: 40px auto 24px; text-align: center;}
+.cate_modal_select {margin: 0 auto; font-weight: 400;}
+#pcode2-button, #pcode2_1-button, #pcode3-button {width: 86%; margin: 0 auto; text-align: left; color: #929292; font-weight: 400;}
+#pcode3-button {margin-top: 10px;}
+.cate_modal_input {margin-top: 10px;}
+.modal_footer {margin: 36px 7% 40px 0; display: flex; justify-content: flex-end;}
+.modal_footer .cate_modal_reg {margin-right: 10px;}
+
+
+/* 카데고리 페이지 반응형 */
+@media screen and (max-width: 1450px){
+  .aside ul {display: flex; flex-direction: column; justify-content: center;}
+  .aside li > a {font-size: 22px; letter-spacing: -0.5px;}
+  .aside li i.bi {font-size: 22px;}
+  .aside .logo img {width: 80%;}
+}
+@media screen and (max-width: 1320px){
+  .aside li > a, .aside li i.bi {font-size: 20px;}
+}
+@media screen and (max-width: 1225px){
+  .aside li > a, .aside li i.bi {font-size: 18px;}
+}
+@media screen and (max-width: 1130px){
+  .aside li i.bi {display: none;}
+  /* .aside li {text-align: center;} */
+}
+@media screen and (max-width: 810px){
+  .aside li > a {font-size: 16px;}
+}

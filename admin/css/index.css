@@ -1,0 +1,76 @@
+.dash_title{
+    margin-bottom: calc(var(--base-unit) * 2);
+}
+.text1{
+    font-weight: 600;
+}
+.box_shadow{
+    width: 30% !important;
+    padding: var(--base-unit) !important;
+}
+#datepicker{
+    display: none;
+}
+/* flatpickr 옵션 수정 */
+.flatpickr-months{
+    width: 80%;
+    margin: auto;
+}
+.flatpickr-calendar{
+    width: 100%;
+    box-shadow: none;
+}
+.flatpickr-innerContainer{
+    justify-content: center;
+}
+.flatpickr-prev-month{
+    left: 10% !important;
+}
+.flatpickr-next-month{
+    right: 10% !important;
+}
+.flatpickr-monthDropdown-months{
+    appearance: none !important;
+    line-height: initial !important;
+}
+/* /flatpickr 옵션 수정 */
+.sales_summary, .access_num, .pop_class_title, .recent_board_title, .member_num{
+    padding-bottom: var(--base-unit);
+}
+.sales_date, .member_date{
+    font-size: 12px;
+    padding: calc(var(--base-unit) * 0.5) 0 calc(var(--base-unit) * 0.25);
+}
+.access_today{
+    gap: var(--base-unit);
+}
+
+/* 대시보드 아래부분 */
+.dash_box_bottom{
+    margin-top: calc(var(--base-unit) * 2);
+}
+.pop_class, .recent_board{
+    padding-bottom: calc(var(--base-unit) * 2);
+}
+.pop_class_list{
+    padding: 0 calc(var(--base-unit) * 3);
+    gap: calc(var(--base-unit) * 2);
+}
+.top_class{
+    gap: var(--base-unit);
+}
+.recent_board_ul{
+    gap: calc(var(--base-unit) * 2);   
+}
+.recent_board_list{
+    height: calc(var(--base-unit) * 2);
+    padding: 0 var(--base-unit);
+    border-bottom: 1.5px solid var(--light-gray);
+    gap: calc(var(--base-unit) * 2);
+}
+.recent_board_list:last-child{
+    border-bottom: none;
+}
+.recent_board_type{
+    font-weight: 600;
+}
