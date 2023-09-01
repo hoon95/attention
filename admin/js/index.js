@@ -1,32 +1,3 @@
-// 매출 요약 선 그래프
-const sales = document.getElementById('sales_chart');
-const sname = ['일', '월', '화', '수', '목', '금', '토'];
-let thisweek = {label: '이번주', data: [29,30,31,36,28,27,30]};
-let lastweek = {label: '지난주', data: [30,36,10,20,25,26,27]};
-
-new Chart(sales, {
-    type: 'line',
-    data:{
-        labels: sname,
-        datasets: [thisweek, lastweek]
-    },
-    scales: {
-        x: {
-        ticks: {
-            display: false
-            }
-        },
-        y: {
-        stacked: true,
-        ticks: {
-            display: false
-            }
-        }
-    }
-});
-// /매출 요약 선 그래프
-
-
 // 매출 달력
 flatpickr("#datepicker", {
     defaultDate: new Date(),
@@ -37,6 +8,8 @@ flatpickr("#datepicker", {
 document.getElementById("datepicker").addEventListener("change", function(e){
   sales_change(e);
 });
+
+var salesChart;
 
 function sales_change(e){
   let selectedDate = e.target.value;
@@ -51,12 +24,7 @@ function sales_change(e){
 
   let data = {
     selectedDate: selectedDate,
-    // sales_start_date: sales_start_date,
-    // sales_end_date: sales_end_date,
-    // selected_date: selected_date,
-    // seven_ago_date: seven_ago_date
   }
-  console.log(data);
 
   $.ajax({
     async: false,
@@ -67,39 +35,66 @@ function sales_change(e){
     error: function(error){
       console.log('Error:', error);
     },
-    success: function(return_data){
-      console.log(return_data.result);
-      $('.sales_amount').text(return_data.result);
+    success: function(return_data){ 
+      let result = return_data.result;
+      // console.log(result);
+      let sales_array = [];
+      let sales_date_array = [];
+      result.forEach(function(sales){
+        // console.log(sales['average_sales']);
+        sales_array.push(sales['average_sales']);
+        sales_date_array.push(sales['date']);
+      })
+      console.log(sales_date_array.reverse(), sales_array.reverse());
+      
+      $('.sales_amount').text(sales_array.reverse()[0]);
       $('.sales_amount').number(true);
+      let sales_compare = ((sales_array[0] - sales_array[7])/sales_array[7] * 100).toFixed(1);
+      let sales_compare_text = Math.abs(sales_compare);
+      $('.sales_per').text(sales_compare_text);
+      if(sales_compare > 0){
+        $('.sales_updown').text('상승')        
+      }else if(sales_compare = 0){
+        $('.sales_updown').text('유지')
+      }else{
+        $('.sales_updown').text('하락')
+      }
+
+      // 매출 요약 선 그래프
+      const sales = document.getElementById('sales_chart');
+      const sname = sales_date_array.slice(7,14);
+      let thisweek = {label: '이번주', data: sales_array.reverse().slice(7,14)};
+      let lastweek = {label: '지난주', data: sales_array.slice(0,7)};
+
+      if (salesChart) {
+        salesChart.destroy();
+      }
+
+      salesChart = new Chart(sales, {
+          type: 'line',
+          data:{
+              labels: sname,
+              datasets: [thisweek, lastweek]
+          },
+          scales: {
+              x: {
+              ticks: {
+                  display: false
+                  }
+              },
+              y: {
+              stacked: true,
+              ticks: {
+                  display: false
+                  }
+              }
+          }
+      });
+
+      // /매출 요약 선 그래프
     }
   })
 }
-
-
-
-// $('#datepicker').trigger('click');
-// $('#datapicker').mousedown(function(e){
-//     e.stopPropagation();
-// })
-
-// var datepickerOpen = false;
-        
-// $("#datepicker").datepicker({
-//     beforeShow: function(input, inst) {
-//         if (!datepickerOpen) {
-//             datepickerOpen = true;
-//             return false; // Datepicker 열지 않음
-//         }
-//     }
-// });
-
-// Datepicker를 클릭하면 열리도록 설정
-// $("#datepicker").on("click", function() {
-//     datepickerOpen = true;
-//     $("#datepicker").datepicker("show");
-// });
-// /매출 달력
-
 
 // 접속자 수 누적 그래프
 const aname = ['']
