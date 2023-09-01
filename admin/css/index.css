@@ -66,6 +66,7 @@
     height: calc(var(--base-unit) * 2);
     padding: 0 var(--base-unit);
     border-bottom: 1.5px solid var(--light-gray);
+    gap: calc(var(--base-unit) * 2);
 }
 .recent_board_list:last-child{
     border-bottom: none;
