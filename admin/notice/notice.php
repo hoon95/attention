@@ -84,87 +84,89 @@
     </div>
   </div>
 
-  <form action="">
-    <table class="table mt-4">
-      <thead>
-        <tr class="board_hd text1 text-center">
-          <th scope="col" class="col-1">No&#46;</th>
-          <th scope="col" class="col-7">제목</th>
-          <th scope="col">작성일</th>
-          <th scope="col">수정 &#47; 삭제</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-          if(isset($rsc)){
-            foreach($rsc as $item){            
-        ?>
-        <!-- 게시물 출력 -->
-        <tr class="board_bd" data-id="<?= $item -> idx; ?>">
-          <td class="text-center"><?= $item -> idx; ?></td>
+  <table class="table mt-4">
+    <thead>
+      <tr class="board_hd text1 text-center">
+        <th scope="col" class="col-1">No&#46;</th>
+        <th scope="col" class="col-7">제목</th>
+        <th scope="col">작성일</th>
+        <th scope="col">수정 &#47; 삭제</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+        if(isset($rsc)){
+          foreach($rsc as $item){            
+      ?>
+      <!-- 게시물 출력 -->
+      <tr class="board_bd" data-id="<?= $item -> idx; ?>">
+        <td class="text-center"><?= $item -> idx; ?></td>
 
-          <td>
-            <a href="" class="a_link"><?= $item -> title; ?></a>
-          </td>
+        <td>
+          <a href="notice_view.php?idx=<?= $item -> idx; ?>" class="a_link"><?= $item -> title; ?></a>
+        </td>
 
-          <!-- bbs 아이콘 출력, abc product 참고 -->
+        <!-- bbs 아이콘 출력, abc product 참고 -->
 
-          <td class="text-center"><?= $item -> date; ?></td>
-          <td class="text-center">
-            <a href="notice_modify.php?idx=<?= $item -> idx; ?>">
-              <i class="bi bi-pencil-square icon_mint"></i>
-            </a>
-            <button type="button" class="del_btn">
-              <i class="bi bi-trash-fill icon_red"></i>
-            </button>
-          </td>
-        </tr>
-        <?php
-          } //foreach
-        } else {    
-        ?>  
-        <tr>
-          <td colspan="12" class="text-center board_bd">조회 결과가 없습니다.</td>
-        </tr>
-        <?php
-          }  
-        ?>  
-        <!-- /게시물 출력 -->
-      </tbody>
-    </table>
+        <td class="text-center"><?= $item -> date; ?></td>
+        <td class="text-center">
+          <a href="notice_modify.php?idx=<?= $item -> idx; ?>">
+            <i class="bi bi-pencil-square icon_mint"></i>
+          </a>
+          <button type="button" class="del_btn">
+            <i class="bi bi-trash-fill icon_red"></i>
+          </button>
+        </td>
+      </tr>
+      <?php
+        } //foreach
+      } else {    
+      ?>  
+      <tr>
+        <td colspan="12" class="text-center board_bd">조회 결과가 없습니다.</td>
+      </tr>
+      <?php
+        }  
+      ?>  
+      <!-- /게시물 출력 -->
+    </tbody>
+  </table>
 
-    <nav aria-label="페이지네이션" class="space">
-      <ul class="pagination justify-content-center align-items-center">
-        <?php
-          if($pageNumber>1){                   
-              echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?pageNumber=1\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
-              if($block_num > 1){
-                  $prev = ($block_num - 2) * $block_ct + 1;
-                  echo "<li class=\"page-item\"><a href='?pageNumber=$prev' class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
-              }
-          }
-          for($i=$block_start;$i<=$block_end;$i++){
-            if($pageNumber == $i){
-                echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?pageNumber=$i\" class=\"page-link\">$i</a></li>";
-            }else{
-                echo "<li class=\"page-item\"><a href=\"?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+  <nav aria-label="페이지네이션" class="space">
+    <ul class="pagination justify-content-center align-items-center">
+      <?php
+        if($pageNumber>1){                   
+            echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?pageNumber=1\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
+            if($block_num > 1){
+              $prev = ($block_num - 2) * $block_ct + 1;
+              echo "<li class=\"page-item\"><a href='?pageNumber=$prev' class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
             }
+        }
+        for($i=$block_start;$i<=$block_end;$i++){
+          if($pageNumber == $i){
+              echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+          }else{
+              echo "<li class=\"page-item\"><a href=\"?pageNumber=$i\" class=\"page-link\">$i</a></li>";
           }
-          if($pageNumber<$total_page){
-            if($total_block > $block_num){
-                $next = $block_num * $block_ct + 1;
-                echo "<li class=\"page-item\"><a href=\"?pageNumber=$next\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
-            }
-            echo "<li class=\"page-item\"><a href=\"?pageNumber=$total_page\" class=\"page-link\"><i class=\"bi bi-chevron-double-right icon_gray\"></i></a></li>";
+        }
+        if($pageNumber<$total_page){
+          if($total_block > $block_num){
+              $next = $block_num * $block_ct + 1;
+              echo "<li class=\"page-item\"><a href=\"?pageNumber=$next\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
           }
-        ?>  
-      </ul>
-    </nav>
+          echo "<li class=\"page-item\"><a href=\"?pageNumber=$total_page\" class=\"page-link\"><i class=\"bi bi-chevron-double-right icon_gray\"></i></a></li>";
+        }
+      ?>  
+    </ul>
+  </nav>
 
-  </form>
 </div><!-- /notice -->
 
 <script>
+  $( function() {
+    $( "#select" ).selectmenu();
+  } );
+
   $('.del_btn').click(function(){
     let notice_idx = $(this).closest('tr').attr('data-id');
     

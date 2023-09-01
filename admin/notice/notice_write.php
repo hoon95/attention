@@ -47,15 +47,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </div> <!-- /notice_write -->
 
 <script>
-  $( function(){
-    $( "#select" ).selectmenu();
-  } );
 
   $('#notice_content').summernote({
     height: 500
     // placeholder: '내용을 입력하세요.'
   });
   // $('.close_btn')
+  
 </script>
 
 <?php

@@ -7,10 +7,7 @@
   $result = $mysqli -> query($sql);
   $rs = $result -> fetch_object();
 
-  // while($rs = $result -> fetch_object()){
-  //   $rsc[] = $rs;
-  // }
-  var_dump($rs);
+  // var_dump($rs);
 ?>
 
 <!-- include summernote css/js -->
@@ -39,8 +36,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <tr class="space">
           <th scope="row" class="tt_03">내용</th>
           <td>
-            <!-- <textarea id="notice_content" name="content" required><?= $rs->centent; ?></textarea> -->
-            <div id="notice_content" name="content"><?= $rs->centent; ?></div>
+            <textarea id="notice_content" name="content" required><?= $rs->content; ?></textarea>
           </td>
         </tr>
         <tr class="space">
@@ -59,14 +55,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </div> <!-- /notice_write -->
 
 <script>
-  $( function(){
-    $( "#select" ).selectmenu();
-  } );
 
   $('#notice_content').summernote({
     height: 500
     // placeholder: '내용을 입력하세요.'
   });
+  
 </script>
 
 <?php
