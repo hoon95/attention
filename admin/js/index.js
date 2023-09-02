@@ -98,6 +98,9 @@ function sales_change(e){
 }
 
 // 접속자 수 누적 그래프
+let today = new Date().toISOString().split('T')[0];
+$('.access_week').text(today);
+
 const aname = ['']
 let access_now = {
     label: '현재 접속자 수',
@@ -151,6 +154,15 @@ config
 // /접속자 수 누적 그래프
 
 // 가입/탈퇴 회원 막대 그래프
+let currentDate = new Date();
+currentDate.setDate(currentDate.getDate() - 7);
+let ago = currentDate.toISOString().split('T')[0];
+$('.member_date_ago').text(ago);
+
+// 접속자 수에서 설정했던 today 가져오기(101줄)
+$('.member_date_now').text(today);
+console.log(new Date());
+
 const mlabel = ['일','월','화','수','목','금','토'];
 const mdata = {
     labels: mlabel,

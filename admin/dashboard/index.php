@@ -49,9 +49,13 @@
             <h3 class="text1 access_num">접속자 수</h3>
             <div class="d-flex access_today">
                 <p class="text4">오늘 접속자 수</p>
-                <span class="text1 number">2,730명</span>
+                <span class="text1 number">2,730</span>
             </div>
-            <p class="text4 gray">(2023.08.25)</p>
+            <div class="text4 gray">
+                <span>(</span>
+                <span class="access_week"></span>
+                <span>)</span>
+            </div>
             <canvas id="access_chart"></canvas>
         </div>
     </div>
@@ -99,11 +103,17 @@
         </div>
         <div class="box_shadow radius_medium">
             <h3 class="text1 member_num">가입/탈퇴 회원</h3>
-            <div class="d-flex member_in">
-                <span class="text1">가입</span>
-                <span class="text1">316명</span>
+            <div class="d-flex member_in text1">
+                <span>가입</span>
+                <span>316</span>명
             </div>
-            <p class="gray member_date">(2023.08.21 ~ 2023.08.25)</p>
+            <div class="gray member_date">
+                <span>(</span>
+                <span class="member_date_ago"></span>
+                <span>~</span>
+                <span class="member_date_now"></span>
+                <span>)</span>
+            </div>
             <canvas id="member_chart"></canvas>
         </div>
     </div>
