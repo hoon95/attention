@@ -104,9 +104,7 @@
                 <span class="text1">316명</span>
             </div>
             <p class="gray member_date">(2023.08.21 ~ 2023.08.25)</p>
-            <div class="member_chart_container">
-                <canvas id="member_chart"></canvas>
-            </div>
+            <canvas id="member_chart"></canvas>
         </div>
     </div>
 </div>
