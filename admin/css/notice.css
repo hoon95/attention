@@ -23,7 +23,7 @@
   color: var(--black);
 }
 
-/* notice_write, notice_modify, notice_view */
+/* notice_write, notice_modify */
 .notice_write table,
 .notice_modify table,
 .notice_view table{
@@ -38,11 +38,15 @@
 .notice_modify .note-editor.note-frame{
   border: var(--bs-border-width) solid var(--gray);
 }
+.note-editable.card-block{
+  line-height: 1.2;
+}
 
 /* notice_view */
 .notice_view table .board_bd{
   border-bottom: 1px solid var(--gray);
   padding-bottom: 2%;
+  line-height: 1.2;
 }
 .notice_view table .box{
   width: 30%;
