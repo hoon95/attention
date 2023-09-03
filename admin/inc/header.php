@@ -33,7 +33,7 @@
         <li><a href=""><i class="bi bi-person-fill"></i> 회원 관리</a></li>
         <li><a href="/attention/admin/notice/notice.php"><i class="bi bi-layout-text-sidebar-reverse"></i> 게시판 관리</a></li>
       </ul>
-      <a href="/attention/admin/logout.php" class="text2 logout"><i class="bi bi-door-closed icon_gray"></i><span>out</span></a>
+      <a href="/attention/admin/logout.php" class="text2 logout"><i class="bi bi-door-closed"></i><span>out</span></a>
       
     </div>
   </nav>
