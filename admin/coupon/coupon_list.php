@@ -10,6 +10,23 @@
   while($rs = $result -> fetch_object()){
     $rsc[] = $rs;
   }
+//
+  /* 페이지 내 검색 */
+  $coupon_name = $_GET['coupon_name'] ?? '';
+  $status = $_GET['status'] ?? '';
+  $seach = $_GET['seach'] ?? '';
+ 
+  $search_where = '';
+
+  $search_keyword = $coupon_name.$status;
+  
+  if($search_keyword){
+    $search_where .= " and cate like '{$search_keyword}%'";
+  }
+  if($seach){ //제목과 내용에 키워드가 포함된 상품 조회
+    $search_where .= " and (coupon_name like '%{$seach}%' or status like '%{$seach}%')";
+  }
+
 ?>
 <link rel="stylesheet" href="/attention/admin/coupon/css/coup.css">
 <link rel="stylesheet" href="/attention/admin/coupon/css/coup_ok.css">
@@ -18,23 +35,39 @@
 		<!-- 쿠폰 활성화 카테고리 선택 - 기서은 -->
 		<div class="common_select coupon_select">
 			<div class="d-flex align-items-center justify-content-between">
-				<select name="select" id="select">
+			<?php
+				if(isset($rsc)){
+				foreach($rsc as $cate){            
+			?>
+				<select name="status[<?php echo $cate->pid ?>]" id="status[<?php echo $cate->pid ?>]">
 					<option selected disabled>쿠폰 활성화 선택</option>
-					<option>전체 쿠폰</option>
-					<option>활성된 쿠폰</option>
-					<option>비활성된 쿠폰</option>
-					<option>마감임박 쿠폰</option>
+					<option value="<?= $cate->cid ?>"  <?php if($cate->cid) {echo "selected"; } ?>>전체 쿠폰</option>
+					<option value="활성화"  <?php if($cate->status=='활성화') {echo "selected"; } ?>>활성된 쿠폰</option>
+					<option value="비활성화" <?php if($cate->status=='비활성화') {echo "selected"; } ?>>비활성된 쿠폰</option>
 				</select>
+				<?php
+				}
+			} else {
+			?>
+      
+			<tr>
+				<td colspan="10"> 검색 결과 없습니다 </td>
+			</tr>
+			<?php
+			}   
+			?>	
 			</div>
 		</div>
 		<!-- /쿠폰 활성화 카테고리 선택 - 기서은 -->
 
 		<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
 		<div class="d-flex align-items-center justify-content-between coup_searchbox">
-			<div class="seach">
-				<input type="text" name="seach_form" id="seach_form" class="form-control" placeholder="제목 및 내용 입력">
-				<button type="button"><i class="bi bi-search icon_gray"></i></button>
-			</div>	
+			<form action="" id="search_form">
+				<div class="seach">
+					<input type="text" name="seach" id="seach" class="form-control" placeholder="제목 및 내용 입력">
+					<button  type="submit"><i class="bi bi-search icon_gray"></i></button>
+				</div>	
+			</form>
 			<a href="coupon_up.php" class="btn btn-primary">쿠폰등록</a>
 		</div>
 		<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
@@ -71,8 +104,9 @@
 								<input class="form-check-input" type="checkbox" role="switch" value="<?= $item->status ?>" name="<?= $item->cid ?>" id="<?= $item->cid ?>" <?php if ($item->status == "활성화") echo "checked"; ?>>							
 							</div>
 							<div class="coup_common_icon d-flex">
-								<a href = "coupon_modify.php" class="bi bi-pencil-square icon_mint"></a>
-								<a href = "coupon_delete.php" class="bi bi-trash-fill icon_red"></a>
+								<a href = "coupon_modify.php?cid=<?= $item-> cid ?>" class="bi bi-pencil-square icon_mint"></a>
+							
+								<a href = "coupon_delete.php?cid=<?= $item-> cid ?>" class="bi bi-trash-fill icon_red"></a>
 							</div>
 						</div>
 					</div>
