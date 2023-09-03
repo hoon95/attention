@@ -19,7 +19,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ=="
 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<div class="notice_write common_pd">
+<div class="notice_modify common_pd">
   <h2 class="tt_01 text-center">게시물 수정</h2>
   <form action="notice_modify_ok.php?idx=<?= $rs->idx; ?>" method="post" enctype="multipart/form-data" class="write mt-5">
     <table>
@@ -47,9 +47,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         </tr>
       </tbody>
     </table>
-    <div class="mt-5 text-end">
+    <div class="mt-4 text-end">
       <button type="submit" class="btn btn-primary mx-4">수정</button>
-      <a href="/attention/admin/notice/notice.php" class="btn btn-dark">닫기</a>
+      <button type="button" class="btn btn-dark close_btn">닫기</button>
     </div>
   </form>
 </div> <!-- /notice_write -->
@@ -60,7 +60,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     height: 500
     // placeholder: '내용을 입력하세요.'
   });
-  
+
+  $('.close_btn').click(function(e){
+    e.preventDefault();
+    if (confirm('글 수정을 취소하시겠습니까?')){
+      history.back();
+    }
+  });
+
 </script>
 
 <?php
