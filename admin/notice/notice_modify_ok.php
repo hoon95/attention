@@ -3,14 +3,6 @@
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
   // var_dump($_POST);
 
-  // //관리자 검사
-  // if(!isset($_SESSION['AUID'])){
-  //   echo "<script>
-  //   alert('권한이 없습니다');
-  //   history.back();
-  //   </script>";
-  // }
-
   $idx = $_GET['idx'];
   
   $title = $_POST['title'];

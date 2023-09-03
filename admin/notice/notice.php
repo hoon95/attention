@@ -1,5 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
 
   /* 페이지네이션 */
   $pageNumber = $_GET['pageNumber'] ?? 1;
@@ -101,18 +102,14 @@
       <!-- 게시물 출력 -->
       <tr class="board_bd" data-id="<?= $item -> idx; ?>">
         <td class="text-center"><?= $item -> idx; ?></td>
-
-        <!-- title에 첨부파일 있/없 -->
         <td>
           <a href="notice_view.php?idx=<?= $item->idx; ?>" class="a_link">
             <?= $item->title; ?>
-            <?php if ($item->file): ?>
+            <?php if ($item->file): ?> <!-- 첨부파일이 있는 경우 title에 아이콘 표시 -->
               <i class="bi bi-link-45deg"></i>
             <?php endif; ?>
           </a>
         </td>
-        <!-- title에 첨부파일 있/없 -->
-
         <td class="text-center"><?= $item -> date; ?></td>
         <td class="text-center">
           <a href="notice_modify.php?idx=<?= $item -> idx; ?>">

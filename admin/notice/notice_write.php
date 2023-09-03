@@ -1,5 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
 ?>
 
 <!-- include summernote css/js -->
