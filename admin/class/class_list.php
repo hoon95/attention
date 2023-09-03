@@ -65,11 +65,11 @@ $result = $mysqli -> query($sql);
         ?>
         <tr class="white_back d-flex">
           <td class="class_list_img d-flex align-items-center">
-            <img src="/attention/pdata/<?= $item->thumbnail ?>" alt="">
+            <img src="/attention/pdata/c/<?= $item->thumbnail ?><?= $item->content ?>" alt="">
           </td>
           <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1">
             <div>
-              <span class="text2"><?= $item->name ?></span><span class="class_level_tag orange"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?></span>
+              <span class="text2"><?= $item->name ?><?= $item->content ?></span><span class="class_level_tag orange"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?></span>
             </div>
             <div><?= $item->price ?>원</div>
             <div>
