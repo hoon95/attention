@@ -20,7 +20,7 @@
 }
 .notice table i.bi.bi-link-45deg{
   font-size: var(--text2-size);
-  /* color: var(--black); */
+  color: var(--black);
 }
 
 /* notice_write, notice_modify, notice_view */

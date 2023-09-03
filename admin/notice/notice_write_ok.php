@@ -45,7 +45,7 @@
   }
 
   $sql = "INSERT INTO notice (title, content, date, file) 
-  VALUES ('{$title}','{$content}','{$date}','{$filename}')";
+  VALUES ('{$title}','{$content}','{$date}','{$notice_file}')";
 
   if($mysqli->query($sql) === true){
     echo "<script>
