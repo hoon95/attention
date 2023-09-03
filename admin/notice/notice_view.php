@@ -45,12 +45,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <td class="board_bd">
           <div class="box">
             <?php
-              $fileExt = pathinfo($rs->file, PATHINFO_EXTENSION); // 파일 확장자 가져오기
+              $fileExt = pathinfo($rs->file, PATHINFO_EXTENSION); //파일 확장자 가져오기
 
+              //in_array: 값이 배열 안에 존재하는지 확인
               if (in_array($fileExt, ['jpg','jpeg','png','gif','svg','webp'])) {
-                echo '<img src="'.$rs->file.'" alt="">'; // 이미지 파일인 경우
+                echo '<img src="'.$rs->file.'" alt="">'; //이미지 파일인 경우
               } else {
-                echo $rs->file; // 이미지 파일이 아닌 경우
+                echo $rs->file; //이미지 파일이 아닌 경우
               }
             ?>
           </div>
