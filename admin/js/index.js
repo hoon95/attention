@@ -8,6 +8,7 @@ flatpickr("#datepicker", {
 document.getElementById("datepicker").addEventListener("change", function(e){
   sales_change(e);
 });
+$('.flatpickr-day.today').trigger('click');
 
 var salesChart;
 
@@ -100,20 +101,20 @@ function sales_change(e){
 const aname = ['']
 let access_now = {
     label: '현재 접속자 수',
-    backgroundColor: 'rgb(255, 99, 132, 0.2)',
-    borderColor: 'rgb(255, 0, 0)',
+    backgroundColor: 'rgb(42, 193, 188, 0.2)',
+    borderColor: 'rgb(42, 193, 188)',
     data: [10],
 };
 let access_today = {
     label: '오늘 접속자 수',
-    backgroundColor: 'rgb(255, 99, 132, 0.5)',
-    borderColor: 'rgb(0, 0, 255)',
+    backgroundColor: 'rgb(42, 193, 188, 0.5)',
+    borderColor: 'rgb(42, 193, 188)',
   data: [50],
 };
 let access_total = {
     label: '총 접속자 수',
-    backgroundColor: 'rgb(255, 99, 132)',
-    borderColor: 'rgb(0, 0, 255)',
+    backgroundColor: 'rgb(42, 193, 188)',
+    borderColor: 'rgb(42, 193, 188)',
   data: [100],
 };
 const data = {
