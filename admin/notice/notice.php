@@ -102,11 +102,16 @@
       <tr class="board_bd" data-id="<?= $item -> idx; ?>">
         <td class="text-center"><?= $item -> idx; ?></td>
 
+        <!-- title에 첨부파일 있/없 -->
         <td>
-          <a href="notice_view.php?idx=<?= $item -> idx; ?>" class="a_link"><?= $item -> title; ?></a>
+          <a href="notice_view.php?idx=<?= $item->idx; ?>" class="a_link">
+            <?= $item->title; ?>
+            <?php if ($item->file): ?>
+              <i class="bi bi-link-45deg"></i>
+            <?php endif; ?>
+          </a>
         </td>
-
-        <!-- bbs 아이콘 출력, abc product 참고 -->
+        <!-- title에 첨부파일 있/없 -->
 
         <td class="text-center"><?= $item -> date; ?></td>
         <td class="text-center">

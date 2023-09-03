@@ -18,6 +18,10 @@
   color: var(--mint);
   font-weight: 600;
 }
+.notice table i.bi.bi-link-45deg{
+  font-size: var(--text2-size);
+  /* color: var(--black); */
+}
 
 /* notice_write, notice_modify, notice_view */
 .notice_write table,
@@ -36,9 +40,6 @@
 }
 
 /* notice_view */
-.notice_view table .board_t{
-  border-top: calc(var(--base-unit)*2.5) solid transparent;
-}
 .notice_view table .board_bd{
   border-bottom: 1px solid var(--gray);
   padding-bottom: 2%;
