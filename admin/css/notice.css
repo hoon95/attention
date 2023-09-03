@@ -19,21 +19,35 @@
   font-weight: 600;
 }
 
-/* notice_write */
-.notice_write table{
+/* notice_write, notice_modify, notice_view */
+.notice_write table,
+.notice_modify table,
+.notice_view table{
   width: 100%;
 }
-.notice_write table th{
+.notice_write table th,
+.notice_modify table th,
+.notice_view table th{
   width: 15%;
 }
-.notice_write .note-editor.note-frame {
+.notice_write .note-editor.note-frame,
+.notice_modify .note-editor.note-frame{
   border: var(--bs-border-width) solid var(--gray);
 }
-/* .notice_write .note-editor:focus .note-placeholder{
-  color:transparent;
-} */
-/* .notice_write .note-editable.card-block:focus
-.notice_write .note-editor.note-frame{
-  box-shadow: var(--mint-focus);
-  border-color: var(--mint);
-} */
+
+/* notice_view */
+.notice_view table .board_t{
+  border-top: calc(var(--base-unit)*2.5) solid transparent;
+}
+.notice_view table .board_bd{
+  border-bottom: 1px solid var(--gray);
+  padding-bottom: 2%;
+}
+.notice_view table .box{
+  width: 30%;
+}
+.notice_view table .box img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
