@@ -13,6 +13,33 @@
 
 	$rs = $result -> fetch_object();
 
+	// 이미지를 업로드하지 않은 경우, 기존 이미지 경로를 저장
+	$previousImage = $rs->coupon_image;
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // 이미지를 업로드한 경우
+    if ($_FILES['coupon_image']['error'] == UPLOAD_ERR_OK) {
+        // 이미지 업로드 로직 추가 (이미지 업로드 및 처리)
+        // ...
+
+        // 업로드한 이미지 경로를 $newImage 변수에 저장
+        $newImage = '새 이미지 경로'; // 여기에 실제 새 이미지 경로를 설정해야 합니다.
+
+        // 새 이미지가 업로드된 경우, 기존 이미지 삭제
+        if ($previousImage && isset($newImage)) {
+            unlink($previousImage); // 기존 이미지 삭제
+        }
+    } else {
+        // 이미지를 업로드하지 않은 경우, 기존 이미지 경로를 다시 설정
+        $newImage = $previousImage;
+    }
+
+    // 나머지 폼 데이터 처리
+    // ...
+
+    // 이제 $newImage 변수에는 업로드한 이미지 또는 기존 이미지의 경로가 저장됩니다.
+}
+
 ?>
 <link rel="stylesheet" href="/attention/admin/coupon/css/coup.css">
 <link rel="stylesheet" href="/attention/admin/coupon/css/coup_ok.css">
@@ -49,7 +76,7 @@
 										<input type="radio" name="regdate" checked value="무제한" id="infinite_date_box" <?php if ($rs->regdate == '무제한') echo "checked";  ?>>
 										<label for="infinite_date_box" class="infinite_date">무기한</label>
 									</div>
-									<div class="coup_type coup_date">
+									<div class="coup_type coup_date coup_day_date">
 										<input type="radio" name="regdate" value="제한" id="day_date_box" <?php if ($rs->regdate == '제한') echo "checked"; ?>>
 										<label for="day_date_box" class="day_date">제한</label>
 									</div>
@@ -70,11 +97,11 @@
 	</div>
 	<script>
 	
-	// let coupDate = $("coup_type_date_box input").attr(data-id);	
-	// if(coupDate => "<?= $rs-> regdate ?>") {
-	// 	$("#regdate_box").prop("disabled", false);
-	// 	$("coup_type_date_box input").attr("checked");
-	// }
+	let coupDate = $("coup_type_date_box input").attr("data-id");	
+	if(coupDate => 1) {
+		$("#regdate_box").prop("disabled", false);
+		$(".coup_day_date input").prop("checked", true);
+	}
 
 	$(".coup_img").click(function() {
     $(".coup_hidden").trigger("click");
