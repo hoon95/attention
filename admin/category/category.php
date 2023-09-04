@@ -24,6 +24,24 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
     <div>  
       <form action="" class="d-flex justify-content-center">
         <div class="row cate_main"> 
+          <!-- 대분류 출력 -->
+          <div class="col mt-5 cate_section">
+            <div class="select_none"></div>
+            <div class="cate_field mt-4 white_back radius_medium">
+              <h3 class="tt_03 pb-4">대분류</h3>
+              <div class="cate_filter d-flex flex-column" id="cate1_div" >
+                <?php foreach($cate1 as $c){ ?>
+                  <div class="d-flex justify-content-between align-items-center pb-3">
+                    <option class="text1" value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
+                    <div class="cate_icon d-flex">
+                      <dd><button type="button" value="<?php echo $c -> cid ?>" step="<?php echo $c -> step ?>" text="<?php echo $c -> name ?>" class="p-0 cate_modify"><i class="bi bi-pencil-square icon_mint"></i></button></dd>
+                      <dd><button type="button" value="<?php echo $c -> cid ?>" step="<?php echo $c -> step ?>" text="<?php echo $c -> name ?>" class="p-0 cate_delete"><i class="bi bi-trash-fill icon_red"></i></button></dd>
+                    </div>
+                  </div>
+                <?php } ?>
+              </div>
+            </div>
+          </div>
           <!-- 대분류 선택 ▶ 중분류 출력(시작) -->
           <div class="col mt-5 cate_section">  
             <select class="cate_large" name="" id="cate1">
@@ -460,7 +478,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
 </script>
 
-<script src="category.js"></script>   
+<script src="../js/category.js"></script>   
 
 
 

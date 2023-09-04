@@ -15,6 +15,7 @@
 .cate_icon .cate_modify {margin-right: calc(var(--base-unit) * 0.8);}
 .btns {margin: calc(var(--base-unit) * 2) auto;}
 .cate_close {margin-bottom: calc(var(--base-unit) * 2);}
+.select_none {height: calc(var(--base-unit) * 2);}
 
 /* Category Modal Common */
 div.modal {
