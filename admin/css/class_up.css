@@ -146,3 +146,7 @@ input.form-control::placeholder{
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.thumb{
+  display: flex;
+  justify-content: end;
+}

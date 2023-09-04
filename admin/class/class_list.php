@@ -83,8 +83,8 @@ $result = $mysqli -> query($sql);
               <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]">
             </div>
             <div>
-              <a href="class_modify.php?pid=<?= $item->pid ?>" class="btn btn-primary"><i class="bi bi-pencil-square icon_mint"></i></a>
-              <a href="class_delete.php?pid=<?= $item->pid ?>" class="delete_btn btn btn-primary"><i class="bi bi-trash-fill icon_red"></i>
+              <a href="class_modify.php?pid=<?= $item->pid ?>"><i class="bi bi-pencil-square icon_mint"></i></a>
+              <a href="class_delete.php?pid=<?= $item->pid ?>"><i class="bi bi-trash-fill icon_red"></i>
             </div>
           </td>
         </tr>
@@ -131,7 +131,7 @@ $result = $mysqli -> query($sql);
 
     $('.delete_btn').click(function(e){
       e.preventDefault();
-      if(confirm('삭제하시겠습니까?')){
+      if(alert('삭제하시겠습니까?')){
         window.location = 'class_delete.php?pid=<?php echo $item->pid ?>';// pid/
       }else{
         alert('취소되었습니다.');

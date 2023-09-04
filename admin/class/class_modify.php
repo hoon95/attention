@@ -9,6 +9,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   while($rs = $result -> fetch_object()){
     $rc[] = $rs;
   }
+  var_dump($rc);
 ?>
 <link rel="stylesheet" href="/attention/admin/css/class_up.css">
 <div class="common_pd">
@@ -59,7 +60,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">강좌난이도</th>
                   <td>
                     <div class="btn-group">
-                      <input type="radio" class="btn-check level" name="level" id="level_Beginner" autocomplete="off" value="1" <?php if($sqlobj->level==1) {echo "checked"; } ?>>
+                      <input type="radio" class="btn-check level" name="level" id="level_Beginner" autocomplete="off" value="<?php if($sqlobj->level==1) echo 1 ?>" >
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Beginner">초급</label>
                       <input type="radio" class="btn-check level" name="level" id="level_Intermediate" autocomplete="off" value="2" <?php if($sqlobj->level==2) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Intermediate">중급</label>
@@ -78,7 +79,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                       <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="0" <?php if($sqlobj->price==0) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="price_pay" checked>유료</label>
                     </div>
-                    <input type="number" class="form-control class_form_wd class_sm_ml price_form" min="30000" max="1200000" value="<?= $sqlobj->price ?>" step="10000" id="price" name="price">
+                    <input type="number" class="form-control class_form_wd class_sm_ml price_form" min="30000" max="1200000" value="<?= $sqlobj->price_val ?>" step="10000" id="price_val" name="price_val">
                     <label class="form-check-label" for="flexSwitchCheckDefault">원</label>
                   </td>
                 </tr>
@@ -91,7 +92,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                       <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="0" <?php if($sqlobj->sale_end_date==0) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="limited">제한</label>
                     </div>
-                    <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="<?= $sqlobj->sale_end_date ?>" name="sale_end_date">
+                    <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="<?= $sqlobj->date_val ?>" name="date_val">
                     <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
                   </td>
                 </tr>

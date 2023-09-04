@@ -67,7 +67,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                       <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="0">
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="price_pay" checked>유료</label>
                     </div>
-                    <input type="number" class="form-control class_form_wd class_sm_ml price_form" placeholder="금액" min="30000" max="1200000" value="30000" step="10000" id="price" name="price">
+                    <input type="number" class="form-control class_form_wd class_sm_ml price_form" placeholder="금액" min="30000" max="1200000" value="30000" step="10000" id="price_val" name="price_val">
                     <label class="form-check-label" for="flexSwitchCheckDefault">원</label>
                   </td>
                 </tr>
@@ -80,7 +80,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                       <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="0">
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="limited">제한</label>
                     </div>
-                    <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="1" name="sale_end_date">
+                    <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="1" name="date_val">
                     <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
                   </td>
                 </tr>
@@ -178,6 +178,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
         $( ".select_from" ).selectmenu();
       } );
 
+      
+      $('#add_images').on('click', 'a', function (e) {
+        e.preventDefault()
+        let imgid = $(this).parent().attr('data-imgid');
+        file_delete(imgid);
+      });
     //     $('#class_intro').summernote({
     //   height: 400,
     //   placeholder: '강좌를 소개해주세요',
@@ -209,10 +215,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
         $('.class_price input').change(function(){
           let price_val = $(this).val();
-          if(price_val == '무료'){
+          if(price_val == '1'){
             $('.price_form').prop("disabled", false).focus();
             $('.price_form').prop("disabled", true);
-          } if(price_val == '유료'){
+          } if(price_val == '0'){
             $('.price_form').prop("disabled", true);
             $('.price_form').prop("disabled", false).focus();
           }
@@ -220,14 +226,16 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
         $('.class_date input').change(function(){
           let date_val = $(this).val();
-          if(date_val == '무제한'){
+          if(date_val == '1'){
             $('.date_form').prop("disabled", false).focus();
             $('.date_form').prop("disabled", true);
-          } if(date_val == '제한'){
+          } if(date_val == '0'){
             $('.date_form').prop("disabled", true);
             $('.date_form').prop("disabled", false).focus();
           }
         })
+
+        
 
         $('#video_add').click(function(){
           let video_html = $('.video_address').html();
@@ -255,25 +263,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           for(let i = 0;i <files.length;i++) {  //originalEvent은 배열이라 foreach,   ,filter안돼서 for로 뽑아야 됌 이렇게 뽑아 야 됨 
             let file = files[i];
             let size = uploadFiles.push(file);  //업로드 목록에 for i로 하나씩 추가  //file 개수 console에선 1, 2로 나옴 
-            console.log(size);
-            preview(file, size - 1);  //미리보기 만들기
             attachFile(file);
           }  
         });
-        function preview(file, idx) {
-          let reader = new FileReader();//웹페이지에 파일 등록할때는 input 타입이 file되어 있어야 만 하지만 그렇게 안함 그래서 그렇듯 해주는 함수다 
-          reader.onload = (function(f, idx) {//input에 파일 첨부처럼 드래그 앤 드롭으로 파일 첨부하면
-            return function(e) {//빈 div에 원하는 코드를 생성해주고 있다//data-idx로 이미지 숫자로 지정하고 삭제 
-              //escape는 함수 특수문자를 브라우저가 인식하는 특수문자로 변경해줌 //e.target.result은 파일경로로 사용
-              let div = '<div class="thumb"> \
-                <div class="close" data-idx="' + idx + '">X</div> \
-                <img src="' + e.target.result + '" title="' + escape(f.name) + '"/> \
-              </div>';
-              $("#add_images").append(div);
-            };
-          })(file, idx);
-          reader.readAsDataURL(file);//reader에 readAsDataURL함수로 넣어주기 // 이제 파일 첨부과 같이 된다
-        }
+ 
         $(".images_submit").click(function(){//전송되게 그것도 drop시 자동
           let formData = new FormData();//전송되게 FormData를 사용
           $.each(uploadFiles, function(i, file) {
@@ -344,7 +337,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
               let html = `
                   <div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
                     <img src="/attention/pdata/class/${return_data.savefile}" alt="">
-                    <button type="button" class="btn btn-warning">삭제</button>
+                    <a href="#"><i class="bi bi-trash-fill icon_red"></i></a>
                 </div>
               `;
               $('#add_images').append(html);

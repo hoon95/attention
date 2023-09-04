@@ -6,7 +6,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
   $name = $_POST['name'] ?? '';
   $level = $_POST['level'];
   $price = $_POST['price'] ?? '';
+  $price_val = $_POST['price'] ?? 0;
   $sale_end_date = $_POST['sale_end_date'];
+  $date_val = $_POST['date_val'] ?? 0;
   $video = $_POST['video'];
   $status = $_POST['status'] ?? 0;
   $thumbnail = ''; // 썸네일 변수 초기화
@@ -16,8 +18,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
   $content =  rawurldecode($_POST['content']);
 
   $file_table_id = $_POST['file_table_id']??0;
-    $file_table_id = $_POST['file_table_id'];
-    $file_table_id = rtrim($file_table_id, ',');//최우측 콤마 제거
+  $file_table_id = rtrim($file_table_id, ',');//최우측 콤마 제거
 
   if(isset($_FILES['thumbnail']['name'])){
     // if(strpos($_FILES['thumbnail']['type'], 'image') === false){
@@ -51,7 +52,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
     
   }
 
-  $sql3 ="UPDATE class SET name='{$name}', content='{$content}', thumbnail='{$thumbnail}', price='{$price}', level={$level}, video='{$video}', sale_end_date='{$sale_end_date}', status={$status}, file_table_id='{$file_table_id}' WHERE pid='{$pid}'";
+  $sql3 ="UPDATE class SET name='{$name}', content='{$content}', thumbnail='{$thumbnail}', price='{$price}', price_val='{$price_val}', level={$level}, video='{$video}', sale_end_date='{$sale_end_date}', date_val={$date_val}, status={$status}, file_table_id='{$file_table_id}' WHERE pid='{$pid}'";
 var_dump($sql3);
 //   if ($mysqli->query($sql) === TRUE) {
 //     echo "<script>
