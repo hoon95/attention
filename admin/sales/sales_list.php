@@ -58,7 +58,7 @@
 <link rel="stylesheet" href="/attention/admin/css/sales.css">
 
 <div class="sales">
-  <h2 class="tt_01 text-center">회원 목록</h2>
+  <h2 class="tt_01 text-center">매출 관리</h2>
     <div class="d-flex justify-content-end">   
       <form action="" id="search_form">
         <div class="seach mx-4 d-flex">
