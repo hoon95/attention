@@ -1,5 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
 ?>
 
 <!-- include summernote css/js -->
@@ -39,22 +40,28 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         </tr>
       </tbody>
     </table>
-    <div class="mt-5 text-end">
+    <div class="mt-4 text-end">
       <button type="submit" class="btn btn-primary mx-4">등록</button>
-      <a href="/attention/admin/notice/notice.php" class="btn btn-dark">닫기</a>
+      <!-- <a href="/attention/admin/notice/notice.php" class="btn btn-dark close_btn">닫기</a> -->
+      <button type="button" class="btn btn-dark close_btn">닫기</button>
     </div>
   </form>
 </div> <!-- /notice_write -->
 
 <script>
-  $( function(){
-    $( "#select" ).selectmenu();
-  } );
 
   $('#notice_content').summernote({
     height: 500
     // placeholder: '내용을 입력하세요.'
   });
+
+  $('.close_btn').click(function(e){
+    e.preventDefault();
+    if (confirm('글 작성을 취소하시겠습니까?')){
+      history.back();
+    }
+  });
+
 </script>
 
 <?php
