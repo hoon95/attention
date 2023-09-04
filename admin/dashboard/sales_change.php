@@ -5,17 +5,6 @@
     $sales_query = "SELECT DATE_FORMAT(regdate, '%Y-%m-%d') AS date, ROUND(SUM(price)) AS average_sales FROM sales WHERE regdate > DATE_SUB('{$selectedDate}', INTERVAL 14 DAY) AND regdate <= '{$selectedDate}' GROUP BY date ORDER BY date DESC";
     $sales_result = $mysqli->query($sales_query);
 
-//     $sales_data = array();
-
-//     if($sales_result){
-//         while ($sales_object = $sales_result->fetch_object()) {
-//             $average_sales = $sales_object->average_sales;
-//             $sales_data[] = array('result' => $average_sales);
-//         }
-        
-//         echo json_encode($sales_data);
-//     }
-
     if($sales_result){
         while($sales_object = $sales_result->fetch_object()){
             $rs[]=$sales_object;
