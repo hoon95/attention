@@ -4,18 +4,22 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
   $pid = $_GET['pid'];
   
   $name = $_POST['name'] ?? '';
-  $level = $_POST['level'];
+  $level = $_POST['level'] ?? '';
   $price = $_POST['price'] ?? '';
   $price_val = $_POST['price'] ?? 0;
-  $sale_end_date = $_POST['sale_end_date'];
+  $sale_end_date = $_POST['sale_end_date'] ?? '';
   $date_val = $_POST['date_val'] ?? 0;
-  $video = $_POST['video'];
-  $status = $_POST['status'] ?? 0;
+  $video = $_POST['video'] ?? '';
+  $status = $_POST['status'] ?? '';
   $thumbnail = ''; // 썸네일 변수 초기화
-  $status = $_POST['status']; // 현재 날짜 및 시간으로 설정
+  // 현재 날짜 및 시간으로 설정
   $filename = '';
 
-  $content =  rawurldecode($_POST['content']);
+  // $content =  rawurldecode($_POST['content']) ?? '';
+  $content = $_POST['content'] ?? '';
+if ($content !== '') {
+    $content = rawurldecode($content);
+}
 
   $file_table_id = $_POST['file_table_id']??0;
   $file_table_id = rtrim($file_table_id, ',');//최우측 콤마 제거
@@ -31,7 +35,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
     if(isset($_FILES['thumbnail']['size']) > 10240000){
       echo "<script>
         alert('10MB 이하만 첨부할 수 있습니다.');
-        history.back();
+        // history.back();
       </script>";
     }
     
@@ -52,7 +56,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
     
   }
 
-  $sql3 ="UPDATE class SET name='{$name}', content='{$content}', thumbnail='{$thumbnail}', price='{$price}', price_val='{$price_val}', level={$level}, video='{$video}', sale_end_date='{$sale_end_date}', date_val={$date_val}, status={$status}, file_table_id='{$file_table_id}' WHERE pid='{$pid}'";
+  $sql3 ="UPDATE class SET name='{$name}', content='{$content}', thumbnail='{$thumbnail}', price='{$price}', price_val='{$price_val}', level='{$level}', video='{$video}', sale_end_date='{$sale_end_date}', date_val={$date_val}, status={$status}, file_table_id='{$file_table_id}' WHERE pid='{$pid}'";
 var_dump($sql3);
 //   if ($mysqli->query($sql) === TRUE) {
 //     echo "<script>

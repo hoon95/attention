@@ -62,9 +62,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">가격</th>
                   <td>
                     <div class="btn-group class_price">
-                      <input type="radio" class="btn-check" name="price" id="price_free" autocomplete="off" value="1">
+                      <input type="radio" class="btn-check" name="price" id="price_free" autocomplete="off" value="0">
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="price_free">무료</label>
-                      <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="0">
+                      <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="1">
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="price_pay" checked>유료</label>
                     </div>
                     <input type="number" class="form-control class_form_wd class_sm_ml price_form" placeholder="금액" min="30000" max="1200000" value="30000" step="10000" id="price_val" name="price_val">
@@ -75,9 +75,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">수강기한</th>
                   <td class="class_label_h">
                     <div class="btn-group class_date">
-                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" autocomplete="off" value="1">
+                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" autocomplete="off" value="0">
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="unlimited">무제한</label>
-                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="0">
+                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="1">
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="limited">제한</label>
                     </div>
                     <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="1" name="date_val">
@@ -159,20 +159,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
         $('#content').val(content);
 
 
-        // video_url 추가 시
-        let videoData = $('#class_form').serialize();
-        $.ajax({
-            type: 'POST',
-            url: 'class_clips.php',
-            data: videoData,
-            success: function(return_data) {
-              console.log(return_data);
-            },
-            error: function(error) {
-              console.log('error:', error)
-            }
-        });
-        // /video_url 추가 시
       });// /form에서 전송 이벤트가 일어나면 할일
       $( function() {
         $( ".select_from" ).selectmenu();
@@ -184,41 +170,29 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
         let imgid = $(this).parent().attr('data-imgid');
         file_delete(imgid);
       });
-    //     $('#class_intro').summernote({
-    //   height: 400,
-    //   placeholder: '강좌를 소개해주세요',
-    //   resize: false,
-    //   lang: "ko-KR",
-    //   disableResizeEditor: true,
-    //   callbacks: {
-    //   onImageUpload: function (files) {
-    //       RealTimeImageUpdate(files, this);
-    //   }
-    //   }
-    // });
 
-    $('#class_intro').summernote({
-  /* 폰트선택 툴바 사용하려면 주석해제 */
-  // fontNames: ['Roboto Light', 'Roboto Regular', 'Roboto Bold', 'Apple SD Gothic Neo'],
-  // fontNamesIgnoreCheck: ['Apple SD Gothic Neo'],
-  height: 400,
-  placeholder: '강좌를 소개해주세요',
-  resize: false,
-  lang: "ko-KR",
-  disableResizeEditor: true,
-  callbacks: {  //여기 부분이 이미지를 첨부하는 부분
-      onImageUpload: function (files) {
-          RealTimeImageUpdate(files, this);
+      // summernote 시작
+        $('#class_intro').summernote({
+      height: 400,
+      placeholder: '강좌를 소개해주세요',
+      resize: false,
+      lang: "ko-KR",
+      disableResizeEditor: true,
+      callbacks: {//여기 부분이 이미지를 첨부하는 부분
+          onImageUpload: function (files) {
+              RealTimeImageUpdate(files, this);
+          }
       }
-  }
-});
+    });
+    // summernote 끝
 
         $('.class_price input').change(function(){
           let price_val = $(this).val();
-          if(price_val == '1'){
+          if(price_val == '0'){
             $('.price_form').prop("disabled", false).focus();
             $('.price_form').prop("disabled", true);
-          } if(price_val == '0'){
+            // $('.price_form').val() = ''
+          } if(price_val == '1'){
             $('.price_form').prop("disabled", true);
             $('.price_form').prop("disabled", false).focus();
           }
@@ -226,10 +200,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
         $('.class_date input').change(function(){
           let date_val = $(this).val();
-          if(date_val == '1'){
+          if(date_val == '0'){
             $('.date_form').prop("disabled", false).focus();
             $('.date_form').prop("disabled", true);
-          } if(date_val == '0'){
+            // $('.date_form').val() = ''
+          } if(date_val == '1'){
             $('.date_form').prop("disabled", true);
             $('.date_form').prop("disabled", false).focus();
           }

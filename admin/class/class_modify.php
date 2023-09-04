@@ -60,23 +60,23 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">강좌난이도</th>
                   <td>
                     <div class="btn-group">
-                      <input type="radio" class="btn-check level" name="level" id="level_Beginner" autocomplete="off" value="<?php if($sqlobj->level==1) echo 1 ?>" >
+                      <input type="radio" class="btn-check level" name="level" id="level_Beginner" autocomplete="off" value="1" <?php if($sqlobj->level==1) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Beginner">초급</label>
                       <input type="radio" class="btn-check level" name="level" id="level_Intermediate" autocomplete="off" value="2" <?php if($sqlobj->level==2) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Intermediate">중급</label>
                       <input type="radio" class="btn-check level" name="level" id="level_Advanced" autocomplete="off" value="3" <?php if($sqlobj->level==3) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Advanced">상급</label>
                     </div>
-                    <input type="hidden" name="level" value="<?php echo $sqlobj->level; ?>" id="level">
+                    <input type="hidden" name="level" value="" id="level">
                   </td>
                 </tr>
                 <tr>
                   <th class="tt_03">가격</th>
                   <td>
                     <div class="btn-group class_price">
-                      <input type="radio" class="btn-check" name="price" id="price_free" autocomplete="off" value="1" <?php if($sqlobj->price==1) {echo "checked"; } ?>>
+                      <input type="radio" class="btn-check" name="price" id="price_free" autocomplete="off" value="0" <?php if($sqlobj->price==0) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="price_free">무료</label>
-                      <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="0" <?php if($sqlobj->price==0) {echo "checked"; } ?>>
+                      <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="1" <?php if($sqlobj->price==1) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="price_pay" checked>유료</label>
                     </div>
                     <input type="number" class="form-control class_form_wd class_sm_ml price_form" min="30000" max="1200000" value="<?= $sqlobj->price_val ?>" step="10000" id="price_val" name="price_val">
@@ -87,9 +87,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">수강기한</th>
                   <td class="class_label_h">
                     <div class="btn-group class_date">
-                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" autocomplete="off" value="1" <?php if($sqlobj->sale_end_date==1) {echo "checked"; } ?>>
+                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" autocomplete="off" value="0" <?php if($sqlobj->sale_end_date==0) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="unlimited">무제한</label>
-                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="0" <?php if($sqlobj->sale_end_date==0) {echo "checked"; } ?>>
+                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="1" <?php if($sqlobj->sale_end_date==1) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="limited">제한</label>
                     </div>
                     <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="<?= $sqlobj->date_val ?>" name="date_val">
@@ -110,7 +110,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                 <tr>
                   <th class="tt_03">공개 여부</th>
                   <td>
-                    <div class="btn-group">
+                    <div class="btn-group class_status">
                       <input type="radio" class="btn-check" name="status" id="open" autocomplete="off" value="1" <?php if($sqlobj->status==1) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="open">공개</label>
                       <input type="radio" class="btn-check" name="status" id="Private" autocomplete="off" value="0" <?php if($sqlobj->status==0) {echo "checked"; } ?>>
@@ -162,26 +162,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           </form>
     </div>
     <script>
-
-
-      // // 초기 선택 값을 hidden input에 설정
-      // $('#level').val($('input[name="level"]:checked').val());
-      // // 라디오 버튼 값 변경 시 이벤트 리스너
-      // $('input[type="radio"]').change(function(){
-      //   // 선택한 값을 hidden input에 업데이트
-      //   $('#level').val($('input[name="level"]:checked').val());
-      //   console.log('아래꺼')
-      //   console.log($('#selected_level').val($('input[name="level"]:checked').val()))
-      // });
-
-
-      $('#class_form').submit(function () {//버튼클릭으로 이벤트잡는거 x form에서 전송 이벤트가 일어나면 할일 ok
+$('#class_form').submit(function () {// form에서 전송 이벤트가 일어나면 할일 ok  //버튼클릭으로 이벤트잡는거 x 
         let content_str = $('#class_intro').summernote('code');
         let content = encodeURIComponent(content_str);
         $('#content').val(content);
-      });
-      $( function() {
-        $( ".select_from" ).selectmenu();
 
 
         // video_url 추가 시
@@ -198,34 +182,17 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
             }
         });
         // /video_url 추가 시
-
-        var formData = new FormData(this);
-        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="checkbox"]:checked');
-        var checkboxValues = [];
-
-        checkboxes.forEach(function(checkbox) {
-          checkboxValues.push(checkbox.value);
-        });
-
-        formData.delete('checkbox'); // 동일한 name 값을 가진 필드 삭제
-        formData.append('checkboxValues', JSON.stringify(checkboxValues)); // JSON 형식으로 변환한 값을 새 필드에 추가
-
-        // 변환된 데이터를 서버로 보낼 수 있음
-        fetch('submit.php', {
-          method: 'POST',
-          body: formData
-        })
-        .then(function(response) {
-          // 응답 처리
-        })
-        .catch(function(error) {
-          // 에러 처리
-        });
-
-        
+      });// /form에서 전송 이벤트가 일어나면 할일
+      $( function() {
+        $( ".select_from" ).selectmenu();
       } );
 
-     
+      
+      $('#add_images').on('click', 'a', function (e) {
+        e.preventDefault()
+        let imgid = $(this).parent().attr('data-imgid');
+        file_delete(imgid);
+      });
     //     $('#class_intro').summernote({
     //   height: 400,
     //   placeholder: '강좌를 소개해주세요',
@@ -257,10 +224,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
         $('.class_price input').change(function(){
           let price_val = $(this).val();
-          if(price_val == '무료'){
+          if(price_val == '0'){
             $('.price_form').prop("disabled", false).focus();
             $('.price_form').prop("disabled", true);
-          } if(price_val == '유료'){
+          } if(price_val == '1'){
             $('.price_form').prop("disabled", true);
             $('.price_form').prop("disabled", false).focus();
           }
@@ -268,14 +235,16 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
         $('.class_date input').change(function(){
           let date_val = $(this).val();
-          if(date_val == '무제한'){
+          if(date_val == '0'){
             $('.date_form').prop("disabled", false).focus();
             $('.date_form').prop("disabled", true);
-          } if(date_val == '제한'){
+          } if(date_val == '1'){
             $('.date_form').prop("disabled", true);
             $('.date_form').prop("disabled", false).focus();
           }
         })
+
+        
 
         $('#video_add').click(function(){
           let video_html = $('.video_address').html();
@@ -303,25 +272,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           for(let i = 0;i <files.length;i++) {  //originalEvent은 배열이라 foreach,   ,filter안돼서 for로 뽑아야 됌 이렇게 뽑아 야 됨 
             let file = files[i];
             let size = uploadFiles.push(file);  //업로드 목록에 for i로 하나씩 추가  //file 개수 console에선 1, 2로 나옴 
-            console.log(size);
-            preview(file, size - 1);  //미리보기 만들기
             attachFile(file);
           }  
         });
-        function preview(file, idx) {
-          let reader = new FileReader();//웹페이지에 파일 등록할때는 input 타입이 file되어 있어야 만 하지만 그렇게 안함 그래서 그렇듯 해주는 함수다 
-          reader.onload = (function(f, idx) {//input에 파일 첨부처럼 드래그 앤 드롭으로 파일 첨부하면
-            return function(e) {//빈 div에 원하는 코드를 생성해주고 있다//data-idx로 이미지 숫자로 지정하고 삭제 
-              //escape는 함수 특수문자를 브라우저가 인식하는 특수문자로 변경해줌 //e.target.result은 파일경로로 사용
-              let div = '<div class="thumb"> \
-                <div class="close" data-idx="' + idx + '">X</div> \
-                <img src="' + e.target.result + '" title="' + escape(f.name) + '"/> \
-              </div>';
-              $("#add_images").append(div);
-            };
-          })(file, idx);
-          reader.readAsDataURL(file);//reader에 readAsDataURL함수로 넣어주기 // 이제 파일 첨부과 같이 된다
-        }
+ 
         $(".images_submit").click(function(){//전송되게 그것도 drop시 자동
           let formData = new FormData();//전송되게 FormData를 사용
           $.each(uploadFiles, function(i, file) {
@@ -348,9 +302,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
 
 
-        //추가이미지를 넣으면 product_save_image.php에 savefile를 첨부했어하고 넣고,
+        //추가이미지를 넣으면 class_save_image.php에 savefile를 첨부했어하고 넣고,
         //쿼리에도 넣는걸 해주는 함수
-        //이미지하나하나 넘겨줘서 이걸 가지고 form데이터 만들어서 해줘
       function attachFile(file) {
         console.log(file);
         let formData = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
@@ -393,7 +346,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
               let html = `
                   <div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
                     <img src="/attention/pdata/class/${return_data.savefile}" alt="">
-                    <button type="button" class="btn btn-warning">삭제</button>
+                    <a href="#"><i class="bi bi-trash-fill icon_red"></i></a>
                 </div>
               `;
               $('#add_images').append(html);
@@ -438,15 +391,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
     })
   } //file_delete func
-
-
-
-      $('.class_close').click(function(e){
-      e.preventDefault();
-      if(confirm('강좌 등록을 취소하시겠습니까?')){
-          history.back();
-      }
-  });
     </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

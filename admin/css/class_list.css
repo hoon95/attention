@@ -6,6 +6,9 @@
   padding: 0;
   margin: 0;
 }
+.table>:not(caption)>*>*{
+  padding: 6px 0.5rem ;
+}
 .class_table tr{
   border-radius: 12px;
   box-shadow: 4px 5px 17px 0px rgba(0, 0, 0, 0.15);
@@ -51,11 +54,22 @@
 .class_level_tag, .class_date_tag{
   font-size: 15px;
 }
+.class_p_val{
+  font-size: 15px;
+}
 .class_date_tag{
   margin-left: 8px;
 }
 .class_button{
-  margin: 8px 18px 11px 0;
+  margin: 14px 18px 14px 0;
+}
+.class_button>div:first-child{
+  margin-bottom: 31px;
+}
+.class_delete{
+  padding-left: 5px;
+  color: var(--dark);
+  font-size: 24px;
 }
 .pagination{
   margin-top: 13px;
