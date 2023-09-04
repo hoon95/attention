@@ -46,7 +46,7 @@
   $sql = "SELECT * FROM members WHERE 1=1";
 
   $sql .= $search_where;
-  $order = " order by mid desc";
+  $order = " order by regdate desc";
   $limit = " limit $statLimit, $endLimit";
 
   $query = $sql.$order.$limit;
