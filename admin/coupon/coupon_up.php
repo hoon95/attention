@@ -23,7 +23,7 @@
 				</tr>
 				<tr class="space">
 					<th><h3 class="tt_03">할인액</h3></th>
-					<td><input type="number" id="coupon_price"  min="10000" max="1000000" step="10000" name="coupon_price" class="form-control" required></td>
+					<td><input type="number" id="coupon_price"  min="5000" max="1000000" step="1000" name="coupon_price" class="form-control" required></td>
 				</tr>
 				<tr class="space">
 					<th><h3 class="tt_03">쿠폰설정</h3></th>
@@ -44,7 +44,7 @@
 							<div class="d-flex">
 								<div class="coup_type coup_date">
 									<input type="radio" name="regdate" checked value="무제한" id="infinite_date_box">
-									<label for="infinite_date_box" class="infinite_date">무제한</label>
+									<label for="infinite_date_box" class="infinite_date">무기한</label>
 								</div>
 								<div class="coup_type coup_date">
 									<input type="radio" name="regdate" value="제한" id="day_date_box">

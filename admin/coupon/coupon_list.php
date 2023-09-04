@@ -1,7 +1,7 @@
 <?php
   $title = '쿠폰목록';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-//   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php'; 로그인 부분
+	//include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php'; 로그인 부분
 
 	/* 페이지네이션 */
   $pageNumber = $_GET['pageNumber'] ?? 1;
@@ -11,7 +11,7 @@
   $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
 
   //전체 게시물 수 구하기  
-  $pagesql = "SELECT COUNT(*) AS cnt FROM notice";
+  $pagesql = "SELECT COUNT(*) AS cnt FROM coupons";
   $page_result = $mysqli->query($pagesql);
   $page_row = $page_result->fetch_object();
   $row_num = $page_row->cnt; //전체 게시물 수
@@ -26,6 +26,7 @@
   if($block_end > $total_page) $block_end = $total_page;
   $total_block = ceil($total_page/$block_ct);//총32, 2
   /* /페이지네이션 */
+
 
 	/* 페이지 내 검색 및 활성화 */
 	$cid = $_GET['cid']?? '';
@@ -44,12 +45,17 @@
 		// }
     $search_where .= " and status = '{$status}'";
   }
-	/* 페이지내 검색 및 활성화 */
+	/* /페이지내 검색 및 활성화 */
 
   $sql = "SELECT * from coupons where 1=1" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
-  $sql .= $search_where;
 
-  $result = $mysqli -> query($sql);
+  $sql .= $search_where;
+  $order = " order by regdate desc";//최근순 정렬
+  $limit = " limit $statLimit, $endLimit";
+
+  $query = $sql.$order.$limit; //쿼리 문장 조합
+
+  $result = $mysqli -> query($query);
   
   while($rs = $result -> fetch_object()){
     $rsc[] = $rs;
@@ -68,8 +74,8 @@
 				<select name="status" id="status"  aria-label="대기설정 변경">
 					<option selected disabled>쿠폰 활성화 선택</option>
 					<option value="">전체 쿠폰</option>
-					<option value="활성화" >활성된 쿠폰</option>
-					<option value="비활성화" >비활성된 쿠폰</option>
+					<option value="활성화"  <?php if($status=='활성화') {echo "selected"; } ?> >활성된 쿠폰</option>
+					<option value="비활성화" <?php if($status=='비활성화') {echo "selected"; } ?> >비활성된 쿠폰</option>
 				</select>
 			</div>
 		</div>
@@ -94,7 +100,7 @@
 			if(isset($rsc)){
 				foreach($rsc as $item){            
 		?>
-		<div class="col white_back">
+		<div class="col white_back col_coup_cid"  data-cid="<?= $item -> cid ?>">
 			<div class="coup_box d-flex justify-content-between">
 				<div class="coup_thumbnail">
 					<img src="<?= $item->coupon_image ?>" alt="">
@@ -115,8 +121,8 @@
 						</p>
 						</div>
 						<div class="coup_icon d-flex flex-column align-items-end justify-content-lg-end">
-							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" role="switch" value="<?= $item->status ?>" name="<?= $item->cid ?>" id="<?= $item->cid ?>" <?php if ($item->status == "활성화") echo "checked"; ?>>							
+							<div class="form-check form-switch coup_status_toggle">
+								<input class="form-check-input" type="checkbox" role="switch" <?php if ($item->status == "활성화") {echo "checked";} else{echo '';} ?>>							
 							</div>
 							<div class="coup_common_icon d-flex">
 								<a href = "coupon_modify.php?cid=<?= $item-> cid ?>" class="bi bi-pencil-square icon_mint"></a>
@@ -139,17 +145,45 @@
         }  
       ?>  
 	</div>
-
+		<!-- 페이지네이션 -->
+		<nav aria-label="페이지네이션" class="space">
+			<ul class="pagination justify-content-center align-items-center">
+				<?php
+					if($pageNumber>1){                   
+							echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?pageNumber=1\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
+							if($block_num > 1){
+									$prev = ($block_num - 2) * $block_ct + 1;
+									echo "<li class=\"page-item\"><a href='?pageNumber=$prev' class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
+							}
+					}
+					for($i=$block_start;$i<=$block_end;$i++){
+						if($pageNumber == $i){
+								echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+						}else{
+								echo "<li class=\"page-item\"><a href=\"?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+						}
+					}
+					if($pageNumber<$total_page){
+						if($total_block > $block_num){
+								$next = $block_num * $block_ct + 1;
+								echo "<li class=\"page-item\"><a href=\"?pageNumber=$next\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
+						}
+						echo "<li class=\"page-item\"><a href=\"?pageNumber=$total_page\" class=\"page-link\"><i class=\"bi bi-chevron-double-right icon_gray\"></i></a></li>";
+					}
+				?>  
+			</ul>
+		</nav>
+		<!-- /페이지네이션 -->
 <script>
 
 	$("#status").selectmenu({
   change: function( event, data ) {
-		let selected_value = data.item.value;
+		let selected_value = data.item.value;//item으로 받음
 		location.href=`/attention/admin/coupon/coupon_list.php?status=${selected_value}`;
 	}
 });
 
-	// 무기한, 제한 설정
+	// 무기한, 제한 설정data-cid
 	$(".infinite_date").on("click", function () {
 			$("#regdate_box").prop("disabled", true);
 	});
@@ -159,6 +193,45 @@
 	});
 	// /무기한, 제한 설정
 
+	//쿠폰 토글 변경 설정
+	$(".coup_status_toggle").change(function() {
+		let coup_toggle= $(this).find("input");
+
+		//check 되면 1 아니면 0을 value로 넘기기
+		if(coup_toggle.prop('checked')) {
+			coup_toggle.val("활성화");
+		}else {
+			coup_toggle.val("비활성화");
+		}
+		// console.log(coup_toggle.val());
+
+		//input의 value와 data-cid 받아오기
+		let status = coup_toggle.val();
+		let cid = $(this).closest(".col_coup_cid").attr("data-cid"); 
+		let data = {
+			status : status,
+			cid : cid
+		}
+		$.ajax({
+			async : false, 
+			type: 'post',     
+			data: data, 
+			url: "coupon_status_change.php", 
+			dataType: 'json', //결과 json 객체형식
+			error: function(error){
+				console.log('Error:', error);
+			},
+			success: function(return_data){
+				console.log(return_data.result);
+				if(return_data.result == '활성화'){
+					alert('변경되었습니다.');
+					location.reload();//새로고침
+				} else{
+					alert('변경에 실패되었습니다.');
+				}
+			}
+		});
+	});
 </script>
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

@@ -1,6 +1,6 @@
 <?php
-//   session_start(); 
-//   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
+  //session_start(); 
+  //include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
   // var_dump($_POST);
 
