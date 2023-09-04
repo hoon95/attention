@@ -9,9 +9,23 @@
   $endLimit = $pageCount;
   $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
 
+  /* 페이지 내 검색 */
+  $title = $_GET['name'] ?? '';
+  $content = $_GET['userid'] ?? '';
+  $search = $_GET['search'] ?? '';
+  $search_where = '';
+  $search_keyword = $title.$content;
+
+  if($search_keyword){
+      $search_where .= " and cate like '{$search_keyword}%'";
+  }
+  if($search){
+      $search_where .= " and (name like '%{$search}%' or userid like '%{$search}%')";
+  }
+  /* /페이지 내 검색 */
 
   //전체 게시물 수 구하기  
-  $pagesql = "SELECT COUNT(*) AS cnt FROM sales";
+  $pagesql = "SELECT COUNT(*) AS cnt FROM sales WHERE 1=1".$search_where;
   $page_result = $mysqli->query($pagesql);
   $page_row = $page_result->fetch_object();
   $row_num = $page_row->cnt; //전체 게시물 수
@@ -25,21 +39,6 @@
   if($block_end > $total_page) $block_end = $total_page;
   $total_block = ceil($total_page/$block_ct);//총32, 2
   /* /페이지네이션 */
-
-  /* 페이지 내 검색 */
-  $title = $_GET['name'] ?? '';
-  $content = $_GET['userid'] ?? '';
-  $search = $_GET['search'] ?? '';
-  $search_where = '';
-  $search_keyword = $title.$content;
-
-  if($search_keyword){
-    $search_where .= " and cate like '{$search_keyword}%'";
-  }
-  if($search){
-    $search_where .= " and (name like '%{$search}%' or userid like '%{$search}%')";
-  }
-  /* /페이지 내 검색 */
 
   $sql = "SELECT * FROM sales WHERE 1=1";
 
@@ -113,7 +112,7 @@
             echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?pageNumber=1&search={$search}\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
               if($block_num > 1){
                   $prev = ($block_num - 2) * $block_ct + 1;
-                  echo "<li class=\"page-item\"><a href='?pageNumber={$prev}&search={$search} class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
+                  echo "<li class=\"page-item\"><a href='?pageNumber={$prev}&search={$search}' class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
               }
           }
           for($i=$block_start;$i<=$block_end;$i++){
