@@ -35,6 +35,7 @@
       
       if(move_uploaded_file($_FILES['file']['tmp_name'], $save_dir.$notice_file)){  
         $notice_file = "/attention/pdata/notice/".$notice_file;
+        // $notice_file;
       } else{
         echo "<script>
           alert('파일 첨부 실패!');    

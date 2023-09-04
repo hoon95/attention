@@ -56,10 +56,22 @@
     $rsc[] = $rs;
   }
   // var_dump($rsc);
+  
+  /*
+  $cookieName = 'city';
+  $cookieVal = 'Seoul';
+  
+  setcookie($cookieName, $cookieVal, time()+60, '/')
+  // setcookie(이름, 값, 만기일, '/')
+  */
 
 ?>
 
 <link rel="stylesheet" href="/attention/admin/css/notice.css">
+
+<!-- popup -->
+
+<!-- /popup -->
 
 <div class="notice">
   <h2 class="tt_01 text-center">게시판</h2>
