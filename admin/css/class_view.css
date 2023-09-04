@@ -19,6 +19,10 @@
 .class_bold span{
   font-weight: 400;
 }
+/* 임시 */
+.wd{
+  width: 100%;
+}
 .class_level_tag{
   border: 2px solid var(--orange);
   border-radius: 3px;
@@ -36,4 +40,18 @@
 .class_into{
   word-spacing: 2px;
   line-height: 150%;
+  margin-left: 60px;
+}
+.class_view_title li:nth-child(1) span{
+  margin-left: 63px;
+}
+.class_view_title li:nth-child(2) span{
+  margin-left: 63px;
+}
+.class_view_title li:nth-child(4) span{
+  margin-left: 46px;
+}
+.class_title{
+  width: 127px;
+  display: inline-block;
 }
