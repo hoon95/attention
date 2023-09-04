@@ -73,7 +73,7 @@
 
 				<select name="status" id="status"  aria-label="대기설정 변경">
 					<option selected disabled>쿠폰 활성화 선택</option>
-					<option value="">전체 쿠폰</option>
+					<option value="<?php if($status=='') {echo "selected"; } ?>">전체 쿠폰</option>
 					<option value="활성화"  <?php if($status=='활성화') {echo "selected"; } ?> >활성된 쿠폰</option>
 					<option value="비활성화" <?php if($status=='비활성화') {echo "selected"; } ?> >비활성된 쿠폰</option>
 				</select>
