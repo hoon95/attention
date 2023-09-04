@@ -6,6 +6,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
   $query = "SELECT * FROM category WHERE step=1";
   $result = $mysqli -> query($query);

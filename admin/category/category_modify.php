@@ -1,5 +1,6 @@
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
   $cid = $_POST['cid'];
   $cate_name = $_POST['cate_name'];
