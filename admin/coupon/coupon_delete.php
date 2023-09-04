@@ -13,13 +13,13 @@
       if (confirmation) {
         alert('삭제되었습니다.');
         location.href='coupon_list.php';
-      } else {
-        alert('삭제가 취소되었습니다.');
-        history.back();  
-      }
+      } 
     </script>";
 } else{
-    echo "Error: " . $sql . "<br>" . $mysqli->error;
+  "<script>
+    alert('삭제가 취소되었습니다.');
+      history.back();  
+  </script>";
 }
 
 ?>

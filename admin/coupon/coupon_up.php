@@ -61,7 +61,7 @@
 		</table>
 		<div class="coup_button d-flex justify-content-end">
 			<button class="btn btn-primary">등록</button>
-			<button class="btn btn-dark">닫기</button>
+			<button class="btn btn-dark coup_close">닫기</button>
 		</div>
 	</form>
 </div>
@@ -82,6 +82,18 @@
 		let file = $(this).prop('files');
 		attachFile(file);
 	});
+
+	let coupclose = $(".coup_close");
+	coupclose.on("click", function() {
+		var confirmation = confirm('쿠폰 등록 취소하겠습니까?');
+		if (confirmation) {
+			alert('쿠폰 등록 취소되었습니다.');
+			location.href='coupon_list.php';
+		} else {
+			alert('쿠폰 등록해주세요');
+			history.back();  
+		}
+	})
 
 	function attachFile(file) {
 		console.log(file);
@@ -118,7 +130,7 @@
 			$('#file_table_id').val(imgid);
 			let html = `
 				<div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
-					<img src="/attention/pdata/${return_data.savefile}" alt="">
+					<img src="/attention/pdata/coupon/${return_data.savefile}" alt="">
 				</div>
 			`;
 			$('#file_table_id').html(html);

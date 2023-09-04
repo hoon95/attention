@@ -15,7 +15,7 @@
 			exit;
 		} 
 		//파일 업로드
-		$save_dir = $_SERVER['DOCUMENT_ROOT']."/attention/pdata/";
+		$save_dir = $_SERVER['DOCUMENT_ROOT']."/attention/pdata/coupon/";
 		$filename = $_FILES['savefile']['name']; //insta.jpg
 		$ext = pathinfo($filename, PATHINFO_EXTENSION); //jpg
 		$newfilename = date("YmdHis").substr(rand(), 0,6); //20238171184015

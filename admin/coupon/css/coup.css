@@ -31,6 +31,7 @@ h2.h1 {
 	width: 226px;
 	height: 100%;
 	border-radius: 6px;
+	object-fit: cover;
 }
 /* .coup_content > div {
 	margin: 12px 0;

@@ -3,7 +3,34 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 //   include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php'; 로그인 부분
 
+	/* 페이지 내 검색 */
+	$cid = $_GET['cid']?? '';
+  $search_keyword = $_GET['search_keyword'] ?? '';
+	$status = $_GET['status'] ?? '';
+
+
+	$search_where = '';
+
+  if($search_keyword){
+    $search_where .= " and coupon_name like '%{$search_keyword}%'";
+  }
+  if($status){
+		// if($status == 'all') {
+		// 	$search_where .= "";
+		// }
+    $search_where .= " and status = '{$status}'";
+  }
+
+
+
+
+ 
+
+
+
+
   $sql = "SELECT * from coupons where 1=1" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
+  $sql .= $search_where;
 
   $result = $mysqli -> query($sql);
   
@@ -11,22 +38,7 @@
     $rsc[] = $rs;
   }
 //
-  /* 페이지 내 검색 */
-  $coupon_name = $_GET['coupon_name'] ?? '';
-  $status = $_GET['status'] ?? '';
-  $seach = $_GET['seach'] ?? '';
- 
-  $search_where = '';
-
-  $search_keyword = $coupon_name.$status;
   
-  if($search_keyword){
-    $search_where .= " and cate like '{$search_keyword}%'";
-  }
-  if($seach){ //제목과 내용에 키워드가 포함된 상품 조회
-    $search_where .= " and (coupon_name like '%{$seach}%' or status like '%{$seach}%')";
-  }
-
 ?>
 <link rel="stylesheet" href="/attention/admin/coupon/css/coup.css">
 <link rel="stylesheet" href="/attention/admin/coupon/css/coup_ok.css">
@@ -35,27 +47,13 @@
 		<!-- 쿠폰 활성화 카테고리 선택 - 기서은 -->
 		<div class="common_select coupon_select">
 			<div class="d-flex align-items-center justify-content-between">
-			<?php
-				if(isset($rsc)){
-				foreach($rsc as $cate){            
-			?>
-				<select name="status[<?php echo $cate->pid ?>]" id="status[<?php echo $cate->pid ?>]">
+
+				<select name="status" id="status"  aria-label="대기설정 변경">
 					<option selected disabled>쿠폰 활성화 선택</option>
-					<option value="<?= $cate->cid ?>"  <?php if($cate->cid) {echo "selected"; } ?>>전체 쿠폰</option>
-					<option value="활성화"  <?php if($cate->status=='활성화') {echo "selected"; } ?>>활성된 쿠폰</option>
-					<option value="비활성화" <?php if($cate->status=='비활성화') {echo "selected"; } ?>>비활성된 쿠폰</option>
+					<option value="">전체 쿠폰</option>
+					<option value="활성화" >활성된 쿠폰</option>
+					<option value="비활성화" >비활성된 쿠폰</option>
 				</select>
-				<?php
-				}
-			} else {
-			?>
-      
-			<tr>
-				<td colspan="10"> 검색 결과 없습니다 </td>
-			</tr>
-			<?php
-			}   
-			?>	
 			</div>
 		</div>
 		<!-- /쿠폰 활성화 카테고리 선택 - 기서은 -->
@@ -64,8 +62,8 @@
 		<div class="d-flex align-items-center justify-content-between coup_searchbox">
 			<form action="" id="search_form">
 				<div class="seach">
-					<input type="text" name="seach" id="seach" class="form-control" placeholder="제목 및 내용 입력">
-					<button  type="submit"><i class="bi bi-search icon_gray"></i></button>
+					<input type="text" name="search_keyword" id="search_keyword" class="form-control" placeholder="쿠폰명을 검색해주세요">
+					<button type="submit"><i class="bi bi-search icon_gray"></i></button>
 				</div>	
 			</form>
 			<a href="coupon_up.php" class="btn btn-primary">쿠폰등록</a>
@@ -126,11 +124,14 @@
 	</div>
 
 <script>
-	$(function() {
-		$("#select").selectmenu();
-	})
-</script>
-<script>
+
+	$("#status").selectmenu({
+  change: function( event, data ) {
+		let selected_value = data.item.value;
+		location.href=`/attention/admin/coupon/coupon_list.php?status=${selected_value}`;
+	}
+});
+
 	// 무기한, 제한 설정
 	$(".infinite_date").on("click", function () {
 			$("#regdate_box").prop("disabled", true);

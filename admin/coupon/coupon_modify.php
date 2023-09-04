@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<th><h3 class="tt_03">기한</h3></th>
 							<td class="coup_type_box d-flex">
 								<div class="d-flex">
-									<div class="coup_type coup_date">
+									<div class="coup_type coup_date coup_infinite_date">
 										<input type="radio" name="regdate" checked value="무제한" id="infinite_date_box" <?php if ($rs->regdate == '무제한') echo "checked";  ?>>
 										<label for="infinite_date_box" class="infinite_date">무기한</label>
 									</div>
@@ -91,16 +91,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			</table>
 			<div class="coup_button d-flex justify-content-end">
 				<button class="btn btn-primary">등록</button>
-				<button class="btn btn-dark">닫기</button>
+				<button type="button" class="btn btn-dark coup_close">닫기</button>
 			</div>
 		</form>
 	</div>
 	<script>
-	
+	let coupclose = $(".coup_close");
+	coupclose.on("click", function() {
+		var confirmation = confirm('쿠폰 수정을 취소하겠습니까?');
+		if (confirmation) {
+			alert('쿠폰 수정 취소되었습니다.');
+			location.href='coupon_list.php';
+		} 
+	})
+
 	let coupDate = $("coup_type_date_box input").attr("data-id");	
 	if(coupDate => 1) {
-		$("#regdate_box").prop("disabled", false);
-		$(".coup_day_date input").prop("checked", true);
+		$("#regdate_box").prop("disabled", false);//활성화되어라
+		$(".coup_day_date input").prop("checked", true);//제한부분 체크 되지마라
+	} else if(coupDate == '무제한') {
+		$(".coup_day_date input").prop("checked", false);
+		$("#regdate_box").prop("disabled", true);
 	}
 
 	$(".coup_img").click(function() {
@@ -156,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$('#file_table_id').val(imgid);
 			let html = `
 				<div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
-					<img src="/attention/pdata/${return_data.savefile}" alt="">
+					<img src="/attention/pdata/coupon/${return_data.savefile}" alt="">
 				</div>
 			`;
 			$('#file_table_id').html(html);

@@ -29,6 +29,7 @@ table {
 	width: 226px;
 	height: 140px;
 	border-radius: 6px;
+  object-fit: cover;
 }
 
 input[type="radio"] {
