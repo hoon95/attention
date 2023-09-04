@@ -95,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			</div>
 		</form>
 	</div>
+
 	<script>
 	let coupclose = $(".coup_close");
 	coupclose.on("click", function() {
@@ -105,13 +106,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		} 
 	})
 
-	let coupDate = $("coup_type_date_box input").attr("data-id");	
+	let coupDate = $(".coup_type_date_box input").attr("data-id");	
+
 	if(coupDate => 1) {
 		$("#regdate_box").prop("disabled", false);//활성화되어라
-		$(".coup_day_date input").prop("checked", true);//제한부분 체크 되지마라
-	} else if(coupDate == '무제한') {
-		$(".coup_day_date input").prop("checked", false);
+		$(".coup_day_date input").prop("checked", true);//제한부분 체크 되어라
+	}
+
+	if(!coupDate) {
 		$("#regdate_box").prop("disabled", true);
+		$(".coup_infinite_date input").prop("checked", true);
+
 	}
 
 	$(".coup_img").click(function() {

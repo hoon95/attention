@@ -61,7 +61,7 @@
 		</table>
 		<div class="coup_button d-flex justify-content-end">
 			<button class="btn btn-primary">등록</button>
-			<button class="btn btn-dark coup_close">닫기</button>
+			<button type="button" class="btn btn-dark coup_close">닫기</button>
 		</div>
 	</form>
 </div>
