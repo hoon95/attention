@@ -3,12 +3,12 @@
 
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 
-  // 관리자 검사
-  if(!isset($_SESSION['AUID'])){
-    $return_data = array("result"=>"member"); 
-    echo json_encode($return_data);
-    exit;
-  }
+  // // 관리자 검사
+  // if(!isset($_SESSION['AUID'])){
+  //   $return_data = array("result"=>"member"); 
+  //   echo json_encode($return_data);
+  //   exit;
+  // }
 
   //파일 사이즈 검사
   if($_FILES['savefile']['size']> 10240000){
@@ -30,19 +30,22 @@
   $savefile = $newfilename.".".$ext; //20238171184015.jpg
 
   if(move_uploaded_file($_FILES['savefile']['tmp_name'], $save_dir.$savefile)){
-    $sql = "INSERT INTO class_image_table (userid, filename) VALUES ('{$_SESSION['AUID']}', '{$savefile}' )";
-    $result = $mysqli-> query($sql);
-    $imgid = $mysqli -> insert_id; //테이블에 저장되는 값의 고유 번호
+    $sql = "INSERT INTO class_image_table (userid, filename) VALUES ('admin', '{$savefile}')";//admin ->{$_SESSION['AUID']} login 연결 시 바꿀 껏
+    $result = $mysqli->query($sql);
 
-    $return_data = array("result"=>'success', 'imgid'=> $imgid, 'savefile'=> $savefile); 
-    echo json_encode($return_data);
-    exit;
-
+    if($result){
+        $imgid = $mysqli->insert_id;
+        $return_data = array("result" => 'success', 'imgid' => $imgid, 'savefile' => $savefile);
+        echo json_encode($return_data);
+        exit;
+    } else{
+        $return_data = array("result" => 'error');
+        echo json_encode($return_data);
+        exit;
+    }
   } else{
-    $return_data = array("result"=>'error'); 
-    echo json_encode($return_data);
-    exit;
+      $return_data = array("result" => 'error');
+      echo json_encode($return_data);
+      exit;
   }
-
-
 ?>

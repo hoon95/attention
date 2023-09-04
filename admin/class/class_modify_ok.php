@@ -51,15 +51,15 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
     
   }
 
-  $sql ="UPDATE class SET name='{$name}', content='{$content}', thumbnail='{$thumbnail}', price='{$price}', level={$level}, video='{$video}', sale_end_date='{$sale_end_date}', status={$status}, file_table_id='{$file_table_id}' WHERE pid='{$pid}'";
-var_dump($sql);
-  if ($mysqli->query($sql) === TRUE) {
-    echo "<script>
-    alert('강좌 수정이 완료되었습니다.');
-    location.href ='attention/admin/class/class_list.php';</script>";
-} else {
-    echo "Error: " . $sql . "<br>" . $mysqli->error;
-}
+  $sql3 ="UPDATE class SET name='{$name}', content='{$content}', thumbnail='{$thumbnail}', price='{$price}', level={$level}, video='{$video}', sale_end_date='{$sale_end_date}', status={$status}, file_table_id='{$file_table_id}' WHERE pid='{$pid}'";
+var_dump($sql3);
+//   if ($mysqli->query($sql) === TRUE) {
+//     echo "<script>
+//     alert('강좌 수정이 완료되었습니다.');
+//     location.href ='attention/admin/class/class_list.php';</script>";
+// } else {
+//     echo "Error: " . $sql . "<br>" . $mysqli->error;
+// }
 
-$conn->close();
+// $conn->close();
 ?>

@@ -84,7 +84,7 @@ $result = $mysqli -> query($sql);
             </div>
             <div>
               <a href="class_modify.php?pid=<?= $item->pid ?>" class="btn btn-primary"><i class="bi bi-pencil-square icon_mint"></i></a>
-              <i class="bi bi-trash-fill icon_red"></i>
+              <a href="class_delete.php?pid=<?= $item->pid ?>" class="delete_btn btn btn-primary"><i class="bi bi-trash-fill icon_red"></i>
             </div>
           </td>
         </tr>
@@ -128,6 +128,15 @@ $result = $mysqli -> query($sql);
         $this.val('0');
       }
     });
+
+    $('.delete_btn').click(function(e){
+      e.preventDefault();
+      if(confirm('삭제하시겠습니까?')){
+        window.location = 'class_delete.php?pid=<?php echo $item->pid ?>';// pid/
+      }else{
+        alert('취소되었습니다.');
+      }
+    })
   </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

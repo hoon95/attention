@@ -6,17 +6,21 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   
   $sql = "SELECT * FROM class WHERE pid='{$pid}'";
   $result = $mysqli -> query($sql);
-  $sqlobj = $result -> fetch_object();
-  // $previousContent = "$sqlobj->content";
+  while($rs = $result -> fetch_object()){
+    $rc[] = $rs;
+  }
 ?>
 <link rel="stylesheet" href="/attention/admin/css/class_up.css">
 <div class="common_pd">
           <p class="tt_01 class_ss_mt class_m_pd text-center">강좌 수정</p>
-          <form action="" method="POST" id="class_form" enctype="multipart/form-data">
+          <form action="class_modify_ok.php?pid=<?= $pid ?>" method="POST" id="class_form" enctype="multipart/form-data">
             <input type="hidden" name="file_table_id" id="file_table_id" value="">  
             <input type="hidden" name="content" id="content" value="">
             <table class="table">
               <tbody>
+              <?php 
+                foreach($rc as $sqlobj){
+              ?>
                 <tr class="class_ss_mb">
                   <th class="tt_03">카테고리</th>
                   <td>
@@ -43,7 +47,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                 <tr>
                   <th class="tt_03">강좌명</th>
                   <td>
-                    <input type="text" class="form-control class_form_wd" placeholder="<?= $sqlobj->name ?>" name="name">
+                    <input type="text" class="form-control class_form_wd" value="<?= $sqlobj->name ?>" name="name">
                   </td>
                 </tr>
                 </tbody>
@@ -55,25 +59,26 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">강좌난이도</th>
                   <td>
                     <div class="btn-group">
-                      <input type="radio" class="btn-check " name="level" id="level_Beginner" autocomplete="off" value="1">
+                      <input type="radio" class="btn-check level" name="level" id="level_Beginner" autocomplete="off" value="1" <?php if($sqlobj->level==1) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Beginner">초급</label>
-                      <input type="radio" class="btn-check" name="level" id="level_Intermediate" autocomplete="off" value="2">
+                      <input type="radio" class="btn-check level" name="level" id="level_Intermediate" autocomplete="off" value="2" <?php if($sqlobj->level==2) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Intermediate">중급</label>
-                      <input type="radio" class="btn-check" name="level" id="level_Advanced" autocomplete="off" value="3">
+                      <input type="radio" class="btn-check level" name="level" id="level_Advanced" autocomplete="off" value="3" <?php if($sqlobj->level==3) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Advanced">상급</label>
                     </div>
+                    <input type="hidden" name="level" value="<?php echo $sqlobj->level; ?>" id="level">
                   </td>
                 </tr>
                 <tr>
                   <th class="tt_03">가격</th>
                   <td>
                     <div class="btn-group class_price">
-                      <input type="radio" class="btn-check" name="price" id="price_free" autocomplete="off" value="무료">
+                      <input type="radio" class="btn-check" name="price" id="price_free" autocomplete="off" value="1" <?php if($sqlobj->price==1) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="price_free">무료</label>
-                      <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="유료">
+                      <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="0" <?php if($sqlobj->price==0) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="price_pay" checked>유료</label>
                     </div>
-                    <input type="number" class="form-control class_form_wd class_sm_ml price_form" placeholder="<?= $sqlobj->price ?>" min="30000" max="1200000" value="30000" step="10000" id="price" name="price">
+                    <input type="number" class="form-control class_form_wd class_sm_ml price_form" min="30000" max="1200000" value="<?= $sqlobj->price ?>" step="10000" id="price" name="price">
                     <label class="form-check-label" for="flexSwitchCheckDefault">원</label>
                   </td>
                 </tr>
@@ -81,12 +86,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">수강기한</th>
                   <td class="class_label_h">
                     <div class="btn-group class_date">
-                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" autocomplete="off" value="무제한">
+                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" autocomplete="off" value="1" <?php if($sqlobj->sale_end_date==1) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="unlimited">무제한</label>
-                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="제한">
+                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="0" <?php if($sqlobj->sale_end_date==0) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="limited">제한</label>
                     </div>
-                    <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="1" name="sale_end_date" placeholder="<?= $sqlobj->sale_end_date ?>">
+                    <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="<?= $sqlobj->sale_end_date ?>" name="sale_end_date">
                     <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
                   </td>
                 </tr>
@@ -95,7 +100,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <td class="class_video">
                     <div class="video_wrap">
                       <div class="video_address">
-                        <input type="text" class="form-control class_lform_wd" placeholder="<?= $sqlobj->video ?>" name="video">
+                        <input type="text" class="form-control class_lform_wd" value="<?= $sqlobj->video ?>" name="video">
                       </div>
                       <button type="button" id="video_add"><i class="bi bi-plus-circle icon_gray"></i></button>
                     </div>
@@ -105,9 +110,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">공개 여부</th>
                   <td>
                     <div class="btn-group">
-                      <input type="radio" class="btn-check" name="status" id="open" autocomplete="off" value="1">
+                      <input type="radio" class="btn-check" name="status" id="open" autocomplete="off" value="1" <?php if($sqlobj->status==1) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="open">공개</label>
-                      <input type="radio" class="btn-check" name="status" id="Private" autocomplete="off" value="0">
+                      <input type="radio" class="btn-check" name="status" id="Private" autocomplete="off" value="0" <?php if($sqlobj->status==0) {echo "checked"; } ?>>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="Private">비공개</label>
                     </div>
                     </td>
@@ -143,16 +148,32 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                     </div>
                   </td>
                 </tr>
+                <?php
+                    }
+                ?>
               </tbody>
             </table>
             <hr class="class_hr">
             <div class="d-flex justify-content-end class_s_mt">
-              <button class="btn btn-primary">수정</button>
+              <a href="class_modify_ok.php?pid=<?= $sqlobj->pid ?>" class="btn btn-primary">수정</a>
               <button class="class_close btn btn-dark class_sm_ml">닫기</button>
             </div>            
           </form>
     </div>
     <script>
+
+
+      // // 초기 선택 값을 hidden input에 설정
+      // $('#level').val($('input[name="level"]:checked').val());
+      // // 라디오 버튼 값 변경 시 이벤트 리스너
+      // $('input[type="radio"]').change(function(){
+      //   // 선택한 값을 hidden input에 업데이트
+      //   $('#level').val($('input[name="level"]:checked').val());
+      //   console.log('아래꺼')
+      //   console.log($('#selected_level').val($('input[name="level"]:checked').val()))
+      // });
+
+
       $('#class_form').submit(function () {//버튼클릭으로 이벤트잡는거 x form에서 전송 이벤트가 일어나면 할일 ok
         let content_str = $('#class_intro').summernote('code');
         let content = encodeURIComponent(content_str);
@@ -160,6 +181,47 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
       });
       $( function() {
         $( ".select_from" ).selectmenu();
+
+
+        // video_url 추가 시
+        let videoData = $('#class_form').serialize();
+        $.ajax({
+            type: 'POST',
+            url: 'class_clips.php',
+            data: videoData,
+            success: function(return_data) {
+              console.log(return_data);
+            },
+            error: function(error) {
+              console.log('error:', error)
+            }
+        });
+        // /video_url 추가 시
+
+        var formData = new FormData(this);
+        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="checkbox"]:checked');
+        var checkboxValues = [];
+
+        checkboxes.forEach(function(checkbox) {
+          checkboxValues.push(checkbox.value);
+        });
+
+        formData.delete('checkbox'); // 동일한 name 값을 가진 필드 삭제
+        formData.append('checkboxValues', JSON.stringify(checkboxValues)); // JSON 형식으로 변환한 값을 새 필드에 추가
+
+        // 변환된 데이터를 서버로 보낼 수 있음
+        fetch('submit.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(function(response) {
+          // 응답 처리
+        })
+        .catch(function(error) {
+          // 에러 처리
+        });
+
+        
       } );
 
      

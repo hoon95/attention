@@ -62,9 +62,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">가격</th>
                   <td>
                     <div class="btn-group class_price">
-                      <input type="radio" class="btn-check" name="price" id="price_free" autocomplete="off" value="무료">
+                      <input type="radio" class="btn-check" name="price" id="price_free" autocomplete="off" value="1">
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="price_free">무료</label>
-                      <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="유료">
+                      <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="0">
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="price_pay" checked>유료</label>
                     </div>
                     <input type="number" class="form-control class_form_wd class_sm_ml price_form" placeholder="금액" min="30000" max="1200000" value="30000" step="10000" id="price" name="price">
@@ -75,9 +75,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">수강기한</th>
                   <td class="class_label_h">
                     <div class="btn-group class_date">
-                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" autocomplete="off" value="무제한">
+                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" autocomplete="off" value="1">
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="unlimited">무제한</label>
-                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="제한">
+                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="0">
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="limited">제한</label>
                     </div>
                     <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="1" name="sale_end_date">
@@ -89,7 +89,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <td class="class_video">
                     <div class="video_wrap">
                       <div class="video_address">
-                        <input type="text" class="form-control class_lform_wd" placeholder="동영상 주소를 입력하세요" name="video">
+                        <input type="text" class="form-control class_lform_wd" placeholder="동영상 주소를 입력하세요" name="video[]">
                       </div>
                       <button type="button" id="video_add"><i class="bi bi-plus-circle icon_gray"></i></button>
                     </div>
@@ -122,7 +122,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                 <tr>
                   <th class="tt_03">썸네일</th>
                   <td>
-                  <input type="file" class="form-control" name="thumbnail" id="thumbnail" >
+                  <input type="file" class="form-control" name="thumbnail" id="thumbnail">
                   </td>
                 </tr>
                 <tr>
@@ -153,16 +153,31 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           </form>
     </div>
     <script>
-      $('#class_form').submit(function () {//버튼클릭으로 이벤트잡는거 x form에서 전송 이벤트가 일어나면 할일 ok
+      $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나면 할일 ok  //버튼클릭으로 이벤트잡는거 x 
         let content_str = $('#class_intro').summernote('code');
         let content = encodeURIComponent(content_str);
         $('#content').val(content);
-      });
+
+
+        // video_url 추가 시
+        let videoData = $('#class_form').serialize();
+        $.ajax({
+            type: 'POST',
+            url: 'class_clips.php',
+            data: videoData,
+            success: function(return_data) {
+              console.log(return_data);
+            },
+            error: function(error) {
+              console.log('error:', error)
+            }
+        });
+        // /video_url 추가 시
+      });// /form에서 전송 이벤트가 일어나면 할일
       $( function() {
         $( ".select_from" ).selectmenu();
       } );
 
-     
     //     $('#class_intro').summernote({
     //   height: 400,
     //   placeholder: '강좌를 소개해주세요',
@@ -285,9 +300,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
 
 
-        //추가이미지를 넣으면 product_save_image.php에 savefile를 첨부했어하고 넣고,
+        //추가이미지를 넣으면 class_save_image.php에 savefile를 첨부했어하고 넣고,
         //쿼리에도 넣는걸 해주는 함수
-        //이미지하나하나 넘겨줘서 이걸 가지고 form데이터 만들어서 해줘
       function attachFile(file) {
         console.log(file);
         let formData = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
