@@ -329,6 +329,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
       }
 
       let data = { 
+        step : step,
         cid : cid,
         cate_name : cate_name
       }
@@ -344,6 +345,8 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
             var new_step = parseInt(step)-1;
             makeOption($("#cate"+new_step), step, step_name, $('#cate'+ step), $('#cate'+step+'_div'));
           $("#cateModifyModal").modal("hide");
+          } else if(result == 'duplicate'){
+            alert("분류명이 이미 사용중 입니다.");
           } else{
             alert("수정에 실패했습니다.");
           }
