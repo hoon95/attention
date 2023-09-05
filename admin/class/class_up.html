@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Common.html</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.css" integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/admin/css/common.css">
+<link rel="stylesheet" href="/admin/css/class_list.css">  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.js" integrity="sha512-6rE6Bx6fCBpRXG/FWpQmvguMWDLWMQjPycXMr35Zx/HRD9nwySZswkkLksgyQcvrpYMx0FELLJVBvWFtubZhDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  <div class="background d-flex">
+    <nav class="aside tt_03">
+      <div class="logo">
+        <img src="../img/coderabbit_logo.svg" alt="">
+      </div>
+      <ul>
+        <li><a href="/admin/index.php"><i class="bi bi-grid-1x2-fill"></i> 대시보드</a></li>
+        <li><i class="bi bi-bar-chart"></i> 매출 관리</li>
+        <li><a href="/admin/class/class_list.php"><i class="bi bi-mortarboard-fill"></i> 강좌 관리</a></li>
+        <li><a href="/admin/coupon/coupon_list.php"><i class="bi bi-credit-card-2-front"></i> 쿠폰 관리</a></li>
+        <li><i class="bi bi-person-fill"></i> 회원 관리</li>
+        <li><a href="/admin/notice/notice.php"><i class="bi bi-layout-text-sidebar-reverse"></i> 게시판 관리</a></li>
+      </ul>
+    </nav>
+    <div class="main">
+      <div class="common_pd">
+          <p class="tt_01 class_ss_mt class_m_pd text-center">강좌 등록</p>
+        
+          <form action="" method="POST">
+            <table class="table">
+              <tbody>
+                <tr class="class_ss_mb">
+                  <th class="tt_03">카테고리</th>
+                  <td>
+                    <span class="select">
+                      <select name="select" class="select_from">
+                        <option selected disabled>대분류</option>
+                        <!-- <option value="1">대분류</option> -->
+                      </select>
+                    </span>
+                    <span class="select class_ss_ml">
+                      <select name="select" class="select_from">
+                        <option selected disabled>중분류</option>
+                        <!-- <option value="1">중분류</option> -->
+                      </select>
+                    </span>
+                    <span class="select class_ss_ml">
+                      <select name="select" class="select_from">
+                        <option selected disabled>소분류</option>
+                        <!-- <option value="1">소분류</option> -->
+                      </select>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="tt_03">강좌명</th>
+                  <td>
+                    <input type="text" class="form-control class_form_wd" placeholder="강좌명">
+                  </td>
+                </tr>
+                </tbody>
+            </table>
+            <hr class="class_hr">
+            <table class="table class_s_mt">
+              <tbody>
+                <tr>
+                  <th class="tt_03">강좌난이도</th>
+                  <td>
+                    <div class="btn-group">
+                      <input type="radio" class="btn-check " name="level" id="level1" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level1">초급</label>
+                      <input type="radio" class="btn-check" name="level" id="level2" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level2">중급</label>
+                      <input type="radio" class="btn-check" name="level" id="level3" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level3">상급</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="tt_03">가격</th>
+                  <td>
+                    <div class="btn-group">
+                      <input type="radio" class="btn-check" name="price" id="price_free" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="price_free">무료</label>
+                      <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="price_pay">유료</label>
+                    </div>
+                    <input type="number" class="form-control class_sform_wd class_sm_ml" placeholder="금액">
+                  </td>
+                </tr>
+                <tr>
+                  <th class="tt_03">수강기한</th>
+                  <td class="class_label_h">
+                    <div class="btn-group">
+                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="unlimited">무제한</label>
+                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="limited">제한</label>
+                    </div>
+                    <input type="number" class="form-control class_sform_wd class_sm_ml" value="1">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="tt_03">강좌영상</th>
+                  <td class="class_video d-flex align-items-center">
+                    <input type="text" class="form-control class_lform_wd" placeholder="동영상 주소를 입력하세요">
+                    <button><i class="bi bi-plus-circle icon_gray"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="tt_03">공개 여부</th>
+                  <td>
+                    <div class="btn-group">
+                      <input type="radio" class="btn-check" name="status" id="open" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="open">공개</label>
+                      <input type="radio" class="btn-check" name="status" id="Private" autocomplete="off">
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="Private">비공개</label>
+                    </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+                <hr class="class_hr">
+                <table class="table class_s_mt">
+              <tbody>
+                <tr>
+                  <th class="tt_03">강좌소개</th>
+                  <td>
+                    <!-- summernote -->
+                    <div id="class_intro"></div>  
+                    <!-- /summernote -->
+                  </td>
+                </tr>
+                <tr>
+                  <th class="tt_03">썸네일</th>
+                  <td>
+                  <input type="file" class="form-control" name="thumbnail" id="thumbnail">
+                  </td>
+                </tr>
+                <tr>
+                  <th class="tt_03" scope="row">추가이미지</th>
+                  <td>
+                    <div class="class_add_img form-control d-flex justify-content-center align-items-center gray">
+                      <span class="text3"><i class="bi bi-upload icon_gray"></i>이곳에 파일을 첨부하세요</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <hr class="class_hr">
+            <div class="d-flex justify-content-end class_s_mt">
+              <button class="btn btn-primary">등록</button>
+              <button class="btn btn-dark class_sm_ml">닫기</button>
+            </div>            
+          </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script>
+          $( function() {
+            $( ".select_from" ).selectmenu();
+          } );
+          $('#class_intro').summernote({
+              height: 400,
+            });
+        </script>
+</body>
+</html>

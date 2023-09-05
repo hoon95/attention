@@ -30,6 +30,6 @@
         <input type="text" name="userid" class="form-control" id="userid" aria-describedby="basic-addon3 basic-addon4" placeholder="ID">
         <label for="userpw" class="hidden_label">Password</label>
         <input type="password" name="passwd" class="form-control" id="userpw" aria-describedby="basic-addon3 basic-addon4" placeholder="Password">
-        <button type="submit" class="btn btn-primary radius_large flex-fill">로그인</button>
+        <button type="submit" class="btn btn-primary flex-fill">로그인</button>
       </form>
     </div>

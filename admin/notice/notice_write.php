@@ -1,6 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 ?>
 
 <!-- include summernote css/js -->
@@ -28,7 +28,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <tr class="space">
           <th scope="row" class="tt_03">내용</th>
           <td>
-            <!-- <textarea name="content" id="" cols="30" rows="10"></textarea> -->
             <textarea id="notice_content" name="content" required></textarea>
           </td>
         </tr>
@@ -57,7 +56,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   $('.close_btn').click(function(e){
     e.preventDefault();
-    if (confirm('글 작성을 취소하시겠습니까?')){
+    if (confirm('작성 취소하시겠습니까?')){
       history.back();
     }
   });

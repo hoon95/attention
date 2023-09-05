@@ -98,6 +98,9 @@ function sales_change(e){
 }
 
 // 접속자 수 누적 그래프
+let today = new Date().toISOString().split('T')[0];
+$('.access_week').text(today);
+
 const aname = ['']
 let access_now = {
     label: '현재 접속자 수',
@@ -151,56 +154,115 @@ config
 // /접속자 수 누적 그래프
 
 // 가입/탈퇴 회원 막대 그래프
+let currentDate = new Date();
+currentDate.setDate(currentDate.getDate() - 7);
+let ago = currentDate.toISOString().split('T')[0];
+$('.member_date_ago').text(ago);
+
+// 접속자 수에서 설정했던 today 가져오기(101줄)
+$('.member_date_now').text(today);
+console.log(new Date());
+
 const mlabel = ['일','월','화','수','목','금','토'];
 const mdata = {
+    labels: mlabel,
     datasets:[{
-        label: '가입/탈퇴 회원 수',
-        data: [65,59,80,81,56,55,40],
+        label: '가입 회원 수',
+        data: [65, 59, 80, 81, 56, 55, 40],
         backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 205, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(201, 203, 207, 0.2)'
+          'rgba(42, 193, 188, 0.2)',
+          'rgba(42, 193, 188, 0.2)',
+          'rgba(42, 193, 188, 0.2)',
+          'rgba(42, 193, 188, 0.2)',
+          'rgba(42, 193, 188, 0.2)',
+          'rgba(42, 193, 188, 0.2)',
+          'rgba(42, 193, 188, 0.2)'
         ],
         hoverBackgroundColor:[
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(255, 159, 64, 0.5)',
-        'rgba(255, 205, 86, 0.5)',
-        'rgba(75, 192, 192, 0.5)',
-        'rgba(54, 162, 235, 0.5)',
-        'rgba(153, 102, 255, 0.5)',
-        'rgba(201, 203, 207, 0.5)'
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)'
         ],
         hoverBorderColor:[
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(255, 159, 64, 0.5)',
-        'rgba(255, 205, 86, 0.5)',
-        'rgba(75, 192, 192, 0.5)',
-        'rgba(54, 162, 235, 0.5)',
-        'rgba(153, 102, 255, 0.5)',
-        'rgba(201, 203, 207, 0.5)'
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)',
+          'rgba(42, 193, 188, 0.5)'
         ],
         borderColor: [
+          'rgb(42, 193, 188)',
+          'rgb(42, 193, 188)',
+          'rgb(42, 193, 188)',
+          'rgb(42, 193, 188)',
+          'rgb(42, 193, 188)',
+          'rgb(42, 193, 188)',
+          'rgb(42, 193, 188)'
+        ],
+        borderWidth: 1
+    },{
+      label: '탈퇴 회원 수',
+      data: [15, 20, 25, 30, 35, 40, 45],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)'
+      ],
+      hoverBackgroundColor:[
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)'
+      ],
+      hoverBorderColor:[
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 99, 132, 0.5)'
+      ],
+      borderColor: [
         'rgb(255, 99, 132)',
-        'rgb(255, 159, 64)',
-        'rgb(255, 205, 86)',
-        'rgb(75, 192, 192)',
-        'rgb(54, 162, 235)',
-        'rgb(153, 102, 255)',
-        'rgb(201, 203, 207)'
-        ]
-    }]
+        'rgb(255, 99, 132)',
+        'rgb(255, 99, 132)',
+        'rgb(255, 99, 132)',
+        'rgb(255, 99, 132)',
+        'rgb(255, 99, 132)',
+        'rgb(255, 99, 132)'
+      ],
+      borderWidth: 1
+  }]
 }
 const mconfig = {
-    type: 'bar',
-    data: mdata
+  type: 'bar',
+  data: mdata,
+  options: {
+    // maintainAspectRatio: false,
+    // scales: {
+    //   y: {
+    //     beginAtZero: true
+    //   }
+    // }
+  },
 };
 
-let mchart = document.getElementById('member_chart');
-const stackedBar = new Chart(mchart, mconfig);
+  let mchart = document.querySelector('#member_chart');
+  const stackedBar = new Chart(mchart, mconfig);
 // /가입/탈퇴 회원 막대 그래프
 
 $('.number').number(true);

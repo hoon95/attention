@@ -11,6 +11,7 @@ form .btn{
 form input{
     height: calc(var(--base-unit) * 3);
     line-height: calc(var(--base-unit) * 3);
+    padding-left: var(--base-unit) !important;
     border-radius: 40px !important;
 }
 .logo p{
@@ -19,9 +20,10 @@ form input{
 #userpw{
     margin: calc(var(--base-unit) * 0.5) 0 calc(var(--base-unit) * 2);
 }
-::placeholder{
-    padding-left: var(--base-unit);
-}
 .hidden_label{
     display: none;
+}
+button[type='submit']{
+    height: calc(var(--base-unit) * 3);
+    border-radius: 40px;
 }

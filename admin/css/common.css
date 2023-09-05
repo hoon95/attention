@@ -238,6 +238,7 @@ input:focus::placeholder{
 }
 .seach{
   position: relative;
+  display: inline-block;
 }
 .seach button{
   position: absolute;
