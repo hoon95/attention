@@ -1,7 +1,7 @@
 <?php
-  $title = '쿠폰목록';
+  $title = '쿠폰 목록';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-	//include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php'; 로그인 부분
+	include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
 
 	/* 페이지네이션 */
   $pageNumber = $_GET['pageNumber'] ?? 1;

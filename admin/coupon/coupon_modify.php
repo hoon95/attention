@@ -1,4 +1,5 @@
 <?php
+	$title = '쿠폰 수정';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 	$cid = $_GET['cid'];

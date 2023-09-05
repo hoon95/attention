@@ -1,6 +1,7 @@
 <?php
+	$title = '쿠폰 등록';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-	// include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
+	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 ?>
 <link rel="stylesheet" href="/attention/admin/css/coup_ok.css">
 <div class="common_pd">
