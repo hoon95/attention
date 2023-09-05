@@ -1,4 +1,5 @@
 <?php
+    $title = '대시보드 - Code Rabbit';
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
     
