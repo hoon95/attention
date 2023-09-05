@@ -15,8 +15,8 @@
 
 
 ?>
-<link rel="stylesheet" href="/attention/admin/coupon/css/coup.css">
-<link rel="stylesheet" href="/attention/admin/coupon/css/coup_ok.css">
+<link rel="stylesheet" href="/attention/admin/css/coup.css">
+<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">
 	<div class="common_pd"> 
 		<h2 class="h1">쿠폰 수정</h2>
 		<form action="coupon_modify_ok.php?cid=<?= $rs-> cid ?>" class="coup_text" method="post" enctype="multipart/form-data">

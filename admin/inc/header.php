@@ -21,7 +21,7 @@
 <div class="background d-flex">
   <nav class="aside tt_03">
     <div class="logo">
-        <img src="/attention/admin/img/coderabbit_logo.svg" alt="">
+        <img src="/attention/admin/img/coderabbit_logo.svg" alt="코드래빗 로고">
     </div>
     <div class="d-flex flex-column aside_title">
       <ul>

@@ -63,8 +63,8 @@
 //
   
 ?>
-<link rel="stylesheet" href="/attention/admin/coupon/css/coup.css">
-<link rel="stylesheet" href="/attention/admin/coupon/css/coup_ok.css">
+<link rel="stylesheet" href="/attention/admin/css/coup.css">
+<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">
 <h2 class="h1">쿠폰 관리</h2>
 	<div class="d-flex align-items-center justify-content-between common_select_box">
 		<!-- 쿠폰 활성화 카테고리 선택 - 기서은 -->
