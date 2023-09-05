@@ -6,6 +6,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
   $query = "SELECT * FROM category WHERE step=1";
   $result = $mysqli -> query($query);
@@ -30,7 +31,6 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
             <div class="cate_field mt-4 white_back radius_medium">
               <h3 class="tt_03 pb-4">대분류</h3>
               <div class="cate_filter d-flex flex-column" id="cate1_div" >
-
                 <?php foreach($cate1 as $c){ ?>
                   <div class="d-flex justify-content-between align-items-center pb-3">
                     <option class="text1" value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
@@ -40,7 +40,6 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
                     </div>
                   </div>
                 <?php } ?>
-       
               </div>
             </div>
           </div>
@@ -370,7 +369,6 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
             var new_step = parseInt(step)-1;
             makeOption($("#cate"+new_step), step, step_name, $('#cate'+ step), $('#cate'+step+'_div'));
           $("#cateModifyModal").modal("hide");
-          location.reload();
           } else if(result == 'duplicate'){
             alert("분류명이 이미 사용중 입니다.");
           } else{
@@ -486,7 +484,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
 </script>
 
-<script src="../js/category.js"></script>   
+<script src="/attention/admin/js/category.js"></script>   
 
 
 

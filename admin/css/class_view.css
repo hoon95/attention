@@ -1,0 +1,57 @@
+.class_ss_mt{
+  margin-top: 10px;
+}
+.class_m_ml{
+  margin-left: 40px;
+}
+.class_m_pd{
+  padding-bottom: 40px;
+}
+.class_sm_pd{
+  padding-bottom: 20px;
+}
+.class_v_img{
+  margin: 5px 94px 5px 0;
+}
+.class_bold{
+  font-weight: 700;
+}
+.class_bold span{
+  font-weight: 400;
+}
+/* 임시 */
+.wd{
+  width: 100%;
+}
+.class_level_tag{
+  border: 2px solid var(--orange);
+  border-radius: 3px;
+  padding: 0 12px;
+  font-size: 15px;
+}
+.class_hr{
+  color: var(--gray);
+}
+.address_color{
+  color: #0000FF;
+  text-decoration: underline;
+  text-decoration-color: #0000FF;
+}
+.class_into{
+  word-spacing: 2px;
+  line-height: 150%;
+  margin-left: 60px;
+}
+.class_view_title li:nth-child(1) span{
+  margin-left: 63px;
+}
+.class_view_title li:nth-child(2) span{
+  margin-left: 63px;
+}
+.class_view_title li:nth-child(4) span{
+  margin-left: 46px;
+}
+.class_title{
+  width: 127px;
+  display: inline-block;
+}

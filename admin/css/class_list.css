@@ -1,0 +1,82 @@
+.aside{
+  max-height: none;
+}
+.table{
+  border-radius: 12px;
+  padding: 0;
+  margin: 0;
+}
+.table>:not(caption)>*>*{
+  padding: 6px 0.5rem ;
+}
+.class_table tr{
+  border-radius: 12px;
+  box-shadow: 4px 5px 17px 0px rgba(0, 0, 0, 0.15);
+  margin-bottom: 7px;
+}
+.form-control{
+  display: inline-block;
+  width: 232px;
+}
+.class_ss_mt{
+  margin-top: 10px;
+}
+.class_sm_m{
+  margin-bottom: 20px;
+}
+.class_ss_ml{
+  margin-left: 15.75px;
+}
+.class_ssm_ml{
+  margin-left: 20px;
+}
+.class_sm_ml{
+  margin-left: 24px;
+}
+.class_sm_mtb{
+  margin: 20px 0 20px 48px;
+}
+.class_m_pd{
+  padding-bottom: 40px;
+}
+.class_list_img{
+  margin-left: 39px;
+}
+.class_list_img img{
+  display: inline-block;
+}
+.class_level_tag{
+  border: 2px solid var(--orange);
+  border-radius: 3px;
+  padding: 0 12px;
+  margin-left: 14px;
+}
+.class_level_tag, .class_date_tag{
+  font-size: 15px;
+}
+.class_p_val{
+  font-size: 15px;
+}
+.class_date_tag{
+  margin-left: 8px;
+}
+.class_button{
+  margin: 14px 18px 14px 0;
+}
+.class_button>div:first-child{
+  margin-bottom: 31px;
+}
+.class_delete{
+  padding-left: 5px;
+  color: var(--dark);
+  font-size: 24px;
+}
+.pagination{
+  margin-top: 13px;
+}
+.class_list_item{
+  cursor: pointer;
+}
+.class_list_item img{
+  height: 108px;
+}
