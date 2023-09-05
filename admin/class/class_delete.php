@@ -5,7 +5,7 @@
 
   if ($mysqli->query($sql)) {
       echo "<script>
-      alert('강좌가 삭제되었습니다.');
+      alert('삭제되었습니다.');
       location.href='/attention/admin/class/class_list.php';</script>";
   } else {
       echo "Error: " . $sql . "<br>" . $conn->error;

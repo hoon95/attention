@@ -9,7 +9,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   while($rs = $result -> fetch_object()){
     $rc[] = $rs;
   }
-  var_dump($rc);
 ?>
 <link rel="stylesheet" href="/attention/admin/css/class_up.css">
 <div class="common_pd">
@@ -96,7 +95,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                     <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
                   </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <th class="tt_03">강좌영상</th>
                   <td class="class_video">
                     <div class="video_wrap">
@@ -106,7 +105,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                       <button type="button" id="video_add"><i class="bi bi-plus-circle icon_gray"></i></button>
                     </div>
                   </td>
-                </tr>
+                </tr> -->
                 <tr>
                   <th class="tt_03">공개 여부</th>
                   <td>
@@ -167,21 +166,6 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
         let content = encodeURIComponent(content_str);
         $('#content').val(content);
 
-
-        // video_url 추가 시
-        let videoData = $('#class_form').serialize();
-        $.ajax({
-            type: 'POST',
-            url: 'class_clips.php',
-            data: videoData,
-            success: function(return_data) {
-              console.log(return_data);
-            },
-            error: function(error) {
-              console.log('error:', error)
-            }
-        });
-        // /video_url 추가 시
       });// /form에서 전송 이벤트가 일어나면 할일
       $( function() {
         $( ".select_from" ).selectmenu();
@@ -246,12 +230,12 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
 
         
 
-        $('#video_add').click(function(){
-          let video_html = $('.video_address').html();
-          video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
+        // $('#video_add').click(function(){
+        //   let video_html = $('.video_address').html();
+        //   video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
           
-          $('.video_wrap').append(video_html);
-        })
+        //   $('.video_wrap').append(video_html);
+        // })
 
         let uploadFiles = [];
         let $drop = $("#drag_drop");

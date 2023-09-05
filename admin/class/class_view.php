@@ -56,7 +56,7 @@ $result = $mysqli -> query($sql);
       </div>    
       <hr class="class_hr">  
       <div class="d-flex justify-content-end">
-        <button class="btn btn-dark sm-ml">닫기</button>
+        <button class="class_close btn btn-dark sm-ml">닫기</button>
       </div>
   <script>
     $('.class_close').click(function(e){

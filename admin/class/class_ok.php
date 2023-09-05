@@ -12,8 +12,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 //   history.back();
 //   </script>";
 // }
-// $mysqli->autocommit(FALSE);
-// try{
+
 
 $name = $_POST['name'] ?? '';
 $level = $_POST['level'];
@@ -80,30 +79,25 @@ $pid = $mysqli -> insert_id; //테이블에 저장되는 값의 고유 번호
 
 
 
-// $mysqli->commit();
+
 
 if($result){ //상품이 등록되면
   if(isset($file_table_id)){//추가 이미지가 있으면 class_image_table pid 업데이트
     $updatesql = "UPDATE class_image_table SET pid={$pid} WHERE imgid IN ({$file_table_id})";
     $result2 = $mysqli -> query($updatesql);
   }
-  if(isset($videoString)){//비디오가 있으면 class_image_table pid 업데이트
-    $clipsql = "UPDATE class_clips SET pid={$pid} WHERE ccid IN ('{$videoString}')"; 
-    $result3 = $mysqli -> query($clipsql);
-  }
   echo "<script>
           alert('강좌가 등록되었습니다.');
           location.href ='/attention/admin/class/class_list.php';
           </script>";
  }
-// }catch (Exception $e) {
-  // $mysqli->rollback();
+
  { echo "<script>
           alert('강좌가 등록되지 않았습니다.');
           // history.back();
           </script>";
-          exit;
+         
  }
-// } 
+
 
 ?>

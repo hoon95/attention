@@ -77,3 +77,6 @@
 .class_list_item{
   cursor: pointer;
 }
+.class_list_item img{
+  height: 108px;
+}

@@ -4,63 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 // $cates1 = $_GET['cate1'] ?? '';
 // $cate2 = $_GET['cate2'] ?? '';
 // $cate3 = $_GET['cate3'] ?? '';
-$status = $_GET['status'] ?? '';
-
-// 이미지 등록 시작
-//이미지를 업로드할 디렉토리 경로
-$uploadDir = '../../pdata/class/';
-
-//업로드할 파일의 최대 크기 (바이트)
-$maxFileSize = 10 * 1024 * 1024; //10MB
-
-//허용되는 파일 확장자
-$allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-
-//에러 메시지 배열 초기화
-$errors = [];
-
-if ($_SERVER['REQUEST_METHOD']  === 'POST') {
-  //파일이 제대로 전송되었는지 확인
-  if (isset($_FILES['thumbnail']) || $_FILES['thumbnail']['error'] === UPLOAD_ERR_OK) {
-    //파일 정보 가져오기
-    $fileName = $_FILES['thumbnail']['name'];
-    $fileSize = $_FILES['thumbnail']['size'];
-    $fileTmpName = $_FILES['thumbnail']['tmp_name'];
-    $fileType = $_FILES['thumbnail']['type'];
-
-    //파일 확장자 확인
-    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-    if (!in_array($fileExtension, $allowedExtensions)) {
-      $errors[] = "허용되지 않는 파일 확장자입니다.";
-    }
-
-    //파일 크기 확인 
-    if ($fileSize > $maxFileSize) {
-      $errors[] = "파일 크기가 허용 범위를 초과했습니다.";
-    }
-
-    // 에러가 없다면 파일 저장
-    if (empty($errors)) {
-      $newFileName = uniqid() . '.' . $fileExtension;  //고유 파일명 생성 
-      $uploadPath = $uploadDir . $newFileName;
-      if (move_uploaded_file($fileTmpName, $uploadPath)) {
-        echo "파일이 성공이 업로드되었습니다.";
-      } else {
-        $errors[] = "파일을 업로드 하는 중에 오류가 발생했습니다";
-      }
-    }
-  } else {
-    $errors[] = "파일 업로드 중 오류가 발생했습니다.";
-  }
-}
-
-// 에러 메시지 출력
-if (!empty($errors)) {
-  foreach ($errors as $error) {
-    echo $error . "<br>";
-  }
-}
-// 이미지 등록 끝
+  $status = $_GET['status'] ?? '';
 
   //pagenation 시작
   $pagenationTarget = 'class';
@@ -137,15 +81,15 @@ $result = $mysqli -> query($query);
         <?php 
           foreach($rc as $item){
         ?>
-        <tr class="white_back d-flex class_list_item">
-          <td class="class_list_img d-flex align-items-center">
+        <tr class="white_back d-flex">
+          <td class="class_list_img d-flex align-items-center class_list_item">
             <img src="../../pdata/class<?= $item->thumbnail ?>" alt="thumbnail image">
           </td>
-          <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1">
+          <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1 class_list_item">
             <div>
               <span class="text2"><?= $item->name ?></span><span class="class_level_tag orange"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?></span>
             </div>
-            <div class="class_p_val"><?= $item->price ?>원</div>
+            <div class="class_p_val"><?php if($item->price==1){echo $item->price_val;} ?><?php if($item->price==0){echo "0";} ?>원</div>
             <div>
               <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange"><?= $item->sale_end_date ?>개월</span>
             </div>
@@ -234,10 +178,10 @@ $result = $mysqli -> query($query);
 
     $('.delete_btn').click(function(e){
       e.preventDefault();
-      if(confirm('삭제하시겠습니까?')){
+      if(confirm('정말 삭제하시겠습니까?')){
         window.location = 'class_delete.php?pid=<?php echo $item->pid ?>';
       }else{
-        alert('삭제 취소되었습니다');
+        alert('삭제되었습니다');
       }
     })
   </script>
