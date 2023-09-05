@@ -1,6 +1,7 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-    include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
+  $title = '회원 관리 - Code Rabbit';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
   /* 페이지네이션 */
   $pageNumber = $_GET['pageNumber'] ?? 1;
