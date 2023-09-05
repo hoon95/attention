@@ -1,0 +1,152 @@
+.aside{
+  max-height: none;
+}
+.table{
+  --bs-table-bg:var(--blue-Gray);
+  margin-bottom:0
+}
+.class_form_wds{
+  display: inline-block;
+  width: 232px;
+}
+.class_form_wd{
+  display: inline-block;
+  width: 180px;
+}
+.class_lform_wd{
+  display: inline-block;
+  width: 267px;
+}
+
+.class_hr{
+  color: var(--gray);
+  margin: 0;
+}
+.class_m_pd{
+  padding-bottom: 40px;
+}
+.class_sm_pd{
+  padding-bottom: 10px;
+}
+.class_ss_mt{
+  margin-top: 10px;
+}
+.class_s_mt{
+  margin-top: 20px;
+}
+.class_s_mb{
+  margin-bottom: 20px;
+}
+.class_ss_ml{
+  margin-left: 15.75px;
+}
+.class_sm_ml{
+  margin-left: 24px;
+}
+.class_ss_mb{
+  margin-bottom: 1px;
+}
+.label_h{
+  line-height: 38.48px;
+}
+.class_video i{
+  display: block;
+  color: var(--dark-gray);
+}
+.drop{
+  width: 100%;
+  height: 120px;
+}
+.drop i{
+  width: 38.14px;
+  height: 39.77px;
+  padding-right: 23px;
+}
+table th tr{
+  vertical-align: top;
+}
+table th{
+  width: 160px;
+}
+.note-editing-area{
+  background-color: var(--white);
+}
+th{
+  vertical-align: top;
+}
+input.form-control::placeholder{
+  color: var(--dark-gray);
+}
+.table>:not(caption)>*>*{
+  padding: 0 0.5rem 20px 0;
+}
+.class_btn_bd_color{
+  border-color: var(--gray);
+  background-color: var(--white);
+}
+/* .btn-check:checked+.btn {
+  box-shadow: var(--mint-focus);
+} */
+.btn-check+.btn:hover {
+  color: var(--dark-gray);
+  background-color: var(--white);
+  border-color: var(--gray);
+}
+.btn-check:checked+.btn:hover{
+  background-color: var(--mint);
+  color: var(--white);
+  border-color: var(--mint);
+  box-shadow: var(--mint-focus);
+} 
+.video_wrap{
+  position: relative;
+}
+#video_add{
+  position: absolute;
+  top: 5.5px;
+  left: 267px;
+}
+.form-control:disabled{
+  background-color: none;
+  opacity: 0;
+}
+.form-control:disabled + label{
+  display: none;
+}
+.drop.drag_enter{
+  background: #3498db;
+}
+.drop.drag_enter{
+  background: #3498db;
+}
+.drop.drag_enter{
+  background: #3498db;
+  color: #fff;
+}
+#add_images{
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  padding: 20px;
+  gap: 10px;
+}
+#add_images .thumb{
+  width: 150px;
+}
+#add_images .thumb img{
+  width: 80px;
+  display: block;
+}
+.drop{
+  position: relative;
+}
+.drop span{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.thumb{
+  display: flex;
+  justify-content: end;
+}
