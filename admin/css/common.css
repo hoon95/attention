@@ -84,6 +84,12 @@ body{
 .aside li:hover a{
   color: var(--white);
 }
+.aside_title{
+  gap: calc(var(--base-unit) * 3);
+}
+.logout{
+  padding-left: 18%;
+}
 
 .main{
   width: 85%; 
