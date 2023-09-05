@@ -6,6 +6,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
   $query = "SELECT * FROM category WHERE step=1";
   $result = $mysqli -> query($query);
@@ -17,47 +18,31 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 <link rel="stylesheet" href="/attention/admin/css/category.css">
 
 <div class="container">
+  <div class="common_pd">
     <h2 class="tt_01 text-center">카테고리 관리</h2>
 
     <!-- 카테고리 Select & Filter 영역(시작) -->
     <div>  
       <form action="" class="d-flex justify-content-center">
         <div class="row cate_main"> 
-
-          <!-- 대분류 조회 -->
+          <!-- 대분류 출력 -->
           <div class="col mt-5 cate_section">
-            
-            <!-- 대분류 선택시 출력되는 중분류 영역 -->
+            <div class="select_none"></div>
             <div class="cate_field mt-4 white_back radius_medium">
               <h3 class="tt_03 pb-4">대분류</h3>
-              <div class="cate_filter" id="">
-              <ul>
-              <?php
-                if(isset($cate1)){
-                  foreach($cate1 as $item){            
-              ?>
-                <li class="d-flex justify-content-between">
-                  <?= $item -> name; ?>
-                  <div>
-                    <i class="bi bi-pencil-square icon_mint"></i></button>
-                    <i class="bi bi-trash-fill icon_red"></i></button>
+              <div class="cate_filter d-flex flex-column" id="cate1_div" >
+                <?php foreach($cate1 as $c){ ?>
+                  <div class="d-flex justify-content-between align-items-center pb-3">
+                    <option class="text1" value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
+                    <div class="cate_icon d-flex">
+                      <dd><button type="button" value="<?php echo $c -> cid ?>" step="<?php echo $c -> step ?>" text="<?php echo $c -> name ?>" class="p-0 cate_modify"><i class="bi bi-pencil-square icon_mint"></i></button></dd>
+                      <dd><button type="button" value="<?php echo $c -> cid ?>" step="<?php echo $c -> step ?>" text="<?php echo $c -> name ?>" class="p-0 cate_delete"><i class="bi bi-trash-fill icon_red"></i></button></dd>
+                    </div>
                   </div>
-                </li>
-              <?php
-                } //foreach
-              } else {    
-              ?>  
-              <tr>
-                <td colspan="12" class="text-center board_bd">조회 결과가 없습니다.</td>
-              </tr>
-              <?php
-                }  
-              ?>  
-            </ul>
-              </div> 
+                <?php } ?>
+              </div>
             </div>
-          </div>  
-
+          </div>
           <!-- 대분류 선택 ▶ 중분류 출력(시작) -->
           <div class="col mt-5 cate_section">  
             <select class="cate_large" name="" id="cate1">
@@ -111,6 +96,8 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
     <div class="cate_close text-end">
       <button type="button" class="btn btn-dark">닫기</button>
     </div>
+
+  </div>  <!-- class="common_pd"(끝) -->
 </div>  <!-- class="container"(끝) --> 
 
 <!-- 수정 Modal 기능 -->
@@ -361,6 +348,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
       }
 
       let data = { 
+        step : step,
         cid : cid,
         cate_name : cate_name
       }
@@ -376,6 +364,8 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
             var new_step = parseInt(step)-1;
             makeOption($("#cate"+new_step), step, step_name, $('#cate'+ step), $('#cate'+step+'_div'));
           $("#cateModifyModal").modal("hide");
+          } else if(result == 'duplicate'){
+            alert("분류명이 이미 사용중 입니다.");
           } else{
             alert("수정에 실패했습니다.");
           }
@@ -489,7 +479,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
 </script>
 
-<script src="category.js"></script>   
+<script src="/attention/admin/js/category.js"></script>   
 
 
 

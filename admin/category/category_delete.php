@@ -1,5 +1,6 @@
 <?php
-	include_once '../inc/dbcon.php';
+	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
+  	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
 	$value = $_POST['value'];
 	$query = "DELETE FROM category WHERE cid = '$value'";
