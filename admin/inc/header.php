@@ -36,18 +36,6 @@
       <a href="/attention/admin/logout.php" class="text2 logout"><i class="bi bi-door-closed"></i><span>out</span></a>
       
     </div>
-    <div class="d-flex flex-column aside_title">
-      <ul>
-        <li><a href="/attention/admin/dashboard/index.php"><i class="bi bi-grid-1x2-fill"></i> 대시보드</a></li>
-        <li><a href="/attention/admin/sales/sales_list.php"><i class="bi bi-bar-chart"></i> 매출 관리</a></li>
-        <li><a href="/attention/admin/class/class_list.php"><i class="bi bi-mortarboard-fill"></i> 강좌 관리</a></li>
-        <li><a href="/attention/admin/coupon/coupon_list.php"><i class="bi bi-credit-card-2-front"></i> 쿠폰 관리</a></li>
-        <li><a href="/attention/admin/member/member_list.php"><i class="bi bi-person-fill"></i> 회원 관리</a></li>
-        <li><a href="/attention/admin/notice/notice.php"><i class="bi bi-layout-text-sidebar-reverse"></i> 게시판 관리</a></li>
-      </ul>
-      <a href="/attention/admin/logout.php" class="text2 logout"><i class="bi bi-door-closed"></i><span>out</span></a>
-      
-    </div>
   </nav>
   <div class="main">
     <div class="profile text-end">
