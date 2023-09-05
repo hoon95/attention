@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HOME - ABCMall</title>
+  <title><?php if(isset($title)){echo $title;} else { echo '코드래빗과 함께 뛰어보세요!';}; ?></title>
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
@@ -22,7 +22,7 @@
 <div class="background d-flex">
   <nav class="aside tt_03">
     <div class="logo">
-        <img src="/attention/admin/img/coderabbit_logo.svg" alt="">
+        <img src="/attention/admin/img/coderabbit_logo.svg" alt="코드래빗 로고">
     </div>
     <div class="d-flex flex-column aside_title">
       <ul>
