@@ -1,6 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
   $idx = $_GET['idx'];
 
@@ -64,7 +64,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   $('.close_btn').click(function(e){
     e.preventDefault();
-    if (confirm('글 수정을 취소하시겠습니까?')){
+    if (confirm('수정 취소하시겠습니까?')){
       history.back();
     }
   });

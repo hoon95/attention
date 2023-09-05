@@ -2,18 +2,10 @@
   session_start(); 
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
   // var_dump($_POST);
-
-  // //관리자 검사
-  // if(!isset($_SESSION['AUID'])){
-  //   echo "<script>
-  //   alert('권한이 없습니다');
-  //   history.back();
-  //   </script>";
-  // }
   
   $title = $_POST['title'];
   $content = $_POST['content'];
-  $date = date('Y-m-d');
+  $regdate = date('Y-m-d');
   $filename = '';
 
   if($_FILES['file']['name']){
@@ -45,16 +37,16 @@
     }
   }
 
-  $sql = "INSERT INTO notice (title, content, date, file) 
-  VALUES ('{$title}','{$content}','{$date}','{$notice_file}')";
+  $sql = "INSERT INTO notice (title, content, regdate, file) 
+  VALUES ('{$title}','{$content}','{$regdate}','{$notice_file}')";
 
   if($mysqli->query($sql) === true){
     echo "<script>
-      alert('게시물 작성이 완료 되었습니다.');
+      alert('작성 완료되었습니다.');
       location.href='/attention/admin/notice/notice.php';</script>";
   } else{
     echo "<script>
-      alert('게시물 작성 실패');
+      alert('작성 실패!');
       history.back();</script>";
   }
 

@@ -7,7 +7,7 @@
   
   $title = $_POST['title'];
   $content = $_POST['content'];
-  $date = date('Y-m-d');
+  $regdate = date('Y-m-d');
   $filename = '';
 
   if($_FILES['file']['name']){
@@ -39,16 +39,16 @@
   }
 
   $sql = "UPDATE notice SET 
-  title='{$title}', content='{$content}', date='{$date}', file='{$filename}'
+  title='{$title}', content='{$content}', regdate='{$regdate}', file='{$filename}'
   WHERE idx='{$idx}'";
 
   if($mysqli->query($sql) === true){
     echo "<script>
-      alert('게시물 수정이 완료 되었습니다.');
+      alert('수정 완료되었습니다.');
       location.href='/attention/admin/notice/notice.php';</script>";
   } else{
     echo "<script>
-      alert('게시물 수정 실패');
+      alert('수정 실패!');
       history.back();</script>";
   }
 

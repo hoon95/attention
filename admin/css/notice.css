@@ -58,14 +58,3 @@
   object-fit: cover;
 }
 
-/* popup */
-.popup{
-  position: fixed;
-  left: 100px;
-  top: 100px;
-  border:1px solid #ebebeb;
-  box-shadow: 2px 2px 5px rgba(0,0,0,.3);
-  padding: 20px 40px;
-  border-radius: 10px;
-  margin: 0;
-}
