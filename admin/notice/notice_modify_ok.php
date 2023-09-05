@@ -7,7 +7,7 @@
   
   $title = $_POST['title'];
   $content = $_POST['content'];
-  $date = date('Y-m-d');
+  $regdate = date('Y-m-d');
   $filename = '';
 
   if($_FILES['file']['name']){
@@ -39,7 +39,7 @@
   }
 
   $sql = "UPDATE notice SET 
-  title='{$title}', content='{$content}', date='{$date}', file='{$filename}'
+  title='{$title}', content='{$content}', regdate='{$regdate}', file='{$filename}'
   WHERE idx='{$idx}'";
 
   if($mysqli->query($sql) === true){

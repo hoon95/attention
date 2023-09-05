@@ -5,7 +5,7 @@
   
   $title = $_POST['title'];
   $content = $_POST['content'];
-  $date = date('Y-m-d');
+  $regdate = date('Y-m-d');
   $filename = '';
 
   if($_FILES['file']['name']){
@@ -37,8 +37,8 @@
     }
   }
 
-  $sql = "INSERT INTO notice (title, content, date, file) 
-  VALUES ('{$title}','{$content}','{$date}','{$notice_file}')";
+  $sql = "INSERT INTO notice (title, content, regdate, file) 
+  VALUES ('{$title}','{$content}','{$regdate}','{$notice_file}')";
 
   if($mysqli->query($sql) === true){
     echo "<script>

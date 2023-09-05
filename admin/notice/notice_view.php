@@ -32,6 +32,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <table class="mt-5">
     <tbody>
       <tr>
+        <th scope="row" class="tt_03">작성일</th>
+        <td>
+          <div class="board_bd">
+            <?= $rs2->regdate; ?>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="space">
         <th scope="row" class="tt_03">조회수</th>
         <td>
           <div class="board_bd">
