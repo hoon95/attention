@@ -21,7 +21,7 @@ $result = $mysqli -> query($sql);
 <div class="common_pd">
       <p class="tt_01 class_ss_mt class_m_pd text-center">강좌상세보기</p>
       <div class="d-flex">
-        <img src="../img/test2.png" alt="" class="class_v_img">
+        <img src="../../pdata/class/<?php echo $rs->thumbnail ?>" alt="" class="class_v_img">
         <ul class="class_view_title d-flex flex-column justify-content-between">
           <li class="text2 class_bold">강좌명<span class="text2"><?php echo $rs->name ?></span></li>
           <li class="text2 class_bold">난이도<span class="text2 class_level_tag orange"><?php if($rs->level==1){echo "초급";} if($rs->level==2){echo "중급";} if($rs->level==3){echo "상급";} ?></span></li>

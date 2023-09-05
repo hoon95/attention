@@ -8,16 +8,13 @@
   $title = "name";
   $content = "content";
 
-
-  //pagenation 시작
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/pagenation.php';  
-  //pagenation 끝
 
   //검색 시작
-  $search_form = $_GET['search_form'] ?? '';
+  $search_form = $_GET['search'] ?? '';
   $search_where = '';
-  if($search_form){
-    $search_where .= " and (name like '%{$search_form}%' or content like '%{$search_form}%')";
+  if($search){
+    $search_where .= " and (name like '%{$search}%' or content like '%{$search}%')";
     //제목과 내용에 키워드가 포함된 상품 조회
   }
   //검색 끝
@@ -67,7 +64,7 @@ $result = $mysqli -> query($query);
       </span>
       <span>
         <span class="seach">
-          <input type="text" name="search_form" id="search_form" class="form-control">
+          <input type="text" name="search" id="search" class="form-control">
           <button type="button"><i class="bi bi-search icon_gray"></i></button>
         </span>
         <button class="btn btn-primary class_ssm_ml">검색</button>
@@ -84,16 +81,16 @@ $result = $mysqli -> query($query);
           foreach($rc as $item){
         ?>
         <tr class="white_back d-flex">
-          <td class="class_list_img d-flex align-items-center class_list_item">
+          <td class="class_list_img d-flex align-items-center class_list_item" data-pid="<?= $item->pid ?>">
             <img src="../../pdata/class<?= $item->thumbnail ?>" alt="thumbnail image">
           </td>
-          <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1 class_list_item">
+          <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1 class_list_item" data-pid="<?= $item->pid ?>">
             <div>
               <span class="text2"><?= $item->name ?></span><span class="class_level_tag orange"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?></span>
             </div>
-            <div class="class_p_val"><?php if($item->price==1){echo $item->price_val;} ?><?php if($item->price==0){echo "0";} ?>원</div>
+            <div class="class_p_val"><?php if($item->price==1){echo "{$item->price_val}원";} ?><?php if($item->price==0){echo "무료";} ?></div>
             <div>
-              <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange"><?= $item->sale_end_date ?>개월</span>
+              <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange"><?php if($item->sale_end_date==1){echo "{$item->sale_end_date}개월";} if($item->sale_end_date==0){echo "무제한";} ?></span>
             </div>
           </td>
           <td class="class_button">
@@ -150,10 +147,11 @@ $result = $mysqli -> query($query);
 
     $('.class_list_item').click(function(e){
       e.preventDefault();
-      window.location.href = 'class_view.php?pid=<?php echo $item->pid ?>';
+      let pid = $(this).data('pid');
+      window.location.href = 'class_view.php?pid=' + pid;
     });
 
-    $('input[type="checkbox"]').click(function(){
+    $('input[type="checkbox"]').change(function(){
       let check_value = $(this);
       let pcode = <?= $item->pid ?>;
       if(check_value.prop('checked')){//체크해서 활성되면
@@ -167,9 +165,9 @@ $result = $mysqli -> query($query);
     }
 
       $.ajax({
-            url: '/admin/class/class_view.php',
+            url: 'clist_update.php',
             data : data,  
-            type : 'REQUEST',
+            type : 'POST',
             contentType : false,
             processData: false,
             success : function(ret) {
@@ -183,7 +181,7 @@ $result = $mysqli -> query($query);
       if(confirm('정말 삭제하시겠습니까?')){
         window.location = 'class_delete.php?pid=<?php echo $item->pid ?>';
       }else{
-        alert('삭제되었습니다');
+        alert('삭제되었습니다.');
       }
     })
   </script>

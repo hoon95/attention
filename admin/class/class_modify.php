@@ -155,8 +155,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
             </table>
             <hr class="class_hr">
             <div class="d-flex justify-content-end class_s_mt">
-              <a href="class_modify_ok.php?pid=<?= $sqlobj->pid ?>" class="btn btn-primary">수정</a>
-              <button class="class_close btn btn-dark class_sm_ml">닫기</button>
+              <button class="btn btn-primary class_sm_ml">수정</button>
+              <a href="/attention/admin/class/class_list.php" class="btn btn-dark class_sm_ml">취소</a>
             </div>            
           </form>
     </div>
@@ -177,23 +177,8 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
         let imgid = $(this).parent().attr('data-imgid');
         file_delete(imgid);
       });
-    //     $('#class_intro').summernote({
-    //   height: 400,
-    //   placeholder: '강좌를 소개해주세요',
-    //   resize: false,
-    //   lang: "ko-KR",
-    //   disableResizeEditor: true,
-    //   callbacks: {
-    //   onImageUpload: function (files) {
-    //       RealTimeImageUpdate(files, this);
-    //   }
-    //   }
-    // });
 
     $('#class_intro').summernote({
-  /* 폰트선택 툴바 사용하려면 주석해제 */
-  // fontNames: ['Roboto Light', 'Roboto Regular', 'Roboto Bold', 'Apple SD Gothic Neo'],
-  // fontNamesIgnoreCheck: ['Apple SD Gothic Neo'],
   height: 400,
   placeholder: '강좌를 소개해주세요',
   resize: false,
@@ -227,15 +212,6 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
             $('.date_form').prop("disabled", false).focus();
           }
         })
-
-        
-
-        // $('#video_add').click(function(){
-        //   let video_html = $('.video_address').html();
-        //   video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
-          
-        //   $('.video_wrap').append(video_html);
-        // })
 
         let uploadFiles = [];
         let $drop = $("#drag_drop");
@@ -273,7 +249,7 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
             contentType : false,
             processData: false,
             success : function(ret) {
-              alert("사진 넣기 완료");
+              console.log("사진 넣기 완료");
             }
           });
         });
@@ -308,10 +284,10 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
 
             console.log(return_data);
 
-            // if (return_data.result == 'member') {
-            //   alert('로그인을 하십시오.');
-            //   return;
-            // } else 
+            if (return_data.result == 'member') {
+              alert('로그인을 하십시오.');
+              return;
+            } else 
             if (return_data.result == 'image') {
               alert('이미지파일만 첨부할 수 있습니다.');
               return;
@@ -343,7 +319,7 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
 
 
       function file_delete(imgid) {
-    if (!confirm('정말삭제할까요?')) {
+    if (!confirm('정말 삭제하시겠습니까?')) {
       return false;
     }
     let data = {
@@ -366,7 +342,7 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
           alert('본인이 작성한 제품의 이미지만 삭제할 수 있습니다.');
           return;
         } else if (return_data.result == 'no') {
-          alert('삭제 실패');
+          alert('파일 첨부 실패!');
           return;
         } else {
           $('#f_' + imgid).hide();
@@ -375,6 +351,11 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
 
     })
   } //file_delete func
+
+  $('.class_close').click(function(e){
+      e.preventDefault();
+        history.back();
+    });
     </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

@@ -131,14 +131,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                     <div class="drop form-control d-flex justify-content-center align-items-center gray" id="drag_drop">
                       <span class="text3"><i class="bi bi-upload icon_gray"></i>이곳에 파일을 첨부하세요</span>
                       <div id="add_images" class="d-flex justify-content-start">
-                        <!-- <div class="thumb">
-                          <img src="" alt="">
-                          <button type="button" data-idx="" class="close"><i class="bi bi-trash-fill icon_red"></i></button>
-                        </div>
-                        <div class="thumb">
-                          <img src="" alt="">
-                          <button type="button" data-idx="" class="close"><i class="bi bi-trash-fill icon_red"></i></button>
-                        </div> -->
                       </div>
                     </div>
                   </td>
@@ -159,7 +151,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
         $('#content').val(content);
 
 
-      });// /form에서 전송 이벤트가 일어나면 할일
+      });// form에서 전송 이벤트가 일어나면 할일 끝
       $( function() {
         $( ".select_from" ).selectmenu();
       } );
@@ -211,14 +203,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
             $('.date_form').prop("disabled", false).focus();
           }
         })
-        // 유료 무료, 제한, 무제한 버튼 클릭 시 비활성화 나타냄 시작
-        
-        // $('#video_add').click(function(){
-        //   let video_html = $('.video_address').html();
-        //   video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
-          
-        //   $('.video_wrap').append(video_html);
-        // })
+        // 유료 무료, 제한, 무제한 버튼 클릭 시 비활성화 나타냄 끝
 
         //drag drop, 이미지 추가 시작
         let uploadFiles = [];
@@ -235,7 +220,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           console.log(e);
           
           $(this).removeClass('drag-enter');
-          let files = e.originalEvent.dataTransfer.files;//originalEvent으로 file항목을 읽고 그 중 dataTransfer(??)에서 files를 가져온다
+          let files = e.originalEvent.dataTransfer.files;
           console.log(files);
           for(let i = 0;i <files.length;i++) {  //originalEvent은 배열이라 foreach,   ,filter안돼서 for로 뽑아야 됌 이렇게 뽑아 야 됨 
             let file = files[i];
@@ -257,7 +242,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
             contentType : false,
             processData: false,
             success : function(ret) {
-              alert("사진 넣기 완료");
+              console.log("사진 넣기 완료");
             }
           });
         });
@@ -288,10 +273,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
               success: function (return_data) {
                 console.log(return_data);
 
-                // if (return_data.result == 'member') {
-                //   alert('로그인을 하십시오.');
-                //   return;
-                // } else 
+                if (return_data.result == 'member') {
+                  alert('로그인을 하십시오.');
+                  return;
+                } else 
                 if (return_data.result == 'image') {
                   alert('이미지파일만 첨부할 수 있습니다.');
                   return;
