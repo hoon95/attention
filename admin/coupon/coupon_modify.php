@@ -13,32 +13,6 @@
 
 	$rs = $result -> fetch_object();
 
-	// 이미지를 업로드하지 않은 경우, 기존 이미지 경로를 저장
-	$previousImage = $rs->coupon_image;
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // 이미지를 업로드한 경우
-    if ($_FILES['coupon_image']['error'] == UPLOAD_ERR_OK) {
-        // 이미지 업로드 로직 추가 (이미지 업로드 및 처리)
-        // ...
-
-        // 업로드한 이미지 경로를 $newImage 변수에 저장
-        $newImage = '새 이미지 경로'; // 여기에 실제 새 이미지 경로를 설정해야 합니다.
-
-        // 새 이미지가 업로드된 경우, 기존 이미지 삭제
-        if ($previousImage && isset($newImage)) {
-            unlink($previousImage); // 기존 이미지 삭제
-        }
-    } else {
-        // 이미지를 업로드하지 않은 경우, 기존 이미지 경로를 다시 설정
-        $newImage = $previousImage;
-    }
-
-    // 나머지 폼 데이터 처리
-    // ...
-
-    // 이제 $newImage 변수에는 업로드한 이미지 또는 기존 이미지의 경로가 저장됩니다.
-}
 
 ?>
 <link rel="stylesheet" href="/attention/admin/coupon/css/coup.css">

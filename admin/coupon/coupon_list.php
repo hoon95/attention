@@ -73,7 +73,7 @@
 
 				<select name="status" id="status"  aria-label="대기설정 변경">
 					<option selected disabled>쿠폰 활성화 선택</option>
-					<option value="<?php if($status=='') {echo "selected"; } ?>">전체 쿠폰</option>
+					<option value="" <?php if($status=='') {echo "selected"; } ?> >전체 쿠폰</option>
 					<option value="활성화"  <?php if($status=='활성화') {echo "selected"; } ?> >활성된 쿠폰</option>
 					<option value="비활성화" <?php if($status=='비활성화') {echo "selected"; } ?> >비활성된 쿠폰</option>
 				</select>
@@ -122,7 +122,7 @@
 						</div>
 						<div class="coup_icon d-flex flex-column align-items-end justify-content-lg-end">
 							<div class="form-check form-switch coup_status_toggle">
-								<input class="form-check-input" type="checkbox" role="switch" <?php if ($item->status == "활성화") {echo "checked";} else{echo '';} ?>>							
+								<input class="form-check-input" type="checkbox" role="switch" value="<?= $item->status ?>" <?php if ($item->status == "활성화") {echo "checked";} else{echo '';} ?>>							
 							</div>
 							<div class="coup_common_icon d-flex">
 								<a href = "coupon_modify.php?cid=<?= $item-> cid ?>" class="bi bi-pencil-square icon_mint"></a>
@@ -194,8 +194,8 @@
 	// /무기한, 제한 설정
 
 	//쿠폰 토글 변경 설정
-	$(".coup_status_toggle").change(function() {
-		let coup_toggle= $(this).find("input");
+	$(".coup_status_toggle input").change(function() {
+		let coup_toggle= $(this);
 
 		//check 되면 1 아니면 0을 value로 넘기기
 		if(coup_toggle.prop('checked')) {
@@ -203,7 +203,7 @@
 		}else {
 			coup_toggle.val("비활성화");
 		}
-		// console.log(coup_toggle.val());
+		console.log(coup_toggle.val());
 
 		//input의 value와 data-cid 받아오기
 		let status = coup_toggle.val();
@@ -212,6 +212,7 @@
 			status : status,
 			cid : cid
 		}
+		console.log(data);
 		$.ajax({
 			async : false, 
 			type: 'post',     
