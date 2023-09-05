@@ -1,0 +1,84 @@
+/* s */
+
+h2.h1 {
+	text-align: center;
+	margin-bottom: calc(var(--base-unit)*2);
+}
+table {
+  width: 100%;
+}
+.coup_hidden {
+  display: none;
+}
+
+.coup_thumbnail {
+  display: inline-block;
+	width: 226px;
+	height: 140px;
+	border-radius: 6px;
+  background-color: var(--gray);
+}    
+.coup_thumbnail h3 {
+  vertical-align: top;
+}
+.coup_thumbnail_box {
+  gap: 24px;
+}
+.coup_thumbnail img {
+	display: inline-block;
+	width: 226px;
+	height: 140px;
+	border-radius: 6px;
+  object-fit: cover;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.coup_type_box {
+  gap: 48px;
+}
+
+.coup_type > label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 40px;
+  border-radius: 6px 0px 0px 6px;
+  border: 2px solid var(--gray);
+  background-color: var(--white);
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  border-right: 1px solid var(--gray);
+}
+
+.coup_type:last-child label {
+  border-radius: 0px 6px 6px 0px;
+  border-left: 1px solid var(--gray);
+  border-right: 2px solid var(--gray);
+}
+
+.coupon_status_box input[type="radio"]:checked + label {
+  border: 2px solid var(--mint);
+  background-color: var(--mint);
+}
+
+.coup_type_box input[type="radio"]:checked + label {
+  border: 2px solid var(--mint);
+  background-color: var(--mint);
+}
+
+.coup_type_date_box {
+ flex: 1;
+ gap: 12px;
+}
+.coup_type_date_box .form-control {
+  width: 22%;
+}
+.coup_button {
+  gap: 12px;
+  margin-top: calc(var(--base-unit)*2);
+}
