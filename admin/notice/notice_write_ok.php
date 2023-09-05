@@ -42,11 +42,11 @@
 
   if($mysqli->query($sql) === true){
     echo "<script>
-      alert('게시물 작성이 완료 되었습니다.');
+      alert('작성 완료되었습니다.');
       location.href='/attention/admin/notice/notice.php';</script>";
   } else{
     echo "<script>
-      alert('게시물 작성 실패');
+      alert('작성 실패!');
       history.back();</script>";
   }
 

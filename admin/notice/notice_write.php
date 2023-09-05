@@ -56,7 +56,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   $('.close_btn').click(function(e){
     e.preventDefault();
-    if (confirm('글 작성을 취소하시겠습니까?')){
+    if (confirm('작성 취소하시겠습니까?')){
       history.back();
     }
   });

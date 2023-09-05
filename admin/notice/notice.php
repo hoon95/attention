@@ -200,15 +200,15 @@
         },
         success:function(data){
           if(data.result == 'ok'){
-            alert('게시물이 삭제되었습니다.');
+            alert('삭제되었습니다.');
             location.reload();
           } else{
-            alert('삭제 실패하였습니다.');
+            alert('삭제 실패!');
           }  
         }
       });
     } else{
-      alert('삭제를 취소했습니다.');
+      alert('삭제 취소했습니다.');
     }
   });
 </script>
