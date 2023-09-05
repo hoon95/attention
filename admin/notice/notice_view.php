@@ -1,12 +1,20 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
   $idx = $_GET['idx'];
 
-  $sql = "SELECT * FROM notice WHERE idx='{$idx}'";
+  $sql = "SELECT hit FROM notice WHERE idx='{$idx}'";
   $result = $mysqli -> query($sql);
-  $rs = $result -> fetch_object();
+  $rs = $result -> fetch_assoc();
+  $newhit = $rs['hit'] + 1;
+  
+  $sql2 = "UPDATE notice SET hit = '{$newhit}' WHERE idx='{$idx}'";
+  $result2 = $mysqli -> query($sql2);         
+  
+  $sql3 = "SELECT * FROM notice WHERE idx='{$idx}'";
+  $result3 = $mysqli -> query($sql3); 
+  $rs2 = $result3 -> fetch_object();
 ?>
 
 <!-- include summernote css/js -->
@@ -24,20 +32,30 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <table class="mt-5">
     <tbody>
       <tr>
+        <th scope="row" class="tt_03">조회수</th>
+        <td>
+          <div class="board_bd">
+            <?= $rs2->hit; ?>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="space">
         <th scope="row" class="tt_03">
           제목
         </th>
         <td>
           <div class="board_bd">
-            <?= $rs->title; ?>
+            <?= $rs2->title; ?>
           </div>
         </td>
       </tr>
+
       <tr class="space view_bd">
         <th scope="row" class="tt_03">내용</th>
         <td>
           <div class="board_bd">
-            <?= $rs->content; ?>
+            <?= $rs2->content; ?>
           </div>
         </td>
       </tr>
@@ -46,13 +64,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <td class="board_bd">
           <div class="box">
             <?php
-              $fileExt = pathinfo($rs->file, PATHINFO_EXTENSION); //파일 확장자 가져오기
+              $fileExt = pathinfo($rs2->file, PATHINFO_EXTENSION); //파일 확장자 가져오기
 
               //in_array: 값이 배열 안에 존재하는지 확인
               if (in_array($fileExt, ['jpg','jpeg','png','gif','svg','webp'])) {
-                echo '<img src="'.$rs->file.'" alt="">'; //이미지 파일인 경우
+                echo '<img src="'.$rs2->file.'" alt="">'; //이미지 파일인 경우
               } else {
-                echo $rs->file; //이미지 파일이 아닌 경우
+                echo $rs2->file; //이미지 파일이 아닌 경우
               }
             ?>
           </div>
@@ -61,7 +79,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </tbody>
   </table>
   <div class="mt-4 text-end">
-    <a href="/attention/admin/notice/notice_modify.php?idx=<?= $rs -> idx; ?>" class="btn btn-primary mx-4">글 수정</a>
+    <a href="/attention/admin/notice/notice_modify.php?idx=<?= $rs2 -> idx; ?>" class="btn btn-primary mx-4">글 수정</a>
     <button type="button" class="btn btn-dark close_btn">닫기</button>
   </div>
 

@@ -1,6 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-  include_once $_SERVER['DOCUMENT_ROOT'].'/abcmall/admin/inc/admin_check.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
   /* 페이지네이션 */
   $pageNumber = $_GET['pageNumber'] ?? 1;
@@ -56,14 +56,7 @@
     $rsc[] = $rs;
   }
   // var_dump($rsc);
-  
-  /*
-  $cookieName = 'city';
-  $cookieVal = 'Seoul';
-  
-  setcookie($cookieName, $cookieVal, time()+60, '/')
-  // setcookie(이름, 값, 만기일, '/')
-  */
+
 
 ?>
 
@@ -103,6 +96,7 @@
         <th scope="col" class="col-1">No&#46;</th>
         <th scope="col" class="col-7">제목</th>
         <th scope="col">작성일</th>
+        <th scope="col">조회수</th>
         <th scope="col">수정 &#47; 삭제</th>
       </tr>
     </thead>
@@ -123,6 +117,7 @@
           </a>
         </td>
         <td class="text-center"><?= $item -> date; ?></td>
+        <td class="text-center"><?= $item -> hit; ?></td>
         <td class="text-center">
           <a href="notice_modify.php?idx=<?= $item -> idx; ?>">
             <i class="bi bi-pencil-square icon_mint"></i>
