@@ -5,6 +5,7 @@ integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2i
 integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
 <?php
+  $title = '카테고리 관리 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
@@ -18,7 +19,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 <link rel="stylesheet" href="/attention/admin/css/category.css">
 
 <div class="container">
-  <div class="common_pd">
+  <div>
     <h2 class="tt_01 text-center">카테고리 관리</h2>
 
     <!-- 카테고리 Select & Filter 영역(시작) -->
@@ -113,7 +114,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" id="cate_update_btn" class="btn btn-primary cate_modal_reg" data-step="1">등록</button>
+        <button type="submit" id="cate_update_btn" class="btn btn-primary cate_modal_reg" data-step="1">수정</button>
         <button type="button" class="btn btn-dark" data-bs-dismiss="modal">닫기</button>
       </div>
     </div>
@@ -318,6 +319,17 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
       insertOption(data);
     }); 
 
+  //카테고리 등록 모달 내, select의 option값 선택시 text style 변경(디자인 통일)
+    $("select#pcode2").on("selectmenuchange", function(event, ui){
+      $('#pcode2-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+    $("select#pcode2_1").on("selectmenuchange", function(event, ui){
+      $('#pcode2_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+    $("select#pcode3").on("selectmenuchange", function(event, ui){
+      $('#pcode3-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+
 	//카테고리 수정
     $(document).on("click", ".cate_modify", function() {
       var value = $(this).val();
@@ -360,14 +372,14 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
         url: "category_modify.php",
         success: function(result) {
           if(result == '1'){
-            alert("수정 완료되었습니다 :)");
+            alert("수정 완료되었습니다.");
             var new_step = parseInt(step)-1;
             makeOption($("#cate"+new_step), step, step_name, $('#cate'+ step), $('#cate'+step+'_div'));
           $("#cateModifyModal").modal("hide");
           } else if(result == 'duplicate'){
             alert("분류명이 이미 사용중 입니다.");
           } else{
-            alert("수정에 실패했습니다.");
+            alert("수정 실패!");
           }
         }
       });
@@ -394,11 +406,11 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
           url: "category_delete.php",
           success: function(result) {
             if(result == '1') {
-              alert("삭제 완료되었습니다 :)");
+              alert("삭제되었습니다.");
               var new_step = parseInt(step)-1;
               makeOption($("#cate"+new_step), step, step_name, $('#cate'+ step), $('#cate'+step+'_div'));
             } else {
-              alert("삭제에 실패했습니다.");
+              alert("삭제 실패!");
             }
           }
         });  //ajax
@@ -419,13 +431,13 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
         console.log(result);
 
 			  if(result == '1'){
-          alert("등록이 완료되었습니다 :)");
+          alert("등록 완료되었습니다.");
           location.reload();
 			  } else if(result == 'error'){
           alert("분류명이 이미 사용중 입니다.");
           cateModalCloseBtn.trigger('click');
         } else{
-				  alert("등록에 실패했습니다.");
+				  alert("등록 실패!");
 			  }
 		  }
 		});

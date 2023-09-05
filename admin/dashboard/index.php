@@ -1,6 +1,7 @@
 <?php
+    $title = '대시보드 - Code Rabbit';
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
     
     $class_query = "SELECT name, COUNT(sid) AS average_class FROM sales GROUP BY name ORDER BY average_class DESC LIMIT 3";
     $class_result = $mysqli->query($class_query);

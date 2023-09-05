@@ -7,7 +7,7 @@ let cateCssModal = document.querySelectorAll('.cate_css_modal');
 let cateModal_middle = cateCssModal[0];
 let cateModal_small = cateCssModal[1];
 
-let closeModalBtn = document.querySelectorAll('.cate_modal_close');
+let closeModalBtn = document.querySelectorAll('.modal_footer .cate_modal_close');
 let closeModal_middle = closeModalBtn[0];
 let closeModal_small = closeModalBtn[1]
 
