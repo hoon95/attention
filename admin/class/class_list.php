@@ -1,13 +1,15 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
+  
+  $pageNumber = $_GET['pageNumber'] ?? 1;
+  $pageCount = $_GET['pageCount'] ?? 5;
+  $table = "class";
+  $title = "name";
+  $content = "content";
 
-// $cates1 = $_GET['cate1'] ?? '';
-// $cate2 = $_GET['cate2'] ?? '';
-// $cate3 = $_GET['cate3'] ?? '';
-  $status = $_GET['status'] ?? '';
 
   //pagenation 시작
-  $pagenationTarget = 'class';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/pagenation.php';  
   //pagenation 끝
 
@@ -112,33 +114,33 @@ $result = $mysqli -> query($query);
     </table>
     <!-- /강좌 리스트 -->
     <!-- pagenation -->
-    <nav aria-label="pagenation">
+    <nav aria-label="페이지네이션" class="space">
       <ul class="pagination justify-content-center align-items-center">
-      <?php
+        <?php
           if($pageNumber>1){                   
-              echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?pageNumber=1\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
+            echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?pageNumber=1&search={$search}\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
               if($block_num > 1){
                   $prev = ($block_num - 2) * $block_ct + 1;
-                  echo "<li class=\"page-item\"><a href='?pageNumber=$prev' class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
+                  echo "<li class=\"page-item\"><a href='?pageNumber={$prev}&search={$search}' class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
               }
           }
           for($i=$block_start;$i<=$block_end;$i++){
             if($pageNumber == $i){
-                echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+                echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?pageNumber={$i}\" class=\"page-link\">{$i}</a></li>";
             }else{
-                echo "<li class=\"page-item\"><a href=\"?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+                echo "<li class=\"page-item\"><a href=\"?pageNumber={$i}&search={$search}\" class=\"page-link\">{$i}</a></li>";
             }
           }
           if($pageNumber<$total_page){
             if($total_block > $block_num){
                 $next = $block_num * $block_ct + 1;
-                echo "<li class=\"page-item\"><a href=\"?pageNumber=$next\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
+                echo "<li class=\"page-item\"><a href=\"?pageNumber={$next}&search={$search}\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
             }
-            echo "<li class=\"page-item\"><a href=\"?pageNumber=$total_page\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
+            echo "<li class=\"page-item\"><a href=\"?pageNumber={$total_page}&search={$search}\" class=\"page-link\"><i class=\"bi bi-chevron-double-right icon_gray\"></i></a></li>";
           }
-        ?>   
+        ?>  
       </ul>
-    </nav>        
+    </nav> 
     <!-- /pagenation -->
   </form>
   <script>
