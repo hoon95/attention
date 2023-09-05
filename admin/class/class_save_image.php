@@ -35,17 +35,17 @@
 
     if($result){
         $imgid = $mysqli->insert_id;
-        $return_data = array("result" => 'success', 'imgid' => $imgid, 'savefile' => $savefile);
-        echo json_encode($return_data);
+        $return_url = array("result" => 'success', 'imgid' => $imgid, 'savefile' => $savefile);
+        echo json_encode($return_url);
         exit;
     } else{
-        $return_data = array("result" => 'error');
-        echo json_encode($return_data);
+        $return_url = array("result" => 'error');
+        echo json_encode($return_url);
         exit;
     }
   } else{
-      $return_data = array("result" => 'error');
-      echo json_encode($return_data);
+      $return_url = array("result" => 'error');
+      echo json_encode($return_url);
       exit;
   }
 ?>

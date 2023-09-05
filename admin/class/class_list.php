@@ -96,7 +96,7 @@ $result = $mysqli -> query($query);
           <td class="class_button">
             <div class="form-check form-switch d-flex justify-content-end">
               <input class="form-check-input status" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="<?= $item->status ?>"
-              <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]">
+              <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]" data-pid="<?= $item->pid ?>">
             </div>
             <div>
               <a href="class_modify.php?pid=<?= $item->pid ?>"><i class="bi bi-pencil-square icon_mint"></i></a>
@@ -150,30 +150,33 @@ $result = $mysqli -> query($query);
       let pid = $(this).data('pid');
       window.location.href = 'class_view.php?pid=' + pid;
     });
-
+    
+    //   if(check_value.prop('checked')){//체크해서 활성되면
+    //     check_value.val('1');data-pid
+    //   } else{
+    //     check_value.val('0');
+    //   }
+    
+    
     $('input[type="checkbox"]').change(function(){
-      let check_value = $(this);
-      let pcode = <?= $item->pid ?>;
-      if(check_value.prop('checked')){//체크해서 활성되면
-        check_value.val('1');
-      } else{
-        check_value.val('0');
-      }
-      let data = {
-      check_value:check_value,
-      pcode:pcode
-    }
+      if(confirm('상태를 변경하시겠습니까?')){
+        let check_value = $(this).prop('checked') ? 1 : 0;
+        let pcode = $(this).data('pid');
 
       $.ajax({
             url: 'clist_update.php',
-            data : data,  
             type : 'POST',
-            contentType : false,
-            processData: false,
-            success : function(ret) {
-              console.log(ret);
-            }
-          });
+            data: {pcode:pcode, check_value:check_value},
+            success : function(response){
+              alert(response);
+            },
+            error: function(xhr, status, error){
+              console.log(xhr.responseText);
+              alert('서버 요청 실패!');
+      }});
+        } else{
+              $(this).prop('checked', !$(this).prop('checked'));
+              }
     });
 
     $('.delete_btn').click(function(e){

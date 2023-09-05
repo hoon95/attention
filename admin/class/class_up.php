@@ -84,17 +84,17 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                     <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
                   </td>
                 </tr>
-                <!-- <tr>
+                <tr>
                   <th class="tt_03">강좌영상</th>
                   <td class="class_video">
                     <div class="video_wrap">
                       <div class="video_address">
-                        <input type="text" class="form-control class_lform_wd" placeholder="동영상 주소를 입력하세요" name="video[]">
+                        <input type="text" class="form-control class_lform_wd video" placeholder="동영상 주소를 입력하세요" name="video[]">
                       </div>
                       <button type="button" id="video_add"><i class="bi bi-plus-circle icon_gray"></i></button>
                     </div>
                   </td>
-                </tr> -->
+                </tr>
                 <tr>
                   <th class="tt_03">공개 여부</th>
                   <td>
@@ -178,14 +178,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           }
         });
         // summernote 끝
-
         // 유료 무료, 제한, 무제한 버튼 클릭 시 비활성화 나타냄 시작
         $('.class_price input').change(function(){
           let price_val = $(this).val();
           if(price_val == '0'){
             $('.price_form').prop("disabled", false).focus();
             $('.price_form').prop("disabled", true);
-            // $('.price_form').val() = ''
           } if(price_val == '1'){
             $('.price_form').prop("disabled", true);
             $('.price_form').prop("disabled", false).focus();
@@ -197,7 +195,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           if(date_val == '0'){
             $('.date_form').prop("disabled", false).focus();
             $('.date_form').prop("disabled", true);
-            // $('.date_form').val() = ''
           } if(date_val == '1'){
             $('.date_form').prop("disabled", true);
             $('.date_form').prop("disabled", false).focus();
@@ -224,33 +221,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           console.log(files);
           for(let i = 0;i <files.length;i++) {  //originalEvent은 배열이라 foreach,   ,filter안돼서 for로 뽑아야 됌 이렇게 뽑아 야 됨 
             let file = files[i];
-            let size = uploadFiles.push(file);  //업로드 목록에 for i로 하나씩 추가  //file 개수 console에선 1, 2로 나옴 
             attachFile(file);
           }  
-        });
- 
-        $(".images_submit").click(function(){//전송되게 그것도 drop시 자동
-          let formData = new FormData();//전송되게 FormData를 사용
-          $.each(uploadFiles, function(i, file) {
-            if(file.upload != 'disable')  //삭제하지 않은 disable없는 이미지만 업로드 항목으로 추가
-              formData.append('upload-file', file, file.name); //이걸로 전송되는게 아니라 아래 ajax에 줌
-          });
-          $.ajax({
-            url: '/api/etc/file/upload',
-            data : formData, //이 파일을 ajax에 줄꺼니까 
-            type : 'post',
-            contentType : false,
-            processData: false,
-            success : function(ret) {
-              console.log("사진 넣기 완료");
-            }
-          });
-        });
-        $("#add_images").on("click", ".close", function(e) {//닫기 버튼 클릭하면 disable라는 속성을 넣어주자 
-          let $target = $(e.target);
-          let idx = $target.attr("data-idx");
-          uploadFiles[idx].upload = 'disable';  //삭제된 항목은 업로드하지 않기 위해 플래그 생성
-          $target.parent().remove();  //프리뷰 삭제
         });
 
         //추가이미지를 넣으면 class_save_image.php에 savefile를 첨부했어하고 넣고,
@@ -301,10 +273,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   $('#add_images').append(html);
                 }
               }
-
             });
-        }
-              
+        }      
 
         //file_delete func 시작
         function file_delete(imgid) {
@@ -350,6 +320,55 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           }
         //강좌 취소 이벤트 끝
       });
+
+        //video url html 추가 시작
+        $('#video_add').click(function(){
+          let urls = '';
+          let video_html = $('.video_address').html();
+          video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
+          // 추가된 video 주소를 urls 변수에 추가 (쉼표로 구분)
+          if (urls.length > 0) {
+            urls += ',';
+          }
+            urls += $('.video_address input').val();
+            console.log(urls)
+            $('.video_wrap').append(video_html);
+            attachURL(urls)
+          })
+
+          function attachURL(urls) {
+            let formURL = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
+            formURL.append('video_urls', urls) //<input type="file" name="savefile" value="파일명">
+              // console.log(formURL);
+              $.ajax({
+                url: 'class_clips.php',
+                data: formURL,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                type: 'POST',
+                error: function (error) {
+                  // console.log('error:', error)
+                },
+                success: function (return_url) {
+                  // console.log(return_url);
+
+                  if (return_url.result == 'member') {
+                    alert('로그인을 하십시오.');
+                    return;
+                  } else if (return_url.result == 'error') {
+                    alert('관리자에게 문의하세요');
+                    return;
+                  } else {
+                    
+                  //첨부url 테이블에 저장하면 할일
+                  let ccid = $('.video').val() + return_url.ccid + ',';
+                  $('.video').val(ccid);                  
+                  }}
+              });
+        }
+      //video url 출력 끝
     </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
