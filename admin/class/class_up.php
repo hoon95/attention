@@ -37,7 +37,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                 <tr>
                   <th class="tt_03">강좌명</th>
                   <td>
-                    <input type="text" class="form-control class_form_wd" placeholder="강좌명" name="name">
+                    <input type="text" class="form-control class_form_wd" placeholder="강좌명" name="name" required>
                   </td>
                 </tr>
                 </tbody>
@@ -49,7 +49,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <th class="tt_03">강좌난이도</th>
                   <td>
                     <div class="btn-group">
-                      <input type="radio" class="btn-check " name="level" id="level_Beginner" autocomplete="off" value="1">
+                      <input type="radio" class="btn-check " name="level" id="level_Beginner" autocomplete="off" value="1" >
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Beginner">초급</label>
                       <input type="radio" class="btn-check" name="level" id="level_Intermediate" autocomplete="off" value="2">
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Intermediate">중급</label>
@@ -84,7 +84,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                     <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
                   </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <th class="tt_03">강좌영상</th>
                   <td class="class_video">
                     <div class="video_wrap">
@@ -94,7 +94,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                       <button type="button" id="video_add"><i class="bi bi-plus-circle icon_gray"></i></button>
                     </div>
                   </td>
-                </tr>
+                </tr> -->
                 <tr>
                   <th class="tt_03">공개 여부</th>
                   <td>
@@ -164,28 +164,30 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
         $( ".select_from" ).selectmenu();
       } );
 
-      
+      // 추가 이미지 삭제 아이콘 클릭 시 해당 이미지만 삭제 기능 시작
       $('#add_images').on('click', 'a', function (e) {
         e.preventDefault()
         let imgid = $(this).parent().attr('data-imgid');
         file_delete(imgid);
       });
+      // 추가 이미지 삭제 아이콘 클릭 시 해당 이미지만 삭제 기능 끝
 
       // summernote 시작
         $('#class_intro').summernote({
-      height: 400,
-      placeholder: '강좌를 소개해주세요',
-      resize: false,
-      lang: "ko-KR",
-      disableResizeEditor: true,
-      callbacks: {//여기 부분이 이미지를 첨부하는 부분
-          onImageUpload: function (files) {
-              RealTimeImageUpdate(files, this);
+          height: 400,
+          placeholder: '강좌를 소개해주세요',
+          resize: false,
+          lang: "ko-KR",
+          disableResizeEditor: true,
+          callbacks: {//여기 부분이 이미지를 첨부하는 부분
+              onImageUpload: function (files) {
+                  RealTimeImageUpdate(files, this);
+              }
           }
-      }
-    });
-    // summernote 끝
+        });
+        // summernote 끝
 
+        // 유료 무료, 제한, 무제한 버튼 클릭 시 비활성화 나타냄 시작
         $('.class_price input').change(function(){
           let price_val = $(this).val();
           if(price_val == '0'){
@@ -209,16 +211,16 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
             $('.date_form').prop("disabled", false).focus();
           }
         })
-
+        // 유료 무료, 제한, 무제한 버튼 클릭 시 비활성화 나타냄 시작
         
-
-        $('#video_add').click(function(){
-          let video_html = $('.video_address').html();
-          video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
+        // $('#video_add').click(function(){
+        //   let video_html = $('.video_address').html();
+        //   video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
           
-          $('.video_wrap').append(video_html);
-        })
+        //   $('.video_wrap').append(video_html);
+        // })
 
+        //drag drop, 이미지 추가 시작
         let uploadFiles = [];
         let $drop = $("#drag_drop");
         $drop.on("dragenter", function() {  //드래그 요소가 들어왔을떄
@@ -266,106 +268,103 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           $target.parent().remove();  //프리뷰 삭제
         });
 
-
-
         //추가이미지를 넣으면 class_save_image.php에 savefile를 첨부했어하고 넣고,
         //쿼리에도 넣는걸 해주는 함수
-      function attachFile(file) {
-        console.log(file);
-        let formData = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
-        formData.append('savefile', file) //<input type="file" name="savefile" value="파일명">
-        console.log(formData);
-        $.ajax({
-          url: 'class_save_image.php',
-          data: formData,
-          cache: false,
-          contentType: false,
-          processData: false,
-          dataType: 'json',
-          type: 'POST',
-          error: function (error) {
-            console.log('error:', error)
-          },
-          success: function (return_data) {
+        function attachFile(file) {
+          let formData = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
+            formData.append('savefile', file) //<input type="file" name="savefile" value="파일명">
+            console.log(formData);
+            $.ajax({
+              url: 'class_save_image.php',
+              data: formData,
+              cache: false,
+              contentType: false,
+              processData: false,
+              dataType: 'json',
+              type: 'POST',
+              error: function (error) {
+                console.log('error:', error)
+              },
+              success: function (return_data) {
+                console.log(return_data);
 
-            console.log(return_data);
+                // if (return_data.result == 'member') {
+                //   alert('로그인을 하십시오.');
+                //   return;
+                // } else 
+                if (return_data.result == 'image') {
+                  alert('이미지파일만 첨부할 수 있습니다.');
+                  return;
+                } else if (return_data.result == 'size') {
+                  alert('10메가 이하만 첨부할 수 있습니다.');
+                  return;
+                } else if (return_data.result == 'error') {
+                  alert('관리자에게 문의하세요');
+                  return;
+                } else {
+                  
+                  //첨부이미지 테이블에 저장하면 할일
+                  let imgid = $('#file_table_id').val() + return_data.imgid + ',';
+                  console.log($('#file_table_id').val())
+                  $('#file_table_id').val(imgid);
+                  let html = `
+                      <div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
+                        <img src="/attention/pdata/class/${return_data.savefile}" alt="">
+                        <a href="#"><i class="bi bi-trash-fill icon_red"></i></a>
+                    </div>
+                  `;
+                  $('#add_images').append(html);
+                }
+              }
 
-            // if (return_data.result == 'member') {
-            //   alert('로그인을 하십시오.');
-            //   return;
-            // } else 
-            if (return_data.result == 'image') {
-              alert('이미지파일만 첨부할 수 있습니다.');
-              return;
-            } else if (return_data.result == 'size') {
-              alert('10메가 이하만 첨부할 수 있습니다.');
-              return;
-            } else if (return_data.result == 'error') {
-              alert('관리자에게 문의하세요');
-              return;
-            } else {
-              
-              //첨부이미지 테이블에 저장하면 할일
-              let imgid = $('#file_table_id').val() + return_data.imgid + ',';
-              console.log($('#file_table_id').val())
-              $('#file_table_id').val(imgid);
-              let html = `
-                  <div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
-                    <img src="/attention/pdata/class/${return_data.savefile}" alt="">
-                    <a href="#"><i class="bi bi-trash-fill icon_red"></i></a>
-                </div>
-              `;
-              $('#add_images').append(html);
-            }
-          }
-
-        });
-      }
-
-
-
-      function file_delete(imgid) {
-    if (!confirm('정말삭제할까요?')) {
-      return false;
-    }
-    let data = {
-      imgid: imgid
-    }
-    $.ajax({
-      async: false,
-      type: 'post',
-      url: 'image_delete.php',
-      data: data,
-      dataType: 'json',
-      error: function (error) {
-        console.log('error:', error)
-      },
-      success: function (return_data) {
-        if (return_data.result == 'member') {
-          alert('로그인 먼저하세요');
-          return;
-        } else if (return_data.result == 'my') {
-          alert('본인이 작성한 제품의 이미지만 삭제할 수 있습니다.');
-          return;
-        } else if (return_data.result == 'no') {
-          alert('삭제 실패');
-          return;
-        } else {
-          $('#f_' + imgid).hide();
+            });
         }
-      }
+              
 
-    })
-  } //file_delete func
+        //file_delete func 시작
+        function file_delete(imgid) {
+          if (!confirm('정말삭제할까요?')) {
+            return false;
+          }
+          let data = {
+            imgid: imgid
+          }
+          $.ajax({
+            async: false,
+            type: 'post',
+            url: 'image_delete.php',
+            data: data,
+            dataType: 'json',
+            error: function (error) {
+              console.log('error:', error)
+            },
+            success: function (return_data) {
+              if (return_data.result == 'member') {
+                alert('로그인 먼저하세요');
+                return;
+              } else if (return_data.result == 'my') {
+                alert('본인이 작성한 제품의 이미지만 삭제할 수 있습니다.');
+                return;
+              } else if (return_data.result == 'no') {
+                alert('삭제 실패');
+                return;
+              } else {
+                $('#f_' + imgid).hide();
+              }
+            }
 
+          })
+        } //file_delete func 끝
+        //drag drop, 이미지 추가 끝
 
-
-      $('.class_close').click(function(e){
-      e.preventDefault();
-      if(confirm('강좌 등록을 취소하시겠습니까?')){
-          history.back();
-      }
-  });
+        //강좌 취소 이벤트 시작
+        $('.class_close').click(function(e){
+          e.preventDefault();
+          if(confirm('강좌 등록을 취소하시겠습니까?')){
+              history.back();
+          }
+        //강좌 취소 이벤트 끝
+      });
     </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

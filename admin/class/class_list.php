@@ -139,7 +139,7 @@ $result = $mysqli -> query($query);
         ?>
         <tr class="white_back d-flex class_list_item">
           <td class="class_list_img d-flex align-items-center">
-            <img src="../../pdata/class<?= $item->thumbnail ?>" alt="">
+            <img src="../../pdata/class<?= $item->thumbnail ?>" alt="thumbnail image">
           </td>
           <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1">
             <div>

@@ -74,3 +74,6 @@
 .pagination{
   margin-top: 13px;
 }
+.class_list_item{
+  cursor: pointer;
+}
