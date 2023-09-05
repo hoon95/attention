@@ -11,7 +11,7 @@
       $search_keyword = $title.$content;
 
       if($search){
-          $search_where .= " and ({$title} like '%{$search}%' or {$content} like '%{$search}%')";
+          $search_where .= " and ({$title} like '%{$search}%' or {$content} like '%{$search}%' )";
       }
       /* /페이지 내 검색 */
     
