@@ -42,13 +42,17 @@ $catename = rtrim( $catenames,  $catenames[strlen( $catenames) - 1]);
 <link rel="stylesheet" href="/attention/admin/css/class_view.css">
 <div class="common_pd">
       <p class="tt_01 class_ss_mt class_m_pd text-center">강좌상세보기</p>
-      <div class="d-flex">
-        <img src="<?php echo $rs->thumbnail ?>" alt="" class="class_v_img">
-        <ul class="class_view_title d-flex flex-column justify-content-between">
-          <li class="text2"><span class="class_bold class_tl">강좌명</span><span class="text2"><?php echo $rs->name ?></span></li>
-          <li class="text2"><span class="class_bold class_tl">난이도</span><span class="text2 class_level_tag orange"><?php if($rs->level==1){echo "초급";} if($rs->level==2){echo "중급";} if($rs->level==3){echo "상급";} ?></span></li>
-          <li class="text2"><span class="class_bold class_tl">공개 여부</span><span class="text2"><?php if($rs->status==0){echo "비공개";} if($rs->status==1){echo "공개";}  ?></span></li>
-          <li class="text2"><span class="class_bold class_tl">수강기한</span><span class="text2"><?php if($rs->sale_end_date==0){echo "무제한";} if($rs->sale_end_date!==0){echo "{$rs->sale_end_date}개월";}  ?></span></li>
+      <div class="d-flex ">
+        <div class="class_img_wrapper d-flex align-items-center;">
+          <div class="class_img_wrap">
+            <img src="<?php echo $rs->thumbnail ?>" alt="" class="class_v_img">
+          </div>
+        </div>
+        <ul>
+          <li class="text2"><span class="class_bold class_tl class_sm_pd">강좌명</span><span class="text2"><?php echo $rs->name ?></span></li>
+          <li class="text2"><span class="class_bold class_tl class_sm_pd">난이도</span><span class="text2 class_level_tag orange"><?php if($rs->level==1){echo "초급";} if($rs->level==2){echo "중급";} if($rs->level==3){echo "상급";} ?></span></li>
+          <li class="text2"><span class="class_bold class_tl class_sm_pd">공개 여부</span><span class="text2"><?php if($rs->status==0){echo "비공개";} if($rs->status==1){echo "공개";}  ?></span></li>
+          <li class="text2"><span class="class_bold class_tl ">수강기한</span><span class="text2"><?php if($rs->sale_end_date==0){echo "무제한";} if($rs->sale_end_date!==0){echo "{$rs->sale_end_date}개월";}  ?></span></li>
         </ul>
       </div>
       <hr>

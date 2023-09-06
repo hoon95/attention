@@ -116,9 +116,9 @@ $result = $mysqli -> query($query);
               <a href="class_modify.php?pid=<?= $item->pid ?>"><i class="bi bi-pencil-square icon_mint"></i></a>
               <!-- <a href="class_delete.php?pid=<?= $item->pid ?>" class="class_delete"><i class="bi-trash-fill icon_red"></i></a> -->
               <form method="post" action="class_delete.php">
-    <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
-    <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
-
+                <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
+                <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까?')" class="class_delete"><i class="bi-trash-fill icon_red"></i></button>
+          </form>
               <!-- delete_btn는 기존 스타일 -->
             </div>
           </td>
@@ -165,7 +165,7 @@ $result = $mysqli -> query($query);
       </ul>
     </nav> 
     <!-- /pagenation -->
-  </form>
+ 
   <script>
       $( function() {
       $( ".select_from" ).selectmenu();

@@ -4,7 +4,7 @@
   margin: 0;
 }
 .table>:not(caption)>*>*{
-  padding: 6px 0.5rem ;
+  padding: 6px 0;
 }
 .class_table tr{
   border-radius: 12px;
@@ -32,6 +32,9 @@
 }
 .class_sm_mtb{
   margin: 20px 0 20px 48px;
+}
+.class_m_pd{
+  padding-bottom: 40px;
 }
 .class_m_pd{
   padding-bottom: 40px;
@@ -73,7 +76,16 @@
 }
 .class_list_item{
   cursor: pointer;
+  
 }
 .class_list_item img{
-  height: 108px;
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+}
+#pcode3-button {
+  margin-top: 0;
+}
+.ui-selectmenu-text{
+  text-align: center;
 }

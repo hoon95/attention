@@ -7,8 +7,15 @@
 .class_sm_pd{
   padding-bottom: 20px;
 }
+.class_img_wrapper{
+  width: 272px;
+}
+.class_img_wrap{
+  width: 178px;
+}
 .class_v_img{
   margin: 5px 94px 5px 0;
+  width: 100%;
 }
 .class_bold{
   font-weight: 700;

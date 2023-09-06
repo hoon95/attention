@@ -147,3 +147,9 @@ input.form-control::placeholder{
   display: flex;
   justify-content: end;
 }
+#pcode3-button {
+  margin-top: 0;
+}
+.ui-selectmenu-text{
+  text-align: center;
+}
