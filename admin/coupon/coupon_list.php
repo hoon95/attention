@@ -51,9 +51,14 @@
 
 	/* 쿠폰 부분에서도 그 키워드가 나오게*/
 
-  $sql = "SELECT * from coupons where 1=1 " ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
+  $statussql = "SELECT * from coupons where status={$status}" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
+
+	$sql = "SELECT * from coupons where 1=1";
 
   $sql .= $search_where;
+	
+  $statussql .= $search_where;
+
   $order = " order by cid desc";//최근순 정렬
   $limit = " limit $statLimit, $endLimit";
 
@@ -65,6 +70,7 @@
     $rsc[] = $rs;
   }
 
+	
 
 ?>
 <link rel="stylesheet" href="/attention/admin/css/coup.css">
@@ -161,25 +167,25 @@
       <ul class="pagination justify-content-center align-items-center">
         <?php
           if($pageNumber>1){                   
-            echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?pageNumber=1&search={$search}\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
+            echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?status=$status&search=$search&pageNumber=1\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
               if($block_num > 1){
                   $prev = ($block_num - 2) * $block_ct + 1;
-                  echo "<li class=\"page-item\"><a href='?pageNumber={$prev}&search={$search}' class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
+                  echo "<li class=\"page-item\"><a href=\"?status=$status&search=$search&pageNumber=$prev\" class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
               }
           }
           for($i=$block_start;$i<=$block_end;$i++){
             if($pageNumber == $i){
-                echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?pageNumber={$i}\" class=\"page-link\">{$i}</a></li>";
+                echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?status=$status&search=$search&pageNumber={$i}\" class=\"page-link\">{$i}</a></li>";
             }else{
-                echo "<li class=\"page-item\"><a href=\"?pageNumber={$i}&search={$search}\" class=\"page-link\">{$i}</a></li>";
+                echo "<li class=\"page-item\"><a href=\"?status=$status&search=$search&pageNumber={$i}\" class=\"page-link\">{$i}</a></li>";
             }
           }
           if($pageNumber<$total_page){
             if($total_block > $block_num){
                 $next = $block_num * $block_ct + 1;
-                echo "<li class=\"page-item\"><a href=\"?pageNumber={$next}&search={$search}\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
+                echo "<li class=\"page-item\"><a href=\"?status=$status&search=$search&pageNumber=$next\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
             }
-            echo "<li class=\"page-item\"><a href=\"?pageNumber={$total_page}&search={$search}\" class=\"page-link\"><i class=\"bi bi-chevron-double-right icon_gray\"></i></a></li>";
+            echo "<li class=\"page-item\"><a href=\"?status=$status&search=$search&pageNumber=$total_page\" class=\"page-link\"><i class=\"bi bi-chevron-double-right icon_gray\"></i></a></li>";
           }
         ?>  
       </ul>
