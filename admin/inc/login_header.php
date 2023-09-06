@@ -1,5 +1,6 @@
 <?php
   session_start();
+  // header("Access-Control-Allow-Origin: *");
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 ?>
 <!DOCTYPE html>
@@ -14,8 +15,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/attention/admin/css/common.css">
   <link rel="stylesheet" href="/attention/admin/css/login.css">
-  
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 <body>
 <div class="background">
@@ -33,3 +33,84 @@
         <button type="submit" class="btn btn-primary flex-fill">로그인</button>
       </form>
     </div>
+
+<dialog class="radius_medium" id="popup">
+  <h2 class="tt_01 text-center"><span class="mint">CODE</span><span class="red"> RABBIT</span></h2>
+  <p class="dark_gray text-center">LMS 관리자 페이지 제작 프로젝트</p>
+  <p class="text1 mt-3">본 사이트는 구직용 포트폴리오 웹사이트이며,<br>
+    실제로 운영되는 사이트가 아닙니다.</p>
+  <hr>
+  <div>
+    <p><b>팀 Attention :</b> 김*훈(팀장), 기*은, 천*영, 한*연, 한*희</p>
+    <p class="mt-2"><b>제작기간 :</b> 2023. 08. 11 ~ 2023. 09. 08</p>
+    <p><b>기획서 :</b> <a href="https://www.figma.com/file/10UMk7aVCAB6EPqeRh8F59/LMS-%EA%B4%80%EB%A6%AC-%EC%82%AC%EC%9D%B4%ED%8A%B8?type=design&node-id=0%3A1&mode=design&t=rFV52jADv1RGWBGw-1" target="_blank">피그마</a></p>
+    <p><b>코드 :</b> <i class="bi bi-github"></i><a href="https://github.com/hoon95/attention" target="_blank">깃허브</a></p>
+    <p><b>개발환경 :</b> html5, css3, javascript, php</p>
+  </div>
+  <hr>
+  <div>
+    <p><b>업무분장</b></p>
+    <p><b>기획 :</b></p>
+    <p><b>디자인 :</b></p>
+    <p class="mt-2"><b>- 구현 완료 페이지 -</b></p>
+    <p><b>김*훈 :</b><a> 로그인</a>, <a>대시보드</a>, <a>매출관리</a>, <a>회원관리</a>
+    </p>
+    <p><b>기*은 :</b><a> 쿠폰관리 </a>(조회, 등록, 수정)</p>
+    <p><b>천*영 :</b><a> 공지사항 </a>(조회, 등록, 수정, 상세보기)</p>
+    <p><b>한*연 :</b><a> 카테고리 </a>(조회, 등록, 수정)</p>
+    <!-- <p><b>한*희 :</b><a> 강좌관리 </a>(조회, 등록, 수정, 상세보기)</p> -->
+    <p><b>한*희 :</b><a> 강좌관리 </a>(조회)</p>
+  </div>
+  <hr>
+  <p class="text4">아이디 : admin / 비밀번호 : 1111</p>
+
+  <div class="mt-4 d-flex justify-content-between">
+    <div class="d-flex align-items-center gap-2">
+      <label class="form-check-label" for="daycheck">하루 동안 보지 않기</label>
+      <input class="form-check-input" type="checkbox" id="daycheck">
+    </div>
+    <button id="close" type="button" class="text4"><img src="/attention/admin/img/piskel_rabbit.png" alt="">close</button>
+  </div>
+</dialog>
+
+<script>
+  let popup = $('#popup'),
+      closeBtn = popup.find('#close'),
+      dayCheck = popup.find('#daycheck');
+        
+  //쿠키생성
+  function setCookie(name, value, day){
+    let date = new Date();
+    date.setDate(date.getDate()+day);   
+    document.cookie = `${name}=${value};expires=${date.toUTCString()}`;
+  }
+
+  //쿠키 확인
+  function cookieCheck(name){
+    let cookieArr = document.cookie.split(';');
+    let visited = false;
+
+    for(let cookie of cookieArr){
+      if(cookie.search(name) > -1){
+        visited = true;
+        break;
+      }
+    }
+    //visited 값이 false면 dialog 보이게
+    if(!visited){
+      popup.attr('open','');
+    } else {
+      popup.removeAttr("open");
+    }
+  }
+  cookieCheck('Rabbit');
+
+  closeBtn.click(function(){
+    popup.removeAttr('open');
+    if(dayCheck.prop("checked")){
+      setCookie('Rabbit','code', 1);
+    }else{
+      setCookie('Rabbit','code', -1);
+    }
+  });
+</script>
