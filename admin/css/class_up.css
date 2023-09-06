@@ -105,10 +105,10 @@ input.form-control::placeholder{
 }
 .form-control:disabled{
   background-color: none;
-  opacity: 0.3;
+  opacity: 0;
 }
 .form-control:disabled + label{
-  opacity: 0.4;
+  opacity: 0;
 }
 .drop.drag_enter{
   background: #3498db;
@@ -155,5 +155,4 @@ input.form-control::placeholder{
 }
 input:-internal-autofill-selected {
   background-color: var(--white);
-  /* background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important; */
 }

@@ -311,11 +311,9 @@ while($rs0 = $result0 -> fetch_object()){
           }  
         });
 
-        //추가이미지를 넣으면 class_save_image.php에 savefile를 첨부했어하고 넣고,
-        //쿼리에도 넣는걸 해주는 함수
         function attachFile(file) {
-          let formData = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
-            formData.append('savefile', file) //<input type="file" name="savefile" value="파일명">
+          let formData = new FormData(); 
+            formData.append('savefile', file)
             console.log(formData);
             $.ajax({
               url: 'class_save_image.php',
@@ -405,56 +403,15 @@ while($rs0 = $result0 -> fetch_object()){
               history.back();
           }
         //강좌 취소 이벤트 끝
-      });
+        });
 
         //video url html 추가 시작
         $('#video_add').click(function(){
-          let urls = '';
           let video_html = $('.video_address').html();
           video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
-          // 추가된 video 주소를 urls 변수에 추가 (쉼표로 구분)
-          if (urls.length > 0) {
-            urls += ',';
-          }
-            urls += $('.video_address input').val();
-            console.log(urls)
             $('.video_wrap').append(video_html);
-            attachURL(urls)
           })
-
-          function attachURL(urls) {
-            let formURL = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
-            formURL.append('video_urls', urls) //<input type="file" name="savefile" value="파일명">
-              // console.log(formURL);
-              $.ajax({
-                url: 'class_clips.php',
-                data: formURL,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
-                type: 'POST',
-                error: function (error) {
-                  // console.log('error:', error)
-                },
-                success: function (return_url) {
-                  // console.log(return_url);
-
-                  if (return_url.result == 'member') {
-                    alert('로그인을 하십시오.');
-                    return;
-                  } else if (return_url.result == 'error') {
-                    alert('관리자에게 문의하세요');
-                    return;
-                  } else {
-                    
-                  //첨부url 테이블에 저장하면 할일
-                  let ccid = $('.video').val() + return_url.ccid + ',';
-                  $('.video').val(ccid);                  
-                  }}
-              });
-        }
-      //video url 출력 끝
+        //video url html 추가 끝
     </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

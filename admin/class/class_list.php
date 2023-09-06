@@ -8,8 +8,6 @@
   while($rs0 = $result0 -> fetch_object()){
     $cate1[] = $rs0;
   }
-
-
   $pageNumber = $_GET['pageNumber'] ?? 1;
   $pageCount = $_GET['pageCount'] ?? 5;
   $table = "class";
@@ -17,25 +15,21 @@
   $content = "content";
 
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/pagenation.php';  
-
   //검색 시작
   $search_form = $_GET['search'] ?? '';
   $search_where = '';
   if($search){
     $search_where .= " and (name like '%{$search}%' or content like '%{$search}%')";
-    //제목과 내용에 키워드가 포함된 상품 조회
   }
   //검색 끝
 
-$sql = "SELECT * from class where 1=1";//1=1까지 쓰는 이유는 where절 사용 위해
-$sql .= $search_where;
-  $order = " order by pid desc";//최근순 정렬
+  $sql = "SELECT * from class where 1=1";
+  $sql .= $search_where;
+  $order = " order by pid desc";
   $limit = " limit $statLimit, $endLimit";
+  $query = $sql.$order.$limit;
+  $result = $mysqli -> query($query);
 
-  $query = $sql.$order.$limit; //쿼리 문장 조합
-
-$result = $mysqli -> query($query);
-  
   while($rs = $result -> fetch_object()){
     $rc[] = $rs;
   }  
@@ -44,8 +38,7 @@ $result = $mysqli -> query($query);
 <link rel="stylesheet" href="/attention/admin/css/class_list.css">
 <style> #pcode3_1-button {font-weight: 400; color: var(--gray);} </style>
 <p class="tt_01 class_ss_mt class_m_pd text-center">강좌리스트</p>
-
-  <!-- 카테고리 관리 & 검색 form -->
+  <!-- 카테고리 관리 & 검색 form 시작 -->
   <form action="">
     <div class="d-flex justify-content-between class_sm_m">
       <a href="/attention/admin/category/category.php" class="btn btn-primary">카테고리 관리</a>
@@ -56,22 +49,19 @@ $result = $mysqli -> query($query);
         <span class="select cate_section">
           <select name="select" class="select_from cate_large" id="pcode2_1"> 
             <option selected disabled>대분류</option>
-            <!-- <option value="1">대분류</option> -->
             <?php foreach($cate1 as $c){ ?>
-              <option value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
+              <option value="<?php echo $c -> cid; ?>"><?php echo $c -> name; ?></option>
             <?php } ?>
           </select>
         </span>
         <span class="select class_ss_ml cate_section">
           <select name="select" class="select_from" id="pcode3">
             <option selected disabled>중분류</option>
-            <!-- <option value="1">중분류</option> -->
           </select>
         </span>
         <span class="select class_ss_ml cate_section">
           <select name="select" class="select_from" id="pcode3_1">
             <option selected disabled>소분류</option>
-            <!-- <option value="1">소분류</option> -->
           </select>
         </span>
       </span>
@@ -82,11 +72,9 @@ $result = $mysqli -> query($query);
         </span>
       </span>
     </div>
-
   </form>
-  <!-- /카테고리 관리 & 검색 form -->
-  <!-- 강좌 리스트 -->
-
+  <!-- 카테고리 관리 & 검색 form 끝 -->
+  <!-- 강좌 리스트 시작 -->
     <table class="table class_table">
       <tbody>
         <?php 
@@ -103,7 +91,7 @@ $result = $mysqli -> query($query);
             </div>
             <div class="class_p_val class_ss_mb"><?php if($item->price==1){echo "{$item->price_val}원";} ?><?php if($item->price==0){echo "무료";} ?></div>
             <div>
-              <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange"><?php if($item->sale_end_date==1){echo "{$item->sale_end_date}개월";} if($item->sale_end_date==0){echo "무제한";} ?></span>
+              <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange"><?php if($item->sale_end_date==1){echo "{$item->date_val}개월";} if($item->sale_end_date==0){echo "무제한";} ?></span>
             </div>
           </td>
           <td>
@@ -132,9 +120,9 @@ $result = $mysqli -> query($query);
         ?>
       </tbody>
     </table>
-    <!-- /강좌 리스트 -->
-    <!-- pagenation -->
-    <nav aria-label="페이지네이션" class="space">
+    <!-- 강좌 리스트 끝 -->
+    <!-- pagenation 시작 -->
+    <nav aria-label="pagenation" class="space">
       <ul class="pagination justify-content-center align-items-center">
         <?php
           if($pageNumber>1){                   
@@ -161,7 +149,7 @@ $result = $mysqli -> query($query);
         ?>  
       </ul>
     </nav> 
-    <!-- /pagenation -->
+    <!-- /pagenation 끝 -->
  
   <script>
       $( function() {

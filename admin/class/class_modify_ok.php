@@ -1,6 +1,13 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 
+//관리자 검사
+if(!isset($_SESSION['AUID'])){
+  $return_data = array("result"=>"member"); 
+  echo json_encode($return_data);
+  exit;
+}
+
   $pid = $_GET['pid'];
   
   $name = $_POST['name'];
