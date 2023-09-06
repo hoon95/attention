@@ -1,7 +1,7 @@
 <?php
     $title = '대시보드 - Code Rabbit';
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
     
     $class_query = "SELECT name, COUNT(sid) AS average_class FROM sales GROUP BY name ORDER BY average_class DESC LIMIT 3";
     $class_result = $mysqli->query($class_query);
@@ -23,7 +23,7 @@
     <h2 class="tt_01 text-center dash_title">대시보드</h2>
     <div class="dash_box_top d-flex justify-content-between">
         <div class="box_shadow radius_medium d-flex flex-column justify-content-between">
-            <h3 class="text1 sales_summary">매출 요약</h3>+
+            <h3 class="text1 sales_summary">매출 요약</h3>
             <div class="text1">
                 <span>₩</span>
                 <span class="sales_amount number"></span>
