@@ -63,7 +63,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   $('.close_btn').click(function(e){
     e.preventDefault();
-    if (confirm('수정 취소하시겠습니까?')){
+    if (confirm('수정 취소하시겠습니까? :0')){
       history.back();
     }
   });

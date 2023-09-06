@@ -51,7 +51,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
           </div>
         </td>
       </tr>
-
       <tr class="space view_bd">
         <th scope="row" class="text1">내용</th>
         <td>
@@ -91,7 +90,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <a href="/attention/admin/notice/notice_modify.php?idx=<?= $rs2 -> idx; ?>" class="btn btn-primary mx-4">글 수정</a>
     <button type="button" class="btn btn-dark close_btn">닫기</button>
   </div>
-
 </div> <!-- /notice_write -->
 
 <script>

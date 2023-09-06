@@ -30,7 +30,7 @@
         // $notice_file;
       } else{
         echo "<script>
-          alert('파일 첨부 실패!');    
+          alert('파일 첨부 실패.. :(');    
           history.back();            
         </script>";
       }
@@ -42,12 +42,11 @@
 
   if($mysqli->query($sql) === true){
     echo "<script>
-      alert('작성 완료되었습니다.');
+      alert('등록 완료되었습니다 :)');
       location.href='/attention/admin/notice/notice.php';</script>";
   } else{
     echo "<script>
-      alert('작성 실패!');
+      alert('등록 실패.. :(');
       history.back();</script>";
   }
-
 ?>

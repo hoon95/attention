@@ -42,7 +42,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </table>
     <div class="mt-4 text-end">
       <button type="submit" class="btn btn-primary mx-4">등록</button>
-      <!-- <a href="/attention/admin/notice/notice.php" class="btn btn-dark close_btn">닫기</a> -->
       <button type="button" class="btn btn-dark close_btn">닫기</button>
     </div>
   </form>
@@ -57,7 +56,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   $('.close_btn').click(function(e){
     e.preventDefault();
-    if (confirm('작성 취소하시겠습니까?')){
+    if (confirm('등록 취소하시겠습니까? :0')){
       history.back();
     }
   });

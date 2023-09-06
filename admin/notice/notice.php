@@ -128,7 +128,7 @@
   $('.del_btn').click(function(){
     let notice_idx = $(this).closest('tr').attr('data-id');
     
-    if (confirm('정말 삭제하시겠습니까?')) {
+    if (confirm('정말 삭제하시겠습니까? :0')) {
       // 확인
       let data = {
         idx : notice_idx
@@ -144,15 +144,15 @@
         },
         success:function(data){
           if(data.result == 'ok'){
-            alert('삭제되었습니다.');
+            alert('삭제되었습니다 :)');
             location.reload();
           } else{
-            alert('삭제 실패!');
+            alert('삭제 실패.. :(');
           }  
         }
       });
     } else{
-      alert('삭제 취소했습니다.');
+      alert('삭제 취소했습니다 :)');
     }
   });
 </script>
