@@ -1,21 +1,26 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 
-$pcode = $_REQUEST['pcode'];
-$check_value = $_REQUEST['check_value'] ?? 0;;
+$pcode = isset($_POST['pcode']) ? intval($_POST['pcode']) : 0;
+$check_value = isset($_POST['check_value']) ? intval($_POST['check_value']) : 0;
 
-$query = "update class set status={$check_value} where pid=".$pcode;
-$rs= $mysqli->query($query) or die($mysqli->error); 
+if($pcode <= 0 || ($check_value !== 0 && $check_value !== 1)){
+  die('유효하지 않은 데이터입니다.');
+}
 
-if($rs){
-  echo "<script>
-    alert('공개 타입이 수정 되었습니다.');
-    history.back();
-  </script>";
- } else{
-  echo "<script>
-    alert('공개 타입 수정 실패 하였습니다.');
-    history.back();
-  </script>";
- }
+$query = "UPDATE class SET status = ? WHERE pid = ?";
+$result = $mysqli->prepare($query);
+
+if($result === false){
+    die('SQL 쿼리 준비 실패: ' . $mysqli->error);
+}
+
+$result->bind_param('ii', $check_value, $pcode);
+
+if ($result->execute()){
+} else{
+}
+
+$result->close();
+$mysqli->close();
 ?>
