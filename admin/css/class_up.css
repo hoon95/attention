@@ -127,11 +127,11 @@ input.form-control::placeholder{
   padding: 20px;
   gap: 10px;
 }
-#add_images .thumb{
-  width: 70px;
+.thumb{
+ width: 150px;
 }
-#add_images .thumb img{
-  width: 80%;
+.thumb img{
+  width: 80px;
   display: block;
 }
 .drop{
@@ -152,4 +152,8 @@ input.form-control::placeholder{
 }
 .ui-selectmenu-text{
   text-align: center;
+}
+input:-internal-autofill-selected {
+  background-color: var(--white);
+  /* background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important; */
 }

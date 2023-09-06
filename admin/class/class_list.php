@@ -90,37 +90,34 @@ $result = $mysqli -> query($query);
     <table class="table class_table">
       <tbody>
         <?php 
-        if(isset($rc)){
-        
-          foreach($rc as $item){
+          if(isset($rc)){
+            foreach($rc as $item){
         ?>
-        <tr class="white_back d-flex">
-          <td class="class_list_img d-flex align-items-center class_list_item" data-pid="<?= $item->pid ?>">
-            <img src="<?= $item->thumbnail ?>" alt="thumbnail image">
+        <tr class="d-flex">
+          <td class="class_list_item d-flex align-items-center class_list_item" data-pid="<?= $item->pid ?>">
+            <img src="<?= $item->thumbnail ?>" alt="thumbnail image" class="class_list_img">
           </td>
-          <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1 class_list_item" data-pid="<?= $item->pid ?>">
-            <div>
+          <td class="d-flex flex-grow-1 flex-column justify-content-center class_sm_mtb class_mtb class_list_item" data-pid="<?= $item->pid ?>">
+            <div class="class_ss_mb">
               <span class="text2"><?= $item->name ?></span><span class="class_level_tag orange"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?></span>
             </div>
-            <div class="class_p_val"><?php if($item->price==1){echo "{$item->price_val}원";} ?><?php if($item->price==0){echo "무료";} ?></div>
+            <div class="class_p_val class_ss_mb"><?php if($item->price==1){echo "{$item->price_val}원";} ?><?php if($item->price==0){echo "무료";} ?></div>
             <div>
               <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange"><?php if($item->sale_end_date==1){echo "{$item->sale_end_date}개월";} if($item->sale_end_date==0){echo "무제한";} ?></span>
             </div>
           </td>
-          <td class="class_button">
-            <div class="form-check form-switch d-flex justify-content-end">
-              <input class="form-check-input status" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="<?= $item->status ?>"
-              <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]" data-pid="<?= $item->pid ?>">
-            </div>
-            <div>
-              <a href="class_modify.php?pid=<?= $item->pid ?>"><i class="bi bi-pencil-square icon_mint"></i></a>
-              <!-- <a href="class_delete.php?pid=<?= $item->pid ?>" class="class_delete"><i class="bi-trash-fill icon_red"></i></a> -->
-              <form method="post" action="class_delete.php">
-                <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
-                <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까?')" class="class_delete"><i class="bi-trash-fill icon_red"></i></button>
-          </form>
-              <!-- delete_btn는 기존 스타일 -->
-            </div>
+          <td>
+            <div class="form-check form-switch class_ss_bb d-flex justify-content-end class_m_mt class_ss_br">
+                <input class="form-check-input status" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="<?= $item->status ?>"
+                <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]" data-pid="<?= $item->pid ?>">
+              </div>
+              <div class="d-flex class_sm_m class_ss_br">
+                <a href="class_modify.php?pid=<?= $item->pid ?>" class="class_ss_mr"><i class="bi bi-pencil-square icon_mint"></i></a>
+                <form method="post" action="class_delete.php">
+                  <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
+                  <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까?')" class="class_delete"><i class="bi-trash-fill icon_red"></i></button>
+                </form>
+              </div>
           </td>
         </tr>
         <?php
@@ -230,17 +227,10 @@ $result = $mysqli -> query($query);
       e.preventDefault();
       let pid = $(this).data('pid');
       window.location.href = 'class_view.php?pid=' + pid;
-    });
-    
-    //   if(check_value.prop('checked')){//체크해서 활성되면
-    //     check_value.val('1');data-pid
-    //   } else{
-    //     check_value.val('0');
-    //   }
-    
+    });    
     
     $('input[type="checkbox"]').change(function(){
-      if(confirm('수정하시겠습니까?')){
+     
         let check_value = $(this).prop('checked') ? 1 : 0;
         let pcode = $(this).data('pid');
 
@@ -249,15 +239,13 @@ $result = $mysqli -> query($query);
             type : 'POST',
             data: {pcode:pcode, check_value:check_value},
             success : function(response){
-              alert(response);
+              // alert(response);
             },
             error: function(xhr, status, error){
               console.log(xhr.responseText);
-              alert('서버 요청 실패!');
+              // alert('서버 요청 실패!');
       }});
-        } else{
-              $(this).prop('checked', !$(this).prop('checked'));
-              }
+        
     });
 
 

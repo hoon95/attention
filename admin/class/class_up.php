@@ -100,7 +100,7 @@ while($rs0 = $result0 -> fetch_object()){
                   <td class="class_video">
                     <div class="video_wrap">
                       <div class="video_address">
-                        <input type="text" class="form-control class_lform_wd video" placeholder="동영상 주소를 입력하세요" name="video[]">
+                        <input type="text" class="form-control class_lform_wd video white_back" placeholder="동영상 주소를 입력하세요" name="video[]">
                       </div>
                       <button type="button" id="video_add"><i class="bi bi-plus-circle icon_gray"></i></button>
                     </div>
@@ -141,7 +141,7 @@ while($rs0 = $result0 -> fetch_object()){
                   <td>
                     <div class="drop form-control d-flex justify-content-center align-items-center gray" id="drag_drop">
                       <span class="text3"><i class="bi bi-upload icon_gray"></i>이곳에 파일을 첨부하세요</span>
-                      <div id="add_images" class="d-flex justify-content-start">
+                      <div id="add_images" class="d-flex justify-content-start flex-wrap">
                       </div>
                     </div>
                   </td>

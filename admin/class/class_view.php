@@ -19,7 +19,7 @@ foreach($cateArray as $cate){
 
   $cateresult = $mysqli -> query($catesql);
   $cate = $cateresult-> fetch_object();
-  $catenames .= $cate->name.'/';
+  $catenames .= $cate->name.'>';
 
 }
 $catename = rtrim( $catenames,  $catenames[strlen( $catenames) - 1]); 
@@ -42,37 +42,35 @@ $catename = rtrim( $catenames,  $catenames[strlen( $catenames) - 1]);
 <link rel="stylesheet" href="/attention/admin/css/class_view.css">
 <div class="common_pd">
       <p class="tt_01 class_ss_mt class_m_pd text-center">강좌상세보기</p>
-      <div class="d-flex ">
-        <div class="class_img_wrapper d-flex align-items-center;">
-          <div class="class_img_wrap">
-            <img src="<?php echo $rs->thumbnail ?>" alt="" class="class_v_img">
-          </div>
+      <div class="d-flex d-flex align-items-center">
+        <div class="d-flex align-items-center">
+          <img src="<?php echo $rs->thumbnail ?>" alt="" class="class_v_img ">
         </div>
-        <ul>
-          <li class="text2"><span class="class_bold class_tl class_sm_pd">강좌명</span><span class="text2"><?php echo $rs->name ?></span></li>
-          <li class="text2"><span class="class_bold class_tl class_sm_pd">난이도</span><span class="text2 class_level_tag orange"><?php if($rs->level==1){echo "초급";} if($rs->level==2){echo "중급";} if($rs->level==3){echo "상급";} ?></span></li>
-          <li class="text2"><span class="class_bold class_tl class_sm_pd">공개 여부</span><span class="text2"><?php if($rs->status==0){echo "비공개";} if($rs->status==1){echo "공개";}  ?></span></li>
-          <li class="text2"><span class="class_bold class_tl ">수강기한</span><span class="text2"><?php if($rs->sale_end_date==0){echo "무제한";} if($rs->sale_end_date!==0){echo "{$rs->sale_end_date}개월";}  ?></span></li>
+        <ul class="class_sm_pd">
+          <li class="text2 class_sm_pd"><span class="class_bold class_tl">강좌명</span><span class="text2"><?php echo $rs->name ?></span></li>
+          <li class="text2 class_sm_pd"><span class="class_bold class_tl">난이도</span><span class="text2 class_level_tag orange"><?php if($rs->level==1){echo "초급";} if($rs->level==2){echo "중급";} if($rs->level==3){echo "상급";} ?></span></li>
+          <li class="text2 class_sm_pd"><span class="class_bold class_tl">공개 여부</span><span class="text2"><?php if($rs->status==0){echo "비공개";} if($rs->status==1){echo "공개";}  ?></span></li>
+          <li class="text2"><span class="class_bold class_tl">수강기한</span><span class="text2"><?php if($rs->sale_end_date==1){echo "{$rs->sale_end_date}개월";} if($rs->sale_end_date==0){echo "무제한";} ?></span></li>
         </ul>
       </div>
-      <hr>
+      <hr class="class_sm_pd">
       <div class="d-flex">
         <ul>
           <li class="text2 class_sm_pd">
             <span class="class_bold class_tl2">카테고리</span>
-            <span class=""><?= $catename; ?></span>
+            <span><?= $catename; ?></span>
           </li>
-          <li class="text2 class_sm_pd">
+          <li class="text2 class_sm_pd d-flex">
             <span class="class_bold class_tl2">강좌영상</span>
-            <ul class="">
-            <?php
-            if(isset($clips)){
-              foreach($clips as $clip){
-          ?>
-           <li><a href="<?php echo $clip->video_url; ?>"><?php echo $clip->video_url; ?></a></li>
-          <?php 
-          }}
-          ?> 
+            <ul class="clips_ib">
+              <?php
+              if(isset($clips)){
+                foreach($clips as $clip){
+            ?>
+            <li><a href="<?php echo $clip->video_url; ?>"><?php echo $clip->video_url; ?></a></li>
+            <?php 
+            }}
+            ?> 
             </ul>
           </li>
           <li class="text2 class_sm_pd d-flex">
@@ -94,7 +92,7 @@ $catename = rtrim( $catenames,  $catenames[strlen( $catenames) - 1]);
           </li>
         </ul>
       </div>    
-      <hr class="class_hr">  
+      <hr class="class_hr class_sm_pd">  
       <div class="d-flex justify-content-end">
         <a href="/attention/admin/class/class_list.php" class="btn btn-dark class_sm_ml">닫기</a>
       </div>
