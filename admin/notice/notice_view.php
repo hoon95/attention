@@ -72,15 +72,27 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <tr class="space">
         <th scope="row" class="tt_03">첨부파일</th>
         <td class="board_bd">
-          <div class="box">
+          <div class="box d-flex">
+            
             <?php
-              $fileExt = pathinfo($rs2->file, PATHINFO_EXTENSION); //파일 확장자 가져오기
+              // $filePath = $rs2->file; // 파일 경로 가져오기
+              
+              // 파일이 존재하는지 확인
+              // if (file_exists($filePath)) {
+                if (isset($_FILES['file'])) {
+                  $filePath = $rs2->file; // 파일 경로 가져오기
+                  $fileName = basename($filePath); // 파일명만 추출
+                  $fileExt = pathinfo($filePath, PATHINFO_EXTENSION); // 파일 확장자 가져오기
 
-              //in_array: 값이 배열 안에 존재하는지 확인
-              if (in_array($fileExt, ['jpg','jpeg','png','gif','svg','webp'])) {
-                echo '<img src="'.$rs2->file.'" alt="">'; //이미지 파일인 경우
+                  //in_array: 값이 배열 안에 존재하는지 확인
+                  if (in_array($fileExt, ['jpg','jpeg','png','gif','svg','webp'])) {
+                      echo '<img src="'.$filePath.'" alt="">'; // 이미지 파일인 경우
+                  } else {
+                    echo '<a href="'.$filePath.'" download>'.$fileName.'<i class="bi bi-download"></i>다운로드</a>';
+                  }
               } else {
-                echo $rs2->file; //이미지 파일이 아닌 경우
+                  // 파일이 존재하지 않을 경우 안내 메시지 출력
+                  echo '파일이 존재하지 않습니다.';
               }
             ?>
           </div>
