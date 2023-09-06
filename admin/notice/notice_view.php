@@ -63,12 +63,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <tr class="space">
         <th scope="row" class="text1">첨부파일</th>
         <td class="board_bd">
-          <div class="box d-flex">
-            
+          <div class="box">
             <?php
               // 파일 경로 가져오기
               $filePath =$rs2->file;
-            
+
               if (strlen($filePath) > 0) {
                 $fileName = basename($filePath); // 파일명만 추출
                 $fileExt = pathinfo($filePath, PATHINFO_EXTENSION); // 파일 확장자 가져오기
@@ -76,10 +75,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 // in_array: 값이 배열 안에 존재하는지 확인
                 if (in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'])) {
                   echo '<img src="'.$filePath.'" alt="">'; // 이미지 파일인 경우
-                  echo '<a href="'.$filePath.'" download>'.$fileName.'<i class="bi bi-download"></i></a>';
+                  echo '<a href="'.$filePath.'" download class="d-flex align-items-center mt-2">'.$fileName.'<i class="bi bi-download ms-2"></i></a>';
                 } else {
                   // 이미지 파일이 아닌 경우 파일을 다운로드할 수 있는 링크 생성
-                  echo '<a href="'.$filePath.'" download>'.$fileName.'<i class="bi bi-download"></i></a>';
+                  echo '<a href="'.$filePath.'" download>'.$fileName.'<i class="bi bi-download ms-2"></i></a>';
                 }
               }
             ?>
