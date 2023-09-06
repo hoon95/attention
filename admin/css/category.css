@@ -12,7 +12,7 @@ div.logo {height: 83px;}
   overflow: auto;
 }
 .cate_filter dt {line-height: calc(var(--base-unit) * 1.2);}
-.cate_icon dd, .cate_icon button {height: calc(var(--base-unit) * 1.2);}
+.cate_icon button {height: calc(var(--base-unit) * 1.2);}
 .cate_icon .cate_modify {margin-right: calc(var(--base-unit) * 0.8);}
 .btns {margin: calc(var(--base-unit) * 2) auto;}
 .cate_close {margin-bottom: calc(var(--base-unit) * 2);}
