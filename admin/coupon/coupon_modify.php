@@ -41,7 +41,7 @@
 					</tr>
 					<tr class="space">
 						<th><h3 class="tt_03">할인액</h3></th>
-						<td><input type="number" id="coupon_price"  min="10000" max="1000000" step="10000" name="coupon_price" class="form-control" value="<?= $rs-> coupon_price ?>" ></td>
+						<td><input type="number" id="coupon_price" min="5000" max="1000000" step="1000" name="coupon_price" class="form-control" value="<?= $rs-> coupon_price ?>" ></td>
 					</tr>
 					<tr class="space">
 						<th><h3 class="tt_03">기한</h3></th>

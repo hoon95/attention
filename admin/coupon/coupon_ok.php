@@ -46,6 +46,7 @@
   } //첨부파일 있다면 할일
 
   $mysqli->autocommit(FALSE);//일단 바로 저장하지 못하도록
+  
   try{
 
   $sql = "INSERT INTO coupons 
@@ -71,7 +72,7 @@
   $mysqli->rollback();//저장한 테이블이 있다면 롤백한다.
     echo "<script>
     alert('쿠폰등록실패');
-    history.back();
+    // history.back();
     </script>";
 }  
 
