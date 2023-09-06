@@ -1,9 +1,17 @@
 <?php
+$title = '강좌 등록 - Code Rabbit';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
+$query0 = "SELECT * FROM category WHERE step=1";
+$result0 = $mysqli -> query($query0);
+while($rs0 = $result0 -> fetch_object()){
+  $cate1[] = $rs0;
+}
 ?>
+<link rel="stylesheet" href="/attention/admin/css/category.css">
 <link rel="stylesheet" href="/attention/admin/css/class_up.css">
+<style> #pcode3_1-button {font-weight: 400; color: var(--gray);} </style>
 <div class="common_pd">
           <p class="tt_01 class_ss_mt class_m_pd text-center">강좌 등록</p>
           <form action="class_ok.php" method="POST" id="class_form" enctype="multipart/form-data">
@@ -14,24 +22,27 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                 <tr class="class_ss_mb">
                   <th class="tt_03">카테고리</th>
                   <td>
-                    <span class="select">
-                      <select name="select" class="select_from">
-                        <option selected disabled>대분류</option>
-                        <!-- <option value="1">대분류</option> -->
-                      </select>
-                    </span>
-                    <span class="select class_ss_ml">
-                      <select name="select" class="select_from">
-                        <option selected disabled>중분류</option>
-                        <!-- <option value="1">중분류</option> -->
-                      </select>
-                    </span>
-                    <span class="select class_ss_ml">
-                      <select name="select" class="select_from">
-                        <option selected disabled>소분류</option>
-                        <!-- <option value="1">소분류</option> -->
-                      </select>
-                    </span>
+                  <span class="select cate_section">
+                    <select name="cate1" class="select_from cate_large" id="pcode2_1" require> 
+                      <option selected disabled>대분류</option>
+                      <!-- <option value="1">대분류</option> -->
+                      <?php foreach($cate1 as $c){ ?>
+                        <option value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
+                      <?php } ?>
+                    </select>
+                  </span>
+                  <span class="select class_ss_ml cate_section">
+                    <select name="cate2" class="select_from" id="pcode3">
+                      <option selected disabled>중분류</option>
+                      <!-- <option value="1">중분류</option> -->
+                    </select>
+                  </span>
+                  <span class="select class_ss_ml cate_section">
+                    <select name="cate3" class="select_from" id="pcode3_1">
+                      <option selected disabled>소분류</option>
+                      <!-- <option value="1">소분류</option> -->
+                    </select>
+                  </span>
                   </td>
                 </tr>
                 <tr>
@@ -152,6 +163,81 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
 
       });// form에서 전송 이벤트가 일어나면 할일 끝
+
+      //카테고리 시작
+      $(function(){
+    $("select").selectmenu();
+      $("select#pcode2_1").on("selectmenuchange", function(event, ui){
+      $('#pcode2_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+    $("select#pcode3").on("selectmenuchange", function(event, ui){
+      $('#pcode3-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+    $("select#pcode3_1").on("selectmenuchange", function(event, ui){
+      $('#pcode3_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+  
+    $("#pcode2_1").on("selectmenuselect", function(event, ui) {
+      let data = { 
+        cate : $("#pcode2_1").val(),  //대분류의 값이 변경되면  
+        step : 2,
+        category : '중분류'  
+      }
+
+      $.ajax({
+        async: false,
+        type: 'post',
+        data: data,
+        url: "../category/printOption.php",
+        dataType: 'html',
+        success: function(result) {
+        $("#pcode3").html(result);  //중분류 div에 html 추가
+        $("#pcode3").selectmenu('refresh');
+        }
+      });
+     });  
+
+    $("#pcode3").on("selectmenuselect", function(event, ui) {
+      let data = { 
+        cate : $("#pcode3").val(),  //대분류의 값이 변경되면  
+        step : 3,
+        category : '소분류'  
+      }
+
+      $.ajax({
+        async: false,
+        type: 'post',
+        data: data,
+        url: "../category/printOption.php",
+        dataType: 'html',
+        success: function(result) {
+        $("#pcode3_1").html(result);  //중분류 div에 html 추가
+        $("#pcode3_1").selectmenu('refresh');
+        }
+      });
+     });  
+    })
+     
+
+          $('#class_form').submit(function () {
+
+      let markupStr = $('#class_intro').summernote('code');
+      let content = encodeURIComponent(markupStr);
+      $('#content').val(content);
+
+      if(!$('#pcode2_1').val()){
+        alert('대분류를 선택해주세요');
+        return false;
+      }
+      if ($('#class_intro').summernote('isEmpty')) {
+        alert('상품 설명을 입력하세요');
+        return false;
+      }
+
+
+      });
+      //카테고리 끝
+
       $( function() {
         $( ".select_from" ).selectmenu();
       } );

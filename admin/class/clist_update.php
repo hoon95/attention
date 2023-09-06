@@ -18,9 +18,9 @@ if($result === false){
 $result->bind_param('ii', $check_value, $pcode);
 
 if ($result->execute()){
-    echo "업데이트가 성공적으로 완료되었습니다.";
+    echo "수정 완료되었습니다.";
 } else{
-    echo "업데이트 실패: " . $result->error;
+    echo "수정 실패!";
 }
 
 $result->close();

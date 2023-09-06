@@ -48,7 +48,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
               } else{
                 echo "<script>
                   alert('파일 첨부 실패!');    
-                  history.back();            
+                  // history.back();            
                 </script>";
               }
 

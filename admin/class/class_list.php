@@ -1,7 +1,15 @@
 <?php
+  $title = '강좌리스트 - Code Rabbit';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
   
+  $query0 = "SELECT * FROM category WHERE step=1";
+  $result0 = $mysqli -> query($query0);
+  while($rs0 = $result0 -> fetch_object()){
+    $cate1[] = $rs0;
+  }
+
+
   $pageNumber = $_GET['pageNumber'] ?? 1;
   $pageCount = $_GET['pageCount'] ?? 5;
   $table = "class";
@@ -32,31 +40,36 @@ $result = $mysqli -> query($query);
     $rc[] = $rs;
   }  
   ?>
+<link rel="stylesheet" href="/attention/admin/css/category.css">
 <link rel="stylesheet" href="/attention/admin/css/class_list.css">
+<style> #pcode3_1-button {font-weight: 400; color: var(--gray);} </style>
 <p class="tt_01 class_ss_mt class_m_pd text-center">강좌리스트</p>
 
   <!-- 카테고리 관리 & 검색 form -->
   <form action="">
     <div class="d-flex justify-content-between class_sm_m">
-      <span class="btn btn-primary">카테고리 관리</span>
+      <a href="/attention/admin/category/category.php" class="btn btn-primary">카테고리 관리</a>
       <a href="class_up.php" class="btn btn-primary">강좌 등록</a> 
     </div>
     <div class="d-flex justify-content-between class_sm_m">
       <span>
-        <span class="select">
-          <select name="select" class="select_from"> 
+        <span class="select cate_section">
+          <select name="select" class="select_from cate_large" id="pcode2_1"> 
             <option selected disabled>대분류</option>
             <!-- <option value="1">대분류</option> -->
+            <?php foreach($cate1 as $c){ ?>
+              <option value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
+            <?php } ?>
           </select>
         </span>
-        <span class="select class_ss_ml">
-          <select name="select" class="select_from">
+        <span class="select class_ss_ml cate_section">
+          <select name="select" class="select_from" id="pcode3">
             <option selected disabled>중분류</option>
             <!-- <option value="1">중분류</option> -->
           </select>
         </span>
-        <span class="select class_ss_ml">
-          <select name="select" class="select_from">
+        <span class="select class_ss_ml cate_section">
+          <select name="select" class="select_from" id="pcode3_1">
             <option selected disabled>소분류</option>
             <!-- <option value="1">소분류</option> -->
           </select>
@@ -67,22 +80,23 @@ $result = $mysqli -> query($query);
           <input type="text" name="search" id="search" class="form-control">
           <button type="button"><i class="bi bi-search icon_gray"></i></button>
         </span>
-        <button class="btn btn-primary class_ssm_ml">검색</button>
       </span>
     </div>
 
   </form>
   <!-- /카테고리 관리 & 검색 form -->
   <!-- 강좌 리스트 -->
-  <form action="" method="GET">
+
     <table class="table class_table">
       <tbody>
         <?php 
+        if(isset($rc)){
+        
           foreach($rc as $item){
         ?>
         <tr class="white_back d-flex">
           <td class="class_list_img d-flex align-items-center class_list_item" data-pid="<?= $item->pid ?>">
-            <img src="../../pdata/class<?= $item->thumbnail ?>" alt="thumbnail image">
+            <img src="<?= $item->thumbnail ?>" alt="thumbnail image">
           </td>
           <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1 class_list_item" data-pid="<?= $item->pid ?>">
             <div>
@@ -100,11 +114,23 @@ $result = $mysqli -> query($query);
             </div>
             <div>
               <a href="class_modify.php?pid=<?= $item->pid ?>"><i class="bi bi-pencil-square icon_mint"></i></a>
-              <a href="class_delete.php?pid=<?= $item->pid ?>" class="class_delete delete_btn"><i class="bi-trash-fill icon_red"></i></a>
+              <!-- <a href="class_delete.php?pid=<?= $item->pid ?>" class="class_delete"><i class="bi-trash-fill icon_red"></i></a> -->
+              <form method="post" action="class_delete.php">
+    <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
+    <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+
+              <!-- delete_btn는 기존 스타일 -->
             </div>
           </td>
         </tr>
         <?php
+          }
+            }else{
+              ?>
+              <tr>
+                <td colspan="3">검색결과가 없습니다.</td>
+              </tr>
+              <?php   
             }
         ?>
       </tbody>
@@ -143,6 +169,61 @@ $result = $mysqli -> query($query);
   <script>
       $( function() {
       $( ".select_from" ).selectmenu();
+
+      //카테고리 시작
+      $(function(){
+    $("select").selectmenu();
+      $("select#pcode2_1").on("selectmenuchange", function(event, ui){
+      $('#pcode2_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+    $("select#pcode3").on("selectmenuchange", function(event, ui){
+      $('#pcode3-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+    $("select#pcode3_1").on("selectmenuchange", function(event, ui){
+      $('#pcode3_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+  
+    $("#pcode2_1").on("selectmenuselect", function(event, ui) {
+      let data = { 
+        cate : $("#pcode2_1").val(),  //대분류의 값이 변경되면  
+        step : 2,
+        category : '중분류'  
+      }
+
+      $.ajax({
+        async: false,
+        type: 'post',
+        data: data,
+        url: "../category/printOption.php",
+        dataType: 'html',
+        success: function(result) {
+        $("#pcode3").html(result);  //중분류 div에 html 추가
+        $("#pcode3").selectmenu('refresh');
+        }
+      });
+     });  
+
+    $("#pcode3").on("selectmenuselect", function(event, ui) {
+      let data = { 
+        cate : $("#pcode3").val(),  //대분류의 값이 변경되면  
+        step : 3,
+        category : '소분류'  
+      }
+
+      $.ajax({
+        async: false,
+        type: 'post',
+        data: data,
+        url: "../category/printOption.php",
+        dataType: 'html',
+        success: function(result) {
+        $("#pcode3_1").html(result);  //중분류 div에 html 추가
+        $("#pcode3_1").selectmenu('refresh');
+        }
+      });
+     });  
+    })
+     //카테고리 끝
     } );
 
     $('.class_list_item').click(function(e){
@@ -159,7 +240,7 @@ $result = $mysqli -> query($query);
     
     
     $('input[type="checkbox"]').change(function(){
-      if(confirm('상태를 변경하시겠습니까?')){
+      if(confirm('수정하시겠습니까?')){
         let check_value = $(this).prop('checked') ? 1 : 0;
         let pcode = $(this).data('pid');
 
@@ -179,14 +260,7 @@ $result = $mysqli -> query($query);
               }
     });
 
-    $('.delete_btn').click(function(e){
-      e.preventDefault();
-      if(confirm('정말 삭제하시겠습니까?')){
-        window.location = 'class_delete.php?pid=<?php echo $item->pid ?>';
-      }else{
-        alert('삭제되었습니다.');
-      }
-    })
+
   </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
