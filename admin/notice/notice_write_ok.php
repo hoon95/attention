@@ -6,7 +6,7 @@
   $title = $_POST['title'];
   $content = $_POST['content'];
   $regdate = date('Y-m-d');
-  $filename = '';
+  $notice_file = '';
 
   if($_FILES['file']['name']){
     //파일 사이즈 검사
@@ -38,7 +38,7 @@
   }
 
   $sql = "INSERT INTO notice (title, content, regdate, file) 
-  VALUES ('{$title}','{$content}','{$regdate}','{$notice_file}')";
+  VALUES ('{$title}','{$content}', now(),'{$notice_file}')";
 
   if($mysqli->query($sql) === true){
     echo "<script>
