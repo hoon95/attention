@@ -43,9 +43,11 @@
   <div>
     <p><b>팀 Attention :</b> 김*훈(팀장), 기*은, 천*영, 한*연, 한*희</p>
     <p class="mt-2"><b>제작기간 :</b> 2023. 08. 11 ~ 2023. 09. 08</p>
-    <p><b>기획서 :</b> <a href="https://www.figma.com/file/10UMk7aVCAB6EPqeRh8F59/LMS-%EA%B4%80%EB%A6%AC-%EC%82%AC%EC%9D%B4%ED%8A%B8?type=design&node-id=0%3A1&mode=design&t=rFV52jADv1RGWBGw-1" target="_blank">피그마</a></p>
-    <p><b>코드 :</b> <i class="bi bi-github"></i><a href="https://github.com/hoon95/attention" target="_blank">깃허브</a></p>
-    <p><b>개발환경 :</b> html5, css3, javascript, php</p>
+    <p>
+      <b>기획서 :</b> <a href="https://www.figma.com/file/10UMk7aVCAB6EPqeRh8F59/LMS-%EA%B4%80%EB%A6%AC-%EC%82%AC%EC%9D%B4%ED%8A%B8?type=design&node-id=0%3A1&mode=design&t=rFV52jADv1RGWBGw-1" target="_blank">피그마</a>
+      <b class="ms-3">코드 :</b><i class="bi bi-github"></i><a href="https://github.com/hoon95/attention" target="_blank">깃허브</a>
+    </p>
+    <p><b>개발환경 :</b> html5, css3, javascript, php, mySQL</p>
   </div>
   <hr>
   <div>
