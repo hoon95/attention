@@ -25,7 +25,6 @@ while($rs0 = $result0 -> fetch_object()){
                   <span class="select cate_section">
                     <select name="cate1" class="select_from cate_large" id="pcode2_1" require> 
                       <option selected disabled>대분류</option>
-                      <!-- <option value="1">대분류</option> -->
                       <?php foreach($cate1 as $c){ ?>
                         <option value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
                       <?php } ?>
@@ -34,13 +33,11 @@ while($rs0 = $result0 -> fetch_object()){
                   <span class="select class_ss_ml cate_section">
                     <select name="cate2" class="select_from" id="pcode3">
                       <option selected disabled>중분류</option>
-                      <!-- <option value="1">중분류</option> -->
                     </select>
                   </span>
                   <span class="select class_ss_ml cate_section">
                     <select name="cate3" class="select_from" id="pcode3_1">
                       <option selected disabled>소분류</option>
-                      <!-- <option value="1">소분류</option> -->
                     </select>
                   </span>
                   </td>
@@ -156,13 +153,11 @@ while($rs0 = $result0 -> fetch_object()){
           </form>
     </div>
     <script>
-      $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나면 할일 ok  //버튼클릭으로 이벤트잡는거 x 
+      $('#class_form').submit(function () {
         let content_str = $('#class_intro').summernote('code');
         let content = encodeURIComponent(content_str);
         $('#content').val(content);
-
-
-      });// form에서 전송 이벤트가 일어나면 할일 끝
+      });
 
       //카테고리 시작
       $(function(){
@@ -179,7 +174,7 @@ while($rs0 = $result0 -> fetch_object()){
   
     $("#pcode2_1").on("selectmenuselect", function(event, ui) {
       let data = { 
-        cate : $("#pcode2_1").val(),  //대분류의 값이 변경되면  
+        cate : $("#pcode2_1").val(),
         step : 2,
         category : '중분류'  
       }
@@ -191,7 +186,7 @@ while($rs0 = $result0 -> fetch_object()){
         url: "../category/printOption.php",
         dataType: 'html',
         success: function(result) {
-        $("#pcode3").html(result);  //중분류 div에 html 추가
+        $("#pcode3").html(result); 
         $("#pcode3").selectmenu('refresh');
         }
       });
@@ -199,7 +194,7 @@ while($rs0 = $result0 -> fetch_object()){
 
     $("#pcode3").on("selectmenuselect", function(event, ui) {
       let data = { 
-        cate : $("#pcode3").val(),  //대분류의 값이 변경되면  
+        cate : $("#pcode3").val(),   
         step : 3,
         category : '소분류'  
       }
@@ -211,15 +206,14 @@ while($rs0 = $result0 -> fetch_object()){
         url: "../category/printOption.php",
         dataType: 'html',
         success: function(result) {
-        $("#pcode3_1").html(result);  //중분류 div에 html 추가
+        $("#pcode3_1").html(result); 
         $("#pcode3_1").selectmenu('refresh');
         }
       });
      });  
     })
-     
 
-          $('#class_form').submit(function () {
+      $('#class_form').submit(function () {
 
       let markupStr = $('#class_intro').summernote('code');
       let content = encodeURIComponent(markupStr);
@@ -298,24 +292,22 @@ while($rs0 = $result0 -> fetch_object()){
         }).on("dragover", function(e) {
           e.preventDefault();
           e.stopPropagation();
-        }).on('drop', function(e) {  //드래그한 항목을 떨어뜨렸을때
+        }).on('drop', function(e) {
           e.preventDefault();
           console.log(e);
           
           $(this).removeClass('drag-enter');
           let files = e.originalEvent.dataTransfer.files;
           console.log(files);
-          for(let i = 0;i <files.length;i++) {  //originalEvent은 배열이라 foreach,   ,filter안돼서 for로 뽑아야 됌 이렇게 뽑아 야 됨 
+          for(let i = 0;i <files.length;i++) { 
             let file = files[i];
             attachFile(file);
           }  
         });
 
-        //추가이미지를 넣으면 class_save_image.php에 savefile를 첨부했어하고 넣고,
-        //쿼리에도 넣는걸 해주는 함수
         function attachFile(file) {
-          let formData = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
-            formData.append('savefile', file) //<input type="file" name="savefile" value="파일명">
+          let formData = new FormData(); 
+            formData.append('savefile', file)
             console.log(formData);
             $.ajax({
               url: 'class_save_image.php',
@@ -364,7 +356,7 @@ while($rs0 = $result0 -> fetch_object()){
 
         //file_delete func 시작
         function file_delete(imgid) {
-          if (!confirm('정말삭제할까요?')) {
+          if (!confirm('정말 삭제하시겠습니까? :0')) {
             return false;
           }
           let data = {
@@ -387,7 +379,7 @@ while($rs0 = $result0 -> fetch_object()){
                 alert('본인이 작성한 제품의 이미지만 삭제할 수 있습니다.');
                 return;
               } else if (return_data.result == 'no') {
-                alert('삭제 실패');
+                alert('삭제 실패.. :(');
                 return;
               } else {
                 $('#f_' + imgid).hide();
@@ -401,60 +393,19 @@ while($rs0 = $result0 -> fetch_object()){
         //강좌 취소 이벤트 시작
         $('.class_close').click(function(e){
           e.preventDefault();
-          if(confirm('강좌 등록을 취소하시겠습니까?')){
+          if(confirm('등록 취소하시겠습니까? :0')){
               history.back();
           }
         //강좌 취소 이벤트 끝
-      });
+        });
 
         //video url html 추가 시작
         $('#video_add').click(function(){
-          let urls = '';
           let video_html = $('.video_address').html();
           video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
-          // 추가된 video 주소를 urls 변수에 추가 (쉼표로 구분)
-          if (urls.length > 0) {
-            urls += ',';
-          }
-            urls += $('.video_address input').val();
-            console.log(urls)
             $('.video_wrap').append(video_html);
-            attachURL(urls)
           })
-
-          function attachURL(urls) {
-            let formURL = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
-            formURL.append('video_urls', urls) //<input type="file" name="savefile" value="파일명">
-              // console.log(formURL);
-              $.ajax({
-                url: 'class_clips.php',
-                data: formURL,
-                cache: false,
-                contentType: false,
-                processData: false,
-                dataType: 'json',
-                type: 'POST',
-                error: function (error) {
-                  // console.log('error:', error)
-                },
-                success: function (return_url) {
-                  // console.log(return_url);
-
-                  if (return_url.result == 'member') {
-                    alert('로그인을 하십시오.');
-                    return;
-                  } else if (return_url.result == 'error') {
-                    alert('관리자에게 문의하세요');
-                    return;
-                  } else {
-                    
-                  //첨부url 테이블에 저장하면 할일
-                  let ccid = $('.video').val() + return_url.ccid + ',';
-                  $('.video').val(ccid);                  
-                  }}
-              });
-        }
-      //video url 출력 끝
+        //video url html 추가 끝
     </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

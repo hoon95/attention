@@ -1,6 +1,13 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 
+//관리자 검사
+if(!isset($_SESSION['AUID'])){
+  $return_data = array("result"=>"member"); 
+  echo json_encode($return_data);
+  exit;
+}
+
   $pid = $_GET['pid'];
   
   $name = $_POST['name'];
@@ -47,7 +54,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
                 $thumbnail_file = "/attention/pdata/class/".$thumbnail_file;
               } else{
                 echo "<script>
-                  alert('파일 첨부 실패!');    
+                  alert('파일 첨부 실패.. :(');    
                   // history.back();            
                 </script>";
               }
@@ -59,7 +66,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 var_dump($sql3);
 //   if ($mysqli->query($sql) === TRUE) {
 //     echo "<script>
-//     alert('수정 완료되었습니다.');
+//     alert('수정 완료되었습니다 :)');
 //     location.href ='attention/admin/class/class_list.php';</script>";
 // } else {
 //     echo "Error: " . $sql . "<br>" . $mysqli->error;
