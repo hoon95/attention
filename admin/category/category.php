@@ -11,8 +11,6 @@
   }
 ?>
 
-
-
 <div class="container">
   <div>
     <h2 class="tt_01 text-center">카테고리 관리</h2>
@@ -495,11 +493,6 @@
 </script>
 
 <script src="/attention/admin/js/category.js"></script>   
-<?php
-  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
-?>
-
-
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>
