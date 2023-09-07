@@ -15,7 +15,6 @@
 
 <link rel="stylesheet" href="/attention/admin/css/sales.css">
 
-
 <div class="sales">
   <h2 class="tt_01 text-center">매출 관리</h2>
     <div class="d-flex justify-content-end">   
@@ -31,11 +30,10 @@
     <table class="table mt-4">
       <thead>
         <tr class="board_hd text1 text-center">
-          <th scope="col" class="col-1">No&#46;</th>
-          <th scope="col" class="col-5">강좌명</th>
-          <th scope="col" class="col-1">ID</th>
+          <th scope="col" class="col-3">강좌명</th>
+          <th scope="col" class="col-3">ID</th>
           <th scope="col" class="col-3">금액</th>
-          <th scope="col" class="col-2">신청 날짜</th>
+          <th scope="col" class="col-3">신청 날짜</th>
         </tr>
       </thead>
       <tbody>
@@ -45,10 +43,9 @@
         ?>
         <!-- 게시물 출력 -->
         <tr class="board_bd">
-          <td class="text-center"><?= $item -> sid; ?></td>
           <td class="text-center"><?= $item -> name; ?></td>
           <td class="text-center"><?= $item -> userid; ?></td>
-          <td class="text-center"><?= $item -> price; ?></td>
+          <td class="text-center number"><?= $item -> price; ?></td>
           <td class="text-center"><?= $item -> regdate; ?></td>
         </tr>
         <?php
@@ -93,6 +90,11 @@
     </nav>
   </form>
 </div>
+
+<script src="/attention/admin/js/jquery.number.min.js"></script>
+<script>
+  $('.number').number(true);
+</script>
 
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

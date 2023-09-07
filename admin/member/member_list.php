@@ -73,25 +73,25 @@
     <table class="table mt-4">
       <thead>
         <tr class="board_hd text1 text-center">
-          <th scope="col" class="col-1">No&#46;</th>
-          <th scope="col" class="col-5">이름</th>
-          <th scope="col" class="col-1">ID</th>
-          <th scope="col" class="col-3">EMAIL</th>
+          <th scope="col" class="col-2">이름</th>
+          <th scope="col" class="col-2">ID</th>
+          <th scope="col" class="col-5">EMAIL</th>
           <th scope="col" class="col-2">가입 날짜</th>
+          <th scope="col" class="col-1">상태</th>
         </tr>
       </thead>
       <tbody>
         <?php
           if(isset($rsc)){
-            foreach($rsc as $item){            
+            foreach($rsc as $item){
         ?>
         <!-- 게시물 출력 -->
         <tr class="board_bd">
-          <td class="text-center"><?= $item -> mid; ?></td>
           <td class="text-center"><?= $item -> username; ?></td>
           <td class="text-center"><?= $item -> userid; ?></td>
           <td class="text-center"><?= $item -> useremail; ?></td>
           <td class="text-center"><?= $item -> regdate; ?></td>
+          <td class="text-center"><?= $item -> status; ?></td>
         </tr>
         <?php
           }
