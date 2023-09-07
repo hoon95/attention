@@ -1,5 +1,9 @@
 <?php
   $title = '쿠폰 목록';
+	
+	$coup_css = '<link rel="stylesheet" href="/attention/admin/css/coup.css">';
+	$coup_ok_css =	'<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">';
+
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 	
@@ -69,17 +73,16 @@
 	
 
 ?>
-<link rel="stylesheet" href="/attention/admin/css/coup.css">
-<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">
+
 <h2 class="h1">쿠폰 관리</h2>
 	<!-- 쿠폰 셀렉 , 검색 , 등록 - 기서은 -->
 	<div class="d-flex align-items-center justify-content-between common_select_box">
 		<!--쿠폰 활성화 카테고리 선택   -->
 		<div class="common_select coupon_select">
 			<div class="d-flex align-items-center justify-content-between">
-				<select name="status" id="status"  aria-label="대기설정 변경">
+				<select name="status" id="status"  aria-label="대기설정 변경" multiple>
 					<option selected disabled>쿠폰 활성화 선택</option>
-					<option value="" <?php if(  $status=='') {echo "selected"; } ?> >전체 쿠폰</option>
+					<option value="#" <?php if(  $status=='') {echo "selected"; } ?> >전체 쿠폰</option>
 					<option value="활성화"  <?php if(  $status=='활성화') {echo "selected"; } ?> >활성된 쿠폰</option>
 					<option value="비활성화" <?php if(  $status=='비활성화') {echo "selected"; } ?> >비활성된 쿠폰</option>
 				</select>
@@ -92,7 +95,7 @@
 
 		<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
 		<div class="d-flex align-items-center justify-content-between coup_searchbox">
-			<form action="" id="search_form">
+			<form action="#" id="search_form">
 				<div class="seach">
 					<input type="text" name="search" id="search" class="form-control" placeholder="쿠폰명을 검색해주세요">
 					<button type="submit"><i class="bi bi-search icon_gray"></i></button>
@@ -101,7 +104,7 @@
 			<a href="coupon_up.php" class="btn btn-primary">쿠폰등록</a>
 		</div>
 		<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
-
+</h3>
 	</div>
 	<!-- /쿠폰 셀렉 , 검색 , 등록 - 기서은 -->
 	<p class="coup_count">
