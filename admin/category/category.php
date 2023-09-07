@@ -24,7 +24,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
     <!-- 카테고리 Select & Filter 영역(시작) -->
     <div>  
-      <form action="" class="d-flex justify-content-center">
+      <form class="d-flex justify-content-center">
         <div class="row cate_main"> 
           <!-- 대분류 출력 -->
           <div class="col mt-5 cate_section">
@@ -34,10 +34,10 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
               <div class="cate_filter d-flex flex-column" id="cate1_div" >
                 <?php foreach($cate1 as $c){ ?>
                   <div class="d-flex justify-content-between align-items-center pb-3">
-                    <option class="text1" value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
+                    <div class="text1" data-value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></div>
                     <div class="cate_icon d-flex">
-                      <dd><button type="button" value="<?php echo $c -> cid ?>" step="<?php echo $c -> step ?>" text="<?php echo $c -> name ?>" class="p-0 cate_modify"><i class="bi bi-pencil-square icon_mint"></i></button></dd>
-                      <dd><button type="button" value="<?php echo $c -> cid ?>" step="<?php echo $c -> step ?>" text="<?php echo $c -> name ?>" class="p-0 cate_delete"><i class="bi bi-trash-fill icon_red"></i></button></dd>
+                      <button type="button" value="<?php echo $c -> cid ?>" data-step="<?php echo $c -> step ?>" data-text="<?php echo $c -> name ?>" class="p-0 cate_modify"><i class="bi bi-pencil-square icon_mint"></i></button>
+                      <button type="button" value="<?php echo $c -> cid ?>" data-step="<?php echo $c -> step ?>" data-text="<?php echo $c -> name ?>" class="p-0 cate_delete"><i class="bi bi-trash-fill icon_red"></i></button>
                     </div>
                   </div>
                 <?php } ?>
@@ -46,7 +46,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
           </div>
           <!-- 대분류 선택 ▶ 중분류 출력(시작) -->
           <div class="col mt-5 cate_section">  
-            <select class="cate_large" name="" id="cate1">
+            <select class="cate_large" id="cate1">
               <option selected disabled>대분류</option>
               <!-- <option value="1">대분류1</option> -->
               <?php foreach($cate1 as $c){ ?>
@@ -64,7 +64,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
           <!-- 중분류 선택 ▶ 소분류 출력(시작) -->
           <div class="col mt-5 cate_section">  
-            <select class="" name="" id="cate2">
+            <select id="cate2">
               <option selected disabled>중분류</option>
               <!-- <option value="1">중분류1</option> -->
             </select>
@@ -81,7 +81,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
     </div>  <!-- 카테고리 Select & Filter 영역(끝) -->
 
     <div style="display: none;">
-      <select class="" name="" id="cate3">
+      <select id="cate3">
         <option selected disabled>소분류</option>
       </select>
 	  </div>
@@ -102,7 +102,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 </div>  <!-- class="container"(끝) --> 
 
 <!-- 수정 Modal 기능 -->
-<div class="modal fade" id="cateModifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="cateModifyModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -122,7 +122,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 </div>
 
 <!-- 대분류등록 Modal 기능(시작) -->
-<div class="modal fade" id="cate1Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="cate1Modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -142,7 +142,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 </div>  <!-- 대분류등록 Modal 기능(끝) -->
 
 <!-- 중분류등록 Modal 기능(시작) -->
-<div class="cate_css_modal" id="cate2Modal" >
+<div class="cate_css_modal">
   <div class="cate_modal_main">
     <h5 class="modal_title tt_03">중분류 등록</h5>
     <div class="modal_body">
@@ -154,7 +154,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
         }
       ?>
       <div class="row cate_modal_select">  
-        <select class="" name="" id="pcode2">
+        <select id="pcode2">
           <option selected disabled>대분류 먼저 선택하세요.</option>
           <!-- <option value="1">대분류1</option> -->
           <?php
@@ -182,7 +182,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
     <h5 class="modal_title tt_03">소분류 등록</h5>
     <div class="modal_body">
       <div class="col mt-5 cate_section">  
-        <select class="cate_large" name="" id="pcode2_1">
+        <select class="cate_large" id="pcode2_1">
           <option selected disabled>대분류 먼저 선택하세요.</option>
           <!-- <option value="1">대분류1</option> -->
           <?php foreach($cate1 as $c){ ?>
@@ -192,7 +192,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
       </div>
 
       <div class="row cate_modal_select">
-        <select class="" name="" id="pcode3">
+        <select id="pcode3">
           <option selected disabled>중분류 먼저 선택하세요.</option>
           <!-- <option value="1">중분류1</option> -->
         </select>
@@ -218,6 +218,11 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 <script>
   $(function(){
     $("select").selectmenu();
+  
+  //대분류 출력  
+    $("#cate1").on("selectcreate", function(event, ui) {
+		  makeOption($(this), 1, '대분류', $('#cate1'), $('#cate1_div'));  
+  	}); 
 
 	//대분류 선택 ▶ 중분류 출력 (jQueryUI Method)
     $("#cate1").on("selectmenuselect", function(event, ui) {
@@ -333,7 +338,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 	//카테고리 수정
     $(document).on("click", ".cate_modify", function() {
       var value = $(this).val();
-      var step = $(this).attr("step");
+      var step = $(this).attr("data-step");
       var step_names = ["", "대분류", "중분류", "소분류"];
       var step_name = step_names[step];
 
@@ -342,14 +347,14 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
       $("#cateModifyModal").modal("show");
       $("#cate_update_btn").attr("value", value);
-      $("#cate_update_btn").attr("step", step);
+      $("#cate_update_btn").attr("data-step", step);
       $("#cate_update_btn").attr("step_name", step_name);
     });
 
 	//카테고리 수정
     $("#cate_update_btn").on("click", function(event, ui) {
       var cid = $(this).val();
-      var step = $(this).attr("step");
+      var step = $(this).attr("data-step");
       var step_names = ["", "대분류", "중분류", "소분류"];
       var step_name = step_names[step];
       var cate_name = $("#cate_name").val();
@@ -372,14 +377,15 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
         url: "category_modify.php",
         success: function(result) {
           if(result == '1'){
-            alert("수정 완료되었습니다.");
+            alert("수정 완료되었습니다 :)");
             var new_step = parseInt(step)-1;
             makeOption($("#cate"+new_step), step, step_name, $('#cate'+ step), $('#cate'+step+'_div'));
+            location.reload();
           $("#cateModifyModal").modal("hide");
           } else if(result == 'duplicate'){
             alert("분류명이 이미 사용중 입니다.");
           } else{
-            alert("수정 실패!");
+            alert("수정 실패.. :(");
           }
         }
       });
@@ -388,11 +394,11 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
     // 카테고리 삭제
     $(document).on("click", ".cate_delete", function() {
       var value = $(this).val();
-      var step = $(this).attr("step");
-      var text = $(this).attr("text");
+      var step = $(this).attr("data-step");
+      var text = $(this).attr("data-text");
       var step_names = ["", "대분류", "중분류", "소분류"];
       var step_name = step_names[step];
-      var result = confirm(step_name + " " + text + "를(을) 정말 삭제하시겠습니까?");
+      var result = confirm(step_name + " " + text + "를(을) 정말 삭제하시겠습니까? :0");
 
       let data = { 
         value : value
@@ -406,11 +412,12 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
           url: "category_delete.php",
           success: function(result) {
             if(result == '1') {
-              alert("삭제되었습니다.");
+              alert("삭제되었습니다 :)");
               var new_step = parseInt(step)-1;
               makeOption($("#cate"+new_step), step, step_name, $('#cate'+ step), $('#cate'+step+'_div'));
+              location.reload();
             } else {
-              alert("삭제 실패!");
+              alert("삭제 실패.. :(");
             }
           }
         });  //ajax
@@ -431,13 +438,13 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
         console.log(result);
 
 			  if(result == '1'){
-          alert("등록 완료되었습니다.");
+          alert("등록 완료되었습니다 :)");
           location.reload();
 			  } else if(result == 'error'){
           alert("분류명이 이미 사용중 입니다.");
           cateModalCloseBtn.trigger('click');
         } else{
-				  alert("등록 실패!");
+				  alert("등록 실패.. :(");
 			  }
 		  }
 		});
@@ -479,8 +486,8 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 		  <dl class="d-flex justify-content-between align-items-center pb-3">
 			<dt class="text1">${selectedOptionText}</dt>
 			<div class="cate_icon d-flex">
-			  <dd><button type="button" value="${selectedOptionValue}" step="${step}" text="${selectedOptionText}" class="p-0 cate_modify"><i class="bi bi-pencil-square icon_mint"></i></button></dd>
-			  <dd><button type="button" value="${selectedOptionValue}" step="${step}" text="${selectedOptionText}" class="p-0 cate_delete"><i class="bi bi-trash-fill icon_red"></i></button></dd>
+			  <button type="button" value="${selectedOptionValue}" data-step="${step}" data-text="${selectedOptionText}" class="p-0 cate_modify"><i class="bi bi-pencil-square icon_mint"></i></button>
+			  <button type="button" value="${selectedOptionValue}" data-step="${step}" data-text="${selectedOptionText}" class="p-0 cate_delete"><i class="bi bi-trash-fill icon_red"></i></button>
 			</div>
 		  </dl>
 		`;

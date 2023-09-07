@@ -1,4 +1,5 @@
 <?php
+  $title = '공지사항 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
@@ -27,30 +28,21 @@ integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJ
 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <div class="notice_view common_pd">
-  <h2 class="tt_01 text-center">게시물 상세보기</h2>
-
-  <table class="mt-5">
+  <h2 class="tt_01 text-center">공지사항</h2>
+  <div class="d-flex justify-content-end mt-5">
+    <div class="d-flex align-items-center">
+      <p class="text1 me-2">작성일</p>
+      <span class="me-5"><?= $rs2->regdate; ?></span>
+    </div>
+    <div class="d-flex align-items-center">
+      <p class="text1 me-2">조회수</p>
+      <span class="me-5"><?= $rs2->hit; ?></span>
+    </div>
+  </div>
+  <table>
     <tbody>
-      <tr>
-        <th scope="row" class="tt_03">작성일</th>
-        <td>
-          <div class="board_bd">
-            <?= $rs2->regdate; ?>
-          </div>
-        </td>
-      </tr>
-
       <tr class="space">
-        <th scope="row" class="tt_03">조회수</th>
-        <td>
-          <div class="board_bd">
-            <?= $rs2->hit; ?>
-          </div>
-        </td>
-      </tr>
-
-      <tr class="space">
-        <th scope="row" class="tt_03">
+        <th scope="row" class="text1">
           제목
         </th>
         <td>
@@ -59,9 +51,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
           </div>
         </td>
       </tr>
-
       <tr class="space view_bd">
-        <th scope="row" class="tt_03">내용</th>
+        <th scope="row" class="text1">내용</th>
         <td>
           <div class="board_bd">
             <?= $rs2->content; ?>
@@ -69,17 +60,25 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         </td>
       </tr>
       <tr class="space">
-        <th scope="row" class="tt_03">첨부파일</th>
+        <th scope="row" class="text1">첨부파일</th>
         <td class="board_bd">
           <div class="box">
             <?php
-              $fileExt = pathinfo($rs2->file, PATHINFO_EXTENSION); //파일 확장자 가져오기
+              // 파일 경로 가져오기
+              $filePath =$rs2->file;
 
-              //in_array: 값이 배열 안에 존재하는지 확인
-              if (in_array($fileExt, ['jpg','jpeg','png','gif','svg','webp'])) {
-                echo '<img src="'.$rs2->file.'" alt="">'; //이미지 파일인 경우
-              } else {
-                echo $rs2->file; //이미지 파일이 아닌 경우
+              if (strlen($filePath) > 0) {
+                $fileName = basename($filePath); // 파일명만 추출
+                $fileExt = pathinfo($filePath, PATHINFO_EXTENSION); // 파일 확장자 가져오기
+
+                // in_array: 값이 배열 안에 존재하는지 확인
+                if (in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'])) {
+                  echo '<img src="'.$filePath.'" alt="">'; // 이미지 파일인 경우
+                  echo '<a href="'.$filePath.'" download class="d-flex align-items-center mt-2">'.$fileName.'<i class="bi bi-download ms-2"></i></a>';
+                } else {
+                  // 이미지 파일이 아닌 경우 파일을 다운로드할 수 있는 링크 생성
+                  echo '<a href="'.$filePath.'" download>'.$fileName.'<i class="bi bi-download ms-2"></i></a>';
+                }
               }
             ?>
           </div>
@@ -91,7 +90,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <a href="/attention/admin/notice/notice_modify.php?idx=<?= $rs2 -> idx; ?>" class="btn btn-primary mx-4">글 수정</a>
     <button type="button" class="btn btn-dark close_btn">닫기</button>
   </div>
-
 </div> <!-- /notice_write -->
 
 <script>

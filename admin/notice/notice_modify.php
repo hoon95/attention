@@ -1,4 +1,5 @@
 <?php
+  $title = '공지사항 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
@@ -7,8 +8,6 @@
   $sql = "SELECT * FROM notice WHERE idx='{$idx}'";
   $result = $mysqli -> query($sql);
   $rs = $result -> fetch_object();
-
-  // var_dump($rs);
 ?>
 
 <!-- include summernote css/js -->
@@ -64,7 +63,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   $('.close_btn').click(function(e){
     e.preventDefault();
-    if (confirm('수정 취소하시겠습니까?')){
+    if (confirm('수정 취소하시겠습니까? :0')){
       history.back();
     }
   });

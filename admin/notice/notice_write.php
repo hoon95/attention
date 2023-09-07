@@ -1,4 +1,5 @@
 <?php
+  $title = '공지사항 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 ?>
@@ -6,7 +7,7 @@
 <!-- include summernote css/js -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css"
 integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ=="
-crossorigin="anonymous" referrerpolicy="no-referrer" />
+crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="/attention/admin/css/notice.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"
 integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ=="
@@ -41,7 +42,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </table>
     <div class="mt-4 text-end">
       <button type="submit" class="btn btn-primary mx-4">등록</button>
-      <!-- <a href="/attention/admin/notice/notice.php" class="btn btn-dark close_btn">닫기</a> -->
       <button type="button" class="btn btn-dark close_btn">닫기</button>
     </div>
   </form>
@@ -56,7 +56,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   $('.close_btn').click(function(e){
     e.preventDefault();
-    if (confirm('작성 취소하시겠습니까?')){
+    if (confirm('등록 취소하시겠습니까? :0')){
       history.back();
     }
   });

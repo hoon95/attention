@@ -11,7 +11,7 @@
   margin-right: 94px;
   width: 178px;
   height: 122px;
-  object-fit: contain;
+  object-fit: cover;
 }
 .class_bold{
   font-weight: 700;
@@ -48,5 +48,7 @@
 }
 .class_view_img img{
   margin-right: 40px;
+  width: 162px;
   height: 108px;
+  object-fit: cover;
 }

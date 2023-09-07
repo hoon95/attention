@@ -64,7 +64,7 @@ if(isset($_FILES['thumbnail']['name'])){
         $thumbnail = "/attention/pdata/class/".$thumbnail;
       } else{
         echo "<script>
-          alert('파일 첨부 실패!');    
+          alert('파일 첨부 실패.. :(');    
           history.back();            
         </script>";
       }
@@ -92,13 +92,13 @@ if($result){ //상품이 등록되면
   }
 
   echo "<script>
-          alert('작성 완료되었습니다.');
+          alert('등록 완료되었습니다 :)');
           location.href ='/attention/admin/class/class_list.php';
           </script>";
  } else {
 
 echo "<script>
-          alert('작성 실패!');
+          alert('등록 실패.. :(');
           history.back();
           </script>";
          

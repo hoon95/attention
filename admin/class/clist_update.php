@@ -23,4 +23,3 @@ if ($result->execute()){
 
 $result->close();
 $mysqli->close();
-?>

@@ -30,7 +30,7 @@
   $savefile = $newfilename.".".$ext; //20238171184015.jpg
 
   if(move_uploaded_file($_FILES['savefile']['tmp_name'], $save_dir.$savefile)){
-    $sql = "INSERT INTO class_image_table (userid, filename) VALUES ('admin', '{$savefile}')";//admin ->{$_SESSION['AUID']} login 연결 시 바꿀 껏
+    $sql = "INSERT INTO class_image_table (userid, filename) VALUES ('admin', '{$savefile}')";
     $result = $mysqli->query($sql);
 
     if($result){
