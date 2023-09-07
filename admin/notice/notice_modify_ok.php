@@ -8,7 +8,7 @@
   $title = $_POST['title'];
   $content = $_POST['content'];
   $regdate = date('Y-m-d');
-  $filename = '';
+  $notice_file = '';
 
   if($_FILES['file']['name']){
     //파일 사이즈 검사
@@ -39,7 +39,7 @@
   }
 
   $sql = "UPDATE notice SET 
-  title='{$title}', content='{$content}', regdate='{$regdate}', file='{$filename}'
+  title='{$title}', content='{$content}', regdate=now(), file='{$notice_file}'
   WHERE idx='{$idx}'";
 
   if($mysqli->query($sql) === true){

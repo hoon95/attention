@@ -63,7 +63,7 @@ if(!isset($_SESSION['AUID'])){
   }
 
   $sql3 ="UPDATE class SET name='{$name}', content='{$content}', thumbnail='{$thumbnail_file}', price='{$price}', price_val='{$price_val}', level='{$level}', video='{$video}', sale_end_date='{$sale_end_date}', date_val={$date_val}, status={$status}, file_table_id='{$file_table_id}' WHERE pid='{$pid}'";
-var_dump($sql3);
+
 //   if ($mysqli->query($sql) === TRUE) {
 //     echo "<script>
 //     alert('수정 완료되었습니다 :)');

@@ -60,81 +60,80 @@
 
 <div class="member">
   <h2 class="tt_01 text-center">회원 목록</h2>
-    <div class="d-flex justify-content-end">   
-      <form action="" id="search_form">
-        <div class="seach mx-4 d-flex">
-          <input type="text" name="search" id="search" class="form-control" placeholder="이름 및 아이디 입력">
-          <button type="submit"><i class="bi bi-search icon_gray"></i></button>
-        </div>
-      </form>
+    <div class="d-flex justify-content-end">
+        <form action="member_list.php" id="search_form">
+          <div class="seach mx-4 d-flex">
+            <input type="text" name="search" id="search" class="form-control" placeholder="이름 및 아이디 입력">
+            <button type="submit"><i class="bi bi-search icon_gray"></i></button>
+          </div>
+        </form>
     </div>
 
-  <form action="">
-    <table class="table mt-4">
-      <thead>
-        <tr class="board_hd text1 text-center">
-          <th scope="col" class="col-2">이름</th>
-          <th scope="col" class="col-2">ID</th>
-          <th scope="col" class="col-5">EMAIL</th>
-          <th scope="col" class="col-2">가입 날짜</th>
-          <th scope="col" class="col-1">상태</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-          if(isset($rsc)){
-            foreach($rsc as $item){
-        ?>
-        <!-- 게시물 출력 -->
-        <tr class="board_bd">
-          <td class="text-center"><?= $item -> username; ?></td>
-          <td class="text-center"><?= $item -> userid; ?></td>
-          <td class="text-center"><?= $item -> useremail; ?></td>
-          <td class="text-center"><?= $item -> regdate; ?></td>
-          <td class="text-center"><?= $item -> status; ?></td>
-        </tr>
-        <?php
-          }
-        } else {    
-        ?>  
-        <tr>
-          <td colspan="12" class="text-center board_bd">조회 결과가 없습니다.</td>
-        </tr>
-        <?php
-          }  
-        ?>
-      </tbody>
-    </table>
-
-    <nav aria-label="페이지네이션" class="space">
-      <ul class="pagination justify-content-center align-items-center">
-        <?php
-          if($pageNumber>1){                   
-            echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?pageNumber=1&search={$search}\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
-              if($block_num > 1){
-                  $prev = ($block_num - 2) * $block_ct + 1;
-                  echo "<li class=\"page-item\"><a href='?pageNumber={$prev}&search={$search}' class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
+    <form action="member_list.php">
+      <table class="table mt-4">
+        <thead>
+          <tr class="board_hd text1 text-center">
+            <th scope="col" class="col-2">이름</th>
+            <th scope="col" class="col-2">ID</th>
+            <th scope="col" class="col-5">EMAIL</th>
+            <th scope="col" class="col-2">가입 날짜</th>
+            <th scope="col" class="col-1">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            if(isset($rsc)){
+              foreach($rsc as $item){
+          ?>
+          <!-- 게시물 출력 -->
+          <tr class="board_bd">
+            <td class="text-center"><?= $item -> username; ?></td>
+            <td class="text-center"><?= $item -> userid; ?></td>
+            <td class="text-center"><?= $item -> useremail; ?></td>
+            <td class="text-center"><?= $item -> regdate; ?></td>
+            <td class="text-center"><?= $item -> status; ?></td>
+          </tr>
+          <?php
+            }
+          } else {    
+          ?>  
+          <tr>
+            <td colspan="12" class="text-center board_bd">조회 결과가 없습니다.</td>
+          </tr>
+          <?php
+            }  
+          ?>
+        </tbody>
+      </table>
+  
+      <nav aria-label="페이지네이션" class="space">
+        <ul class="pagination justify-content-center align-items-center">
+          <?php
+            if($pageNumber>1){                   
+              echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?pageNumber=1&search={$search}\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
+                if($block_num > 1){
+                    $prev = ($block_num - 2) * $block_ct + 1;
+                    echo "<li class=\"page-item\"><a href='?pageNumber={$prev}&search={$search}' class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
+                }
+            }
+            for($i=$block_start;$i<=$block_end;$i++){
+              if($pageNumber == $i){
+                  echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?pageNumber={$i}\" class=\"page-link\">{$i}</a></li>";
+              }else{
+                  echo "<li class=\"page-item\"><a href=\"?pageNumber={$i}&search={$search}\" class=\"page-link\">{$i}</a></li>";
               }
-          }
-          for($i=$block_start;$i<=$block_end;$i++){
-            if($pageNumber == $i){
-                echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?pageNumber={$i}\" class=\"page-link\">{$i}</a></li>";
-            }else{
-                echo "<li class=\"page-item\"><a href=\"?pageNumber={$i}&search={$search}\" class=\"page-link\">{$i}</a></li>";
             }
-          }
-          if($pageNumber<$total_page){
-            if($total_block > $block_num){
-                $next = $block_num * $block_ct + 1;
-                echo "<li class=\"page-item\"><a href=\"?pageNumber={$next}&search={$search}\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
+            if($pageNumber<$total_page){
+              if($total_block > $block_num){
+                  $next = $block_num * $block_ct + 1;
+                  echo "<li class=\"page-item\"><a href=\"?pageNumber={$next}&search={$search}\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
+              }
+              echo "<li class=\"page-item\"><a href=\"?pageNumber={$total_page}&search={$search}\" class=\"page-link\"><i class=\"bi bi-chevron-double-right icon_gray\"></i></a></li>";
             }
-            echo "<li class=\"page-item\"><a href=\"?pageNumber={$total_page}&search={$search}\" class=\"page-link\"><i class=\"bi bi-chevron-double-right icon_gray\"></i></a></li>";
-          }
-        ?>  
-      </ul>
-    </nav>
-
-  </form>
+          ?>  
+        </ul>
+      </nav>
+    </form>
 </div>
 
 

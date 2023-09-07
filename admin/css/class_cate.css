@@ -80,8 +80,10 @@ div.modal-body {--bs-modal-padding: 0;}
 }
 .cate_modal_select {margin: 0 auto; font-weight: 400;}
 #pcode2-button, #pcode2_1-button, #pcode3-button {
-  margin: 0 auto; text-align: left; 
-  color: var(--gray); font-weight: 400;
+  margin: 0 auto; 
+  text-align: left; 
+  color: var(--dark-gray); 
+  font-weight: 700;
 }
 #pcode3-button {margin-top: calc(var(--base-unit) * 0.5);}
 .cate_modal_input {margin-top: calc(var(--base-unit) * 0.5);}
@@ -90,24 +92,3 @@ div.modal-body {--bs-modal-padding: 0;}
   display: flex; justify-content: flex-end;
 }
 .modal_footer .cate_modal_reg {margin-right: calc(var(--base-unit) * 0.5);}
-
-
-/* 카데고리 페이지 반응형 */
-@media screen and (max-width: 1450px){
-  .aside ul {display: flex; flex-direction: column; justify-content: center;}
-  .aside li > a {font-size: 22px; letter-spacing: -0.5px;}
-  .aside li i.bi {font-size: 22px;}
-  .aside .logo img {width: 80%;}
-}
-@media screen and (max-width: 1320px){
-  .aside li > a, .aside li i.bi {font-size: var(--text1-size);}  
-}
-@media screen and (max-width: 1225px){
-  .aside li > a, .aside li i.bi {font-size: var(--text2-size);}
-}
-@media screen and (max-width: 1130px){
-  .aside li i.bi {display: none;}
-}
-@media screen and (max-width: 810px){
-  .aside li > a {font-size: var(--text3-size);}
-}
