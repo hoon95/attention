@@ -96,3 +96,6 @@
   color: var(--dark-gray);
   font-weight: 700;
 }
+.cate_gap{
+  gap: 24px;
+}
