@@ -1,5 +1,5 @@
 <?php
-  $sales = '<link rel="stylesheet" href="/attention/admin/css/sales.css">';
+  $sales_css = '<link rel="stylesheet" href="/attention/admin/css/sales.css">';
   $title = '매출 관리 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';

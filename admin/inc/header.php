@@ -35,9 +35,6 @@
     if(isset($coup_css)){
       echo $coup_css;
     }
-    if(isset($index_css)){
-      echo $index_css;
-    }
     if(isset($login_css)){
       echo $login_css;
     }
@@ -52,6 +49,9 @@
     }
     if(isset($flatpickr_min_css)){
       echo $flatpickr_min_css;
+    }
+    if(isset($index_css)){
+      echo $index_css;
     }
     if(isset($summernote_min_css)){
       echo $summernote_css;
