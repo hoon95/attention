@@ -20,6 +20,9 @@
     if(isset($category_css)){
       echo $category_css;
     }
+    if(isset($class_cate_css)){
+      echo $class_cate_css;
+    }
     if(isset($class_list_css)){
       echo $class_list_css;
     }

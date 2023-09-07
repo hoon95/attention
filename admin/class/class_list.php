@@ -1,5 +1,5 @@
 <?php
-  $category_css = '<link rel="stylesheet" href="/attention/admin/css/category.css">';
+  $class_cate_css = '<link rel="stylesheet" href="/attention/admin/css/class_cate.css">';
   $class_list_css = '<link rel="stylesheet" href="/attention/admin/css/class_list.css">';
   $title = '강좌리스트 - Code Rabbit';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
