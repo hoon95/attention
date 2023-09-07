@@ -37,7 +37,7 @@ while($rs2 = $clipresult -> fetch_object()){
 
 <div class="common_pd">
   <div>
-  <p class="tt_01 class_ss_mt class_m_pd text-center">강좌상세보기</p>
+  <p class="tt_01 class_m_pd text-center">강좌상세보기</p>
   <div class="d-flex d-flex align-items-center">
     <div class="d-flex align-items-center">
       <img src="<?php echo $rs->thumbnail ?>" alt="" class="class_v_img ">

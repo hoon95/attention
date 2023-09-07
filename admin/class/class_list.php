@@ -45,7 +45,7 @@
     $rc[] = $rs;
   }  
   ?>
-<p class="tt_01 class_ss_mt class_m_pd text-center">강좌리스트</p>
+<p class="tt_01 class_m_pd text-center">강좌리스트</p>
   <!-- 카테고리 관리 & 검색 form 시작 -->
   <form>
     <div class="d-flex justify-content-between class_sm_m">
