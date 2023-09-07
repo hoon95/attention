@@ -6,6 +6,15 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
   
+  $cates1 = $_GET['cate1'] ?? '';
+  $cate2 = $_GET['cate2'] ?? '';
+  $cate3 = $_GET['cate3'] ?? '';
+  $cates = $cates1.$cate2.$cate3;
+ 
+  if($cates){
+    $search_where .= " and cate like '{$cates}%'";
+  }
+
   $query0 = "SELECT * FROM category WHERE step=1";
   $result0 = $mysqli -> query($query0);
   while($rs0 = $result0 -> fetch_object()){
@@ -48,7 +57,7 @@
       <span>
         <span class="select cate_section">
           <select name="select" class="select_from cate_large" id="pcode2_1"> 
-            <option selected disabled>대분류</option>
+            <option selected disabled dark_gray>대분류</option>
             <?php foreach($cate1 as $c){ ?>
               <option value="<?php echo $c -> cid; ?>"><?php echo $c -> name; ?></option>
             <?php } ?>
@@ -56,12 +65,12 @@
         </span>
         <span class="select class_ss_ml cate_section">
           <select name="select" class="select_from" id="pcode3">
-            <option selected disabled>중분류</option>
+            <option selected disabled dark_gray>중분류</option>
           </select>
         </span>
         <span class="select class_ss_ml cate_section">
           <select name="select" class="select_from" id="pcode3_1">
-            <option selected disabled>소분류</option>
+            <option selected disabled dark_gray>소분류</option>
           </select>
         </span>
       </span>

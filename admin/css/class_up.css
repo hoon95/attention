@@ -146,5 +146,5 @@ input:-internal-autofill-selected {
   background-color: var(--white);
 }
 #pcode3_1-button 
-{font-weight: 400; color: var(--gray);
+{font-weight: 400; 
 } 

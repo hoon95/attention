@@ -78,7 +78,7 @@ div.modal-body {--bs-modal-padding: 0;}
 .cate_modal_select {margin: 0 auto; font-weight: 400;}
 #pcode2-button, #pcode2_1-button, #pcode3-button {
   margin: 0 auto; text-align: left; 
-  color: var(--gray); font-weight: 400;
+  color: var(--dark-Gray); font-weight: 400;
 }
 #pcode3-button {margin-top: calc(var(--base-unit) * 0.5);}
 .cate_modal_input {margin-top: calc(var(--base-unit) * 0.5);}
