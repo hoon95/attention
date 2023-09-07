@@ -62,7 +62,7 @@
       $coupon_image = "/attention/pdata/coupon/".$coupon_image;
     } else{
       echo "<script>
-        alert('이미지등록 실패!');    
+        alert('등록 실패.. :(');    
         history.back();            
       </script>";
     }
@@ -82,7 +82,7 @@
   
     if($result){
       echo "<script>
-      alert('수정 성공');
+      alert('수정 완료되었습니다 :)');
       location.href='coupon_list.php';
       </script>";
     } 
@@ -90,7 +90,7 @@
   } catch (Exception $e) {
     $mysqli->rollback();//저장한 테이블이 있다면 롤백한다.
       echo "<script>
-      alert('수정 실패');
+      alert('수정 실패.. :(');
       // history.back();
       </script>";
   }  
@@ -114,7 +114,7 @@
     
       if($result){
         echo "<script>
-        alert('수정 성공');
+        alert('수정 완료되었습니다 :)');
         location.href='coupon_list.php';
         </script>";
       } 
@@ -122,7 +122,7 @@
     } catch (Exception $e) {
       $mysqli->rollback();//저장한 테이블이 있다면 롤백한다.
         echo "<script>
-        alert('수정 실패');
+        alert('수정 실패.. :(');
         // history.back();
         </script>";
     }  

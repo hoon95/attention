@@ -9,15 +9,15 @@
 
   if ($mysqli->query($sql) === TRUE) {
     echo "<script>
-      var confirmation = confirm('정말 삭제할 것입니까?');
+      var confirmation = confirm('정말 삭제하시겠습니까? :0');
       if (confirmation) {
-        alert('삭제되었습니다.');
+        alert('삭제되었습니다 :).');
         location.href='coupon_list.php';
       } 
     </script>";
 } else{
   "<script>
-    alert('삭제가 취소되었습니다.');
+    alert('삭제 취소했습니다 :)');
       history.back();  
   </script>";
 }

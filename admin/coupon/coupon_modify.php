@@ -74,9 +74,9 @@
 	<script>
 	let coupclose = $(".coup_close");
 	coupclose.on("click", function() {
-		var confirmation = confirm('쿠폰 수정을 취소하겠습니까?');
+		var confirmation = confirm('수정 취소하시겠습니까? :0');
 		if (confirmation) {
-			alert('쿠폰 수정 취소되었습니다.');
+			alert('수정 취소되었습니다 :)');
 			location.href='coupon_list.php';
 		} 
 	})
