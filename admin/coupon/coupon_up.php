@@ -16,9 +16,9 @@
 				<tr class="space">
 					<th class="tt_03">첨부파일</th>
 					<td class="d-flex align-items-end coup_thumbnail_box">
-						<div class="coup_thumbnail" id="file_table_id"  value="" >
+						<div class="coup_thumbnail" id="file_table_id"  >
 						</div>
-						<input type="file" class="coup_hidden" name="coupon_image" id="coupon_image" value="" required>
+						<input type="file" class="coup_hidden" name="coupon_image" id="coupon_image" required>
 						<button type="button" class="btn btn-secondary coup_img">첨부파일</button>
 					</td>
 				</tr>

@@ -30,7 +30,7 @@
 					<tr class="space">
 						<th class="tt_03">첨부파일</th>
 						<td class="d-flex align-items-end coup_thumbnail_box">
-							<div class="coup_thumbnail" id="file_table_id"  value="" >
+							<div class="coup_thumbnail" id="file_table_id">
 								<div class="thumb">
 									<img src="<?= $rs-> coupon_image ?>" alt="">
 								</div>
