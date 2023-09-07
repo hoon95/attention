@@ -1,18 +1,15 @@
-.aside{
-  max-height: none;
-}
 .table{
-  border-radius: 12px;
   padding: 0;
   margin: 0;
 }
 .table>:not(caption)>*>*{
-  padding: 6px 0.5rem ;
+  padding: 0;
 }
 .class_table tr{
-  border-radius: 12px;
   box-shadow: 4px 5px 17px 0px rgba(0, 0, 0, 0.15);
   margin-bottom: 7px;
+  padding: 0 26px 0 39px;
+  border-radius: 12px;
 }
 .form-control{
   display: inline-block;
@@ -21,26 +18,35 @@
 .class_ss_mt{
   margin-top: 10px;
 }
+.class_m_mt{
+  margin-top: 20px;
+}
+.class_ss_mb{
+  margin-bottom: 10px;
+}
 .class_sm_m{
   margin-bottom: 20px;
+}
+.class_ss_bb{
+  margin-bottom: 36px;
 }
 .class_ss_ml{
   margin-left: 15.75px;
 }
-.class_ssm_ml{
-  margin-left: 20px;
+.class_s_mr{
+  margin-right: 14px;
 }
-.class_sm_ml{
-  margin-left: 24px;
+.class_b_mr{
+  margin-right: 44px;
 }
 .class_sm_mtb{
-  margin: 20px 0 20px 48px;
+  padding: 20px 0 20px 48px;
+}
+.class_mtb{
+  padding: 20px 0 20px;
 }
 .class_m_pd{
   padding-bottom: 40px;
-}
-.class_list_img{
-  margin-left: 39px;
 }
 .class_list_img img{
   display: inline-block;
@@ -60,9 +66,6 @@
 .class_date_tag{
   margin-left: 8px;
 }
-.class_button{
-  margin: 14px 18px 14px 0;
-}
 .class_button>div:first-child{
   margin-bottom: 31px;
 }
@@ -76,7 +79,20 @@
 }
 .class_list_item{
   cursor: pointer;
+  
 }
 .class_list_item img{
-  height: 108px;
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+}
+#pcode3-button {
+  margin-top: 0;
+}
+.ui-selectmenu-text{
+  text-align: center;
+}
+#pcode3_1-button{
+  color: var(--dark-gray);
+  font-weight: 700;
 }

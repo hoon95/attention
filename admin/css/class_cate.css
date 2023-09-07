@@ -1,0 +1,94 @@
+/* Header */
+.profile {text-align: right;}
+div.logo {height: 83px;}
+
+/* Category Main body area */
+.cate_main {width: 100%;}
+.cate_section {text-align: center;}
+.cate_field {
+  padding: var(--base-unit) calc(var(--base-unit) * 1.2);  /* 20px 24px */
+  height: calc(var(--base-unit) * 23);
+  border: var(--bs-border-width) solid var(--gray);
+  overflow: auto;
+}
+.cate_filter dt {line-height: calc(var(--base-unit) * 1.2);}
+.cate_icon button {height: calc(var(--base-unit) * 1.2);}
+.cate_icon .cate_modify {margin-right: calc(var(--base-unit) * 0.8);}
+.btns {margin: calc(var(--base-unit) * 2) auto;}
+.cate_close {margin-bottom: calc(var(--base-unit) * 2);}
+.select_none {height: calc(var(--base-unit) * 2);}
+.text1 {line-height: calc(var(--base-unit) * 1.2); padding-bottom: 0;}
+
+/* Category Modal Common */
+div.modal {
+  margin: 0 auto;
+  background-color: rgba(37,42,56,.8);
+  --bs-modal-footer-border-color: none;
+}
+
+/* Only 대분류등록 Modal (⊃ Bootstrap) */
+.modal.show .modal-dialog {
+  display: inline-block; width: 20vw; margin: 0; position: fixed;
+  left: calc(50% - 10vw); top: calc(50% - 20vh);
+}
+.modal-header {
+  justify-content: center; border-bottom: none; 
+  --bs-modal-header-padding: 0; 
+  margin: calc(var(--base-unit) * 2) auto calc(var(--base-unit) * 1.2); 
+}
+div.modal-body {--bs-modal-padding: 0;}
+.cate_modal_input {width: 86%; margin: 0 auto;}
+.modal-footer {
+  padding: 0; 
+  margin: calc(var(--base-unit) * 1.8) 7% calc(var(--base-unit) * 2) 0;
+}
+.modal-footer button {margin: 0;}
+.modal-footer button.cate_modal_reg {margin-right: calc(var(--base-unit) * 0.5);}
+
+/* 중분류 & 소분류 등록 Modal (⊃ almost CSS)*/
+.cate_css_modal {
+  position: fixed; width: 100%; height: 100%; top: 0; left: 0;
+  background-color: rgba(37, 42, 56, .8);
+  visibility: hidden;
+  opacity: 0; 
+  transform: translate(0, -50px);
+  transition: opacity .15s linear, transform .3s ease-out;
+}
+.cate_css_modal.visible {
+  opacity: 1; 
+  visibility: visible;
+  transform: none;
+}
+.cate_modal_main {
+  background-color: #fff; display: inline-block; width: 20vw; 
+  border: 2px solid rgba(0, 0, 0, 0.175); border-radius: 8px;
+  background-clip: padding-box;
+  position: relative; 
+  left: calc(50% - 10vw); 
+  top: calc(50% - 15vh);
+  transform: translate(0, -50px);
+  transition: transform .3s ease-out;
+}
+.cate_modal_main.visible {
+  visibility: visible;
+  transform: none;
+}
+
+.modal_title {
+  margin: calc(var(--base-unit) * 2) auto calc(var(--base-unit) * 1.2); 
+  text-align: center;
+}
+.cate_modal_select {margin: 0 auto; font-weight: 400;}
+#pcode2-button, #pcode2_1-button, #pcode3-button {
+  margin: 0 auto; 
+  text-align: left; 
+  color: var(--dark-gray); 
+  font-weight: 700;
+}
+#pcode3-button {margin-top: calc(var(--base-unit) * 0.5);}
+.cate_modal_input {margin-top: calc(var(--base-unit) * 0.5);}
+.modal_footer {
+  margin: calc(var(--base-unit) * 1.8) 7% calc(var(--base-unit) * 2) 0; 
+  display: flex; justify-content: flex-end;
+}
+.modal_footer .cate_modal_reg {margin-right: calc(var(--base-unit) * 0.5);}

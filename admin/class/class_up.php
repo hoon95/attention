@@ -1,9 +1,18 @@
 <?php
+$class_cate_css = '<link rel="stylesheet" href="/attention/admin/css/class_cate.css">';
+$class_up_css = '<link rel="stylesheet" href="/attention/admin/css/class_up.css">';
+$title = '강좌 등록 - Code Rabbit';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
+$query0 = "SELECT * FROM category WHERE step=1";
+$result0 = $mysqli -> query($query0);
+while($rs0 = $result0 -> fetch_object()){
+  $cate1[] = $rs0;
+}
 ?>
-<link rel="stylesheet" href="/attention/admin/css/class_up.css">
+
+
 <div class="common_pd">
           <p class="tt_01 class_ss_mt class_m_pd text-center">강좌 등록</p>
           <form action="class_ok.php" method="POST" id="class_form" enctype="multipart/form-data">
@@ -14,24 +23,24 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                 <tr class="class_ss_mb">
                   <th class="tt_03">카테고리</th>
                   <td>
-                    <span class="select">
-                      <select name="select" class="select_from">
-                        <option selected disabled>대분류</option>
-                        <!-- <option value="1">대분류</option> -->
-                      </select>
-                    </span>
-                    <span class="select class_ss_ml">
-                      <select name="select" class="select_from">
-                        <option selected disabled>중분류</option>
-                        <!-- <option value="1">중분류</option> -->
-                      </select>
-                    </span>
-                    <span class="select class_ss_ml">
-                      <select name="select" class="select_from">
-                        <option selected disabled>소분류</option>
-                        <!-- <option value="1">소분류</option> -->
-                      </select>
-                    </span>
+                  <span class="select cate_section">
+                    <select name="cate1" class="select_from cate_large" id="pcode2_1" require> 
+                      <option selected disabled>대분류</option>
+                      <?php foreach($cate1 as $c){ ?>
+                        <option value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
+                      <?php } ?>
+                    </select>
+                  </span>
+                  <span class="select class_ss_ml cate_section">
+                    <select name="cate2" class="select_from" id="pcode3">
+                      <option selected disabled>중분류</option>
+                    </select>
+                  </span>
+                  <span class="select class_ss_ml cate_section">
+                    <select name="cate3" class="select_from" id="pcode3_1">
+                      <option selected disabled>소분류</option>
+                    </select>
+                  </span>
                   </td>
                 </tr>
                 <tr>
@@ -84,17 +93,17 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                     <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
                   </td>
                 </tr>
-                <!-- <tr>
+                <tr>
                   <th class="tt_03">강좌영상</th>
                   <td class="class_video">
                     <div class="video_wrap">
                       <div class="video_address">
-                        <input type="text" class="form-control class_lform_wd" placeholder="동영상 주소를 입력하세요" name="video[]">
+                        <input type="text" class="form-control class_lform_wd video white_back" placeholder="동영상 주소를 입력하세요" name="video[]">
                       </div>
                       <button type="button" id="video_add"><i class="bi bi-plus-circle icon_gray"></i></button>
                     </div>
                   </td>
-                </tr> -->
+                </tr>
                 <tr>
                   <th class="tt_03">공개 여부</th>
                   <td>
@@ -130,15 +139,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   <td>
                     <div class="drop form-control d-flex justify-content-center align-items-center gray" id="drag_drop">
                       <span class="text3"><i class="bi bi-upload icon_gray"></i>이곳에 파일을 첨부하세요</span>
-                      <div id="add_images" class="d-flex justify-content-start">
-                        <!-- <div class="thumb">
-                          <img src="" alt="">
-                          <button type="button" data-idx="" class="close"><i class="bi bi-trash-fill icon_red"></i></button>
-                        </div>
-                        <div class="thumb">
-                          <img src="" alt="">
-                          <button type="button" data-idx="" class="close"><i class="bi bi-trash-fill icon_red"></i></button>
-                        </div> -->
+                      <div id="add_images" class="d-flex justify-content-start flex-wrap">
                       </div>
                     </div>
                   </td>
@@ -153,13 +154,85 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           </form>
     </div>
     <script>
-      $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나면 할일 ok  //버튼클릭으로 이벤트잡는거 x 
+      $('#class_form').submit(function () {
         let content_str = $('#class_intro').summernote('code');
         let content = encodeURIComponent(content_str);
         $('#content').val(content);
+      });
+
+      //카테고리 시작
+      $(function(){
+    $("select").selectmenu();
+      $("select#pcode2_1").on("selectmenuchange", function(event, ui){
+      $('#pcode2_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+    $("select#pcode3").on("selectmenuchange", function(event, ui){
+      $('#pcode3-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+    $("select#pcode3_1").on("selectmenuchange", function(event, ui){
+      $('#pcode3_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+  
+    $("#pcode2_1").on("selectmenuselect", function(event, ui) {
+      let data = { 
+        cate : $("#pcode2_1").val(),
+        step : 2,
+        category : '중분류'  
+      }
+
+      $.ajax({
+        async: false,
+        type: 'post',
+        data: data,
+        url: "../category/printOption.php",
+        dataType: 'html',
+        success: function(result) {
+        $("#pcode3").html(result); 
+        $("#pcode3").selectmenu('refresh');
+        }
+      });
+     });  
+
+    $("#pcode3").on("selectmenuselect", function(event, ui) {
+      let data = { 
+        cate : $("#pcode3").val(),   
+        step : 3,
+        category : '소분류'  
+      }
+
+      $.ajax({
+        async: false,
+        type: 'post',
+        data: data,
+        url: "../category/printOption.php",
+        dataType: 'html',
+        success: function(result) {
+        $("#pcode3_1").html(result); 
+        $("#pcode3_1").selectmenu('refresh');
+        }
+      });
+     });  
+    })
+
+      $('#class_form').submit(function () {
+
+      let markupStr = $('#class_intro').summernote('code');
+      let content = encodeURIComponent(markupStr);
+      $('#content').val(content);
+
+      if(!$('#pcode2_1').val()){
+        alert('대분류를 선택해주세요');
+        return false;
+      }
+      if ($('#class_intro').summernote('isEmpty')) {
+        alert('상품 설명을 입력하세요');
+        return false;
+      }
 
 
-      });// /form에서 전송 이벤트가 일어나면 할일
+      });
+      //카테고리 끝
+
       $( function() {
         $( ".select_from" ).selectmenu();
       } );
@@ -186,14 +259,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           }
         });
         // summernote 끝
-
         // 유료 무료, 제한, 무제한 버튼 클릭 시 비활성화 나타냄 시작
         $('.class_price input').change(function(){
           let price_val = $(this).val();
           if(price_val == '0'){
             $('.price_form').prop("disabled", false).focus();
             $('.price_form').prop("disabled", true);
-            // $('.price_form').val() = ''
           } if(price_val == '1'){
             $('.price_form').prop("disabled", true);
             $('.price_form').prop("disabled", false).focus();
@@ -205,20 +276,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           if(date_val == '0'){
             $('.date_form').prop("disabled", false).focus();
             $('.date_form').prop("disabled", true);
-            // $('.date_form').val() = ''
           } if(date_val == '1'){
             $('.date_form').prop("disabled", true);
             $('.date_form').prop("disabled", false).focus();
           }
         })
-        // 유료 무료, 제한, 무제한 버튼 클릭 시 비활성화 나타냄 시작
-        
-        // $('#video_add').click(function(){
-        //   let video_html = $('.video_address').html();
-        //   video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
-          
-        //   $('.video_wrap').append(video_html);
-        // })
+        // 유료 무료, 제한, 무제한 버튼 클릭 시 비활성화 나타냄 끝
 
         //drag drop, 이미지 추가 시작
         let uploadFiles = [];
@@ -230,49 +293,22 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
         }).on("dragover", function(e) {
           e.preventDefault();
           e.stopPropagation();
-        }).on('drop', function(e) {  //드래그한 항목을 떨어뜨렸을때
+        }).on('drop', function(e) {
           e.preventDefault();
           console.log(e);
           
           $(this).removeClass('drag-enter');
-          let files = e.originalEvent.dataTransfer.files;//originalEvent으로 file항목을 읽고 그 중 dataTransfer(??)에서 files를 가져온다
+          let files = e.originalEvent.dataTransfer.files;
           console.log(files);
-          for(let i = 0;i <files.length;i++) {  //originalEvent은 배열이라 foreach,   ,filter안돼서 for로 뽑아야 됌 이렇게 뽑아 야 됨 
+          for(let i = 0;i <files.length;i++) { 
             let file = files[i];
-            let size = uploadFiles.push(file);  //업로드 목록에 for i로 하나씩 추가  //file 개수 console에선 1, 2로 나옴 
             attachFile(file);
           }  
         });
- 
-        $(".images_submit").click(function(){//전송되게 그것도 drop시 자동
-          let formData = new FormData();//전송되게 FormData를 사용
-          $.each(uploadFiles, function(i, file) {
-            if(file.upload != 'disable')  //삭제하지 않은 disable없는 이미지만 업로드 항목으로 추가
-              formData.append('upload-file', file, file.name); //이걸로 전송되는게 아니라 아래 ajax에 줌
-          });
-          $.ajax({
-            url: '/api/etc/file/upload',
-            data : formData, //이 파일을 ajax에 줄꺼니까 
-            type : 'post',
-            contentType : false,
-            processData: false,
-            success : function(ret) {
-              alert("사진 넣기 완료");
-            }
-          });
-        });
-        $("#add_images").on("click", ".close", function(e) {//닫기 버튼 클릭하면 disable라는 속성을 넣어주자 
-          let $target = $(e.target);
-          let idx = $target.attr("data-idx");
-          uploadFiles[idx].upload = 'disable';  //삭제된 항목은 업로드하지 않기 위해 플래그 생성
-          $target.parent().remove();  //프리뷰 삭제
-        });
 
-        //추가이미지를 넣으면 class_save_image.php에 savefile를 첨부했어하고 넣고,
-        //쿼리에도 넣는걸 해주는 함수
         function attachFile(file) {
-          let formData = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
-            formData.append('savefile', file) //<input type="file" name="savefile" value="파일명">
+          let formData = new FormData(); 
+            formData.append('savefile', file)
             console.log(formData);
             $.ajax({
               url: 'class_save_image.php',
@@ -288,10 +324,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
               success: function (return_data) {
                 console.log(return_data);
 
-                // if (return_data.result == 'member') {
-                //   alert('로그인을 하십시오.');
-                //   return;
-                // } else 
+                if (return_data.result == 'member') {
+                  alert('로그인을 하십시오.');
+                  return;
+                } else 
                 if (return_data.result == 'image') {
                   alert('이미지파일만 첨부할 수 있습니다.');
                   return;
@@ -316,14 +352,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                   $('#add_images').append(html);
                 }
               }
-
             });
-        }
-              
+        }      
 
         //file_delete func 시작
         function file_delete(imgid) {
-          if (!confirm('정말삭제할까요?')) {
+          if (!confirm('정말 삭제하시겠습니까? :0')) {
             return false;
           }
           let data = {
@@ -346,7 +380,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                 alert('본인이 작성한 제품의 이미지만 삭제할 수 있습니다.');
                 return;
               } else if (return_data.result == 'no') {
-                alert('삭제 실패');
+                alert('삭제 실패.. :(');
                 return;
               } else {
                 $('#f_' + imgid).hide();
@@ -360,11 +394,19 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
         //강좌 취소 이벤트 시작
         $('.class_close').click(function(e){
           e.preventDefault();
-          if(confirm('강좌 등록을 취소하시겠습니까?')){
+          if(confirm('등록 취소하시겠습니까? :0')){
               history.back();
           }
         //강좌 취소 이벤트 끝
-      });
+        });
+
+        //video url html 추가 시작
+        $('#video_add').click(function(){
+          let video_html = $('.video_address').html();
+          video_html = `<div class="video_address d-flex align-items-center">${video_html}</div>`;
+            $('.video_wrap').append(video_html);
+          })
+        //video url html 추가 끝
     </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

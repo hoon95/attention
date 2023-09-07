@@ -1,33 +1,38 @@
 <?php
+
 	$title = '쿠폰 등록';
+
+	$coup_css = '<link rel="stylesheet" href="/attention/admin/css/coup.css">';
+  $coup_ok_css = '<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">';
+
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 ?>
-<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">
+
 <div class="common_pd">
 	<h2 class="h1">쿠폰 등록</h2>
 	<form action="coupon_ok.php" class="coup_text" method="post" enctype="multipart/form-data">
 		<table>
 			<tbody>
 				<tr class="space">
-					<th><h3 class="tt_03">쿠폰명</h3></th>
+					<th class="tt_03">쿠폰명</th>
 					<td><input type="text" id="coupon_name" name="coupon_name" class="form-control" placeholder="이름을 입력해주세요" required></td>
 				</tr>
 				<tr class="space">
-					<th><h3 class="tt_03">첨부파일</h3></th>
+					<th class="tt_03">첨부파일</th>
 					<td class="d-flex align-items-end coup_thumbnail_box">
-						<div class="coup_thumbnail" id="file_table_id"  value="" >
+						<div class="coup_thumbnail" id="file_table_id"  >
 						</div>
-						<input type="file" class="coup_hidden" name="coupon_image" id="coupon_image" value="" required>
+						<input type="file" class="coup_hidden" name="coupon_image" id="coupon_image" required>
 						<button type="button" class="btn btn-secondary coup_img">첨부파일</button>
 					</td>
 				</tr>
 				<tr class="space">
-					<th><h3 class="tt_03">할인액</h3></th>
+					<th class="tt_03">할인액</th>
 					<td><input type="number" id="coupon_price"  min="5000" max="1000000" step="1000" name="coupon_price" class="form-control" required></td>
 				</tr>
 				<tr class="space">
-					<th><h3 class="tt_03">쿠폰설정</h3></th>
+					<th class="tt_03">쿠폰설정</th>
 						<td class="coupon_status_box d-flex">
 							<div class="coup_type coupon_status">
 								<input type="radio" name="status" checked value="활성화" id="price">
@@ -40,7 +45,7 @@
 					</td>
 				</tr>
 				<tr class="space">
-					<th><h3 class="tt_03">기한</h3></th>
+					<th class="tt_03">기한</th>
 						<td class="coup_type_box d-flex">
 							<div class="d-flex">
 								<div class="coup_type coup_date">
@@ -86,9 +91,9 @@
 
 	let coupclose = $(".coup_close");
 	coupclose.on("click", function() {
-		var confirmation = confirm('쿠폰 등록 취소하겠습니까?');
+		var confirmation = confirm('등록 취소하시겠습니까? :0');
 		if (confirmation) {
-			alert('쿠폰 등록 취소되었습니다.');
+			alert('등록 취소되었습니다 :)');
 			location.href='coupon_list.php';
 		} else {
 			alert('쿠폰 등록해주세요');

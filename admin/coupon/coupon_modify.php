@@ -1,5 +1,10 @@
 <?php
+
 	$title = '쿠폰 수정';
+
+	$coup_css = '<link rel="stylesheet" href="/attention/admin/css/coup.css">';
+  $coup_ok_css = '<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">';
+
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 	$cid = $_GET['cid'];
@@ -16,21 +21,20 @@
 
 
 ?>
-<link rel="stylesheet" href="/attention/admin/css/coup.css">
-<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">
+
 	<div class="common_pd"> 
 		<h2 class="h1">쿠폰 수정</h2>
 		<form action="coupon_modify_ok.php?cid=<?= $rs-> cid ?>" class="coup_text" method="post" enctype="multipart/form-data">
 			<table>
 				<tbody>
 					<tr class="space">
-						<th><h3 class="tt_03">쿠폰명</h3></th>
+						<th class="tt_03">쿠폰명</th>
 						<td><input type="text" id="coupon_name" name="coupon_name" class="form-control" value="<?= $rs-> coupon_name ?>" ></td>
 					</tr>
 					<tr class="space">
-						<th><h3 class="tt_03">첨부파일</h3></th>
+						<th class="tt_03">첨부파일</th>
 						<td class="d-flex align-items-end coup_thumbnail_box">
-							<div class="coup_thumbnail" id="file_table_id"  value="" >
+							<div class="coup_thumbnail" id="file_table_id">
 								<div class="thumb">
 									<img src="<?= $rs-> coupon_image ?>" alt="">
 								</div>
@@ -40,11 +44,11 @@
 						</td>
 					</tr>
 					<tr class="space">
-						<th><h3 class="tt_03">할인액</h3></th>
-						<td><input type="number" id="coupon_price"  min="10000" max="1000000" step="10000" name="coupon_price" class="form-control" value="<?= $rs-> coupon_price ?>" ></td>
+						<th class="tt_03">할인액</th>
+						<td><input type="number" id="coupon_price" min="5000" max="1000000" step="1000" name="coupon_price" class="form-control" value="<?= $rs-> coupon_price ?>" ></td>
 					</tr>
 					<tr class="space">
-						<th><h3 class="tt_03">기한</h3></th>
+						<th class="tt_03">기한</th>
 							<td class="coup_type_box d-flex">
 								<div class="d-flex">
 									<div class="coup_type coup_date coup_infinite_date">
@@ -74,9 +78,9 @@
 	<script>
 	let coupclose = $(".coup_close");
 	coupclose.on("click", function() {
-		var confirmation = confirm('쿠폰 수정을 취소하겠습니까?');
+		var confirmation = confirm('수정 취소하시겠습니까? :0');
 		if (confirmation) {
-			alert('쿠폰 수정 취소되었습니다.');
+			alert('수정 취소되었습니다 :)');
 			location.href='coupon_list.php';
 		} 
 	})
