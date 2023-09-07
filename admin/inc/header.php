@@ -84,7 +84,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
         <li><a href="/attention/admin/member/member_list.php"><i class="bi bi-person-fill"></i> 회원 관리</a></li>
         <li><a href="/attention/admin/notice/notice.php"><i class="bi bi-layout-text-sidebar-reverse"></i> 게시판 관리</a></li>
       </ul>
-      <a href="/attention/admin/logout.php" class="text2 logout"><i class="bi bi-door-closed"></i><span>out</span></a>
+      <a href="/attention/admin/logout.php" class="text2 logout"><i class="bi bi-door-closed"></i><span>Logout</span></a>
       
     </div>
   </nav>
