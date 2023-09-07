@@ -1,4 +1,5 @@
 <?php
+$class_up_css = '<link rel="stylesheet" href="/attention/admin/css/class_up.css">';
 $title = '강좌 수정 - Code Rabbit';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
@@ -11,7 +12,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
     $rc[] = $rs;
   }
 ?>
-<link rel="stylesheet" href="/attention/admin/css/class_up.css">
+
 <div class="common_pd">
           <p class="tt_01 class_ss_mt class_m_pd text-center">강좌 수정</p>
           <form action="class_modify_ok.php?pid=<?= $pid ?>" method="POST" id="class_form" enctype="multipart/form-data">

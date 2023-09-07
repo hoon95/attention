@@ -112,3 +112,6 @@ div.modal-body {--bs-modal-padding: 0;}
   .aside li > a {font-size: var(--text3-size);}
 }
 
+#pcode2-button, #pcode2_1-button, #pcode3-button {
+  width: 86%;
+  }

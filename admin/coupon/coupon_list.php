@@ -1,4 +1,6 @@
 <?php
+  $coup_css = '<link rel="stylesheet" href="/attention/admin/css/coup.css">';
+  $coup_ok_css = '<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">';
   $title = '쿠폰 목록';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
@@ -69,8 +71,7 @@
 	
 
 ?>
-<link rel="stylesheet" href="/attention/admin/css/coup.css">
-<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">
+
 <h2 class="h1">쿠폰 관리</h2>
 	<!-- 쿠폰 셀렉 , 검색 , 등록 - 기서은 -->
 	<div class="d-flex align-items-center justify-content-between common_select_box">

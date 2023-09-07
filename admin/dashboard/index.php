@@ -1,4 +1,6 @@
 <?php
+    $flatpickr_min_css = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">';
+    $index_css = '<link rel="stylesheet" href="/attention/admin/css/index.css">';
     $title = '대시보드 - Code Rabbit';
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
     include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
@@ -44,8 +46,7 @@
         array_push($member_ex, $ex['cnt']);
     }
 ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" href="/attention/admin/css/index.css">
+
 <div class="">
     <h2 class="tt_01 text-center dash_title">대시보드</h2>
     <div class="dash_box_top d-flex justify-content-between">

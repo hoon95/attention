@@ -1,4 +1,6 @@
 <?php
+  $category_css = '<link rel="stylesheet" href="/attention/admin/css/category.css">';
+  $class_list_css = '<link rel="stylesheet" href="/attention/admin/css/class_list.css">';
   $title = '강좌리스트 - Code Rabbit';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
@@ -34,8 +36,7 @@
     $rc[] = $rs;
   }  
   ?>
-<link rel="stylesheet" href="/attention/admin/css/category.css">
-<link rel="stylesheet" href="/attention/admin/css/class_list.css">
+
 <style> #pcode3_1-button {font-weight: 400; color: var(--gray);} </style>
 <p class="tt_01 class_ss_mt class_m_pd text-center">강좌리스트</p>
   <!-- 카테고리 관리 & 검색 form 시작 -->
