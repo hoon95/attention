@@ -218,6 +218,11 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 <script>
   $(function(){
     $("select").selectmenu();
+  
+  //대분류 출력  
+    $("#cate1").on("selectcreate", function(event, ui) {
+		  makeOption($(this), 1, '대분류', $('#cate1'), $('#cate1_div'));  
+  	}); 
 
 	//대분류 선택 ▶ 중분류 출력 (jQueryUI Method)
     $("#cate1").on("selectmenuselect", function(event, ui) {
