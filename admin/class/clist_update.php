@@ -13,7 +13,8 @@ if($result === false){
 }
 $result->bind_param('ii', $check_value, $pcode);
 
-if ($result->execute()){
+if($result->execute()){
+
 } else{
 }
 

@@ -221,7 +221,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           
           $(this).removeClass('drag-enter');
           let files = e.originalEvent.dataTransfer.files;
-          console.log(files);
           for(let i = 0;i <files.length;i++) {
             let file = files[i];
             let size = uploadFiles.push(file);  
@@ -286,7 +285,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
             //첨부이미지 테이블에 저장하면 할일
             let imgid = $('#file_table_id').val() + return_data.imgid + ',';
-            console.log($('#file_table_id').val())
             $('#file_table_id').val(imgid);
             let html = `
                 <div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
