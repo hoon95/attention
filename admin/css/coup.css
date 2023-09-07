@@ -1,0 +1,92 @@
+/* s */
+
+h2.h1 {
+	text-align: center;
+	margin-bottom: calc(var(--base-unit)*2);
+}
+.coup_count {
+	margin: var(--base-unit) 0;
+}
+.coup_searchbox {
+	width: 25%;
+}
+.coupon_select > div {
+	gap: 24px;
+}
+.coup_home {
+	cursor: pointer;
+}
+.row-cols-2 {
+	justify-content: space-between;
+}
+.row-cols-2 > * {
+	width: 49%;
+}
+.row {
+	gap: 20px 0;
+}
+.row>* {
+	padding: 20px;
+	border-radius: 12px;
+}
+.coup_box {
+	gap: 20px;
+}
+.coup_thumbnail img {
+	display: inline-block;
+	width: 226px;
+	height: 100%;
+	border-radius: 6px;
+	object-fit: cover;
+}
+/* .coup_content > div {
+	margin: 12px 0;
+} */
+.coup_content {
+	width: 80%;
+}
+.coup_content .coup_text > *{
+	margin: var(--base-unit) 0;
+}
+.coup_text .coup_board {
+	display: block;
+	width: 60px;
+	height: 24px;
+	border: 2px solid var(--orange);
+ 	border-radius: 24px;
+	color: var(--orange);
+	text-align: center;
+	line-height: 20px;
+}
+
+.coup_content .coup_icon {
+	gap: calc(var(--base-unit)/2) 0;
+}
+.coup_content .coup_common_icon {
+	gap: 0 calc(var(--base-unit)/2);
+}
+.coup_modal .modal-body .form-control {
+	width: 80%;
+}
+.coup_modal form td {
+	width: 80%;
+}
+.coup_hidden {
+  display: none;
+}
+.coup_modal form table {
+	width: 100%;
+}
+
+.coup_gap  {
+	gap: 24px;
+}
+.coup_type_date_box {
+	width: 60%;
+}
+
+.bi {
+    color: var(--dark);
+    font-size: 24px;
+    padding: 0 5px;
+}

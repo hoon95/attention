@@ -1,4 +1,6 @@
 <?php
+$class_cate_css = '<link rel="stylesheet" href="/attention/admin/css/class_cate.css">';
+$class_up_css = '<link rel="stylesheet" href="/attention/admin/css/class_up.css">';
 $title = '강좌 등록 - Code Rabbit';
 $class_up_css = '<link rel="stylesheet" href="/attention/admin/css/class_up.css">';
 $category_css = '<link rel="stylesheet" href="/attention/admin/css/category.css">';
@@ -12,6 +14,8 @@ while($rs0 = $result0 -> fetch_object()){
   $cate1[] = $rs0;
 }
 ?>
+
+
 <div class="common_pd">
           <p class="tt_01 class_ss_mt class_m_pd text-center">강좌 등록</p>
           <form action="class_ok.php" method="POST" id="class_form" enctype="multipart/form-data">

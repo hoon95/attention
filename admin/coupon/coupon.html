@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>coupon.html</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="coup.css">
+</head>
+<body>
+	<div class="background d-flex">
+		<!-- aside 메뉴 -->
+		<nav class="aside tt_03">
+			<div class="logo">
+				<img src="img/coderabbit_logo.svg" alt="코드래빗 로고">
+			</div>
+			<ul>
+				<li><a href="/admin/index.php"><i class="bi bi-grid-1x2-fill"></i> 대시보드</a></li>
+				<li><a><i class="bi bi-bar-chart"></i> 매출 관리</a></li>
+				<li><a href="/admin/class/class_list.php"><i class="bi bi-mortarboard-fill"></i> 강좌 관리</a></li>
+				<li><a href="/admin/coupon/coupon_list.php"><i class="bi bi-credit-card-2-front"></i> 쿠폰 관리</a></li>
+				<li><i class="bi bi-person-fill"></i> 회원 관리</li>
+				<li><a href="/admin/notice/notice.php"><i class="bi bi-layout-text-sidebar-reverse"></i> 게시판 관리</a></li>
+			</ul>
+		</nav>
+		<!-- /aside 메뉴 -->
+		<div class="main">
+			<div class="profile">
+				<i class="bi bi-bell icon_gray"></i>
+				<i class="bi bi-emoji-sunglasses icon_gray"></i>
+				<span class="tt_03">admin</span>
+			</div>		  
+			<h2 class="h1">쿠폰 관리</h2>
+			<div class="d-flex align-items-center justify-content-between common_select_box">
+				<!-- 쿠폰 활성화 카테고리 선택 - 기서은 -->
+				<div class="common_select coupon_select">
+					<div class="d-flex align-items-center justify-content-between">
+						<select name="select" id="select">
+							<option selected disabled>쿠폰 활성화 선택</option>
+							<option>전체 쿠폰</option>
+							<option>활성된 쿠폰</option>
+							<option>비활성된 쿠폰</option>
+							<option>마감임박 쿠폰</option>
+						</select>
+					</div>
+				</div>
+				<!-- /쿠폰 활성화 카테고리 선택 - 기서은 -->
+
+				<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
+				<div class="d-flex align-items-center justify-content-between coup_searchbox">
+					<div class="seach">
+						<input type="text" name="seach_form" id="seach_form" class="form-control" placeholder="제목 및 내용 입력">
+						<button type="button"><i class="bi bi-search icon_gray"></i></button>
+					</div>	
+					<button class="btn btn-primary">쿠폰등록</button>
+				</div>
+				<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
+
+			</div>
+			<!-- 쿠폰 리스트 form - 기서은 -->
+			<form action="" method="">
+				<div class="row row-cols-2">
+					<div class="col white_back">
+						<div class="coup_box d-flex justify-content-between">
+							<div class="coup_thumbnail">
+								<img src="img/coup_test.png" alt="">
+							</div>
+							<div class="coup_content">
+								<div class="d-flex justify-content-between">
+									<div class="coup_text">
+										<h3 class="text2">퍼블리싱 핵심이론 PDF 교재 할인</h3>
+										<p class="text3">할인액: 10,000원</p>
+										<p class="text4 coup_board coup_board_date">기한</p>
+									</div>
+									<div class="coup_icon d-flex flex-column align-items-end justify-content-lg-end">
+										<div>
+											<i class="bi bi-stopwatch coup_watch"></i>
+										</div>
+										<div class="form-check form-switch">
+											<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+										</div>
+										<div class="coup_common_icon d-flex">
+											<button type="button" class="bi bi-pencil-square icon_mint" data-bs-toggle="modal" data-bs-target="#myModal"></button>
+											<button type="button" class="bi bi-trash-fill icon_red"></button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col white_back">
+						<div class="coup_box d-flex justify-content-between">
+							<div class="coup_thumbnail">
+								<img src="img/coup_test.png" alt="">
+							</div>
+							<div class="coup_content">
+								<div class="d-flex justify-content-between">
+									<div class="coup_text">
+										<h3 class="text2">퍼블리싱 핵심이론 PDF 교재 할인</h3>
+										<p class="text3">할인액: 10,000원</p>
+										<p class="text4 coup_board">무제한</p>
+									</div>
+									<div class="coup_icon d-flex flex-column align-items-end justify-content-lg-end">
+										<div class="form-check form-switch">
+											<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+										</div>
+										<div class="coup_common_icon d-flex">
+											<button type="button" class="bi bi-pencil-square icon_mint" data-bs-toggle="modal" data-bs-target="#myModal"></button>
+											<button type="button" class="bi bi-trash-fill icon_red"></button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!-- 쿠폰 리스트 form - 기서은 -->
+
+			<!-- 쿠폰 수정 모달 - 기서은 -->
+			<div class="modal fade coup_modal" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-bs-config='{"delay":0, "title":"Custom Title"}'>
+				<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">쿠폰 등록</h5>
+						</div>
+						<div class="modal-body">
+							<form action="" class="coup_text">
+								<table>
+									<tbody>
+										<tr class="space">
+											<th><label for="coup_name"><h3 class="tt_03">쿠폰명</h3></label></th>
+											<td><input type="text" id="coup_name" name="coup_name" class="form-control" placeholder="이름을 입력해주세요"></td>
+										</tr>
+										<tr class="space">
+											<th><label for="coup_thumbnail"><h3 class="tt_03">첨부파일</h3></label></th>
+											<td class="coup_thumbnail_box">
+												<!-- <input type="file" id="coup_thumbnail" name="coup_thumbnail" class="form-control coup_hidden">      -->
+												<input type="file" class="coup_hidden" name="" id="">
+												<button type="button" class="btn btn-secondary coup_img">첨부파일</button>
+											</td>
+										</tr>
+										<tr class="space">
+											<th><label for="coup_price"><h3 class="tt_03">할인액</h3></label></th>
+											<td><input type="number" id="coup_price"  min="10000" max="1000000" step="10000" name="coup_price" class="form-control" required></td>
+										</tr>
+										<!-- <tr class="space">
+											<th><label for="coup_type"><h3 class="tt_03">쿠폰설정</h3></label></th>
+												<td class="coupon_status_box coup_gap d-flex">
+													<div class="coup_type">
+														<input type="radio" name="coupon_status" checked value="활성화" id="price">
+														<label for="price" class="coupon_status">활성화</label>
+													</div>
+													<div class="coup_type">
+														<input type="radio" name="coupon_status" value="비활성화" id="ratio">
+														<label for="ratio" class="coupon_status">비활성화</label>
+													</div>
+											</td>
+										</tr> -->
+										<tr class="space">
+											<th><label for="coup_type"><h3 class="tt_03">기한</h3></label></th>
+												<td class="coup_type_box d-flex align-items-center justify-content-between">
+													<div class="coup_gap d-flex">
+														<div class="coup_type">
+															<input type="radio" name="coup_type" checked value="활성화" id="price">
+															<label for="price" class="coup_type_date">무제한</label>
+														</div>
+														<div class="coup_type">
+															<input type="radio" name="coup_type" value="비활성화" id="ratio">
+															<label for="ratio" class="coup_type_date">제한</label>
+														</div>
+													</div>
+													<div class="coup_type_date_box d-flex align-items-center coup_gap">
+														<input type="number" id="coup_type_date"  min="1" max="24" step="1" name="coup_type" class="form-control" required>
+														<span>개월</span>
+													</div>
+												</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+							<button type="button" class="btn btn-primary">저장</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /쿠폰 수정 모달 - 기서은 -->
+		</div>
+	</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="/admin/coupon/js/common.js"></script>
+  <script src="/admin/coupon/js/coup.js"></script>
+</body>
+</html>

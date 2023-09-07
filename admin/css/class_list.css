@@ -93,5 +93,6 @@
   text-align: center;
 }
 #pcode3_1-button{
-  font-weight: 400;
+  color: var(--dark-gray);
+  font-weight: 700;
 }

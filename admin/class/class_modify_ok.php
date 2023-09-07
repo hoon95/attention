@@ -56,13 +56,14 @@ if(!isset($_SESSION['AUID'])){
           }
   }
   $sql3 ="UPDATE class SET name='{$name}', content='{$content}', thumbnail='{$thumbnail_file}', price='{$price}', price_val='{$price_val}', level='{$level}', video='{$video}', sale_end_date='{$sale_end_date}', date_val={$date_val}, status={$status}, file_table_id='{$file_table_id}' WHERE pid='{$pid}'";
-  if ($mysqli->query($sql) === TRUE) {
-    echo "<script>
-    alert('수정 완료되었습니다 :)');
-    location.href ='attention/admin/class/class_list.php';</script>";
-} else {
-    echo "Error: " . $sql . "<br>" . $mysqli->error;
-}
+
+//   if ($mysqli->query($sql) === TRUE) {
+//     echo "<script>
+//     alert('수정 완료되었습니다 :)');
+//     location.href ='attention/admin/class/class_list.php';</script>";
+// } else {
+//     echo "Error: " . $sql . "<br>" . $mysqli->error;
+// }
 
 $conn->close();
 ?>

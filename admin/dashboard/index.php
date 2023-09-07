@@ -1,7 +1,9 @@
 <?php
+    $flatpickr_min_css = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">';
+    $index_css = '<link rel="stylesheet" href="/attention/admin/css/index.css">';
     $title = '대시보드 - Code Rabbit';
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
-    require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
+    include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
     
     $class_query = "SELECT name, COUNT(sid) AS average_class FROM sales GROUP BY name ORDER BY average_class DESC LIMIT 3";
     $class_result = $mysqli->query($class_query);
@@ -16,9 +18,35 @@
     while($board_object = $board_result->fetch_object()){
         $board[] = $board_object;
     }
+
+    $member_plus = "WHERE DATE_FORMAT(regdate, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURDATE()";
+    $member_new = "AND DATE_SUB(CURDATE(), INTERVAL 6 DAY) <= DATE_FORMAT(regdate, '%Y-%m-%d')";
+    $member_query = "SELECT DATE_FORMAT(regdate, '%Y-%m-%d') as date, COUNT(*) as cnt FROM members ".$member_plus." GROUP BY DATE_FORMAT(regdate, '%Y-%m-%d') ORDER BY DATE_FORMAT(regdate, '%Y-%m-%d') ASC";
+    $member_result = $mysqli->query($member_query);
+
+    $member_exit = "SELECT DATE_FORMAT(regdate, '%Y-%m-%d') as date, COUNT(*) as cnt FROM members WHERE DATE_FORMAT(regdate, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURDATE() AND status='탈퇴' GROUP BY DATE_FORMAT(regdate, '%Y-%m-%d') ORDER BY DATE_FORMAT(regdate, '%Y-%m-%d') ASC";
+    $member_exit_result = $mysqli->query($member_exit);
+
+    while($member_object = $member_result->fetch_assoc()){
+        $member[] = $member_object;
+    }
+    $member_date = [];
+    $member_new = [];
+
+    while($member_exit_object = $member_exit_result->fetch_assoc()){
+        $exit_num[] = $member_exit_object;
+    }
+    $member_ex = [];
+
+    foreach($member as $m){
+        array_push($member_date, $m['date']);
+        array_push($member_new, $m['cnt']);
+    }
+    foreach($exit_num as $ex){
+        array_push($member_ex, $ex['cnt']);
+    }
 ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" href="/attention/admin/css/index.css">
+
 <div class="">
     <h2 class="tt_01 text-center dash_title">대시보드</h2>
     <div class="dash_box_top d-flex justify-content-between">
@@ -103,10 +131,9 @@
             </div>
         </div>
         <div class="box_shadow radius_medium">
-            <h3 class="text1 member_num">가입/탈퇴 회원</h3>
+            <h3 class="text1 member_num">신규/탈퇴 회원</h3>
             <div class="d-flex member_in text1">
-                <span>가입</span>
-                <span>316</span>명
+                <span><?= $member_new[6] ?></span>명
             </div>
             <div class="gray member_date">
                 <span>(</span>
@@ -124,6 +151,107 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="/attention/admin/js/jquery.number.min.js"></script>
 <script src="/attention/admin/js/index.js"></script>
+<script>
+    let currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() - 6);
+    let ago = currentDate.toISOString().split('T')[0];
+    $('.member_date_ago').text(ago);
+    $('.member_date_now').text(today);
+
+    const mlabel = <?= json_encode($member_date) ?>;
+    const mdata = {
+        labels: mlabel,
+        datasets:[{
+            label: '신규 회원 수',
+            data: <?= json_encode($member_new) ?>,
+            backgroundColor: [
+            'rgba(42, 193, 188, 0.2)',
+            'rgba(42, 193, 188, 0.2)',
+            'rgba(42, 193, 188, 0.2)',
+            'rgba(42, 193, 188, 0.2)',
+            'rgba(42, 193, 188, 0.2)',
+            'rgba(42, 193, 188, 0.2)',
+            'rgba(42, 193, 188, 0.2)'
+            ],
+            hoverBackgroundColor:[
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)'
+            ],
+            hoverBorderColor:[
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)',
+            'rgba(42, 193, 188, 0.5)'
+            ],
+            borderColor: [
+            'rgb(42, 193, 188)',
+            'rgb(42, 193, 188)',
+            'rgb(42, 193, 188)',
+            'rgb(42, 193, 188)',
+            'rgb(42, 193, 188)',
+            'rgb(42, 193, 188)',
+            'rgb(42, 193, 188)'
+            ],
+            borderWidth: 1
+        },{
+        label: '탈퇴 회원 수',
+        data: <?= json_encode($member_ex) ?>,
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 99, 132, 0.2)'
+        ],
+        hoverBackgroundColor:[
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)'
+        ],
+        hoverBorderColor:[
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(255, 99, 132, 0.5)'
+        ],
+        borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)'
+        ],
+        borderWidth: 1
+    }]
+    }
+    const mconfig = {
+    type: 'bar',
+    data: mdata
+    };
+
+  let mchart = document.querySelector('#member_chart');
+  const stackedBar = new Chart(mchart, mconfig);
+// /가입/탈퇴 회원 막대 그래프
+</script>
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>

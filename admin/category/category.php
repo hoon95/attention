@@ -1,10 +1,6 @@
-<!-- 이 위치에 있어야지만 jQuery Select UI 적용됨 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" 
-integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-
 <?php
+  $category_css = '<link rel="stylesheet" href="/attention/admin/css/category.css">';
+  $title = '카테고리 관리 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 
@@ -15,15 +11,15 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
   }
 ?>
 
-<link rel="stylesheet" href="/attention/admin/css/category.css">
+
 
 <div class="container">
-  <div class="common_pd">
+  <div>
     <h2 class="tt_01 text-center">카테고리 관리</h2>
 
     <!-- 카테고리 Select & Filter 영역(시작) -->
     <div>  
-      <form action="" class="d-flex justify-content-center">
+      <form class="d-flex justify-content-center">
         <div class="row cate_main"> 
           <!-- 대분류 출력 -->
           <div class="col mt-5 cate_section">
@@ -33,10 +29,10 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
               <div class="cate_filter d-flex flex-column" id="cate1_div" >
                 <?php foreach($cate1 as $c){ ?>
                   <div class="d-flex justify-content-between align-items-center pb-3">
-                    <option class="text1" value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
+                    <div class="text1" data-value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></div>
                     <div class="cate_icon d-flex">
-                      <dd><button type="button" value="<?php echo $c -> cid ?>" step="<?php echo $c -> step ?>" text="<?php echo $c -> name ?>" class="p-0 cate_modify"><i class="bi bi-pencil-square icon_mint"></i></button></dd>
-                      <dd><button type="button" value="<?php echo $c -> cid ?>" step="<?php echo $c -> step ?>" text="<?php echo $c -> name ?>" class="p-0 cate_delete"><i class="bi bi-trash-fill icon_red"></i></button></dd>
+                      <button type="button" value="<?php echo $c -> cid ?>" data-step="<?php echo $c -> step ?>" data-text="<?php echo $c -> name ?>" class="p-0 cate_modify"><i class="bi bi-pencil-square icon_mint"></i></button>
+                      <button type="button" value="<?php echo $c -> cid ?>" data-step="<?php echo $c -> step ?>" data-text="<?php echo $c -> name ?>" class="p-0 cate_delete"><i class="bi bi-trash-fill icon_red"></i></button>
                     </div>
                   </div>
                 <?php } ?>
@@ -45,7 +41,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
           </div>
           <!-- 대분류 선택 ▶ 중분류 출력(시작) -->
           <div class="col mt-5 cate_section">  
-            <select class="cate_large" name="" id="cate1">
+            <select class="cate_large" id="cate1">
               <option selected disabled>대분류</option>
               <!-- <option value="1">대분류1</option> -->
               <?php foreach($cate1 as $c){ ?>
@@ -63,7 +59,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
           <!-- 중분류 선택 ▶ 소분류 출력(시작) -->
           <div class="col mt-5 cate_section">  
-            <select class="" name="" id="cate2">
+            <select id="cate2">
               <option selected disabled>중분류</option>
               <!-- <option value="1">중분류1</option> -->
             </select>
@@ -80,7 +76,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
     </div>  <!-- 카테고리 Select & Filter 영역(끝) -->
 
     <div style="display: none;">
-      <select class="" name="" id="cate3">
+      <select id="cate3">
         <option selected disabled>소분류</option>
       </select>
 	  </div>
@@ -101,7 +97,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 </div>  <!-- class="container"(끝) --> 
 
 <!-- 수정 Modal 기능 -->
-<div class="modal fade" id="cateModifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="cateModifyModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -113,7 +109,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" id="cate_update_btn" class="btn btn-primary cate_modal_reg" data-step="1">등록</button>
+        <button type="submit" id="cate_update_btn" class="btn btn-primary cate_modal_reg" data-step="1">수정</button>
         <button type="button" class="btn btn-dark" data-bs-dismiss="modal">닫기</button>
       </div>
     </div>
@@ -121,7 +117,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 </div>
 
 <!-- 대분류등록 Modal 기능(시작) -->
-<div class="modal fade" id="cate1Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="cate1Modal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -141,7 +137,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 </div>  <!-- 대분류등록 Modal 기능(끝) -->
 
 <!-- 중분류등록 Modal 기능(시작) -->
-<div class="cate_css_modal" id="cate2Modal" >
+<div class="cate_css_modal">
   <div class="cate_modal_main">
     <h5 class="modal_title tt_03">중분류 등록</h5>
     <div class="modal_body">
@@ -153,7 +149,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
         }
       ?>
       <div class="row cate_modal_select">  
-        <select class="" name="" id="pcode2">
+        <select id="pcode2">
           <option selected disabled>대분류 먼저 선택하세요.</option>
           <!-- <option value="1">대분류1</option> -->
           <?php
@@ -181,7 +177,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
     <h5 class="modal_title tt_03">소분류 등록</h5>
     <div class="modal_body">
       <div class="col mt-5 cate_section">  
-        <select class="cate_large" name="" id="pcode2_1">
+        <select class="cate_large" id="pcode2_1">
           <option selected disabled>대분류 먼저 선택하세요.</option>
           <!-- <option value="1">대분류1</option> -->
           <?php foreach($cate1 as $c){ ?>
@@ -191,7 +187,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
       </div>
 
       <div class="row cate_modal_select">
-        <select class="" name="" id="pcode3">
+        <select id="pcode3">
           <option selected disabled>중분류 먼저 선택하세요.</option>
           <!-- <option value="1">중분류1</option> -->
         </select>
@@ -210,25 +206,31 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
   </div>
 </div>  <!-- 소분류등록 Modal 기능(끝) -->
 
-<?php
-  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
-?>
-
 <script>
+  $(".cate_close button").click(function(e){
+    e.preventDefault();
+    location.href = '/attention/admin/class/class_list.php';
+  });
+
   $(function(){
     $("select").selectmenu();
+  
+  //대분류 출력  
+    $("#cate1").on("selectcreate", function(event, ui) {
+      makeOption($(this), 1, '대분류', $('#cate1'), $('#cate1_div'));  
+    }); 
 
-	//대분류 선택 ▶ 중분류 출력 (jQueryUI Method)
+  //대분류 선택 ▶ 중분류 출력 (jQueryUI Method)
     $("#cate1").on("selectmenuselect", function(event, ui) {
-		  makeOption($(this), 2, '중분류', $('#cate2'), $('#cate2_div'));  
-  	});  
+      makeOption($(this), 2, '중분류', $('#cate2'), $('#cate2_div'));  
+    });  
 
-	//중분류 선택 ▶ 소분류 출력 (jQueryUI Method)
+  //중분류 선택 ▶ 소분류 출력 (jQueryUI Method)
     $("#cate2").on("selectmenuselect", function(event, ui) {
-	  	makeOption($(this), 3, '소분류', $('#cate3'), $('#cate3_div'));  
-	  });  
+      makeOption($(this), 3, '소분류', $('#cate3'), $('#cate3_div'));  
+    });  
 
-	//카테고리 Select & Filter 영역 (jQueryUI Method - Event Listener)
+  //카테고리 Select & Filter 영역 (jQueryUI Method - Event Listener)
     $("#pcode2_1").on("selectmenuselect", function(event, ui) {
       let data = { 
         cate : $("#pcode2_1").val(),  //대분류의 값이 변경되면  
@@ -247,9 +249,9 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
         $("#pcode3").selectmenu('refresh');
         }
       });
-	  });  
+    });  
 
-	//대분류 등록
+  //대분류 등록
     $("#cate1_insert_btn").on("click", function(event, ui) {
       let value = $("#name1").val();
 
@@ -269,34 +271,34 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
       insertOption(data);
     }); 
-	
-	//중분류 등록
+  
+  //중분류 등록
     $("#cate2_insert_btn").on("click", function(event, ui) {
-			
-		let value = $("#name2").val();
-		let pcode = $("#pcode2").val();
+      
+    let value = $("#name2").val();
+    let pcode = $("#pcode2").val();
 
-		if(value == ''){
-			alert("중분류를 입력하세요");
-			return false;
-		}
+    if(value == ''){
+      alert("중분류를 입력하세요");
+      return false;
+    }
 
-		if(pcode == null){
-			alert("대분류를 선택하세요");
-			return false;
-		}
+    if(pcode == null){
+      alert("대분류를 선택하세요");
+      return false;
+    }
 
-		let data = { 
-			value : value,  
-			pcode : pcode,
-			step : 2,
-		}
-		insertOption(data);
-	}); 
+    let data = { 
+      value : value,  
+      pcode : pcode,
+      step : 2,
+    }
+    insertOption(data);
+  }); 
 
-	//소분류 등록
+  //소분류 등록
     $("#cate3_insert_btn").on("click", function(event, ui) {
-			
+      
       let value = $("#name3").val();
       let pcode = $("#pcode3").val();
 
@@ -318,10 +320,21 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
       insertOption(data);
     }); 
 
-	//카테고리 수정
+  //카테고리 등록 모달 내, select의 option값 선택시 text style 변경(디자인 통일)
+    $("select#pcode2").on("selectmenuchange", function(event, ui){
+      $('#pcode2-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+    $("select#pcode2_1").on("selectmenuchange", function(event, ui){
+      $('#pcode2_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+    $("select#pcode3").on("selectmenuchange", function(event, ui){
+      $('#pcode3-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+    });
+
+  //카테고리 수정
     $(document).on("click", ".cate_modify", function() {
       var value = $(this).val();
-      var step = $(this).attr("step");
+      var step = $(this).attr("data-step");
       var step_names = ["", "대분류", "중분류", "소분류"];
       var step_name = step_names[step];
 
@@ -330,14 +343,14 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
       $("#cateModifyModal").modal("show");
       $("#cate_update_btn").attr("value", value);
-      $("#cate_update_btn").attr("step", step);
+      $("#cate_update_btn").attr("data-step", step);
       $("#cate_update_btn").attr("step_name", step_name);
     });
 
-	//카테고리 수정
+  //카테고리 수정
     $("#cate_update_btn").on("click", function(event, ui) {
       var cid = $(this).val();
-      var step = $(this).attr("step");
+      var step = $(this).attr("data-step");
       var step_names = ["", "대분류", "중분류", "소분류"];
       var step_name = step_names[step];
       var cate_name = $("#cate_name").val();
@@ -363,11 +376,12 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
             alert("수정 완료되었습니다 :)");
             var new_step = parseInt(step)-1;
             makeOption($("#cate"+new_step), step, step_name, $('#cate'+ step), $('#cate'+step+'_div'));
+            location.reload();
           $("#cateModifyModal").modal("hide");
           } else if(result == 'duplicate'){
             alert("분류명이 이미 사용중 입니다.");
           } else{
-            alert("수정에 실패했습니다.");
+            alert("수정 실패.. :(");
           }
         }
       });
@@ -376,11 +390,11 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
     // 카테고리 삭제
     $(document).on("click", ".cate_delete", function() {
       var value = $(this).val();
-      var step = $(this).attr("step");
-      var text = $(this).attr("text");
+      var step = $(this).attr("data-step");
+      var text = $(this).attr("data-text");
       var step_names = ["", "대분류", "중분류", "소분류"];
       var step_name = step_names[step];
-      var result = confirm(step_name + " " + text + "를(을) 정말 삭제하시겠습니까?");
+      var result = confirm(step_name + " " + text + "를(을) 정말 삭제하시겠습니까? :0");
 
       let data = { 
         value : value
@@ -394,11 +408,12 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
           url: "category_delete.php",
           success: function(result) {
             if(result == '1') {
-              alert("삭제 완료되었습니다 :)");
+              alert("삭제되었습니다 :)");
               var new_step = parseInt(step)-1;
               makeOption($("#cate"+new_step), step, step_name, $('#cate'+ step), $('#cate'+step+'_div'));
+              location.reload();
             } else {
-              alert("삭제에 실패했습니다.");
+              alert("삭제 실패.. :(");
             }
           }
         });  //ajax
@@ -409,77 +424,81 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 
   let cateModalCloseBtn = $('.cate_modal_close');
 
-	function insertOption(data){
-		$.ajax({
-		  async: false,
-		  type: 'post',
-		  data: data,
-		  url: "save_category.php",
-		  success: function(result) {
+  function insertOption(data){
+    $.ajax({
+      async: false,
+      type: 'post',
+      data: data,
+      url: "save_category.php",
+      success: function(result) {
         console.log(result);
 
-			  if(result == '1'){
-          alert("등록이 완료되었습니다 :)");
+        if(result == '1'){
+          alert("등록 완료되었습니다 :)");
           location.reload();
-			  } else if(result == 'error'){
+        } else if(result == 'error'){
           alert("분류명이 이미 사용중 입니다.");
           cateModalCloseBtn.trigger('click');
         } else{
-				  alert("등록에 실패했습니다.");
-			  }
-		  }
-		});
-	}
+          alert("등록 실패.. :(");
+        }
+      }
+    });
+  }
 
-	function makeOption(evt, step, category, target, target2) {
-		let cate = evt.val();  
+  function makeOption(evt, step, category, target, target2) {
+    let cate = evt.val();  
 
-		let data = { 
-			cate : cate,  
-			step : step,
-			category : category  
-		}
+    let data = { 
+      cate : cate,  
+      step : step,
+      category : category  
+    }
 
-		$.ajax({
-		  async: false,
-		  type: 'post',
-		  data: data,
-		  url: "printOption.php",
-		  dataType: 'html',
-		  success: function(result) {
-			target.html(result);  //중분류 div에 html 추가
-			target.selectmenu('refresh');
-			addOptionsToDiv(target, target2, "option:not(:disabled)", step);
-		  }
-		});
-	}
+    $.ajax({
+      async: false,
+      type: 'post',
+      data: data,
+      url: "printOption.php",
+      dataType: 'html',
+      success: function(result) {
+      target.html(result);  //중분류 div에 html 추가
+      target.selectmenu('refresh');
+      addOptionsToDiv(target, target2, "option:not(:disabled)", step);
+      }
+    });
+  }
 
-	//함수 정의(카테고리 Select & Filter 영역)
-	function addOptionsToDiv(target, target2, optionSelector, step) {
-	  //선택된 중분류 옵션 中 disabled가 아닌 옵션만 가져오기
-	  let newOptionHTML = '';
-	  target.find(optionSelector).each(function() {
-		var selectedOptionValue = $(this).val();  
-		var selectedOptionText = $(this).text();  
+  //함수 정의(카테고리 Select & Filter 영역)
+  function addOptionsToDiv(target, target2, optionSelector, step) {
+    //선택된 중분류 옵션 中 disabled가 아닌 옵션만 가져오기
+    let newOptionHTML = '';
+    target.find(optionSelector).each(function() {
+    var selectedOptionValue = $(this).val();  
+    var selectedOptionText = $(this).text();  
 
-		//새로운 중분류 옵션들 추가 시, html코드
-		newOptionHTML += `
-		  <dl class="d-flex justify-content-between align-items-center pb-3">
-			<dt class="text1">${selectedOptionText}</dt>
-			<div class="cate_icon d-flex">
-			  <dd><button type="button" value="${selectedOptionValue}" step="${step}" text="${selectedOptionText}" class="p-0 cate_modify"><i class="bi bi-pencil-square icon_mint"></i></button></dd>
-			  <dd><button type="button" value="${selectedOptionValue}" step="${step}" text="${selectedOptionText}" class="p-0 cate_delete"><i class="bi bi-trash-fill icon_red"></i></button></dd>
-			</div>
-		  </dl>
-		`;
-	  });
+    //새로운 중분류 옵션들 추가 시, html코드
+    newOptionHTML += `
+      <dl class="d-flex justify-content-between align-items-center pb-3">
+      <dt class="text1">${selectedOptionText}</dt>
+      <div class="cate_icon d-flex">
+        <button type="button" value="${selectedOptionValue}" data-step="${step}" data-text="${selectedOptionText}" class="p-0 cate_modify"><i class="bi bi-pencil-square icon_mint"></i></button>
+        <button type="button" value="${selectedOptionValue}" data-step="${step}" data-text="${selectedOptionText}" class="p-0 cate_delete"><i class="bi bi-trash-fill icon_red"></i></button>
+      </div>
+      </dl>
+    `;
+    });
 
-	  target2.html(newOptionHTML);  //출력 영역에 추가
-	}
+    target2.html(newOptionHTML);  //출력 영역에 추가
+  }
 
 </script>
 
 <script src="/attention/admin/js/category.js"></script>   
+<?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
+?>
+
 
 
 

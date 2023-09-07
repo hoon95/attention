@@ -145,6 +145,7 @@ input.form-control::placeholder{
 input:-internal-autofill-selected {
   background-color: var(--white);
 }
-#pcode3_1-button 
-{font-weight: 400; 
-} 
+#pcode3_1-button {
+  color: var(--dark-gray);
+  font-weight: 700; 
+}
