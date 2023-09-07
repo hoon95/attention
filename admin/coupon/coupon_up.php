@@ -1,6 +1,10 @@
 <?php
-	$coup_ok = '<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">';
+
 	$title = '쿠폰 등록';
+
+	$coup_css = '<link rel="stylesheet" href="/attention/admin/css/coup.css">';
+  $coup_ok_css = '<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">';
+
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 ?>
