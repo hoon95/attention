@@ -75,7 +75,7 @@
 
 ?>
 
-<h2 class="h1">쿠폰 관리</h2>
+<h2 class="tt_01 text-center">쿠폰 관리</h2>
 	<!-- 쿠폰 셀렉 , 검색 , 등록 - 기서은 -->
 	<div class="d-flex align-items-center justify-content-between common_select_box">
 		<!--쿠폰 활성화 카테고리 선택   -->
