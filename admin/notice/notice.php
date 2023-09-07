@@ -38,7 +38,6 @@
     </div>
   </div>
 
-  <form action="">
   <table class="table mt-4">
     <thead>
       <tr class="board_hd text1 text-center">
