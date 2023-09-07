@@ -70,7 +70,7 @@
 											<div class="d-flex">
 												<div class="coup_type">
 													<input type="radio" name="coup_type" checked value="활성화" id="infinite_date">
-													<label for="infinite_date" class="infinite_date">무제한</label>
+													<label for="infinite_date" class="infinite_date">무기한</label>
 												</div>
 												<div class="coup_type">
 													<input type="radio" name="coup_type" value="비활성화" id="day_date">
@@ -78,7 +78,7 @@
 												</div>
 											</div>
 											<div class="coup_type_date_box d-flex align-items-center">
-												<input type="number" id="coup_type_date"  min="1" max="24" step="1" name="coup_type" class="form-control" required disabled>
+												<input type="number" id="regdate_box"  min="1" max="24" step="1" name="coup_type" class="form-control" required disabled>
 												<span>개월</span>
 											</div>
 										</td>
@@ -95,7 +95,18 @@
 	</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-	<script src="/admin/coupon/js/common.js"></script>
-  <script src="/admin/coupon/js/coup.js"></script>
+	<script>
+	$(".coup_img").click(function() {
+    $(".coup_hidden").trigger("click");
+	})
+
+	$(".infinite_date").on("click", function () {
+		$("#regdate_box").prop("disabled", true);
+	});
+
+	$(".day_date").on("click", function () {
+		$("#regdate_box").prop("disabled", false);
+	});
+	</script>
 </body>
 </html>
