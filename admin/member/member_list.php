@@ -1,4 +1,5 @@
 <?php
+  $member_css = '<link rel="stylesheet" href="/attention/admin/css/member.css">';
   $title = '회원 관리 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
@@ -56,7 +57,6 @@
   }
 ?>
 
-<link rel="stylesheet" href="/attention/admin/css/member.css">
 
 <div class="member">
   <h2 class="tt_01 text-center">회원 목록</h2>

@@ -1,4 +1,5 @@
 <?php
+$class_view_css = '<link rel="stylesheet" href="/attention/admin/css/class_view.css">';
 $title = '강좌상세보기 - Code Rabbit';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
@@ -33,7 +34,7 @@ while($rs2 = $clipresult -> fetch_object()){
   $clips[] = $rs2;
 }
 ?>
-<link rel="stylesheet" href="/attention/admin/css/class_view.css">
+
 <div class="common_pd">
   <p class="tt_01 class_ss_mt class_m_pd text-center">강좌상세보기</p>
   <div class="d-flex d-flex align-items-center">

@@ -14,6 +14,53 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css" integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/attention/admin/css/common.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/attention/admin/img/coderabbit_favicon.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/attention/admin/img/coderabbit_favicon.png">
+  <?php
+    if(isset($category_css)){
+      echo $category_css;
+    }
+    if(isset($class_cate_css)){
+      echo $class_cate_css;
+    }
+    if(isset($class_list_css)){
+      echo $class_list_css;
+    }
+    if(isset($class_up_css)){
+      echo $class_up_css;
+    }
+    if(isset($class_view_css)){
+      echo $class_view_css;
+    }
+    if(isset($coup_ok_css)){
+      echo $coup_ok_css;
+    }
+    if(isset($coup_css)){
+      echo $coup_css;
+    }
+    if(isset($login_css)){
+      echo $login_css;
+    }
+    if(isset($member_css)){
+      echo $member_css;
+    }
+    if(isset($notice_css)){
+      echo $notice_css;
+    }
+    if(isset($sales_css)){
+      echo $sales_css;
+    }
+    if(isset($flatpickr_min_css)){
+      echo $flatpickr_min_css;
+    }
+    if(isset($index_css)){
+      echo $index_css;
+    }
+    if(isset($summernote_min_css)){
+      echo $summernote_css;
+    }
+
+  ?>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

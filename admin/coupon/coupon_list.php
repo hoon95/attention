@@ -1,4 +1,6 @@
 <?php
+  $coup_css = '<link rel="stylesheet" href="/attention/admin/css/coup.css">';
+  $coup_ok_css = '<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">';
   $title = '쿠폰 목록';
 	
 	$coup_css = '<link rel="stylesheet" href="/attention/admin/css/coup.css">';

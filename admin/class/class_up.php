@@ -1,4 +1,6 @@
 <?php
+$class_cate_css = '<link rel="stylesheet" href="/attention/admin/css/class_cate.css">';
+$class_up_css = '<link rel="stylesheet" href="/attention/admin/css/class_up.css">';
 $title = '강좌 등록 - Code Rabbit';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
@@ -9,8 +11,7 @@ while($rs0 = $result0 -> fetch_object()){
   $cate1[] = $rs0;
 }
 ?>
-<link rel="stylesheet" href="/attention/admin/css/category.css">
-<link rel="stylesheet" href="/attention/admin/css/class_up.css">
+
 <style> #pcode3_1-button {font-weight: 400; color: var(--gray);} </style>
 <div class="common_pd">
           <p class="tt_01 class_ss_mt class_m_pd text-center">강좌 등록</p>

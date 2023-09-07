@@ -1,4 +1,5 @@
 <?php
+  $notice_css = '<link rel="stylesheet" href="/attention/admin/css/notice.css">';
   $title = '공지사항 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
@@ -12,7 +13,7 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/pagenation.php';
 ?>
 
-<link rel="stylesheet" href="/attention/admin/css/notice.css">
+
 
 <div class="notice">
   <h2 class="tt_01 text-center">게시판</h2>
