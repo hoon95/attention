@@ -10,11 +10,11 @@
 		<table>
 			<tbody>
 				<tr class="space">
-					<th><h3 class="tt_03">쿠폰명</h3></th>
+					<th class="tt_03">쿠폰명</th>
 					<td><input type="text" id="coupon_name" name="coupon_name" class="form-control" placeholder="이름을 입력해주세요" required></td>
 				</tr>
 				<tr class="space">
-					<th><h3 class="tt_03">첨부파일</h3></th>
+					<th class="tt_03">첨부파일</th>
 					<td class="d-flex align-items-end coup_thumbnail_box">
 						<div class="coup_thumbnail" id="file_table_id"  value="" >
 						</div>
@@ -23,11 +23,11 @@
 					</td>
 				</tr>
 				<tr class="space">
-					<th><h3 class="tt_03">할인액</h3></th>
+					<th class="tt_03">할인액</th>
 					<td><input type="number" id="coupon_price"  min="5000" max="1000000" step="1000" name="coupon_price" class="form-control" required></td>
 				</tr>
 				<tr class="space">
-					<th><h3 class="tt_03">쿠폰설정</h3></th>
+					<th class="tt_03">쿠폰설정</th>
 						<td class="coupon_status_box d-flex">
 							<div class="coup_type coupon_status">
 								<input type="radio" name="status" checked value="활성화" id="price">
@@ -40,7 +40,7 @@
 					</td>
 				</tr>
 				<tr class="space">
-					<th><h3 class="tt_03">기한</h3></th>
+					<th class="tt_03">기한</th>
 						<td class="coup_type_box d-flex">
 							<div class="d-flex">
 								<div class="coup_type coup_date">
