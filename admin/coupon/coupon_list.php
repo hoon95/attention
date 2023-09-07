@@ -51,13 +51,9 @@
 
 	/* 쿠폰 부분에서도 그 키워드가 나오게*/
 
-  $statussql = "SELECT * from coupons where status={$status}" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
-
 	$sql = "SELECT * from coupons where 1=1";
 
   $sql .= $search_where;
-	
-  $statussql .= $search_where;
 
   $order = " order by cid desc";//최근순 정렬
   $limit = " limit $statLimit, $endLimit";
