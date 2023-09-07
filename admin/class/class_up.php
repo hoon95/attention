@@ -12,7 +12,7 @@ while($rs0 = $result0 -> fetch_object()){
 }
 ?>
 
-<style> #pcode3_1-button {font-weight: 400; color: var(--gray);} </style>
+
 <div class="common_pd">
           <p class="tt_01 class_ss_mt class_m_pd text-center">강좌 등록</p>
           <form action="class_ok.php" method="POST" id="class_form" enctype="multipart/form-data">

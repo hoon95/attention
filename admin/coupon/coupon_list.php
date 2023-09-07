@@ -96,12 +96,10 @@
 
 		<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
 		<div class="d-flex align-items-center justify-content-between coup_searchbox">
-			<form action="#" id="search_form">
-				<div class="seach">
-					<input type="text" name="search" id="search" class="form-control" placeholder="쿠폰명을 검색해주세요">
-					<button type="submit"><i class="bi bi-search icon_gray"></i></button>
-				</div>	
-			</form>
+			<div class="seach">
+				<input type="text" name="search" id="search" class="form-control" placeholder="쿠폰명을 검색해주세요">
+				<button type="submit"><i class="bi bi-search icon_gray"></i></button>
+			</div>	
 			<a href="coupon_up.php" class="btn btn-primary">쿠폰등록</a>
 		</div>
 		<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
@@ -192,7 +190,6 @@
     </nav>
 		<!-- /페이지네이션 -->
 <script>
-
 	$("#status").selectmenu({
   change: function( event, data ) {
 		let selected_value = data.item.value;//item으로 받음

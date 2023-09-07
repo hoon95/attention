@@ -8,9 +8,8 @@
 .class_table tr{
   box-shadow: 4px 5px 17px 0px rgba(0, 0, 0, 0.15);
   margin-bottom: 7px;
-  /* border-radius: 12px;
-  border-collapse: collapse;
-  border-style: hidden; */
+  padding: 0 26px 0 39px;
+  border-radius: 12px;
 }
 .form-control{
   display: inline-block;
@@ -31,20 +30,14 @@
 .class_ss_bb{
   margin-bottom: 36px;
 }
-.class_ss_mr{
-  margin-right: 14px;
-}
-.class_ss_br{
-  margin-right: 26px;
-}
 .class_ss_ml{
   margin-left: 15.75px;
 }
-.class_ssm_ml{
-  margin-left: 20px;
+.class_s_mr{
+  margin-right: 14px;
 }
-.class_sm_ml{
-  margin-left: 24px;
+.class_b_mr{
+  margin-right: 44px;
 }
 .class_sm_mtb{
   padding: 20px 0 20px 48px;
@@ -52,17 +45,8 @@
 .class_mtb{
   padding: 20px 0 20px;
 }
-.class_trb{
-  margin: 20px 26px 20px 0;
-}
 .class_m_pd{
   padding-bottom: 40px;
-}
-.class_m_pd{
-  padding-bottom: 40px;
-}
-.class_list_img{
-  margin: 0 44px 0 39px;
 }
 .class_list_img img{
   display: inline-block;
@@ -81,9 +65,6 @@
 }
 .class_date_tag{
   margin-left: 8px;
-}
-.class_button{
-  margin: 14px 18px 14px 0;
 }
 .class_button>div:first-child{
   margin-bottom: 31px;
@@ -110,4 +91,8 @@
 }
 .ui-selectmenu-text{
   text-align: center;
+}
+#pcode3_1-button{
+  color: var(--dark-gray);
+  font-weight: 700;
 }
