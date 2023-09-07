@@ -62,3 +62,7 @@
 .notice_view .text1{
   font-weight: 700;
 }
+.notice_view table .box a:hover{
+  color: var(--mint);
+  
+}

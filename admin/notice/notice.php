@@ -43,7 +43,7 @@
     <thead>
       <tr class="board_hd text1 text-center">
         <th scope="col" class="col-1">No&#46;</th>
-        <th scope="col" class="col-7">제목</th>
+        <th scope="col" class="col-6">제목</th>
         <th scope="col">작성일</th>
         <th scope="col">조회수</th>
         <th scope="col">수정 &#47; 삭제</th>
