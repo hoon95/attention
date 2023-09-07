@@ -83,8 +83,8 @@
 }
 .class_list_item img{
   width: 112px;
-  height: 112px;
-  object-fit: contain;
+  height: 70px;
+  object-fit: cover;
 }
 #pcode3-button {
   margin-top: 0;

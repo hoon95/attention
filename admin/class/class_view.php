@@ -1,5 +1,4 @@
 <?php
-$class_view_css = '<link rel="stylesheet" href="/attention/admin/css/class_view.css">';
 $title = '강좌상세보기 - Code Rabbit';
 $class_view_css = '<link rel="stylesheet" href="/attention/admin/css/class_view.css">';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
