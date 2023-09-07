@@ -38,7 +38,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                     <span class="select class_ss_ml">
                       <select name="select" class="select_from">
                         <option selected disabled>소분류</option>
-                        <!-- <option value="1">소분류</option> -->
                       </select>
                     </span>
                   </td>
@@ -115,42 +114,41 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="Private">비공개</label>
                     </div>
                     </td>
-                </tr>
+                  </tr>
                 </tbody>
-            </table>
+              </table>
                 <hr class="class_hr">
                 <table class="table class_s_mt">
-              <tbody>
-                <tr>
-                  <th class="tt_03">강좌소개</th>
-                  <td>
-                    <!-- summernote -->
-                    <div id="class_intro"><?php echo $sqlobj->content ?></div> 
-                    <!-- /summernote -->
-                    
-                  </td>
-                </tr>
-                <tr>
-                  <th class="tt_03">썸네일</th>
-                  <td>
-                    <div class="class_sm_pd"><?php echo $sqlobj->thumbnail ?></div>
-                    <input type="file" class="form-control" name="thumbnail" id="thumbnail">
-                  </td>
-                </tr>
-                <tr>
-                  <th class="tt_03" scope="row">추가이미지</th>
-                  <td>
-                    <div class="drop form-control d-flex justify-content-center align-items-center gray" id="drag_drop">
-                      <span class="text3"><i class="bi bi-upload icon_gray"></i>이곳에 파일을 첨부하세요</span>
-                      <div id="add_images" class="d-flex justify-content-start">
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <?php
-                    }
-                ?>
-              </tbody>
+                  <tbody>
+                    <tr>
+                      <th class="tt_03">강좌소개</th>
+                      <td>
+                        <!-- summernote -->
+                        <div id="class_intro"><?php echo $sqlobj->content ?></div> 
+                        <!-- /summernote -->
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="tt_03">썸네일</th>
+                      <td>
+                        <div class="class_sm_pd"><?php echo $sqlobj->thumbnail ?></div>
+                        <input type="file" class="form-control" name="thumbnail" id="thumbnail">
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="tt_03" scope="row">추가이미지</th>
+                      <td>
+                        <div class="drop form-control d-flex justify-content-center align-items-center gray" id="drag_drop">
+                          <span class="text3"><i class="bi bi-upload icon_gray"></i>이곳에 파일을 첨부하세요</span>
+                          <div id="add_images" class="d-flex justify-content-start">
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <?php
+                        }
+                    ?>
+                  </tbody>
             </table>
             <hr class="class_hr">
             <div class="d-flex justify-content-end class_s_mt">
@@ -160,35 +158,32 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           </form>
     </div>
     <script>
-$('#class_form').submit(function () {// form에서 전송 이벤트가 일어나면 할일 ok  //버튼클릭으로 이벤트잡는거 x 
+      $('#class_form').submit(function(){ 
         let content_str = $('#class_intro').summernote('code');
         let content = encodeURIComponent(content_str);
-        $('#content').val(content);
+          $('#content').val(content);
+        });
+        $( function() {
+          $( ".select_from" ).selectmenu();
+        } );
 
-      });// /form에서 전송 이벤트가 일어나면 할일
-      $( function() {
-        $( ".select_from" ).selectmenu();
-      } );
-
-      
       $('#add_images').on('click', 'a', function (e) {
         e.preventDefault()
         let imgid = $(this).parent().attr('data-imgid');
         file_delete(imgid);
       });
 
-    $('#class_intro').summernote({
-  height: 400,
-  placeholder: '강좌를 소개해주세요',
-  resize: false,
-  lang: "ko-KR",
-  disableResizeEditor: true,
-  callbacks: {  //여기 부분이 이미지를 첨부하는 부분
-      onImageUpload: function (files) {
-          RealTimeImageUpdate(files, this);
-      }
-  }
-});
+      $('#class_intro').summernote({
+        height: 400,
+        placeholder: '강좌를 소개해주세요',
+        resize: false,
+        lang: "ko-KR",
+        disableResizeEditor: true,
+        callbacks: {  //여기 부분이 이미지를 첨부하는 부분
+            onImageUpload: function (files) {
+                RealTimeImageUpdate(files, this);
+            }}
+      });
 
         $('.class_price input').change(function(){
           let price_val = $(this).val();
@@ -214,36 +209,35 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
 
         let uploadFiles = [];
         let $drop = $("#drag_drop");
-        $drop.on("dragenter", function() {  //드래그 요소가 들어왔을떄
+        $drop.on("dragenter", function() { 
           $(this).addClass('drag-enter');
-        }).on("dragleave", function() {  //드래그 요소가 나갔을때
+        }).on("dragleave", function() {  
           $(this).removeClass('drag-enter');
         }).on("dragover", function(e) {
           e.preventDefault();
           e.stopPropagation();
-        }).on('drop', function(e) {  //드래그한 항목을 떨어뜨렸을때
+        }).on('drop', function(e) { 
           e.preventDefault();
-          console.log(e);
           
           $(this).removeClass('drag-enter');
-          let files = e.originalEvent.dataTransfer.files;//originalEvent으로 file항목을 읽고 그 중 dataTransfer(??)에서 files를 가져온다
+          let files = e.originalEvent.dataTransfer.files;
           console.log(files);
-          for(let i = 0;i <files.length;i++) {  //originalEvent은 배열이라 foreach,   ,filter안돼서 for로 뽑아야 됌 이렇게 뽑아 야 됨 
+          for(let i = 0;i <files.length;i++) {
             let file = files[i];
-            let size = uploadFiles.push(file);  //업로드 목록에 for i로 하나씩 추가  //file 개수 console에선 1, 2로 나옴 
+            let size = uploadFiles.push(file);  
             attachFile(file);
           }  
         });
  
-        $(".images_submit").click(function(){//전송되게 그것도 drop시 자동
-          let formData = new FormData();//전송되게 FormData를 사용
-          $.each(uploadFiles, function(i, file) {
-            if(file.upload != 'disable')  //삭제하지 않은 disable없는 이미지만 업로드 항목으로 추가
-              formData.append('upload-file', file, file.name); //이걸로 전송되는게 아니라 아래 ajax에 줌
+        $(".images_submit").click(function(){
+          let formData = new FormData();
+          $.each(uploadFiles, function(i, file){
+            if(file.upload != 'disable') 
+              formData.append('upload-file', file, file.name);
           });
           $.ajax({
             url: '/api/etc/file/upload',
-            data : formData, //이 파일을 ajax에 줄꺼니까 
+            data : formData, 
             type : 'post',
             contentType : false,
             processData: false,
@@ -252,37 +246,29 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
             }
           });
         });
-        $("#add_images").on("click", ".close", function(e) {//닫기 버튼 클릭하면 disable라는 속성을 넣어주자 
+        $("#add_images").on("click", ".close", function(e) {
           let $target = $(e.target);
           let idx = $target.attr("data-idx");
-          uploadFiles[idx].upload = 'disable';  //삭제된 항목은 업로드하지 않기 위해 플래그 생성
-          $target.parent().remove();  //프리뷰 삭제
+          uploadFiles[idx].upload = 'disable'; 
+          $target.parent().remove(); 
         });
 
-
-
-        //추가이미지를 넣으면 class_save_image.php에 savefile를 첨부했어하고 넣고,
-        //쿼리에도 넣는걸 해주는 함수
-      function attachFile(file) {
-        console.log(file);
-        let formData = new FormData(); //페이지 전환없이 이페이지 바로 이미지 등록
-        formData.append('savefile', file) //<input type="file" name="savefile" value="파일명">
-        console.log(formData);
-        $.ajax({
-          url: 'class_save_image.php',
-          data: formData,
-          cache: false,
-          contentType: false,
-          processData: false,
-          dataType: 'json',
-          type: 'POST',
-          error: function (error) {
-            console.log('error:', error)
-          },
-          success: function (return_data) {
-
-            console.log(return_data);
-
+        function attachFile(file) {
+          let formData = new FormData();
+          formData.append('savefile', file) 
+          $.ajax({
+            url: 'class_save_image.php',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            type: 'POST',
+            error: function (error) {
+              console.log('error:', error)
+            },
+            success: function (return_data) {
+              console.log(return_data);
             if (return_data.result == 'member') {
               alert('로그인을 하십시오.');
               return;
@@ -297,64 +283,60 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
               alert('관리자에게 문의하세요');
               return;
             } else {
-              
-              //첨부이미지 테이블에 저장하면 할일
-              let imgid = $('#file_table_id').val() + return_data.imgid + ',';
-              console.log($('#file_table_id').val())
-              $('#file_table_id').val(imgid);
-              let html = `
-                  <div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
-                    <img src="/attention/pdata/class/${return_data.savefile}" alt="">
-                    <a href="#"><i class="bi bi-trash-fill icon_red"></i></a>
-                </div>
-              `;
-              $('#add_images').append(html);
-            }
-          }
 
+            //첨부이미지 테이블에 저장하면 할일
+            let imgid = $('#file_table_id').val() + return_data.imgid + ',';
+            console.log($('#file_table_id').val())
+            $('#file_table_id').val(imgid);
+            let html = `
+                <div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
+                  <img src="/attention/pdata/class/${return_data.savefile}" alt="">
+                  <a href="#"><i class="bi bi-trash-fill icon_red"></i></a>
+              </div>
+            `;
+            $('#add_images').append(html);
+          }
+        }
         });
       }
 
-
-
-      function file_delete(imgid) {
-    if (!confirm('정말 삭제하시겠습니까? :0')) {
-      return false;
-    }
-    let data = {
-      imgid: imgid
-    }
-    $.ajax({
-      async: false,
-      type: 'post',
-      url: 'image_delete.php',
-      data: data,
-      dataType: 'json',
-      error: function (error) {
-        console.log('error:', error)
-      },
-      success: function (return_data) {
-        if (return_data.result == 'member') {
-          alert('로그인 먼저하세요');
-          return;
-        } else if (return_data.result == 'my') {
-          alert('본인이 작성한 제품의 이미지만 삭제할 수 있습니다.');
-          return;
-        } else if (return_data.result == 'no') {
-          alert('파일 첨부 실패.. :(');
-          return;
-        } else {
-          $('#f_' + imgid).hide();
-        }
+      function file_delete(imgid){
+      if (!confirm('정말 삭제하시겠습니까? :0')) {
+        return false;
       }
+      let data = {
+        imgid: imgid
+      }
+      $.ajax({
+        async: false,
+        type: 'post',
+        url: 'image_delete.php',
+        data: data,
+        dataType: 'json',
+        error: function (error){
+          console.log('error:', error)
+        },
+        success: function (return_data){
+          if (return_data.result == 'member') {
+            alert('로그인 먼저하세요');
+            return;
+          } else if (return_data.result == 'my') {
+            alert('본인이 작성한 제품의 이미지만 삭제할 수 있습니다.');
+            return;
+          } else if (return_data.result == 'no') {
+            alert('파일 첨부 실패.. :(');
+            return;
+          } else {
+            $('#f_' + imgid).hide();
+          }
+        }
+      })
+    } //file_delete func
 
-    })
-  } //file_delete func
-
-  $('.class_close').click(function(e){
-      e.preventDefault();
-        history.back();
-    });
+    $('.class_close').click(function(e){
+        e.preventDefault();
+          history.back();
+      });
     </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

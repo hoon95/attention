@@ -6,13 +6,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
 $pid = $_GET['pid'];
 $sql = "SELECT * FROM class where pid={$pid}";
-
 $result = $mysqli -> query($sql);
 $rs = $result -> fetch_object();
-
 $cateArray = explode("/", $rs->cate);
 $catenames = '';
-
 foreach($cateArray as $cate){
   $catesql = "SELECT name FROM category where cid={$cate}";
   $cateresult = $mysqli -> query($catesql);
@@ -20,16 +17,13 @@ foreach($cateArray as $cate){
   $catenames .= $cate->name.'>';
 }
 $catename = rtrim( $catenames,  $catenames[strlen( $catenames) - 1]); 
-
 $sql2 = "SELECT * FROM class_image_table where pid={$pid}";
 $result2 = $mysqli -> query($sql2);
-
 while($rs2 = $result2 -> fetch_object()){
   $imgs[] = $rs2;
 }
 $clipsql = "SELECT * FROM class_clips where pid={$pid}";
 $clipresult = $mysqli -> query($clipsql);
-
 while($rs2 = $clipresult -> fetch_object()){
   $clips[] = $rs2;
 }

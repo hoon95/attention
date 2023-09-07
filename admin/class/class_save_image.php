@@ -23,10 +23,10 @@
   } 
   //파일 업로드
   $save_dir = $_SERVER['DOCUMENT_ROOT']."/attention/pdata/class/";
-  $filename = $_FILES['savefile']['name']; //insta.jpg
-  $ext = pathinfo($filename, PATHINFO_EXTENSION); //jpg
-  $newfilename = date("YmdHis").substr(rand(), 0,6); //20238171184015
-  $savefile = $newfilename.".".$ext; //20238171184015.jpg
+  $filename = $_FILES['savefile']['name']; 
+  $ext = pathinfo($filename, PATHINFO_EXTENSION); 
+  $newfilename = date("YmdHis").substr(rand(), 0,6); 
+  $savefile = $newfilename.".".$ext;
 
   if(move_uploaded_file($_FILES['savefile']['tmp_name'], $save_dir.$savefile)){
     $sql = "INSERT INTO class_image_table (userid, filename) VALUES ('admin', '{$savefile}')";

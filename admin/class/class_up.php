@@ -161,23 +161,22 @@ while($rs0 = $result0 -> fetch_object()){
 
       //카테고리 시작
       $(function(){
-    $("select").selectmenu();
-      $("select#pcode2_1").on("selectmenuchange", function(event, ui){
-      $('#pcode2_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
-    });
-    $("select#pcode3").on("selectmenuchange", function(event, ui){
-      $('#pcode3-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
-    });
-    $("select#pcode3_1").on("selectmenuchange", function(event, ui){
-      $('#pcode3_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
-    });
-  
-    $("#pcode2_1").on("selectmenuselect", function(event, ui) {
-      let data = { 
-        cate : $("#pcode2_1").val(),
-        step : 2,
-        category : '중분류'  
-      }
+      $("select").selectmenu();
+        $("select#pcode2_1").on("selectmenuchange", function(event, ui){
+        $('#pcode2_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+      });
+      $("select#pcode3").on("selectmenuchange", function(event, ui){
+        $('#pcode3-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+      });
+      $("select#pcode3_1").on("selectmenuchange", function(event, ui){
+        $('#pcode3_1-button span.ui-selectmenu-text').css({color: '#505050', fontWeight: '700'});
+      });
+      $("#pcode2_1").on("selectmenuselect", function(event, ui) {
+        let data = { 
+          cate : $("#pcode2_1").val(),
+          step : 2,
+          category : '중분류'  
+        }
 
       $.ajax({
         async: false,
@@ -209,9 +208,9 @@ while($rs0 = $result0 -> fetch_object()){
         $("#pcode3_1").html(result); 
         $("#pcode3_1").selectmenu('refresh');
         }
-      });
-     });  
-    })
+        });
+      });  
+      })
 
       $('#class_form').submit(function () {
 
@@ -227,8 +226,6 @@ while($rs0 = $result0 -> fetch_object()){
         alert('상품 설명을 입력하세요');
         return false;
       }
-
-
       });
       //카테고리 끝
 
@@ -294,11 +291,9 @@ while($rs0 = $result0 -> fetch_object()){
           e.stopPropagation();
         }).on('drop', function(e) {
           e.preventDefault();
-          console.log(e);
           
           $(this).removeClass('drag-enter');
           let files = e.originalEvent.dataTransfer.files;
-          console.log(files);
           for(let i = 0;i <files.length;i++) { 
             let file = files[i];
             attachFile(file);
@@ -308,7 +303,6 @@ while($rs0 = $result0 -> fetch_object()){
         function attachFile(file) {
           let formData = new FormData(); 
             formData.append('savefile', file)
-            console.log(formData);
             $.ajax({
               url: 'class_save_image.php',
               data: formData,
@@ -340,7 +334,6 @@ while($rs0 = $result0 -> fetch_object()){
                   
                   //첨부이미지 테이블에 저장하면 할일
                   let imgid = $('#file_table_id').val() + return_data.imgid + ',';
-                  console.log($('#file_table_id').val())
                   $('#file_table_id').val(imgid);
                   let html = `
                       <div class="thumb" id="f_${return_data.imgid}" data-imgid="${return_data.imgid}">
