@@ -56,7 +56,7 @@
       <span>
         <span class="select cate_section">
           <select name="select" class="select_from cate_large" id="pcode2_1"> 
-            <option selected disabled dark_gray>대분류</option>
+            <option selected disabled>대분류</option>
             <?php foreach($cate1 as $c){ ?>
               <option value="<?php echo $c -> cid; ?>"><?php echo $c -> name; ?></option>
             <?php } ?>
@@ -64,18 +64,18 @@
         </span>
         <span class="select class_ss_ml cate_section">
           <select name="select" class="select_from" id="pcode3">
-            <option selected disabled dark_gray>중분류</option>
+            <option selected disabled>중분류</option>
           </select>
         </span>
         <span class="select class_ss_ml cate_section">
           <select name="select" class="select_from" id="pcode3_1">
-            <option selected disabled dark_gray>소분류</option>
+            <option selected disabled>소분류</option>
           </select>
         </span>
       </span>
       <span>
         <span class="seach">
-          <input type="text" name="search" id="search" class="form-control">
+          <input type="text" name="search" id="search" class="form-control" placeholder="강좌명 및 내용 입력">
           <button type="button"><i class="bi bi-search icon_gray"></i></button>
         </span>
       </span>

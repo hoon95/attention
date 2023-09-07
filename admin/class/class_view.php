@@ -36,6 +36,7 @@ while($rs2 = $clipresult -> fetch_object()){
 ?>
 
 <div class="common_pd">
+  <div>
   <p class="tt_01 class_ss_mt class_m_pd text-center">강좌상세보기</p>
   <div class="d-flex d-flex align-items-center">
     <div class="d-flex align-items-center">
@@ -85,11 +86,11 @@ while($rs2 = $clipresult -> fetch_object()){
         </ul>
       </li>
       <li class="text2 class_sm_pd d-flex">
-      <span class="class_bold class_tl2">강좌소개</span>
-        <span class="class_into"><?php echo $rs->content ?></span>
+      <div class="class_bold class_tl2">강좌소개</div>
+        <div class="class_into"><?php echo $rs->content ?></div>
       </li>
       <li class="text2 class_sm_pd d-flex class_view_img">
-        <span class="class_bold class_tl2">추가 이미지</span>
+        <div class="class_bold class_tl2">추가 이미지</div>
         <div>
       <?php
         if(isset($imgs)){
@@ -107,6 +108,8 @@ while($rs2 = $clipresult -> fetch_object()){
     <div class="d-flex justify-content-end">
       <a href="/attention/admin/class/class_list.php" class="btn btn-dark class_sm_ml">닫기</a>
     </div>
+  </div>
+</div>
 
   <script>
     $('.class_menu').css({backgroundColor: "#252a38"});
