@@ -107,6 +107,11 @@ while($rs2 = $clipresult -> fetch_object()){
     <div class="d-flex justify-content-end">
       <a href="/attention/admin/class/class_list.php" class="btn btn-dark class_sm_ml">닫기</a>
     </div>
+
+  <script>
+    $('.class_menu').css({backgroundColor: "#252a38"});
+    $('.class_menu').find('a').css({color: 'white'});
+  </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>

@@ -95,6 +95,8 @@
 <script src="/attention/admin/js/jquery.number.min.js"></script>
 <script>
   $('.number').number(true);
+  $('.sales_menu').css({backgroundColor: "#252a38"});
+  $('.sales_menu').find('a').css({color: 'white'});
 </script>
 
 <?php

@@ -160,6 +160,8 @@
     <!-- /pagenation 끝 -->
  
   <script>
+    	$('.class_menu').css({backgroundColor: "#252a38"});
+	    $('.class_menu').find('a').css({color: 'white'});
       $( function() {
       $( ".select_from" ).selectmenu();
 

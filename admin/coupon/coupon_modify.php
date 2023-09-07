@@ -76,6 +76,8 @@
 	</div>
 
 	<script>
+	$('.coup_menu').css({backgroundColor: "#252a38"});
+	$('.coup_menu').find('a').css({color: 'white'});
 	let coupclose = $(".coup_close");
 	coupclose.on("click", function() {
 		var confirmation = confirm('수정 취소하시겠습니까? :0');

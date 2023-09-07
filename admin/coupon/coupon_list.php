@@ -75,7 +75,7 @@
 
 ?>
 
-<h2 class="tt_01 text-center">쿠폰 관리</h2>
+<h2 class="tt_01 text-center mb-5">쿠폰 관리</h2>
 	<!-- 쿠폰 셀렉 , 검색 , 등록 - 기서은 -->
 	<div class="d-flex align-items-center justify-content-between common_select_box">
 		<!--쿠폰 활성화 카테고리 선택   -->
@@ -191,6 +191,8 @@
     </nav>
 		<!-- /페이지네이션 -->
 <script>
+	$('.coup_menu').css({backgroundColor: "#252a38"});
+	$('.coup_menu').find('a').css({color: 'white'});
 	$("#status").selectmenu({
   change: function( event, data ) {
 		let selected_value = data.item.value;//item으로 받음

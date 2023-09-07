@@ -72,6 +72,8 @@
 	</form>
 </div>
 <script>
+	$('.coup_menu').css({backgroundColor: "#252a38"});
+	$('.coup_menu').find('a').css({color: 'white'});
 	$(".coup_img").click(function() {
     $(".coup_hidden").trigger("click");
 	})

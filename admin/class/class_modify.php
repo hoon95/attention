@@ -159,6 +159,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
           </form>
     </div>
     <script>
+      $('.class_menu').css({backgroundColor: "#252a38"});
+	    $('.class_menu').find('a').css({color: 'white'});
       $('#class_form').submit(function(){ 
         let content_str = $('#class_intro').summernote('code');
         let content = encodeURIComponent(content_str);

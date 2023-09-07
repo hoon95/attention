@@ -152,6 +152,8 @@
 <script src="/attention/admin/js/jquery.number.min.js"></script>
 <script src="/attention/admin/js/index.js"></script>
 <script>
+    $('.dash_menu').css({backgroundColor: "#252a38"});
+    $('.dash_menu').find('a').css({color: 'white'});
     let currentDate = new Date();
     currentDate.setDate(currentDate.getDate() - 6);
     let ago = currentDate.toISOString().split('T')[0];

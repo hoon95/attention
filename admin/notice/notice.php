@@ -123,6 +123,8 @@
 </div><!-- /notice -->
 
 <script>
+  $('.board_menu').css({backgroundColor: "#252a38"});
+  $('.board_menu').find('a').css({color: 'white'});
   $( function() {
     $( "#select" ).selectmenu();
   } );
