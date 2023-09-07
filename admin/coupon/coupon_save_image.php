@@ -32,10 +32,11 @@
 			echo json_encode($return_data);
 			exit;
 		}
-  } else {
-    $return_data = array("result" => 'error');
-    echo json_encode($return_data);
-    exit;
-}
+	}	
+// else {
+//     $return_data = array("result" => 'error');
+//     echo json_encode($return_data);
+//     exit;
+// }
 
 ?>

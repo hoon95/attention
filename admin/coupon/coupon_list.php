@@ -1,19 +1,10 @@
 <?php
+  $coup_css = '<link rel="stylesheet" href="/attention/admin/css/coup.css">';
+  $coup_ok_css = '<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">';
   $title = '쿠폰 목록';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 	
-
-
-	// $pageNumber = $_GET['pageNumber'] ?? 1;
-  // $pageCount = $_GET['pageCount'] ?? 10;
-	// // $status = $_GET['status'];
-  // $table = "coupons";
-  // $title = "coupon_name";
-  // $content = 'status';
-	
-	// include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/pagenation.php';
-
 	
 	/* 페이지 내 검색 및 활성화 */
 	$cid = $_GET['cid']?? '';
@@ -27,8 +18,22 @@
   $endLimit = $pageCount;
   $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
 
-  //전체 게시물 수 구하기  
-  $pagesql = "SELECT COUNT(*) AS cnt FROM coupons";
+	/* 검색 */ 
+	$search_where = '';
+
+  if($search){
+    $search_where .= " and coupon_name like '%{$search}%'";
+  }
+  if($status){
+		// if($status == 'all') {
+		// 	$search_where .= "";
+		// }
+    $search_where .= " and status = '{$status}'";
+  }
+	 
+	//검색 키워드 게시물 전체
+  $pagesql = "SELECT COUNT(*) AS cnt FROM coupons where 1=1";
+	$pagesql .= $search_where;
   $page_result = $mysqli->query($pagesql);
   $page_row = $page_result->fetch_object();
   $row_num = $page_row->cnt; //전체 게시물 수
@@ -42,28 +47,17 @@
   $total_page = ceil($row_num/$pageCount); //총 게시물수, 52/5
   if($block_end > $total_page) $block_end = $total_page;
   $total_block = ceil($total_page/$block_ct);//총32, 2
-  /* /페이지네이션 */
 
 
 
 
-	$search_where = '';
+	/* 쿠폰 부분에서도 그 키워드가 나오게*/
 
-  if($search){
-    $search_where .= " and coupon_name like '%{$search}%'";
-  }
-  if($status){
-		// if($status == 'all') {
-		// 	$search_where .= "";
-		// }
-    $search_where .= " and status = '{$status}'";
-  }
-	/* /페이지내 검색 및 활성화 */
-
-  $sql = "SELECT * from coupons where 1=1 " ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
+	$sql = "SELECT * from coupons where 1=1";
 
   $sql .= $search_where;
-  $order = " order by regdate desc";//최근순 정렬
+
+  $order = " order by cid desc";//최근순 정렬
   $limit = " limit $statLimit, $endLimit";
 
   $query = $sql.$order.$limit; //쿼리 문장 조합
@@ -74,39 +68,45 @@
     $rsc[] = $rs;
   }
 
+	
 
 ?>
-<link rel="stylesheet" href="/attention/admin/css/coup.css">
-<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">
+
 <h2 class="h1">쿠폰 관리</h2>
+	<!-- 쿠폰 셀렉 , 검색 , 등록 - 기서은 -->
 	<div class="d-flex align-items-center justify-content-between common_select_box">
-		<!-- 쿠폰 활성화 카테고리 선택 - 기서은 -->
+		<!--쿠폰 활성화 카테고리 선택   -->
 		<div class="common_select coupon_select">
 			<div class="d-flex align-items-center justify-content-between">
-
 				<select name="status" id="status"  aria-label="대기설정 변경">
-					<option selected disabled>쿠폰 활성화 선택</option>
-					<option value="" <?php if(  $status=='') {echo "selected"; } ?> >전체 쿠폰</option>
-					<option value="활성화"  <?php if(  $status=='활성화') {echo "selected"; } ?> >활성된 쿠폰</option>
-					<option value="비활성화" <?php if(  $status=='비활성화') {echo "selected"; } ?> >비활성된 쿠폰</option>
+					<option disabled value="">쿠폰 활성화 선택</option>
+					<option value="" <?php if($status=='') {echo "selected"; } ?> >전체 쿠폰</option>
+					<option value="활성화"  <?php if($status=='활성화') {echo "selected"; } ?> >활성된 쿠폰</option>
+					<option value="비활성화" <?php if($status=='비활성화') {echo "selected"; } ?> >비활성된 쿠폰</option>
 				</select>
+					<a href="coupon_list.php" class="btn btn-primary">
+						<span>목록</span>
+					</a>
 			</div>
 		</div>
 		<!-- /쿠폰 활성화 카테고리 선택 - 기서은 -->
 
 		<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
 		<div class="d-flex align-items-center justify-content-between coup_searchbox">
-			<form action="" id="search_form">
-				<div class="seach">
-					<input type="text" name="search" id="search" class="form-control" placeholder="쿠폰명을 검색해주세요">
-					<button type="submit"><i class="bi bi-search icon_gray"></i></button>
-				</div>	
-			</form>
+			<div class="seach">
+				<input type="text" name="search" id="search" class="form-control" placeholder="쿠폰명을 검색해주세요">
+				<button type="submit"><i class="bi bi-search icon_gray"></i></button>
+			</div>	
 			<a href="coupon_up.php" class="btn btn-primary">쿠폰등록</a>
 		</div>
 		<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
 
 	</div>
+	<!-- /쿠폰 셀렉 , 검색 , 등록 - 기서은 -->
+	<p class="coup_count">
+		총개수
+		<span><?php echo $row_num; ?></span>
+	</p>
 	<!-- 쿠폰 리스트 form - 기서은 -->
 	<div class="row row-cols-2">
 		<?php
@@ -139,7 +139,6 @@
 							</div>
 							<div class="coup_common_icon d-flex">
 								<a href = "coupon_modify.php?cid=<?= $item-> cid ?>" class="bi bi-pencil-square icon_mint"></a>
-							
 								<a href = "coupon_delete.php?cid=<?= $item-> cid ?>" class="bi bi-trash-fill icon_red"></a>
 							</div>
 						</div>
@@ -163,32 +162,31 @@
       <ul class="pagination justify-content-center align-items-center">
         <?php
           if($pageNumber>1){                   
-            echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?pageNumber=1&search={$search}\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
+            echo "<li class=\"page-item\"><a class=\"page-link\" href=\"?status=$status&search=$search&pageNumber=1\"><i class=\"bi bi-chevron-double-left icon_gray\"></i></a></li>";
               if($block_num > 1){
                   $prev = ($block_num - 2) * $block_ct + 1;
-                  echo "<li class=\"page-item\"><a href='?pageNumber={$prev}&search={$search}' class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
+                  echo "<li class=\"page-item\"><a href=\"?status=$status&search=$search&pageNumber=$prev\" class=\"page-link\"><i class=\"bi bi-chevron-left icon_gray\"></i></a></li>";
               }
           }
           for($i=$block_start;$i<=$block_end;$i++){
             if($pageNumber == $i){
-                echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?pageNumber={$i}\" class=\"page-link\">{$i}</a></li>";
+                echo "<li class=\"page-item active\" aria-current=\"page\"><a href=\"?status=$status&search=$search&pageNumber={$i}\" class=\"page-link\">{$i}</a></li>";
             }else{
-                echo "<li class=\"page-item\"><a href=\"?pageNumber={$i}&search={$search}\" class=\"page-link\">{$i}</a></li>";
+                echo "<li class=\"page-item\"><a href=\"?status=$status&search=$search&pageNumber={$i}\" class=\"page-link\">{$i}</a></li>";
             }
           }
           if($pageNumber<$total_page){
             if($total_block > $block_num){
                 $next = $block_num * $block_ct + 1;
-                echo "<li class=\"page-item\"><a href=\"?pageNumber={$next}&search={$search}\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
+                echo "<li class=\"page-item\"><a href=\"?status=$status&search=$search&pageNumber=$next\" class=\"page-link\"><i class=\"bi bi-chevron-right icon_gray\"></i></a></li>";
             }
-            echo "<li class=\"page-item\"><a href=\"?pageNumber={$total_page}&search={$search}\" class=\"page-link\"><i class=\"bi bi-chevron-double-right icon_gray\"></i></a></li>";
+            echo "<li class=\"page-item\"><a href=\"?status=$status&search=$search&pageNumber=$total_page\" class=\"page-link\"><i class=\"bi bi-chevron-double-right icon_gray\"></i></a></li>";
           }
         ?>  
       </ul>
     </nav>
 		<!-- /페이지네이션 -->
 <script>
-
 	$("#status").selectmenu({
   change: function( event, data ) {
 		let selected_value = data.item.value;//item으로 받음
@@ -217,7 +215,7 @@
 			coup_toggle.val("비활성화");
 		}
 		console.log(coup_toggle.val());
-
+		
 		//input의 value와 data-cid 받아오기
 		let status = coup_toggle.val();
 		let cid = $(this).closest(".col_coup_cid").attr("data-cid"); 

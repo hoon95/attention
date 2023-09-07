@@ -39,13 +39,14 @@
       $coupon_image = "/attention/pdata/coupon/".$coupon_image;
     } else{
       echo "<script>
-        alert('이미지등록 실패!');    
+        alert('이미지 등록 실패.. :(');    
         history.back();            
       </script>";
     }
   } //첨부파일 있다면 할일
 
   $mysqli->autocommit(FALSE);//일단 바로 저장하지 못하도록
+  
   try{
 
   $sql = "INSERT INTO coupons 
@@ -62,7 +63,7 @@
   
   if($result){
     echo "<script>
-      alert('쿠폰등록완료');
+      alert('등록 완료되었습니다 :)');
       location.href = 'coupon_list.php';
     </script>";
   } 
@@ -70,8 +71,8 @@
 } catch (Exception $e) {
   $mysqli->rollback();//저장한 테이블이 있다면 롤백한다.
     echo "<script>
-    alert('쿠폰등록실패');
-    history.back();
+    alert('등록 실패.. :(');
+    // history.back();
     </script>";
 }  
 

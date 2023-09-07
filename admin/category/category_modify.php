@@ -9,7 +9,7 @@
   $query = "SELECT * FROM category WHERE step=".$step." AND name='".$cate_name."'";
   $result = $mysqli -> query($query);
   $data = $result -> fetch_object();
-  if(isset($data)){  
+  if(isset($data)){
     echo 'duplicate';
     exit;
   }

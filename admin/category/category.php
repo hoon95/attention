@@ -1,10 +1,5 @@
-<!-- 이 위치에 있어야지만 jQuery Select UI 적용됨 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" 
-integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-
 <?php
+  $category_css = '<link rel="stylesheet" href="/attention/admin/css/category.css">';
   $title = '카테고리 관리 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
@@ -16,7 +11,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
   }
 ?>
 
-<link rel="stylesheet" href="/attention/admin/css/category.css">
+
 
 <div class="container">
   <div>
@@ -212,8 +207,18 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 </div>  <!-- 소분류등록 Modal 기능(끝) -->
 
 <script>
+  $(".cate_close button").click(function(e){
+    e.preventDefault();
+    location.href = '/attention/admin/class/class_list.php';
+  });
+
   $(function(){
     $("select").selectmenu();
+  
+  //대분류 출력  
+    $("#cate1").on("selectcreate", function(event, ui) {
+      makeOption($(this), 1, '대분류', $('#cate1'), $('#cate1_div'));  
+    }); 
 
   //대분류 선택 ▶ 중분류 출력 (jQueryUI Method)
     $("#cate1").on("selectmenuselect", function(event, ui) {
@@ -490,6 +495,10 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 </script>
 
 <script src="/attention/admin/js/category.js"></script>   
+<?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
+?>
+
 
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

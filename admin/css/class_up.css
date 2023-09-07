@@ -1,6 +1,3 @@
-.aside{
-  max-height: none;
-}
 .table{
   --bs-table-bg:var(--blue-Gray);
   margin-bottom:0
@@ -111,7 +108,7 @@ input.form-control::placeholder{
   opacity: 0;
 }
 .form-control:disabled + label{
-  display: none;
+  opacity: 0;
 }
 .drop.drag_enter{
   background: #3498db;
@@ -130,10 +127,10 @@ input.form-control::placeholder{
   padding: 20px;
   gap: 10px;
 }
-#add_images .thumb{
-  width: 150px;
+.thumb{
+ width: 150px;
 }
-#add_images .thumb img{
+.thumb img{
   width: 80px;
   display: block;
 }
@@ -149,4 +146,17 @@ input.form-control::placeholder{
 .thumb{
   display: flex;
   justify-content: end;
+}
+#pcode3-button {
+  margin-top: 0;
+}
+.ui-selectmenu-text{
+  text-align: center;
+}
+input:-internal-autofill-selected {
+  background-color: var(--white);
+}
+#pcode3_1-button {
+  color: var(--dark-gray);
+  font-weight: 700; 
 }

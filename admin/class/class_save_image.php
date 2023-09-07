@@ -1,14 +1,14 @@
 <?php
-  // session_start(); 
+  session_start(); 
 
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 
-  // // 관리자 검사
-  // if(!isset($_SESSION['AUID'])){
-  //   $return_data = array("result"=>"member"); 
-  //   echo json_encode($return_data);
-  //   exit;
-  // }
+  // 관리자 검사
+  if(!isset($_SESSION['AUID'])){
+    $return_data = array("result"=>"member"); 
+    echo json_encode($return_data);
+    exit;
+  }
 
   //파일 사이즈 검사
   if($_FILES['savefile']['size']> 10240000){
@@ -30,22 +30,22 @@
   $savefile = $newfilename.".".$ext; //20238171184015.jpg
 
   if(move_uploaded_file($_FILES['savefile']['tmp_name'], $save_dir.$savefile)){
-    $sql = "INSERT INTO class_image_table (userid, filename) VALUES ('admin', '{$savefile}')";//admin ->{$_SESSION['AUID']} login 연결 시 바꿀 껏
+    $sql = "INSERT INTO class_image_table (userid, filename) VALUES ('admin', '{$savefile}')";
     $result = $mysqli->query($sql);
 
     if($result){
         $imgid = $mysqli->insert_id;
-        $return_data = array("result" => 'success', 'imgid' => $imgid, 'savefile' => $savefile);
-        echo json_encode($return_data);
+        $return_url = array("result" => 'success', 'imgid' => $imgid, 'savefile' => $savefile);
+        echo json_encode($return_url);
         exit;
     } else{
-        $return_data = array("result" => 'error');
-        echo json_encode($return_data);
+        $return_url = array("result" => 'error');
+        echo json_encode($return_url);
         exit;
     }
   } else{
-      $return_data = array("result" => 'error');
-      echo json_encode($return_data);
+      $return_url = array("result" => 'error');
+      echo json_encode($return_url);
       exit;
   }
 ?>
