@@ -103,7 +103,7 @@
                 <a href="class_modify.php?pid=<?= $item->pid ?>" class="class_ss_mr"><i class="bi bi-pencil-square icon_mint"></i></a>
                 <form method="post" action="class_delete.php">
                   <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
-                  <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까?')" class="class_delete"><i class="bi-trash-fill icon_red"></i></button>
+                  <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까? :0')" class="class_delete"><i class="bi-trash-fill icon_red"></i></button>
                 </form>
               </div>
           </td>
@@ -231,7 +231,7 @@
             },
             error: function(xhr, status, error){
               console.log(xhr.responseText);
-              // alert('서버 요청 실패!');
+              // alert('서버 요청 실패.. :(');
       }});
         
     });

@@ -6,7 +6,7 @@ if (isset($_POST['confirm_delete'])) {
     $sql = "DELETE FROM class WHERE pid='{$pid}'";
     
     if ($mysqli->query($sql)) {
-        echo '<script>alert("삭제되었습니다.");</script>';
+        echo '<script>alert("삭제되었습니다 :)");</script>';
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

@@ -25,7 +25,6 @@ while($rs0 = $result0 -> fetch_object()){
                   <span class="select cate_section">
                     <select name="cate1" class="select_from cate_large" id="pcode2_1" require> 
                       <option selected disabled>대분류</option>
-                      <!-- <option value="1">대분류</option> -->
                       <?php foreach($cate1 as $c){ ?>
                         <option value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
                       <?php } ?>
@@ -34,13 +33,11 @@ while($rs0 = $result0 -> fetch_object()){
                   <span class="select class_ss_ml cate_section">
                     <select name="cate2" class="select_from" id="pcode3">
                       <option selected disabled>중분류</option>
-                      <!-- <option value="1">중분류</option> -->
                     </select>
                   </span>
                   <span class="select class_ss_ml cate_section">
                     <select name="cate3" class="select_from" id="pcode3_1">
                       <option selected disabled>소분류</option>
-                      <!-- <option value="1">소분류</option> -->
                     </select>
                   </span>
                   </td>
@@ -156,13 +153,11 @@ while($rs0 = $result0 -> fetch_object()){
           </form>
     </div>
     <script>
-      $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나면 할일 ok  //버튼클릭으로 이벤트잡는거 x 
+      $('#class_form').submit(function () {
         let content_str = $('#class_intro').summernote('code');
         let content = encodeURIComponent(content_str);
         $('#content').val(content);
-
-
-      });// form에서 전송 이벤트가 일어나면 할일 끝
+      });
 
       //카테고리 시작
       $(function(){
@@ -179,7 +174,7 @@ while($rs0 = $result0 -> fetch_object()){
   
     $("#pcode2_1").on("selectmenuselect", function(event, ui) {
       let data = { 
-        cate : $("#pcode2_1").val(),  //대분류의 값이 변경되면  
+        cate : $("#pcode2_1").val(),
         step : 2,
         category : '중분류'  
       }
@@ -191,7 +186,7 @@ while($rs0 = $result0 -> fetch_object()){
         url: "../category/printOption.php",
         dataType: 'html',
         success: function(result) {
-        $("#pcode3").html(result);  //중분류 div에 html 추가
+        $("#pcode3").html(result); 
         $("#pcode3").selectmenu('refresh');
         }
       });
@@ -199,7 +194,7 @@ while($rs0 = $result0 -> fetch_object()){
 
     $("#pcode3").on("selectmenuselect", function(event, ui) {
       let data = { 
-        cate : $("#pcode3").val(),  //대분류의 값이 변경되면  
+        cate : $("#pcode3").val(),   
         step : 3,
         category : '소분류'  
       }
@@ -211,15 +206,14 @@ while($rs0 = $result0 -> fetch_object()){
         url: "../category/printOption.php",
         dataType: 'html',
         success: function(result) {
-        $("#pcode3_1").html(result);  //중분류 div에 html 추가
+        $("#pcode3_1").html(result); 
         $("#pcode3_1").selectmenu('refresh');
         }
       });
      });  
     })
-     
 
-          $('#class_form').submit(function () {
+      $('#class_form').submit(function () {
 
       let markupStr = $('#class_intro').summernote('code');
       let content = encodeURIComponent(markupStr);
@@ -298,14 +292,14 @@ while($rs0 = $result0 -> fetch_object()){
         }).on("dragover", function(e) {
           e.preventDefault();
           e.stopPropagation();
-        }).on('drop', function(e) {  //드래그한 항목을 떨어뜨렸을때
+        }).on('drop', function(e) {
           e.preventDefault();
           console.log(e);
           
           $(this).removeClass('drag-enter');
           let files = e.originalEvent.dataTransfer.files;
           console.log(files);
-          for(let i = 0;i <files.length;i++) {  //originalEvent은 배열이라 foreach,   ,filter안돼서 for로 뽑아야 됌 이렇게 뽑아 야 됨 
+          for(let i = 0;i <files.length;i++) { 
             let file = files[i];
             attachFile(file);
           }  
@@ -362,7 +356,7 @@ while($rs0 = $result0 -> fetch_object()){
 
         //file_delete func 시작
         function file_delete(imgid) {
-          if (!confirm('정말삭제할까요?')) {
+          if (!confirm('정말 삭제하시겠습니까? :0')) {
             return false;
           }
           let data = {
@@ -385,7 +379,7 @@ while($rs0 = $result0 -> fetch_object()){
                 alert('본인이 작성한 제품의 이미지만 삭제할 수 있습니다.');
                 return;
               } else if (return_data.result == 'no') {
-                alert('삭제 실패');
+                alert('삭제 실패.. :(');
                 return;
               } else {
                 $('#f_' + imgid).hide();
@@ -399,7 +393,7 @@ while($rs0 = $result0 -> fetch_object()){
         //강좌 취소 이벤트 시작
         $('.class_close').click(function(e){
           e.preventDefault();
-          if(confirm('강좌 등록을 취소하시겠습니까?')){
+          if(confirm('등록 취소하시겠습니까? :0')){
               history.back();
           }
         //강좌 취소 이벤트 끝

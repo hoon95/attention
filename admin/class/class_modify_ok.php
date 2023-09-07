@@ -54,7 +54,7 @@ if(!isset($_SESSION['AUID'])){
                 $thumbnail_file = "/attention/pdata/class/".$thumbnail_file;
               } else{
                 echo "<script>
-                  alert('파일 첨부 실패!');    
+                  alert('파일 첨부 실패.. :(');    
                   // history.back();            
                 </script>";
               }
@@ -66,7 +66,7 @@ if(!isset($_SESSION['AUID'])){
 var_dump($sql3);
 //   if ($mysqli->query($sql) === TRUE) {
 //     echo "<script>
-//     alert('수정 완료되었습니다.');
+//     alert('수정 완료되었습니다 :)');
 //     location.href ='attention/admin/class/class_list.php';</script>";
 // } else {
 //     echo "Error: " . $sql . "<br>" . $mysqli->error;

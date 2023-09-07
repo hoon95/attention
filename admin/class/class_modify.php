@@ -96,7 +96,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                     <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
                   </td>
                 </tr>
-                <!-- <tr>
+                <tr>
                   <th class="tt_03">강좌영상</th>
                   <td class="class_video">
                     <div class="video_wrap">
@@ -106,7 +106,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                       <button type="button" id="video_add"><i class="bi bi-plus-circle icon_gray"></i></button>
                     </div>
                   </td>
-                </tr> -->
+                </tr>
                 <tr>
                   <th class="tt_03">공개 여부</th>
                   <td>
@@ -320,7 +320,7 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
 
 
       function file_delete(imgid) {
-    if (!confirm('정말 삭제하시겠습니까?')) {
+    if (!confirm('정말 삭제하시겠습니까? :0')) {
       return false;
     }
     let data = {
@@ -343,7 +343,7 @@ $('#class_form').submit(function () {// form에서 전송 이벤트가 일어나
           alert('본인이 작성한 제품의 이미지만 삭제할 수 있습니다.');
           return;
         } else if (return_data.result == 'no') {
-          alert('파일 첨부 실패!');
+          alert('파일 첨부 실패.. :(');
           return;
         } else {
           $('#f_' + imgid).hide();
