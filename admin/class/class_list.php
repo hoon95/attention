@@ -1,5 +1,8 @@
 <?php
   $title = '강좌리스트 - Code Rabbit';
+  $class_list_css = '<link rel="stylesheet" href="/attention/admin/css/class_list.css">';
+  $category_css = '<link rel="stylesheet" href="/attention/admin/css/category.css">';
+  // $class_cate_css = '<link rel="stylesheet" href="/attention/admin/css/class_cate.css">';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
   
@@ -34,12 +37,9 @@
     $rc[] = $rs;
   }  
   ?>
-<link rel="stylesheet" href="/attention/admin/css/category.css">
-<link rel="stylesheet" href="/attention/admin/css/class_list.css">
-<style> #pcode3_1-button {font-weight: 400; color: var(--gray);} </style>
 <p class="tt_01 class_ss_mt class_m_pd text-center">강좌리스트</p>
   <!-- 카테고리 관리 & 검색 form 시작 -->
-  <form action="">
+  <form>
     <div class="d-flex justify-content-between class_sm_m">
       <a href="/attention/admin/category/category.php" class="btn btn-primary">카테고리 관리</a>
       <a href="class_up.php" class="btn btn-primary">강좌 등록</a> 
@@ -81,9 +81,9 @@
           if(isset($rc)){
             foreach($rc as $item){
         ?>
-        <tr class="d-flex">
-          <td class="class_list_item d-flex align-items-center class_list_item" data-pid="<?= $item->pid ?>">
-            <img src="<?= $item->thumbnail ?>" alt="thumbnail image" class="class_list_img">
+        <tr class="d-flex align-items-center white_back">
+          <td class="class_list_item class_list_item" data-pid="<?= $item->pid ?>">
+            <img src="<?= $item->thumbnail ?>" alt="thumbnail image" class="class_list_img class_b_mr">
           </td>
           <td class="d-flex flex-grow-1 flex-column justify-content-center class_sm_mtb class_mtb class_list_item" data-pid="<?= $item->pid ?>">
             <div class="class_ss_mb">
@@ -95,28 +95,28 @@
             </div>
           </td>
           <td>
-            <div class="form-check form-switch class_ss_bb d-flex justify-content-end class_m_mt class_ss_br">
-                <input class="form-check-input status" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="<?= $item->status ?>"
-                <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]" data-pid="<?= $item->pid ?>">
-              </div>
-              <div class="d-flex class_sm_m class_ss_br">
-                <a href="class_modify.php?pid=<?= $item->pid ?>" class="class_ss_mr"><i class="bi bi-pencil-square icon_mint"></i></a>
-                <form method="post" action="class_delete.php">
-                  <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
-                  <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까? :0')" class="class_delete"><i class="bi-trash-fill icon_red"></i></button>
-                </form>
-              </div>
+            <div class="form-check form-switch class_ss_bb class_m_mt class_ss_br d-flex justify-content-end">
+              <input class="form-check-input status" type="checkbox" role="switch" value="<?= $item->status ?>"
+              <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]" data-pid="<?= $item->pid ?>">
+            </div>
+            <div class="d-flex class_sm_m class_ss_br">
+              <a href="#" class="class_ss_mr class_s_mr"><i class="bi bi-pencil-square icon_mint"></i></a>
+              <form method="post" action="class_delete.php">
+                <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
+                <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까? :0')" class="class_delete"><i class="bi-trash-fill icon_red"></i></button>
+              </form>
+            </div>
           </td>
         </tr>
         <?php
           }
             }else{
-              ?>
-              <tr>
-                <td colspan="3">검색결과가 없습니다.</td>
-              </tr>
-              <?php   
-            }
+        ?>
+        <tr>
+          <td colspan="3">검색결과가 없습니다.</td>
+        </tr>
+        <?php   
+          }
         ?>
       </tbody>
     </table>
@@ -170,7 +170,7 @@
   
     $("#pcode2_1").on("selectmenuselect", function(event, ui) {
       let data = { 
-        cate : $("#pcode2_1").val(),  //대분류의 값이 변경되면  
+        cate : $("#pcode2_1").val(),
         step : 2,
         category : '중분류'  
       }
@@ -182,7 +182,7 @@
         url: "../category/printOption.php",
         dataType: 'html',
         success: function(result) {
-        $("#pcode3").html(result);  //중분류 div에 html 추가
+        $("#pcode3").html(result); 
         $("#pcode3").selectmenu('refresh');
         }
       });
@@ -190,7 +190,7 @@
 
     $("#pcode3").on("selectmenuselect", function(event, ui) {
       let data = { 
-        cate : $("#pcode3").val(),  //대분류의 값이 변경되면  
+        cate : $("#pcode3").val(),   
         step : 3,
         category : '소분류'  
       }
@@ -202,14 +202,14 @@
         url: "../category/printOption.php",
         dataType: 'html',
         success: function(result) {
-        $("#pcode3_1").html(result);  //중분류 div에 html 추가
+        $("#pcode3_1").html(result);  
         $("#pcode3_1").selectmenu('refresh');
         }
       });
      });  
     })
      //카테고리 끝
-    } );
+    });
 
     $('.class_list_item').click(function(e){
       e.preventDefault();
@@ -218,25 +218,18 @@
     });    
     
     $('input[type="checkbox"]').change(function(){
-     
-        let check_value = $(this).prop('checked') ? 1 : 0;
-        let pcode = $(this).data('pid');
-
+      let check_value = $(this).prop('checked') ? 1 : 0;
+      let pcode = $(this).data('pid');
       $.ajax({
-            url: 'clist_update.php',
-            type : 'POST',
-            data: {pcode:pcode, check_value:check_value},
-            success : function(response){
-              // alert(response);
-            },
-            error: function(xhr, status, error){
-              console.log(xhr.responseText);
-              // alert('서버 요청 실패.. :(');
+        url: 'clist_update.php',
+        type : 'POST',
+        data: {pcode:pcode, check_value:check_value},
+        success : function(response){
+        },
+        error: function(xhr, status, error){
+          console.log(xhr.responseText);
       }});
-        
     });
-
-
   </script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

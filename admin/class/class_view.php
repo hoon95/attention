@@ -1,5 +1,6 @@
 <?php
 $title = '강좌상세보기 - Code Rabbit';
+$class_view_css = '<link rel="stylesheet" href="/attention/admin/css/class_view.css">';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
@@ -33,14 +34,13 @@ while($rs2 = $clipresult -> fetch_object()){
   $clips[] = $rs2;
 }
 ?>
-<link rel="stylesheet" href="/attention/admin/css/class_view.css">
 <div class="common_pd">
-  <p class="tt_01 class_ss_mt class_m_pd text-center">강좌상세보기</p>
+  <p class="tt_01 class_ss_mt class_m_pb text-center">강좌상세보기</p>
   <div class="d-flex d-flex align-items-center">
     <div class="d-flex align-items-center">
       <img src="<?php echo $rs->thumbnail ?>" alt="" class="class_v_img ">
     </div>
-    <ul class="class_sm_pd">
+    <ul class="">
       <li class="text2 class_sm_pd">
         <span class="class_bold class_tl">강좌명</span>
         <span class="text2"><?php echo $rs->name ?></span>
@@ -59,7 +59,7 @@ while($rs2 = $clipresult -> fetch_object()){
       </li>
     </ul>
   </div>
-  <hr class="class_sm_pd">
+  <hr class="class_hr class_mm_mt class_mm_mb">
   <div class="d-flex">
     <ul>
       <li class="text2 class_sm_pd">
@@ -84,11 +84,11 @@ while($rs2 = $clipresult -> fetch_object()){
         </ul>
       </li>
       <li class="text2 class_sm_pd d-flex">
-      <span class="class_bold class_tl2">강좌소개</span>
-        <span class="class_into"><?php echo $rs->content ?></span>
+      <div class="class_bold class_tl2">강좌소개</div>
+        <div class="class_into"><?php echo $rs->content ?></div>
       </li>
-      <li class="text2 class_sm_pd d-flex class_view_img">
-        <span class="class_bold class_tl2">추가 이미지</span>
+      <li class="text2 d-flex class_view_img">
+        <div class="class_bold class_tl2">추가 이미지</div>
         <div>
       <?php
         if(isset($imgs)){
@@ -102,10 +102,11 @@ while($rs2 = $clipresult -> fetch_object()){
       </li>
     </ul>
   </div>    
-    <hr class="class_hr class_sm_pd">  
+    <hr class="class_hr class_mm_mt">  
     <div class="d-flex justify-content-end">
       <a href="/attention/admin/class/class_list.php" class="btn btn-dark class_sm_ml">닫기</a>
     </div>
+</div>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>

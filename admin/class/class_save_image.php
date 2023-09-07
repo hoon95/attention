@@ -1,6 +1,5 @@
 <?php
   session_start(); 
-
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 
   // 관리자 검사

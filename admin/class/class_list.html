@@ -27,32 +27,27 @@
     </nav>
     <div class="main">
   <p class="tt_01 class_ss_mt class_m_pd text-center">강좌리스트</p>
-
   <!-- 카테고리 관리 & 검색 form -->
-  
-  <form action="">
+  <form>
     <div class="d-flex justify-content-between class_sm_m">
       <a href="/attention/admin/category/category.php" class="btn btn-primary">카테고리 관리</a>
-      <a href="class_up.php" class="btn btn-primary">강좌 등록</a>
+      <a href="class_up.php" class="btn btn-primary">강좌 등록</a> 
     </div>
     <div class="d-flex justify-content-between class_sm_m">
       <span>
         <span class="select cate_section">
-          <select name="select" class="select_from cate_large" id="pcode2_1">
+          <select name="select" class="select_from cate_large" id="pcode2_1"> 
             <option selected disabled>대분류</option>
-            <!-- <option value="1">대분류</option> -->
           </select>
         </span>
         <span class="select class_ss_ml cate_section">
           <select name="select" class="select_from" id="pcode3">
             <option selected disabled>중분류</option>
-            <!-- <option value="1">중분류</option> -->
           </select>
         </span>
         <span class="select class_ss_ml cate_section">
           <select name="select" class="select_from" id="pcode3_1">
             <option selected disabled>소분류</option>
-            <!-- <option value="1">소분류</option> -->
           </select>
         </span>
       </span>
@@ -64,132 +59,50 @@
       </span>
     </div>
   </form>
-  <!-- /카테고리 관리 & 검색 form -->
-  <!-- 강좌 리스트 -->
-  
+  <!-- 카테고리 관리 & 검색 form 끝 -->
+  <!-- 강좌 리스트 시작 -->
     <table class="table class_table">
       <tbody>
         <tr class="d-flex">
-          <td class="class_list_img d-flex align-items-center">
-            <img src="../img/test.png" alt="">
+          <td class="class_list_item d-flex align-items-center class_list_item">
+            <img src="../img/test.png" alt="thumbnail image" class="class_list_img">
           </td>
-          <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1">
-            <div>
+          <td class="d-flex flex-grow-1 flex-column justify-content-center class_sm_mtb class_mtb class_list_item">
+            <div class="class_ss_mb">
               <span class="text2">웹디자이너를 위한 피그마 100% 활용 기초</span><span class="class_level_tag orange">초급</span>
             </div>
-            <div>200,000원</div>
+            <div class="class_p_val class_ss_mb">200,000원</div>
             <div>
               <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange">무제한</span>
             </div>
           </td>
-          <td class="class_button d-flex flex-column justify-content-between">
-            <div class="form-check form-switch d-flex justify-content-end">
-              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            </div>
-            <div>
-              <i class="bi bi-pencil-square icon_mint"></i>
-              <i class="bi bi-trash-fill icon_red"></i>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-      <tbody>
-        <tr class="white_back d-flex">
-          <td class="class_list_img d-flex align-items-center">
-            <img src="../img/test.png" alt="">
-          </td>
-          <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1">
-            <div>
-              <span class="text2">웹디자이너를 위한 피그마 100% 활용 기초</span><span class="class_level_tag orange">초급</span>
-            </div>
-            <div>200,000원</div>
-            <div>
-              <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange">무제한</span>
-            </div>
-          </td>
-          <td class="class_button d-flex flex-column justify-content-between">
-            <div class="form-check form-switch d-flex justify-content-end">
-              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            </div>
-            <div>
-              <i class="bi bi-pencil-square icon_mint"></i>
-              <i class="bi bi-trash-fill icon_red"></i>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-      <tbody>
-        <tr class="white_back d-flex">
-          <td class="class_list_img d-flex align-items-center">
-            <img src="../img/test.png" alt="thumbnail image">
-          </td>
-          <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1">
-            <div>
-              <span class="text2">웹디자이너를 위한 피그마 100% 활용 기초</span><span class="class_level_tag orange">초급</span>
-            </div>
-            <div>200,000원</div>
-            <div>
-              <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange">무제한</span>
-            </div>
-          </td>
-          <td class="class_button d-flex flex-column justify-content-between">
-            <div class="form-check form-switch d-flex justify-content-end">
-              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            </div>
-            <div>
-              <i class="bi bi-pencil-square icon_mint"></i>
-              <i class="bi bi-trash-fill icon_red"></i>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-      <tbody>
-        <tr class="white_back d-flex">
-          <td class="class_list_img d-flex align-items-center">
-            <img src="../img/test.png" alt="">
-          </td>
-          <td class="d-flex flex-column justify-content-between class_sm_mtb flex-grow-1">
-            <div>
-              <span class="text2">웹디자이너를 위한 피그마 100% 활용 기초</span><span class="class_level_tag orange">초급</span>
-            </div>
-            <div>200,000원</div>
-            <div>
-              <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange">무제한</span>
-            </div>
-          </td>
-          <td class="class_button d-flex flex-column justify-content-between">
-            <div class="form-check form-switch d-flex justify-content-end">
-              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            </div>
-            <div>
-              <i class="bi bi-pencil-square icon_mint"></i>
-              <i class="bi bi-trash-fill icon_red"></i>
-            </div>
+          <td>
+            <div class="form-check form-switch class_ss_bb d-flex justify-content-end class_m_mt class_ss_br">
+                <input class="form-check-input status" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+              </div>
+              <div class="d-flex class_sm_m class_ss_br">
+                <a href=""><i class="bi bi-pencil-square icon_mint"></i></a>
+                <form method="post" action="class_delete.php">
+                  <input type="hidden" name="pid">
+                  <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까? :0')" class="class_delete"><i class="bi-trash-fill icon_red"></i></button>
+                </form>
+              </div>
           </td>
         </tr>
       </tbody>
     </table>
-    <!-- /강좌 리스트 -->
-    <!-- pagenation -->
-    <div>
-      <nav aria-label="pagenation">
-        <ul class="pagination justify-content-center align-items-center">
-          <li class="page-item">
-            <a class="page-link" href="#"><i class="bi bi-chevron-left icon_gray"></i></a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#"><i class="bi bi-chevron-right icon_gray"></i></a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <!-- /pagenation -->
-  </form>
+    <!-- 강좌 리스트 끝 -->
+    <!-- pagenation 시작 -->
+    <nav aria-label="pagenation" class="space">
+      <ul class="pagination justify-content-center align-items-center">
+        <li class="page-item"><a class="page-link" href=""><i class="bi bi-chevron-double-left icon_gray"></i></a></li>
+        <li class="page-item"><a href="" class="page-link"><i class="bi bi-chevron-left icon_gray"></i></a></li>
+        <li class="page-item active"><a href="" class="page-link">1</a></li>
+        <li class="page-item"><a href="" class="page-link">2</a></li>
+        <li class="page-item"><a href="" class="page-link"><i class="bi bi-chevron-right icon_gray"></i></a></li>
+        <li class="page-item"><a href="" class="page-link"><i class="bi bi-chevron-double-right icon_gray"></i></a></li>
+      </ul>
+    </nav> 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>

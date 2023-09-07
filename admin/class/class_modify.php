@@ -28,13 +28,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
                     <span class="select">
                       <select name="select" class="select_from">
                         <option selected disabled>대분류</option>
-                        <!-- <option value="1">대분류</option> -->
                       </select>
                     </span>
                     <span class="select class_ss_ml">
                       <select name="select" class="select_from">
                         <option selected disabled>중분류</option>
-                        <!-- <option value="1">중분류</option> -->
                       </select>
                     </span>
                     <span class="select class_ss_ml">

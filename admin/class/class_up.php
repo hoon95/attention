@@ -1,5 +1,8 @@
 <?php
 $title = '강좌 등록 - Code Rabbit';
+$class_up_css = '<link rel="stylesheet" href="/attention/admin/css/class_up.css">';
+$category_css = '<link rel="stylesheet" href="/attention/admin/css/category.css">';
+// $class_cate_css = '<link rel="stylesheet" href="/attention/admin/css/class_cate.css">';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
@@ -9,9 +12,6 @@ while($rs0 = $result0 -> fetch_object()){
   $cate1[] = $rs0;
 }
 ?>
-<link rel="stylesheet" href="/attention/admin/css/category.css">
-<link rel="stylesheet" href="/attention/admin/css/class_up.css">
-<style> #pcode3_1-button {font-weight: 400; color: var(--gray);} </style>
 <div class="common_pd">
           <p class="tt_01 class_ss_mt class_m_pd text-center">강좌 등록</p>
           <form action="class_ok.php" method="POST" id="class_form" enctype="multipart/form-data">
@@ -23,8 +23,8 @@ while($rs0 = $result0 -> fetch_object()){
                   <th class="tt_03">카테고리</th>
                   <td>
                   <span class="select cate_section">
-                    <select name="cate1" class="select_from cate_large" id="pcode2_1" require> 
-                      <option selected disabled>대분류</option>
+                    <select name="cate1" class="select_from cate_large" id="pcode2_1" > 
+                      <option selected disabled value="">대분류</option>
                       <?php foreach($cate1 as $c){ ?>
                         <option value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
                       <?php } ?>
@@ -57,11 +57,11 @@ while($rs0 = $result0 -> fetch_object()){
                   <th class="tt_03">강좌난이도</th>
                   <td>
                     <div class="btn-group">
-                      <input type="radio" class="btn-check " name="level" id="level_Beginner" autocomplete="off" value="1" >
+                      <input type="radio" class="btn-check " name="level" id="level_Beginner" value="1" >
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Beginner">초급</label>
-                      <input type="radio" class="btn-check" name="level" id="level_Intermediate" autocomplete="off" value="2">
+                      <input type="radio" class="btn-check" name="level" id="level_Intermediate" value="2" checked>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Intermediate">중급</label>
-                      <input type="radio" class="btn-check" name="level" id="level_Advanced" autocomplete="off" value="3">
+                      <input type="radio" class="btn-check" name="level" id="level_Advanced" value="3">
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="level_Advanced">상급</label>
                     </div>
                   </td>
@@ -70,26 +70,26 @@ while($rs0 = $result0 -> fetch_object()){
                   <th class="tt_03">가격</th>
                   <td>
                     <div class="btn-group class_price">
-                      <input type="radio" class="btn-check" name="price" id="price_free" autocomplete="off" value="0">
+                      <input type="radio" class="btn-check" name="price" id="price_free" value="0">
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="price_free">무료</label>
-                      <input type="radio" class="btn-check" name="price" id="price_pay" autocomplete="off" value="1">
-                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="price_pay" checked>유료</label>
+                      <input type="radio" class="btn-check" name="price" id="price_pay" value="1" checked>
+                      <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="price_pay">유료</label>
                     </div>
                     <input type="number" class="form-control class_form_wd class_sm_ml price_form" placeholder="금액" min="30000" max="1200000" value="30000" step="10000" id="price_val" name="price_val">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">원</label>
+                    <label class="form-check-label" for="price_val">원</label>
                   </td>
                 </tr>
                 <tr>
                   <th class="tt_03">수강기한</th>
                   <td class="class_label_h">
                     <div class="btn-group class_date">
-                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" autocomplete="off" value="0">
+                      <input type="radio" class="btn-check" name="sale_end_date" id="unlimited" value="0">
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="unlimited">무제한</label>
-                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" autocomplete="off" value="1">
+                      <input type="radio" class="btn-check" name="sale_end_date" id="limited" value="1" checked>
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="limited">제한</label>
                     </div>
-                    <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="1" name="date_val">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">개월</label>
+                    <input type="number" class="form-control class_form_wd class_sm_ml date_form" min="1" max="72" value="1" name="date_val" id="date_val">
+                    <label class="form-check-label" for="date_val">개월</label>
                   </td>
                 </tr>
                 <tr>
@@ -97,7 +97,7 @@ while($rs0 = $result0 -> fetch_object()){
                   <td class="class_video">
                     <div class="video_wrap">
                       <div class="video_address">
-                        <input type="text" class="form-control class_lform_wd video white_back" placeholder="동영상 주소를 입력하세요" name="video[]">
+                        <input type="text" class="form-control class_lform_wd video white_back" placeholder="동영상 주소를 입력하세요" name="video[]" required>
                       </div>
                       <button type="button" id="video_add"><i class="bi bi-plus-circle icon_gray"></i></button>
                     </div>
@@ -107,9 +107,9 @@ while($rs0 = $result0 -> fetch_object()){
                   <th class="tt_03">공개 여부</th>
                   <td>
                     <div class="btn-group">
-                      <input type="radio" class="btn-check" name="status" id="open" autocomplete="off" value="1">
+                      <input type="radio" class="btn-check" name="status" id="open" value="1" checked>
                       <label class="btn btn-primary class_btn_bd_color text3  dark_gray" for="open">공개</label>
-                      <input type="radio" class="btn-check" name="status" id="Private" autocomplete="off" value="0">
+                      <input type="radio" class="btn-check" name="status" id="Private" value="0">
                       <label class="btn btn-primary class_btn_bd_color text3 dark_gray" for="Private">비공개</label>
                     </div>
                     </td>
@@ -130,7 +130,7 @@ while($rs0 = $result0 -> fetch_object()){
                 <tr>
                   <th class="tt_03">썸네일</th>
                   <td>
-                  <input type="file" class="form-control" name="thumbnail" id="thumbnail">
+                  <input type="file" class="form-control" name="thumbnail" id="thumbnail" required>
                   </td>
                 </tr>
                 <tr>
@@ -147,8 +147,8 @@ while($rs0 = $result0 -> fetch_object()){
             </table>
             <hr class="class_hr">
             <div class="d-flex justify-content-end class_s_mt">
-              <button class="btn btn-primary">등록</button>
-              <button class="class_close btn btn-dark class_sm_ml">닫기</button>
+              <button type="submit" class="btn btn-primary">등록</button>
+              <button type="button" class="class_close btn btn-dark class_sm_ml">닫기</button>
             </div>            
           </form>
     </div>
