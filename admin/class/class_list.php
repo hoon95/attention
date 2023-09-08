@@ -1,7 +1,7 @@
 <?php
-  $class_cate_css = '<link rel="stylesheet" href="/attention/admin/css/class_cate.css">';
-  $class_list_css = '<link rel="stylesheet" href="/attention/admin/css/class_list.css">';
   $title = '강좌리스트 - Code Rabbit';
+  $class_list_css = '<link rel="stylesheet" href="/attention/admin/css/class_list.css">';
+  $class_cate_css = '<link rel="stylesheet" href="/attention/admin/css/class_cate.css">';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
   
@@ -53,32 +53,24 @@
       <a href="class_up.php" class="btn btn-primary">강좌 등록</a> 
     </div>
     <div class="d-flex justify-content-between class_sm_m">
-      <span>
-        <span class="select cate_section">
-          <select name="select" class="select_from cate_large" id="pcode2_1"> 
-            <option selected disabled>대분류</option>
-            <?php foreach($cate1 as $c){ ?>
-              <option value="<?php echo $c -> cid; ?>"><?php echo $c -> name; ?></option>
-            <?php } ?>
-          </select>
-        </span>
-        <span class="select class_ss_ml cate_section">
-          <select name="select" class="select_from" id="pcode3">
-            <option selected disabled>중분류</option>
-          </select>
-        </span>
-        <span class="select class_ss_ml cate_section">
-          <select name="select" class="select_from" id="pcode3_1">
-            <option selected disabled>소분류</option>
-          </select>
-        </span>
-      </span>
-      <span>
-        <span class="seach">
-          <input type="text" name="search" id="search" class="form-control" placeholder="강좌명 및 내용 입력">
-          <button type="button"><i class="bi bi-search icon_gray"></i></button>
-        </span>
-      </span>
+      <div class="d-flex cate_gap">       
+        <select name="select" class="select_from cate_large" id="pcode2_1"> 
+          <option selected disabled dark_gray>대분류</option>
+          <?php foreach($cate1 as $c){ ?>
+            <option value="<?php echo $c -> cid; ?>"><?php echo $c -> name; ?></option>
+          <?php } ?>
+        </select>
+        <select name="select" class="select_from" id="pcode3">
+          <option selected disabled dark_gray>중분류</option>
+        </select>
+        <select name="select" class="select_from" id="pcode3_1">
+          <option selected disabled dark_gray>소분류</option>
+        </select>
+      </div>
+      <div class="seach">
+        <input type="text" name="search" id="search" class="form-control">
+        <button type="button"><i class="bi bi-search icon_gray"></i></button>
+      </div>
     </div>
   </form>
   <!-- 카테고리 관리 & 검색 form 끝 -->

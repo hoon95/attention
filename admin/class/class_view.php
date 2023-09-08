@@ -1,18 +1,15 @@
 <?php
-$class_view_css = '<link rel="stylesheet" href="/attention/admin/css/class_view.css">';
 $title = '강좌상세보기 - Code Rabbit';
+$class_view_css = '<link rel="stylesheet" href="/attention/admin/css/class_view.css">';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
 $pid = $_GET['pid'];
 $sql = "SELECT * FROM class where pid={$pid}";
-
 $result = $mysqli -> query($sql);
 $rs = $result -> fetch_object();
-
 $cateArray = explode("/", $rs->cate);
 $catenames = '';
-
 foreach($cateArray as $cate){
   $catesql = "SELECT name FROM category where cid={$cate}";
   $cateresult = $mysqli -> query($catesql);
@@ -20,29 +17,24 @@ foreach($cateArray as $cate){
   $catenames .= $cate->name.'>';
 }
 $catename = rtrim( $catenames,  $catenames[strlen( $catenames) - 1]); 
-
 $sql2 = "SELECT * FROM class_image_table where pid={$pid}";
 $result2 = $mysqli -> query($sql2);
-
 while($rs2 = $result2 -> fetch_object()){
   $imgs[] = $rs2;
 }
 $clipsql = "SELECT * FROM class_clips where pid={$pid}";
 $clipresult = $mysqli -> query($clipsql);
-
 while($rs2 = $clipresult -> fetch_object()){
   $clips[] = $rs2;
 }
 ?>
-
 <div class="common_pd">
-  <div>
-  <p class="tt_01 class_m_pd text-center">강좌상세보기</p>
+  <p class="tt_01 class_m_pb text-center">강좌상세보기</p>
   <div class="d-flex d-flex align-items-center">
     <div class="d-flex align-items-center">
       <img src="<?php echo $rs->thumbnail ?>" alt="" class="class_v_img ">
     </div>
-    <ul class="class_sm_pd">
+    <ul class="">
       <li class="text2 class_sm_pd">
         <span class="class_bold class_tl">강좌명</span>
         <span class="text2"><?php echo $rs->name ?></span>
@@ -61,7 +53,7 @@ while($rs2 = $clipresult -> fetch_object()){
       </li>
     </ul>
   </div>
-  <hr class="class_sm_pd">
+  <hr class="class_hr class_mm_mt class_mm_mb">
   <div class="d-flex">
     <ul>
       <li class="text2 class_sm_pd">
@@ -89,7 +81,7 @@ while($rs2 = $clipresult -> fetch_object()){
       <div class="class_bold class_tl2">강좌소개</div>
         <div class="class_into"><?php echo $rs->content ?></div>
       </li>
-      <li class="text2 class_sm_pd d-flex class_view_img">
+      <li class="text2 d-flex class_view_img">
         <div class="class_bold class_tl2">추가 이미지</div>
         <div>
       <?php
@@ -104,7 +96,7 @@ while($rs2 = $clipresult -> fetch_object()){
       </li>
     </ul>
   </div>    
-    <hr class="class_hr class_sm_pd">  
+    <hr class="class_hr class_mm_mt">  
     <div class="d-flex justify-content-end">
       <a href="/attention/admin/class/class_list.php" class="btn btn-dark class_sm_ml">닫기</a>
     </div>

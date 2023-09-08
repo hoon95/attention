@@ -1,8 +1,14 @@
-.class_ss_mt{
-  margin-top: 10px;
+.class_mm_mt{
+  margin-top: 40px;
 }
-.class_m_pd{
+.class_mm_mb{
+  margin-bottom: 40px;
+}
+.class_m_pb{
   padding-bottom: 40px;
+}
+.class_sm_pt{
+  padding-top: 20px;
 }
 .class_sm_pd{
   padding-bottom: 20px;
@@ -19,7 +25,6 @@
 .class_bold span{
   font-weight: 400;
 }
-/* 임시 */
 .class_level_tag{
   border: 2px solid var(--orange);
   border-radius: 3px;
@@ -37,6 +42,7 @@
 .class_into{
   word-spacing: 2px;
   line-height: 150%;
+  width: 1000px;
 }
 .class_tl{
   display: inline-block;
