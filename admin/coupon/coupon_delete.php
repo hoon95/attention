@@ -13,12 +13,15 @@
       if (confirmation) {
         alert('삭제되었습니다 :).');
         location.href='coupon_list.php';
-      } 
+      }else{
+        alert('삭제 취소했습니다 :)');
+        location.href='coupon_list.php';
+      }
     </script>";
 } else{
   "<script>
     alert('삭제 취소했습니다 :)');
-      history.back();  
+      history.back();
   </script>";
 }
 
