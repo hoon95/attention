@@ -94,7 +94,7 @@
 		$(".coup_day_date input").prop("checked", true);//제한부분 체크 되어라
 	}
 
-	if(!coupDate) {
+	if(coupDate=='무제한') {
 		$("#regdate_box").prop("disabled", true);
 		$(".coup_infinite_date input").prop("checked", true);
 
