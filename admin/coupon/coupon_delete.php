@@ -21,7 +21,7 @@
 } else{
   "<script>
     alert('삭제 취소했습니다 :)');
-      history.back();
+      history.back();  
   </script>";
 }
 

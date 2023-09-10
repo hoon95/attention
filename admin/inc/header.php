@@ -68,20 +68,6 @@
 integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script><!-- summernote 기능 쓰려면 필요 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js" integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <?php 
-    if(isset($category_css)){
-      echo $category_css;
-    }; 
-    if(isset($class_list_css)){
-      echo $class_list_css;
-    }; 
-    if(isset($class_up_css)){
-      echo $class_up_css;
-    }; 
-    if(isset($class_view_css)){
-      echo $class_view_css;
-    }; 
-  ?>
 </head>
 <body>
 <div class="background d-flex">
