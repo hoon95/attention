@@ -68,6 +68,7 @@
         </select>
       </div>
       <div class="seach">
+        <a href="class_list.php" class="btn btn-primary class_sm_mr">전체목록</a> 
         <input type="text" name="search" id="search" class="form-control">
         <button type="button"><i class="bi bi-search icon_gray"></i></button>
       </div>
