@@ -3,8 +3,9 @@
 
 ?>
 
-<h1>메인 페이지</h1>
-<a href="/attention/user/logout.php">로그아웃</a>
+<h1>임시 메인 페이지</h1>
+<a href="/attention/user/logout.php" class="btn btn-danger">로그아웃</a>
+<a href="/attention/user/cart/cart.php" class="btn btn-primary">장바구니</a>
 
 
 <?php
