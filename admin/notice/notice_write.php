@@ -47,6 +47,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </div> <!-- /notice_write -->
 
 <script>
+  $('.board_menu').css({backgroundColor: "#252a38"});
+  $('.board_menu').find('a').css({color: 'white'});
 
   $('#notice_content').summernote({
     height: 500

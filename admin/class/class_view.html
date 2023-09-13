@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
 <link rel="stylesheet" href="/admin/css/common.css">
 <link rel="stylesheet" href="/admin/css/class_view.css">
 </head>
@@ -14,7 +15,7 @@
   <div class="background d-flex">
     <nav class="aside tt_03">
       <div class="logo">
-        <img src="../img/coderabbit_logo.svg" alt="코드래빗 로고">
+        <img src="../img/coderabbit_logo.svg" alt="">
       </div>
       <ul>
         <li><a href="/admin/index.php"><i class="bi bi-grid-1x2-fill"></i> 대시보드</a></li>
@@ -28,66 +29,63 @@
     <div class="main">
       <div class="common_pd">
       <p class="tt_01 class_ss_mt class_m_pd text-center">강좌상세보기</p>
-      <div class="d-flex d-flex align-items-center">
-        <div class="d-flex align-items-center">
-          <img src="../img/test2.png" alt="thumbnail image">
-        </div>
-        <ul class="class_sm_pd">
-          <li class="text2 class_sm_pd">
-            <span class="class_bold class_tl">강좌명</span>
-            <span class="text2">웹디자이너를 위한 피그마 100% 활용 기초</span>
-          </li>
-          <li class="text2 class_sm_pd">
-            <span class="class_bold class_tl">난이도</span>
-            <span class="text2 class_level_tag orange">초급</span>
-          </li>
-          <li class="text2 class_sm_pd">
-            <span class="class_bold class_tl">공개 여부</span>
-            <span class="text2">공개</span>
-          </li>
-          <li class="text2">
-            <span class="class_bold class_tl">수강기한</span>
-            <span class="text2">1개월</span>
-          </li>
-        </ul>
+      <table class="table">
+        <tbody>
+          <tr class="d-flex align-items-center">
+            <td class="class_img"><img src="../img/test2.png" alt=""></td>
+            <td>
+              <div class="text2 class_bold class_sm_pd">강좌명</div>
+              <div class="text2 class_bold class_sm_pd">난의도</div>
+              <div class="text2 class_bold class_sm_pd">공개 여부</div>
+              <div class="text2 class_bold">수강기한</div>
+            </td>
+            <td class="class_m_ml">
+              <div class="text2 class_sm_pd">웹디자이너를 위한 피그마 100% 활용 기초</div>
+              <div class="text2 class_sm_pd"><span class="class_level_tag orange">초급</span></div>
+              <div class="text2 class_sm_pd">공개</div>
+              <div class="text2">1개월</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr class="class_hr">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>
+              <div class="text2 class_bold class_sm_pd class_cate class_view_w">카테고리</div>
+            </th>
+            <td class="class_m_ml">
+            <div class="text1 class_sm_pd">Computer > Design > 피그마</div>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <div class="text2 class_bold class_sm_pd class_view_w">강좌영상</div>
+            </th>
+            <td class="class_m_ml">
+              <a href="https://www.youtube.com" class="text2 class_sm_pd address_color">https://www.youtube.com</a>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <div class="text2 class_bold class_view_w">강좌소개</div>
+            </th>
+            <td class="class_m_ml">
+            
+              <div class="text2 class_into">입문자를 위해 준비한[프로그래밍 언어] 강의입니다.
+                이미 2만명 이상이 학습하고 만족한 최고의 프로그래밍 입문 강의. 
+                인프런이 비전공자 위치에서 직접 기획하고 준비한 프로그래밍 입문 강의로,
+                프로그래밍을 전혀 접해보지 못한 사람부터 실제 활용 가능한 프로그래밍 능력까지 갈 수 있도록 
+                도와주는 강의입니다.</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <hr class="class_hr">  <div class="d-flex justify-content-end">
+        <button class="btn btn-dark sm-ml">닫기</button>
       </div>
-      <hr class="class_sm_pd">
-      <div class="d-flex">
-        <ul>
-          <li class="text2 class_sm_pd">
-            <span class="class_bold class_tl2">카테고리</span>
-            <span>Computer>Design>피그마</span>
-          </li>
-          <li class="text2 class_sm_pd d-flex">
-            <span class="class_bold class_tl2">강좌영상</span>
-            <ul class="clips_ib">
-            <li>
-              <a href="https://www.youtube.com" class="address_color">
-                https://www.youtube.com
-              </a>
-            </li>
-            </ul>
-          </li>
-          <li class="text2 class_sm_pd d-flex">
-          <span class="class_bold class_tl2">강좌소개</span>
-            <span class="class_into">입문자를 위해 준비한[프로그래밍 언어] 강의입니다.
-              이미 2만명 이상이 학습하고 만족한 최고의 프로그래밍 입문 강의. 
-              인프런이 비전공자 위치에서 직접 기획하고 준비한 프로그래밍 입문 강의로,
-              프로그래밍을 전혀 접해보지 못한 사람부터 실제 활용 가능한 프로그래밍 능력까지 갈 수 있도록 
-              도와주는 강의입니다.</span>
-          </li>
-          <li class="text2 class_sm_pd d-flex class_view_img">
-            <span class="class_bold class_tl2">추가 이미지</span>
-            <div>
-            <img src="../img/test2.png" alt="add image">
-          </div>
-          </li>
-        </ul>
-      </div>    
-        <hr class="class_hr class_sm_pd">  
-        <div class="d-flex justify-content-end">
-          <a href="/attention/admin/class/class_list.php" class="btn btn-dark class_sm_ml">닫기</a>
-        </div>
     </div>
     </div>
 </body>

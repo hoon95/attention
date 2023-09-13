@@ -1,7 +1,7 @@
 <?php
-  $title = '강좌리스트 - Code Rabbit';
-  $class_list_css = '<link rel="stylesheet" href="/attention/admin/css/class_list.css">';
   $class_cate_css = '<link rel="stylesheet" href="/attention/admin/css/class_cate.css">';
+  $class_list_css = '<link rel="stylesheet" href="/attention/admin/css/class_list.css">';
+  $title = '강좌리스트 - Code Rabbit';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
   
@@ -53,25 +53,33 @@
       <a href="class_up.php" class="btn btn-primary">강좌 등록</a> 
     </div>
     <div class="d-flex justify-content-between class_sm_m">
-      <div class="d-flex cate_gap">       
-        <select name="cate1" class="select_from cate_large" id="pcode2_1"> 
-          <option selected disabled dark_gray>대분류</option>
-          <?php foreach($cate1 as $c){ ?>
-            <option value="<?php echo $c -> cid; ?>"><?php echo $c -> name; ?></option>
-          <?php } ?>
-        </select>
-        <select name="cate2" class="select_from" id="pcode3">
-          <option selected disabled dark_gray>중분류</option>
-        </select>
-        <select name="cate3" class="select_from" id="pcode3_1">
-          <option selected disabled dark_gray>소분류</option>
-        </select>
-      </div>
-      <div class="seach">
-        <a href="class_list.php" class="btn btn-primary class_sm_mr">전체목록</a> 
-        <input type="text" name="search" id="search" class="form-control">
-        <button type="button"><i class="bi bi-search icon_gray"></i></button>
-      </div>
+      <span>
+        <span class="select cate_section">
+          <select name="select" class="select_from cate_large" id="pcode2_1"> 
+            <option selected disabled>대분류</option>
+            <?php foreach($cate1 as $c){ ?>
+              <option value="<?php echo $c -> cid; ?>"><?php echo $c -> name; ?></option>
+            <?php } ?>
+          </select>
+        </span>
+        <span class="select class_ss_ml cate_section">
+          <select name="select" class="select_from" id="pcode3">
+            <option selected disabled>중분류</option>
+          </select>
+        </span>
+        <span class="select class_ss_ml cate_section">
+          <select name="select" class="select_from" id="pcode3_1">
+            <option selected disabled>소분류</option>
+          </select>
+        </span>
+      </span>
+      <span>
+        <span class="seach">
+          <a href="class_list.php" class="btn btn-primary class_sm_mr">전체목록</a>
+          <input type="text" name="search" id="search" class="form-control" placeholder="강좌명 및 내용 입력">
+          <button type="button"><i class="bi bi-search icon_gray"></i></button>
+        </span>
+      </span>
     </div>
   </form>
   <!-- 카테고리 관리 & 검색 form 끝 -->
@@ -170,27 +178,6 @@
       $(function() {
         $(".select_from").selectmenu();
       });
-
-
-      $("#pcode2_1").on("change", function() {
-        var selectedValue = $(this).val(); // 선택한 값 가져오기
-
-        // AJAX 요청을 통해 선택한 값을 서버에 전달하고 검색 결과를 가져옵니다.
-        $.ajax({
-            url: 'search.php', // 실제로 데이터를 처리하는 PHP 파일 경로를 지정하세요.
-            type: 'POST', // POST 또는 GET, 필요에 따라 변경
-            data: { selectedValue: selectedValue },
-            dataType: 'html', // 가져온 데이터 타입, 필요에 따라 변경
-            success: function(response) {
-                // AJAX 요청이 성공하면 화면의 특정 부분에 결과를 업데이트합니다.
-                $('#searchResults').html(response); // 결과를 표시할 HTML 요소의 ID를 지정하세요.
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
-    });
-
 
       //카테고리 시작
       $(function(){

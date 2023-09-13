@@ -68,20 +68,6 @@
 integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script><!-- summernote 기능 쓰려면 필요 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js" integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <?php 
-    if(isset($category_css)){
-      echo $category_css;
-    }; 
-    if(isset($class_list_css)){
-      echo $class_list_css;
-    }; 
-    if(isset($class_up_css)){
-      echo $class_up_css;
-    }; 
-    if(isset($class_view_css)){
-      echo $class_view_css;
-    }; 
-  ?>
 </head>
 <body>
 <div class="background d-flex">
@@ -91,12 +77,12 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
     </div>
     <div class="d-flex flex-column aside_title">
       <ul>
-        <li><a href="/attention/admin/dashboard/index.php"><i class="bi bi-grid-1x2-fill"></i> 대시보드</a></li>
-        <li><a href="/attention/admin/sales/sales_list.php"><i class="bi bi-bar-chart"></i> 매출 관리</a></li>
-        <li><a href="/attention/admin/class/class_list.php"><i class="bi bi-mortarboard-fill"></i> 강좌 관리</a></li>
-        <li><a href="/attention/admin/coupon/coupon_list.php"><i class="bi bi-credit-card-2-front"></i> 쿠폰 관리</a></li>
-        <li><a href="/attention/admin/member/member_list.php"><i class="bi bi-person-fill"></i> 회원 관리</a></li>
-        <li><a href="/attention/admin/notice/notice.php"><i class="bi bi-layout-text-sidebar-reverse"></i> 게시판 관리</a></li>
+        <li class="dash_menu"><a href="/attention/admin/dashboard/index.php"><i class="bi bi-grid-1x2-fill"></i> 대시보드</a></li>
+        <li class="sales_menu"><a href="/attention/admin/sales/sales_list.php"><i class="bi bi-bar-chart"></i> 매출 관리</a></li>
+        <li class="class_menu"><a href="/attention/admin/class/class_list.php"><i class="bi bi-mortarboard-fill"></i> 강좌 관리</a></li>
+        <li class="coup_menu"><a href="/attention/admin/coupon/coupon_list.php"><i class="bi bi-credit-card-2-front"></i> 쿠폰 관리</a></li>
+        <li class="member_menu"><a href="/attention/admin/member/member_list.php"><i class="bi bi-person-fill"></i> 회원 관리</a></li>
+        <li class="board_menu"><a href="/attention/admin/notice/notice.php"><i class="bi bi-layout-text-sidebar-reverse"></i> 게시판 관리</a></li>
       </ul>
       <a href="/attention/admin/logout.php" class="text2 logout"><i class="bi bi-door-closed"></i><span>Logout</span></a>
       

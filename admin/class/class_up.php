@@ -24,8 +24,8 @@ while($rs0 = $result0 -> fetch_object()){
                   <th class="tt_03">카테고리</th>
                   <td>
                   <span class="select cate_section">
-                    <select name="cate1" class="select_from cate_large" id="pcode2_1" > 
-                      <option selected disabled value="">대분류</option>
+                    <select name="cate1" class="select_from cate_large" id="pcode2_1"> 
+                      <option selected disabled>대분류</option>
                       <?php foreach($cate1 as $c){ ?>
                         <option value="<?php echo $c -> cid ?>"><?php echo $c -> name ?></option>
                       <?php } ?>
@@ -154,6 +154,8 @@ while($rs0 = $result0 -> fetch_object()){
           </form>
     </div>
     <script>
+      $('.class_menu').css({backgroundColor: "#252a38"});
+	    $('.class_menu').find('a').css({color: 'white'});
       $('#class_form').submit(function () {
         let content_str = $('#class_intro').summernote('code');
         let content = encodeURIComponent(content_str);

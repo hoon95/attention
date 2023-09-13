@@ -1,7 +1,10 @@
 <?php
-  $coup_css = '<link rel="stylesheet" href="/attention/admin/css/coup.css">';
-  $coup_ok_css = '<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">';
+
   $title = '쿠폰 목록';
+	
+	$coup_css = '<link rel="stylesheet" href="/attention/admin/css/coup.css">';
+	$coup_ok_css =	'<link rel="stylesheet" href="/attention/admin/css/coup_ok.css">';
+
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
 	
@@ -72,7 +75,7 @@
 
 ?>
 
-<h2 class="h1">쿠폰 관리</h2>
+<h2 class="tt_01 text-center mb-5">쿠폰 관리</h2>
 	<!-- 쿠폰 셀렉 , 검색 , 등록 - 기서은 -->
 	<div class="d-flex align-items-center justify-content-between common_select_box">
 		<!--쿠폰 활성화 카테고리 선택   -->
@@ -93,14 +96,15 @@
 
 		<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
 		<div class="d-flex align-items-center justify-content-between coup_searchbox">
-			<div class="seach">
-				<input type="text" name="search" id="search" class="form-control" placeholder="쿠폰명을 검색해주세요">
-				<button type="submit"><i class="bi bi-search icon_gray"></i></button>
-			</div>	
+			<form action="coupon_list.php">
+				<div class="seach">
+					<input type="text" name="search" id="search" class="form-control" placeholder="쿠폰명을 검색해주세요">
+					<button type="submit"><i class="bi bi-search icon_gray"></i></button>
+				</div>
+			</form>	
 			<a href="coupon_up.php" class="btn btn-primary">쿠폰등록</a>
 		</div>
 		<!-- 쿠폰 검색창, 버튼등록 - 기서은 -->
-
 	</div>
 	<!-- /쿠폰 셀렉 , 검색 , 등록 - 기서은 -->
 	<p class="coup_count">
@@ -187,6 +191,8 @@
     </nav>
 		<!-- /페이지네이션 -->
 <script>
+	$('.coup_menu').css({backgroundColor: "#252a38"});
+	$('.coup_menu').find('a').css({color: 'white'});
 	$("#status").selectmenu({
   change: function( event, data ) {
 		let selected_value = data.item.value;//item으로 받음

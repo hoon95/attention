@@ -2,6 +2,10 @@
   --bs-table-bg:var(--blue-Gray);
   margin-bottom:0
 }
+.class_form_wds{
+  display: inline-block;
+  width: 232px;
+}
 .class_form_wd{
   display: inline-block;
   width: 180px;
@@ -10,6 +14,7 @@
   display: inline-block;
   width: 267px;
 }
+
 .class_hr{
   color: var(--gray);
   margin: 0;
@@ -17,8 +22,17 @@
 .class_m_pd{
   padding-bottom: 40px;
 }
+.class_sm_pd{
+  padding-bottom: 10px;
+}
+.class_ss_mt{
+  margin-top: 10px;
+}
 .class_s_mt{
   margin-top: 20px;
+}
+.class_s_mb{
+  margin-bottom: 20px;
 }
 .class_ss_ml{
   margin-left: 15.75px;
