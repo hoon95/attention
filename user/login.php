@@ -28,8 +28,7 @@ if(isset($_SESSION['UID'])){
     </div>
     <button type="submit" class="btn btn-primary">로그인</button>
   </form>
-  <p class="mt-50">아직 회원이 아닌가요?</p>
-  <a href="/attention/user/signup.php">회원가입</a>
+  <a href="/attention/user/member/signup.php">회원가입</a>
 </div>
 
 

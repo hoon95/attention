@@ -15,9 +15,8 @@
     $_SESSION['UID'] = $rs->userid;
     $_SESSION['UNAME'] = $rs->username;
 
-    $sql = "UPDATE cart SET userid='{$userid}'WHERE ssid='".session_id()."'";
+    $sql = "UPDATE cart SET userid='{$userid}'";
     $result = $mysqli->query($sql);
-    echo $sql;
 
     echo "<script>
       alert('$rs->username 님 반갑습니다');
