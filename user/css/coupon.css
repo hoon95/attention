@@ -1,0 +1,28 @@
+.tt_01 {
+  font-size: 32px;
+}
+
+.container h2 {
+  margin: var(--gap-unit) 0;
+}
+
+.coupon_top {
+  position: relative;
+  padding: calc(var(--gap-unit)*1.2) 0;
+  background-color: var(--light-gray);
+  margin: 0;
+  border-radius: 12px;
+}
+
+.coup_line {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: 52px;
+  background: var(--dark-gray);
+  margin: 0;
+  padding: 0;
+}

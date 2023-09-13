@@ -1,0 +1,59 @@
+header .menu-list li{
+  padding: 0 var(--gap-unit);
+}
+
+header .login-btn{
+  gap: var(--gap-unit);
+}
+
+header .login-btn a {
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  padding: 0;
+  line-height: 32px;
+}
+
+header .login-btn a+a {
+  width: 80px;
+}
+.banner .swiper {
+  position: relative;
+}
+
+.banner .swiper-slide {
+  width: 100%;
+  height: 382px;
+  padding: 80px;
+  box-sizing: border-box;
+  background: url(../img/banner_1.png) no-repeat center / cover;
+}
+
+.banner .slide2 {
+  background-image: url(../img/banner_2.png);
+}
+
+.banner .slide3 {
+  background-image: url(../img/banner_3.png);
+}
+
+.main-play{
+  display: none;
+}
+
+.main-pager {
+  position: absolute;
+  left: 17%;
+  bottom: 10%;
+  padding: 5px;
+  color: var(--white);
+  background-color: var(--dark-gray);
+  border-radius: 24px;
+  z-index: 100;
+}
+
+.main-pager .swiper-pagination  {
+  position: static;
+  display: inline-block;
+  width: 60px;
+}

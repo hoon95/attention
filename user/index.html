@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>코드래빗</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header>
+    <nav class="d-flex justify-content-between align-items-center container">
+        <h1><img src="img/coderabbit_logo.svg" alt="코드래빗 로고"></h1>
+        <ul class="d-flex justify-content-between menu-list">
+          <li><a href="" class="tt_03">ABOUT</a></li>
+          <li><a href="" class="tt_03">강의</a></li>
+          <li><a href="" class="tt_03">공지사항</a></li>
+        </ul>
+      <div class="d-flex justify-content-between login-btn">
+        <a href="" class="btn btn-outline-primary">로그인</a>
+        <a href="#" class="btn btn-dark-blue icon_red_baisc">회원가입</a>
+      </div>
+    </nav>
+  </header>
+  <section class="banner">
+    <h2 class="hidden">배너 슬라이드</h2>
+    <div class="swiper banner-slide">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide slide1">
+          <div class="container">
+            <h3 class="tt_01 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3>
+            <p class="text3">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p>
+          </div>
+        </div>
+        <div class="swiper-slide slide2">
+          <div class="container">
+            <h3 class="tt_01 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3>
+            <p class="text3">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p>
+          </div>
+        </div>
+        <div class="swiper-slide slide3">
+          <div class="container">
+            <h3 class="tt_01 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3>
+            <p class="text3">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p>
+          </div>
+        </div>
+      </div>
+      <div class="main-pager d-flex align-items-center">
+        <div class="swiper-pagination"></div>
+        <div class="main-prev"><i class="bi-chevron-left"></i></div>
+        <div class="main-slide-btn">
+          <div class="main-stop"><i class="bi bi-pause-fill"></i></div>
+          <div class="main-play"><i class="bi bi-play-fill"></i></div>
+        </div>
+        <div class="main-next"><i class="bi-chevron-right"></i></div>
+      </div>
+	  </div>
+  </section>
+  <main class="container">
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    $( function() {
+      $( "#select" ).selectmenu();
+    } );
+  </script>
+</body>
+</html>
