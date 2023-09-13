@@ -54,16 +54,16 @@
     </div>
     <div class="d-flex justify-content-between class_sm_m">
       <div class="d-flex cate_gap">       
-        <select name="select" class="select_from cate_large" id="pcode2_1"> 
+        <select name="cate1" class="select_from cate_large" id="pcode2_1"> 
           <option selected disabled dark_gray>대분류</option>
           <?php foreach($cate1 as $c){ ?>
             <option value="<?php echo $c -> cid; ?>"><?php echo $c -> name; ?></option>
           <?php } ?>
         </select>
-        <select name="select" class="select_from" id="pcode3">
+        <select name="cate2" class="select_from" id="pcode3">
           <option selected disabled dark_gray>중분류</option>
         </select>
-        <select name="select" class="select_from" id="pcode3_1">
+        <select name="cate3" class="select_from" id="pcode3_1">
           <option selected disabled dark_gray>소분류</option>
         </select>
       </div>
@@ -94,18 +94,32 @@
               <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange"><?php if($item->sale_end_date==1){echo "{$item->date_val}개월";} if($item->sale_end_date==0){echo "무제한";} ?></span>
             </div>
           </td>
-          <td>
-            <div class="form-check form-switch class_ss_bb class_m_mt class_ss_br d-flex justify-content-end">
+          <td >
+            <div class="">
+              <div class="form-check form-switch class_ss_bb d-flex justify-content-end">
+                <input class="form-check-input status" type="checkbox" role="switch" value="<?= $item->status ?>"
+                <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]" data-pid="<?= $item->pid ?>">
+              </div>
+              <div class="d-flex">
+              <a href="#" class="class_s_mr"><i class="bi bi-pencil-square icon_mint"></i></a>
+                <form method="post" action="class_delete.php">
+                  <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
+                  <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까? :0')" class="class_delete">
+                  <i class="bi-trash-fill icon_red"></i></button>
+                </form>
+              </div>
+            </div>
+            <!-- <div class="form-check form-switch class_ss_bb class_m_mt class_ss_br">
               <input class="form-check-input status" type="checkbox" role="switch" value="<?= $item->status ?>"
               <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]" data-pid="<?= $item->pid ?>">
             </div>
             <div class="d-flex class_sm_m class_ss_br">
-              <a href="#" class="class_ss_mr class_s_mr"><i class="bi bi-pencil-square icon_mint"></i></a>
+              <a href="#" class="class_ss_mr "><i class="bi bi-pencil-square icon_mint"></i></a>
               <form method="post" action="class_delete.php">
                 <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
                 <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까? :0')" class="class_delete"><i class="bi-trash-fill icon_red"></i></button>
               </form>
-            </div>
+            </div> -->
           </td>
         </tr>
         <?php
@@ -152,8 +166,30 @@
     <!-- /pagenation 끝 -->
  
   <script>
-      $( function() {
-      $( ".select_from" ).selectmenu();
+      $(function() {
+        $(".select_from").selectmenu();
+      });
+
+
+      $("#pcode2_1").on("change", function() {
+        var selectedValue = $(this).val(); // 선택한 값 가져오기
+
+        // AJAX 요청을 통해 선택한 값을 서버에 전달하고 검색 결과를 가져옵니다.
+        $.ajax({
+            url: 'search.php', // 실제로 데이터를 처리하는 PHP 파일 경로를 지정하세요.
+            type: 'POST', // POST 또는 GET, 필요에 따라 변경
+            data: { selectedValue: selectedValue },
+            dataType: 'html', // 가져온 데이터 타입, 필요에 따라 변경
+            success: function(response) {
+                // AJAX 요청이 성공하면 화면의 특정 부분에 결과를 업데이트합니다.
+                $('#searchResults').html(response); // 결과를 표시할 HTML 요소의 ID를 지정하세요.
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
 
       //카테고리 시작
       $(function(){
@@ -208,8 +244,7 @@
       });
      });  
     })
-     //카테고리 끝
-    });
+    //카테고리 끝
 
     $('.class_list_item').click(function(e){
       e.preventDefault();
