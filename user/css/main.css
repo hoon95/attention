@@ -1,0 +1,41 @@
+/* Header */
+/* header {
+  padding: 40px 160px;
+} */
+header .menu-list {
+  gap: calc(var(--gap-unit)*2);
+}
+
+header .menu-list li{
+  padding: 0 calc(var(--gap-unit)*2);
+}
+
+header .login-btn{
+  gap: var(--gap-unit);
+}
+
+header .login-btn a {
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  padding: 0;
+  line-height: 32px;
+}
+
+header .login-btn a+a {
+  width: 80px;
+}
+
+.banner .swiper-slide {
+  width: 100%;
+  padding: 80px;
+  background: url(../img/banner_1.png) no-repeat center / cover;
+}
+
+.banner .slide2 {
+  background-image: url(../img/banner_2.png);
+}
+
+.banner .slide3 {
+  background-image: url(../img/banner_3.png);
+}
