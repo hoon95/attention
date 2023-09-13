@@ -1,13 +1,5 @@
-/* Header */
-/* header {
-  padding: 40px 160px;
-} */
-header .menu-list {
-  gap: calc(var(--gap-unit)*2);
-}
-
 header .menu-list li{
-  padding: 0 calc(var(--gap-unit)*2);
+  padding: 0 var(--gap-unit);
 }
 
 header .login-btn{

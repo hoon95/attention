@@ -312,10 +312,18 @@ button{
   --bs-btn-disabled-bg: var(--red);
   --bs-btn-disabled-border-color: var(--red);
 }
-.btn-outline-dark {
+.btn-outline-primary {
+  --bs-btn-color: var(--dark-blue);
+  --bs-btn-border-color: var(--dark-blue);
   --bs-btn-hover-bg: var(--mint);
   --bs-btn-hover-border-color: var(--mint);
-  
+}
+.btn-dark-blue {
+  --bs-btn-hover-color: var(--white);
+  --bs-btn-color: var(--white);
+  --bs-btn-bg: var(--dark-blue);
+  --bs-btn-hover-bg: var(--mint);
+  --bs-btn-hover-border-color: var(--mint);
 }
 /* BOX-SHADOW */
 .box_shadow{
@@ -413,6 +421,7 @@ hr {
 .container {
   max-width: 1272px;
   margin: 0 auto;
+  padding: 0;
 }
 
 /* hidden */
