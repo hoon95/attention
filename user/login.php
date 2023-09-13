@@ -17,13 +17,13 @@ if(isset($_SESSION['UID'])){
     <div class="mb-3">
       <label for="userid" class="form-label">아이디: </label>
       <div class="input-group">        
-        <input type="text" name="userid" class="form-control" id="userid" aria-describedby="basic-addon3 basic-addon4">
+        <input type="text" name="userid" class="form-control" id="userid" aria-describedby="basic-addon3 basic-addon4" required>
       </div>      
     </div>
     <div class="mb-3">
       <label for="userpw"  class="form-label">비밀번호: </label>
       <div class="input-group">        
-        <input type="password" name="passwd" class="form-control" id="userpw" aria-describedby="basic-addon3 basic-addon4">
+        <input type="password" name="passwd" class="form-control" id="userpw" aria-describedby="basic-addon3 basic-addon4" required>
       </div>      
     </div>
     <button type="submit" class="btn btn-primary">로그인</button>
