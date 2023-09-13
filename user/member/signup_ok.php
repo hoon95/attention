@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/dbcon.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/coupon_function.php';
 
 $username = $_POST['username'];
