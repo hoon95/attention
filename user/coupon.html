@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쿠폰</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/coupon.css">
+</head>
+<body>
+  <header>
+    <nav class="d-flex justify-content-between align-items-center container">
+        <h1><img src="img/coderabbit_logo.svg" alt="코드래빗 로고"></h1>
+        <ul class="d-flex justify-content-between menu-list">
+          <li><a href="" class="tt_03">ABOUT</a></li>
+          <li><a href="" class="tt_03">강의</a></li>
+          <li><a href="" class="tt_03">공지사항</a></li>
+        </ul>
+      <div class="d-flex justify-content-between login-btn">
+        <a href="" class="btn btn-outline-primary">로그인</a>
+        <a href="#" class="btn btn-dark-blue icon_red_baisc">회원가입</a>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+    <h2 class="tt_01">쿠폰 혜택</h2>
+    <div class="row coupon_top">
+      <div class="col text-center">사용 가능한 쿠폰 <span class="text1">1</span>장</div>
+      <div class="col  text-center">이번 달 소멸예정 쿠폰 <span class="text1">1</span>장</div>
+      <div class="coup_line"></div>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    $( function() {
+      $( "#select" ).selectmenu();
+    } );
+  </script>
+</body>
+</html>
