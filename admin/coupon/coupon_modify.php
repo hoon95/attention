@@ -76,6 +76,8 @@
 	</div>
 
 	<script>
+	$('.coup_menu').css({backgroundColor: "#252a38"});
+	$('.coup_menu').find('a').css({color: 'white'});
 	let coupclose = $(".coup_close");
 	coupclose.on("click", function() {
 		var confirmation = confirm('수정 취소하시겠습니까? :0');
@@ -92,7 +94,7 @@
 		$(".coup_day_date input").prop("checked", true);//제한부분 체크 되어라
 	}
 
-	if(!coupDate) {
+	if(coupDate=='무제한') {
 		$("#regdate_box").prop("disabled", true);
 		$(".coup_infinite_date input").prop("checked", true);
 

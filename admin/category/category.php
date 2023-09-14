@@ -11,8 +11,6 @@
   }
 ?>
 
-
-
 <div class="container">
   <div>
     <h2 class="tt_01 text-center">카테고리 관리</h2>
@@ -207,6 +205,8 @@
 </div>  <!-- 소분류등록 Modal 기능(끝) -->
 
 <script>
+  $('.class_menu').css({backgroundColor: "#252a38"});
+  $('.class_menu').find('a').css({color: 'white'});
   $(".cate_close button").click(function(e){
     e.preventDefault();
     location.href = '/attention/admin/class/class_list.php';

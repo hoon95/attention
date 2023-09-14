@@ -43,10 +43,12 @@
   if($mysqli->query($sql) === true){
     echo "<script>
       alert('등록 완료되었습니다 :)');
-      location.href='/attention/admin/notice/notice.php';</script>";
+      location.href='/attention/admin/notice/notice.php';
+      </script>";
   } else{
     echo "<script>
       alert('등록 실패.. :(');
-      history.back();</script>";
+      history.back();
+      </script>";
   }
 ?>

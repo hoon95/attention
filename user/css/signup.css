@@ -1,0 +1,25 @@
+h2{
+    color: var(--dark-gray);
+}
+input{
+    border: 1px solid #DEE2E6 !important;
+}
+label{
+    color: var(--dark-gray);
+}
+#signup_form div, button{
+    width: 20vw;
+    margin: 0 auto;
+}
+.warning{
+    color: var(--red);
+}
+.hidden{
+    display: none;
+}
+.easy_join{
+    color: var(--gray);
+}
+.sns{
+    gap: 10px;
+}

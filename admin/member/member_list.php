@@ -136,6 +136,11 @@
     </form>
 </div>
 
+<script>
+  $('.member_menu').css({backgroundColor: "#252a38"});
+  $('.member_menu').find('a').css({color: 'white'});
+</script>
+
 
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';

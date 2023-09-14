@@ -19,7 +19,7 @@
 					<td><input type="text" id="coupon_name" name="coupon_name" class="form-control" placeholder="이름을 입력해주세요" required></td>
 				</tr>
 				<tr class="space">
-					<th class="tt_03">첨부파일</th>
+					<th class="tt_03 align-top">첨부파일</th>
 					<td class="d-flex align-items-end coup_thumbnail_box">
 						<div class="coup_thumbnail" id="file_table_id"  >
 						</div>
@@ -72,6 +72,8 @@
 	</form>
 </div>
 <script>
+	$('.coup_menu').css({backgroundColor: "#252a38"});
+	$('.coup_menu').find('a').css({color: 'white'});
 	$(".coup_img").click(function() {
     $(".coup_hidden").trigger("click");
 	})
