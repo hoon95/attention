@@ -1,22 +1,3 @@
-header .menu-list li{
-  padding: 0 var(--gap-unit);
-}
-
-header .login-btn{
-  gap: var(--gap-unit);
-}
-
-header .login-btn a {
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  padding: 0;
-  line-height: 32px;
-}
-
-header .login-btn a+a {
-  width: 80px;
-}
 .banner .swiper {
   position: relative;
 }
@@ -26,15 +7,15 @@ header .login-btn a+a {
   height: 382px;
   padding: 80px;
   box-sizing: border-box;
-  background: url(../img/banner_1.png) no-repeat center / cover;
+  background: url(../img/main/banner_1.png) no-repeat center / cover;
 }
 
 .banner .slide2 {
-  background-image: url(../img/banner_2.png);
+  background-image: url(../img/main/banner_2.png);
 }
 
 .banner .slide3 {
-  background-image: url(../img/banner_3.png);
+  background-image: url(../img/main/banner_3.png);
 }
 
 .main-play{

@@ -211,7 +211,7 @@ body{
 i.bi{
   color: var(--dark);
   font-size: 24px;
-  padding: 0 5px;
+  /* padding: 0 5px; */
 }
 .icon_red_basic {
   color: var(--red);
@@ -436,4 +436,29 @@ img{
  /* Gap */
 .mg_bot {
   margin-bottom: var(--gap-unit);
+}
+.gap {
+  gap: 24px;
+}
+
+ /* Header */
+
+header .menu-list li{
+  padding: 0 var(--gap-unit);
+}
+
+header .login-btn{
+  gap: var(--gap-unit);
+}
+
+header .login-btn a {
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  padding: 0;
+  line-height: 32px;
+}
+
+header .login-btn a+a {
+  width: 80px;
 }
