@@ -7,7 +7,7 @@
   }
 
 
-  $sql = "SELECT A.thumbnail, A.name, A.price, B.cartid, B.total FROM class A JOIN cart B ON A.pid = B.pid WHERE $where";
+  $sql = "SELECT A.thumbnail, A.name, A.price_val, A.level, A.sale_end_date, A.date_val, B.cartid, B.total FROM class A JOIN cart B ON A.pid = B.pid WHERE $where";
   $result = $mysqli -> query($sql);
   while($rs = $result->fetch_object()){
       $rsc[]=$rs;
@@ -19,31 +19,44 @@
       $rsc2[]=$rs2;
   }
 
-  var_dump($rsc2);
+  // var_dump($rsc2);
 
 ?>
 
   <link rel="stylesheet" href="/attention/user/css/cart.css">
 
   <table class="table">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Total</th>
-      </tr>
-    </thead>
     <tbody class="cart_area">
       <?php
       if(isset($rsc)){
           foreach($rsc as $item){
       ?>
-      <tr data-id="<?= $item->cartid ?>">
-        <td class="cart_product_img d-flex align-items-center">
+      <tr class="d-flex align-items-center" data-id="<?= $item->cartid ?>">
+        <td class="cart_product_img col-2">
             <a href="#"><img src="<?= $item->thumbnail ?>" alt="Product"></a>
-            <h6><?= $item->name ?></h6>
         </td>
-        <td class="price"><span><?= $item->price ?></span></td>
+        <td class="name col-6">
+          <span><?= $item->name ?></span>
+          <div class="cart_sub_title d-flex">
+            <span>
+              <?php if($item->level == 1){
+                echo '초급';
+              }else if($item->level == 2){
+                echo '중급';
+              }else{
+                echo '고급';
+              }?>
+            </span>
+            <span>
+              <?php if($item->sale_end_date == 0){
+                echo '무제한';
+              }else{
+                echo $item->date_val.'개월';
+              } ?>
+            </span>
+          </div>
+        </td>
+        <td class="price number"><span><?= $item->price_val ?></span></td>
         <td class="total_price"><span></span><button class="cart_item_del">x</button></td>
       </tr>
       <?php }} ?>
@@ -78,8 +91,9 @@
   </ul>
   <a href="checkout.html" class="btn btn-primary radius_large checkout-btn text2">구매하기</a>
 
-
-<script>
+  <script src="/attention/user/js/jquery.number.min.js"></script>
+  <script>
+    $('.number').number(true);
     $('.cart_area tbody tr').find('.quantity > span').click(function(){
         let item = $(this).closest('tr');
         let unitprice = Number(item.find('.price span').text());
@@ -183,7 +197,8 @@
             alert('취소되었습니다.')
         }
     })
-</script>
+  </script>
+
 
 
 <?php

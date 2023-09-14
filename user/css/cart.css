@@ -1,3 +1,7 @@
 .cart_product_img img{
     width: 100px;
 }
+.cart_sub_title{
+    margin-top: calc(var(--gap-unit) * 0.5);
+    gap: var(--gap-unit);
+}
