@@ -439,6 +439,9 @@ img{
 }
 
  /* Gap */
+.mg {
+  margin: calc(var(--gap-unit)/2) 0;
+}
 .mg_bot {
   margin-bottom: var(--gap-unit);
 }

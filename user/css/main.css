@@ -1,4 +1,8 @@
 /* banner-slide */
+/* .over {
+  overflow: hidden;
+} */
+
 .swiper {
   position: relative;
 }
@@ -47,6 +51,12 @@
   position: relative;
 }
 
+.new .swiper-slide {
+  overflow: hidden;
+  box-shadow: 2px 5px 15px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+}
+
 .new i {
   position: absolute;
   top: 50%;
@@ -61,9 +71,33 @@
 }
 /* /new-slide */
 
+
+/* over_pd 그림자 부분이 스와이퍼 자체 hidden 땜에 줌 */
+.over_pd {
+  padding: 5px 0;
+}
+
 /* font */
 section .text2 {
   line-height: 1.5;
 }
-
+.name {
+  margin: 12px 0 24px;
+}
 /* /font */
+
+/* line */
+.line {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background: var(--dark-gray);
+  margin: 0 5px;
+}
+/* /line */
+
+/* text_box */
+  .text_box {
+    padding: 20px;
+  }
+/* /text_box */
