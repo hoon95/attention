@@ -418,9 +418,13 @@ hr {
 
 
 /* Container */
-.container {
+.header_container {
   max-width: 1272px;
   margin: 0 auto;
+}
+.container {
+  max-width: 1272px;
+  margin: 100px auto;
   padding: 0;
 }
 
@@ -428,6 +432,7 @@ hr {
 .hidden {
   display: none;
 }
+
 /* img */
 img{
   width: 100%;
@@ -437,6 +442,7 @@ img{
 .mg_bot {
   margin-bottom: var(--gap-unit);
 }
+
 .gap {
   gap: 24px;
 }
@@ -463,9 +469,4 @@ header .login-btn a {
 
 header .login-btn a+a {
   width: 80px;
-}
-
-/* Section margin */
-main section {
-  margin: 100px 0;
 }
