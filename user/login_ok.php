@@ -24,7 +24,7 @@
     </script>";
   } else{
     echo "<script>
-      alert('아이디, 비번을 다시 확인하세요');
+      alert('아이디 또는 비밀번호가 일치하지 않습니다');
       history.back();
     </script>";
   }
