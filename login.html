@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>login</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/admin/css/common.css">
+<link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="login">
+      <h1>로그인</h1>
+      <form>
+        <input type="text" class="form-control" placeholder="아이디">
+        <input type="text" class="form-control" placeholder="비밀번호">
+        <button class="btn btn-primary">로그인</button>
+      </form>
+      <p>
+        <a href="">아이디 찾기</a>
+        <a href="">비밀번호 찾기</a>
+        <a href="">회원가입</a>
+      </p>
+    </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script>
+    let url =
+      "http://www.ftc.go.kr/bizCommPop.do?wrkr_no=사업자 등록 번호"
+      $('.business_address').click(function(){
+        window.open(url, "bizCommPop", "width=750, height=700;");
+        return false;
+      });
+   </script>
+</body>
+</html>

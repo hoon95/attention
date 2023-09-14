@@ -1,0 +1,16 @@
+.container{
+  padding: 0;
+}
+.login form input,
+.login form button{
+  width: 312px;
+}
+.login form input{
+  margin-bottom: 12px;
+}
+.login form button{
+  margin-bottom: 17px;
+}
+.login a{
+  font-size: 14px;
+}
