@@ -437,3 +437,19 @@ img{
 .mg_bot {
   margin-bottom: var(--gap-unit);
 }
+
+header .menu-list li{
+  padding: 0 var(--gap-unit);
+}
+
+header .login-btn{
+  gap: var(--gap-unit);
+}
+
+header .login-btn a {
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  padding: 0;
+  line-height: 32px;
+}
