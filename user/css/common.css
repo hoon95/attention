@@ -2,7 +2,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 @font-face {
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
@@ -128,19 +128,19 @@ body{
 }
 .text1{
   font-size: var(--text1-size); /* 20px */
-  font-weight: 500;
+  font-weight: 600;
 }
 .text2{
   font-size: var(--text2-size); /* 18px */
-  font-weight: 500;
+  font-weight: 600;
 }
 .text3{
   font-size: var(--text3-size); /* 16px */
-  font-weight: 500;
+  font-weight: 600;
 }
 .text4{
   font-size: var(--text4-size); /* 14px */
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* COLOR */
@@ -418,7 +418,7 @@ hr {
 
 
 /* Container */
-.header_container {
+.common_container {
   max-width: 1272px;
   margin: 0 auto;
 }
