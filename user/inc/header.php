@@ -24,4 +24,18 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 </head>
 <body>
+  <header>
+      <nav class="d-flex justify-content-between align-items-center container">
+          <h1><img src="/attention/user/img/coderabbit_logo.svg" alt="코드래빗 로고"></h1>
+          <ul class="d-flex justify-content-between menu-list">
+            <li><a href="" class="tt_03">ABOUT</a></li>
+            <li><a href="" class="tt_03">강의</a></li>
+            <li><a href="" class="tt_03">공지사항</a></li>
+          </ul>
+        <div class="d-flex justify-content-between login-btn">
+          <a href="/attention/user/login.php" class="btn btn-outline-primary">로그인</a>
+          <a href="/attention/user/member/signup.php" class="btn btn-dark-blue icon_red_baisc">회원가입</a>
+        </div>
+      </nav>
+    </header>
     
