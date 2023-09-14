@@ -1,4 +1,5 @@
-.banner .swiper {
+/* banner-slide */
+.swiper {
   position: relative;
 }
 
@@ -38,3 +39,24 @@
   display: inline-block;
   width: 60px;
 }
+/* /banner-slide */
+
+
+/* new-slide */
+.new {
+  position: relative;
+}
+
+.new i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(100% + var(--gap-unit));
+  font-size: 50px;
+} 
+
+.new i+i {
+  left: calc(100% + var(--gap-unit));
+  right: 0;
+}
+/* /new-slide */
