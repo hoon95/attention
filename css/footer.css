@@ -1,0 +1,48 @@
+.container{
+  padding: 0;
+}
+footer{
+  padding: 40px 0;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+footer address{
+  width: 701px;
+}
+footer address p:first-child{
+  margin-bottom: 12px;
+}
+footer address ul li+li{
+  margin-top: 6px;
+}
+footer address ul span+span{
+  padding: 0 6px;
+}
+/* footer address span, */
+footer address a+a{
+  margin: 6px;
+}
+footer address span,
+footer address a{
+  position: relative;
+  height: 14px;
+}
+footer address span:after,
+footer address a:after{
+  content: '';
+  width: 1px;
+  height: 10px;
+  background: var(--white);
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+footer address p:last-child{
+  margin-top: 28px;
+}
+footer .footer_sns{
+  gap: 25px;
+}
