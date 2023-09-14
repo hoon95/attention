@@ -1,4 +1,7 @@
 /* banner-slide */
+.banner {
+  margin-bottom: calc(var(--gap-unit)*2);
+}
 .swiper {
   position: relative;
 }
