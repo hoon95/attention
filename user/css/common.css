@@ -428,12 +428,11 @@ hr {
 .container {
   max-width: 1272px;
   margin: 0 auto;
+  padding: 0;
 }
 
-.common_container {
-  max-width: 1272px;
-  margin: 120px auto;
-  padding: 0;
+.common_mg {
+  margin: 120px 0;
 }
 
 /* hidden */
