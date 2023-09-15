@@ -35,6 +35,7 @@
   --blue-Gray: #E6ECEC;
   --dark-blue: #252a38;
   --mint: #2ac1bc;
+  --green: #32AF8F;
   --red: #e95b5a;
   --orange: #f1511e;
 
@@ -173,6 +174,9 @@ body{
 }
 .orange{
   color:var(--orange);
+}
+.green {
+  color: var(--green);
 }
 
 /* BACKGROUND_COLOR */
@@ -415,7 +419,9 @@ hr {
   color: var(--gray);
   opacity: 1;
 }
-
+.posi {
+  position: relative;
+}
 
 /* Container */
 .common_container {
@@ -436,6 +442,7 @@ hr {
 /* img */
 img{
   width: 100%;
+  vertical-align: top;
 }
 
  /* Gap */
@@ -473,3 +480,87 @@ header .login-btn a {
 header .login-btn a+a {
   width: 80px;
 }
+
+/* login mypage */
+.login_mypage {
+  position: absolute;
+  top: 194%;
+  right: -24px;
+  display: inline-block;
+  width: 292px;
+  height: 250px;
+  box-shadow: 2px 3px 9px 0px rgba(0, 0, 0, 0.55);
+  z-index: 999;
+  background-color: var(--white);
+  box-sizing: border-box;
+}
+.login_mypage::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 22px;
+  height: 20px;
+  top: -20px;
+  right: 13px;
+  border-bottom: 20px solid var(--white);
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  filter: drop-shadow(0px -3px 2px rgba(0, 0, 0, 0.08));
+}
+.login_mypage .login_content {
+  height: 100%;
+}
+
+.login_mypage .login_box {
+  padding: 20px;
+}
+
+.login_mypage .thumbnail {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  background-color:var(--light-gray);
+  padding: 15px;
+  margin: 12px 0;
+  box-sizing: border-box;
+}
+.login_mypage .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login_mypage .login_icon_box {
+  gap: 8px;
+}
+
+.login_mypage .login_icon_box a {
+  display: inline-block;
+  border-radius: 6px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  background-color:var(--light-gray);
+}
+
+.login_mypage .login_icon_box a:hover > * {
+  color: var(--mint);
+}
+
+.login_mypage .login_icon_box a span {
+  margin-left: 8px;
+}
+
+.login_mypage .bi-ticket-perforated::before {
+  content: "\F6CA";
+}
+
+.login_mypage .login_bot {
+  padding: 10px 20px;
+  border-top: 1px solid var(--dark-gray);
+}
+.login_mypage .login_bot a:hover {
+  color: var(--mint);
+  border-bottom: 1px solid var(--mint);
+}
+/* /login mypage */
