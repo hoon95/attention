@@ -1,8 +1,21 @@
 .container{
   padding: 0;
 }
-.login form input,
-.login form button{
+.login{
+  text-align: center;
+  margin-top: 312px;
+}
+.login h1{
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 35px;
+}
+.form-control{
+  width: 312px;
+  border: var(--bs-border-width) solid var(--light-gray);
+}
+.login_button{
   width: 312px;
 }
 .login form input{
@@ -11,6 +24,24 @@
 .login form button{
   margin-bottom: 17px;
 }
+.login_id{
+  display: inline-block;
+}
 .login a{
   font-size: 14px;
+}
+.login_link{
+  width: 312px;
+  margin: 0 auto 14px;
+}
+.login_find{
+  width: 156px;
+}
+.login h5{
+  color: var(--gray);
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+.login_sns{
+  gap: 32px;
 }

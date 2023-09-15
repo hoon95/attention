@@ -2,14 +2,14 @@
   padding: 0;
 }
 footer{
-  padding: 40px 0;
+  padding: 48px 0;
   font-size: 12px;
   font-weight: 600;
   font-style: normal;
   line-height: normal;
 }
 footer address{
-  width: 701px;
+  width: 702px;
 }
 footer address p:first-child{
   margin-bottom: 12px;
