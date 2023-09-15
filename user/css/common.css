@@ -424,11 +424,13 @@ hr {
 }
 
 /* Container */
-.common_container {
+
+.container {
   max-width: 1272px;
   margin: 0 auto;
 }
-.container {
+
+.common_container {
   max-width: 1272px;
   margin: 120px auto;
   padding: 0;
