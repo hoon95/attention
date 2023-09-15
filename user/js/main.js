@@ -1,3 +1,13 @@
+/* Header */
+$(".main_admin").on("mouseenter" , function() {
+  $(".login_mypage ").show();
+});
+$(".main_admin").on("mouseleave" , function() {
+  $(".login_mypage ").hide();
+});
+/* /Header */
+
+/* Banner slide */
 const mainSwiper = new Swiper(".banner-slide", {
     spaceBetween: 30,
     centeredSlides: true,
@@ -15,7 +25,7 @@ const mainSwiper = new Swiper(".banner-slide", {
       prevEl: ".main-prev",
     },
 });
-
+/* /Banner slide */
 
 /* Banner pager */
 $(".main-slide-btn").click(function (e) {
