@@ -430,7 +430,7 @@ hr {
 }
 .container {
   max-width: 1272px;
-  margin: 100px auto;
+  margin: 120px auto;
   padding: 0;
 }
 
@@ -464,7 +464,10 @@ header {
 header .menu-list li{
   padding: 0 var(--gap-unit);
 }
-
+header .menu-list li:hover a {
+  color: var(--mint);
+  /* border-bottom: 1px solid var(--mint); */
+}
 header .login-btn{
   gap: var(--gap-unit);
 }
@@ -486,7 +489,7 @@ header .login-btn a+a {
 .main_admin .login_mypage {
   display: none;
   position: absolute;
-  top: 194%;
+  top: 100%;
   right: -24px;
   width: 292px;
   height: 250px;
