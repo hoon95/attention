@@ -17,7 +17,7 @@ const mainSwiper = new Swiper(".banner-slide", {
 });
 
 
-
+/* Banner pager */
 $(".main-slide-btn").click(function (e) {
   let $this = $(this);
   $this.toggleClass("active");
@@ -32,4 +32,15 @@ $(".main-slide-btn").click(function (e) {
     mainSwiper.autoplay.start();
   }
 });
-//toggle
+/* /Banner pager */
+
+const newSwiper = new Swiper(".new-slide", {
+    loop: true,
+    slidesPerView: 4,
+    spaceBetween: 24,
+    slidesPerGroup: 2,
+    navigation: {
+      nextEl: ".new .bi-chevron-left",
+      prevEl: ".new .bi-chevron-right",
+    },
+});

@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css" integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="/attention/admin/css/common.css">
+  <link rel="stylesheet" href="/attention/admin/css/main.css">
   <link rel="shortcut icon" type="image/x-icon" href="/attention/admin/img/coderabbit_favicon.png">
   <link rel="apple-touch-icon" sizes="114x114" href="/attention/admin/img/coderabbit_favicon.png">
   <?php
