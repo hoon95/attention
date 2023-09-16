@@ -165,7 +165,19 @@ section .text2 {
 
 /* pick */
 .pick .pick_box{
-  background: var(--mint-bg);
+  /* background: ; */
   padding: calc(var(--base-unit)*2);
+}
+
+/* notice */
+.notice{
+  padding: var(--base-unit) 0;
+}
+.notice .text2{
+  line-height: var(--base-unit);
+  font-weight: bold;
+}
+.notice a{
+  font-weight: bold;
 }
 /* 혜영 end */
