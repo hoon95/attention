@@ -106,6 +106,10 @@ section .text2 {
 .sec_mg_t{
   margin-top: calc(var(--base-unit)*6);
 }
+.card_tt{
+  font-weight: bold;
+  line-height: 1.25;
+}
 
 /* best */
 .best{
@@ -125,16 +129,14 @@ section .text2 {
 .best .best_list .best_box{
   padding: 20px 15px;
 }
-.best .card_tt{
-  font-weight: bold;
-  line-height: 1.25;
-}
 .best .text5{
   line-height: var(--base-unit);
 }
 .best .orange{
   font-weight: bold;
 }
+
+/* total */
 .total{
   margin-top: calc(var(--base-unit)*3);
   padding: var(--base-unit) 0;
@@ -147,5 +149,23 @@ section .text2 {
 .total span{
   border: 1px solid var(--mint);
   margin: var(--base-unit) 0;
+}
+
+/* event */
+.event{
+  background: #313A53 url('../img/main/event_banner.png') right bottom no-repeat;
+  padding: calc(var(--base-unit)*2);
+}
+.event .text1{
+  line-height: 1.25;
+}
+.event .app_box{
+  width: 40%;
+}
+
+/* pick */
+.pick .pick_box{
+  background: var(--mint-bg);
+  padding: calc(var(--base-unit)*2);
 }
 /* 혜영 end */
