@@ -6,7 +6,7 @@
   margin-top: 312px;
 }
 .login h1{
-  margin-bottom: 15px;
+  margin-bottom: 13px;
   font-size: 24px;
   font-weight: bold;
   line-height: 35px;
@@ -19,7 +19,7 @@
   width: 312px;
 }
 .login form input{
-  margin-bottom: 12px;
+  margin-bottom: 13px;
 }
 .login form button{
   margin-bottom: 17px;
@@ -32,16 +32,19 @@
 }
 .login_link{
   width: 312px;
-  margin: 0 auto 14px;
+  margin: 0 auto 25px;
 }
 .login_find{
   width: 156px;
 }
 .login h5{
   color: var(--gray);
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   font-weight: 500;
 }
 .login_sns{
   gap: 32px;
+}
+.login_sns li img{
+  width: 2vw;
 }
