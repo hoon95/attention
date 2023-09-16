@@ -99,3 +99,53 @@ section .text2 {
     padding: 20px;
   }
 /* /text_box */
+
+
+
+/* 혜영 start */
+.sec_mg_t{
+  margin-top: calc(var(--base-unit)*6);
+}
+
+/* best */
+.best{
+  background: linear-gradient(var(--mint-bg) 360px, #fff 360px);
+}
+.best .best_list li{
+  overflow: hidden;
+  transition: 0.3s;
+}
+.best .best_list li:hover{
+  transform: translateY(-10px);
+  transition: 0.3s;
+}
+.best .best_list li img{
+  height: 216px;
+}
+.best .best_list .best_box{
+  padding: 20px 15px;
+}
+.best .card_tt{
+  font-weight: bold;
+  line-height: 1.25;
+}
+.best .text5{
+  line-height: var(--base-unit);
+}
+.best .orange{
+  font-weight: bold;
+}
+.total{
+  margin-top: calc(var(--base-unit)*3);
+  padding: var(--base-unit) 0;
+  border: var(--bs-border-width) solid var(--mint);
+  background: rgba(50, 175, 143, .1) ;
+}
+.total img{
+  width: 80px;
+}
+.total span{
+  border: 1px solid var(--mint);
+  margin: var(--base-unit) 0;
+}
+/* 혜영 end */
