@@ -25,71 +25,89 @@
 
   <link rel="stylesheet" href="/attention/user/css/cart.css">
 
-  <table class="table">
-    <tbody class="cart_area">
-      <?php
-      if(isset($rsc)){
-          foreach($rsc as $item){
-      ?>
-      <tr class="d-flex align-items-center" data-id="<?= $item->cartid ?>">
-        <td class="cart_product_img col-2">
-            <a href="#"><img src="<?= $item->thumbnail ?>" alt="Product"></a>
-        </td>
-        <td class="name col-6">
-          <span><?= $item->name ?></span>
-          <div class="cart_sub_title d-flex">
-            <span>
-              <?php if($item->level == 1){
-                echo '초급';
-              }else if($item->level == 2){
-                echo '중급';
-              }else{
-                echo '고급';
-              }?>
-            </span>
-            <span>
-              <?php if($item->sale_end_date == 0){
-                echo '무제한';
-              }else{
-                echo $item->date_val.'개월';
-              } ?>
-            </span>
-          </div>
-        </td>
-        <td class="price number"><span><?= $item->price_val ?></span></td>
-        <td class="total_price"><span></span><button class="cart_item_del">x</button></td>
-      </tr>
-      <?php }} ?>
-    </tbody>
-  </table>
-  <form action="#">
-    <select name="coupon" id="coupon">
-      <option value="" disabled selected>쿠폰을 선택하세요</option>
-      <?php
-          if(isset($rsc2)){
-              foreach($rsc2 as $item){
-      ?>
-      <option value="<?= $item->ucid ?>" data-price="<?= $item->coupon_price ?>"><?= $item->coupon_name ?></option>
-      <?php
-          }}
-      ?>
-    </select>
-  </form>
-  <ul class="cart-total-chart">
-    <li class="text2">
-      <span>선택 강좌</span>
-      <span class="subtotal"></span>
-    </li>
-    <li class="text2">
-      <span>쿠폰 할인가</span>
-      <span class="discount">0</span>
-    </li>
-    <li class="tt_03">
-      <span><strong>합계</strong></span>
-      <span><strong class="grandtotal"></strong></span>
-    </li>
-  </ul>
-  <a href="checkout.html" class="btn btn-primary radius_large checkout-btn text2">구매하기</a>
+  <div class="cart_container d-flex justify-content-between">
+    <div class="cart_list">
+      <h2 class="tt_01 text-center">장바구니</h2>
+      <table class="table">
+        <tbody class="cart_area">
+          <?php
+          if(isset($rsc)){
+              foreach($rsc as $item){
+          ?>
+          <tr class="d-flex justify-content-between align-items-center" data-id="<?= $item->cartid ?>">
+            <td class="cart_product_img"><a href="#"><img src="<?= $item->thumbnail ?>" alt="Product"></a>
+            </td>
+            <td class="cart_product_name">
+              <span class="tt_03"><?= $item->name ?></span>
+              <div class="cart_sub_title d-flex justify-content-start">
+                <span class="cart_level">
+                  <?php if($item->level == 1){
+                    echo '초급';
+                  }else if($item->level == 2){
+                    echo '중급';
+                  }else{
+                    echo '고급';
+                  }?>
+                </span>
+                <span class="cart_line">|</span>
+                <span class="cart_limit">
+                  <?php if($item->sale_end_date == 0){
+                    echo '무제한';
+                  }else{
+                    echo $item->date_val.'개월';
+                  } ?>
+                </span>
+              </div>
+            </td>
+            <td class="cart_product_price text1 number"><span><?= $item->price_val ?></span></td>
+            <td class="cart_product_cancel text-end"><button class="cart_item_del"><i class="bi bi-x-square"></i></button></td>
+          </tr>
+          <?php }} ?>
+        </tbody>
+      </table>
+      <div class="cart_button d-flex justify-content-end">
+        <button class="btn btn-primary">쇼핑 계속하기</button>
+        <button class="btn btn-danger">초기화</button>
+      </div>
+    </div>
+    <div class="coupon">
+      <div class="coupon_list">
+        <h3 class="tt_03">쿠폰 사용하기</h3>
+        <form action="#" class="radius_medium">
+          <select name="coupon" id="coupon" class="form-select">
+            <option value="" disabled selected>쿠폰을 선택하세요</option>
+            <?php
+                if(isset($rsc2)){
+                    foreach($rsc2 as $item){
+            ?>
+            <option value="<?= $item->ucid ?>" data-price="<?= $item->coupon_price ?>"><?= $item->coupon_name ?></option>
+            <?php
+                }}
+            ?>
+          </select>
+        </form>
+      </div>
+      <div class="cart_total radius_medium">
+        <ul>
+          <li class="cart_choice text2 d-flex justify-content-between">
+            <span>선택 강좌</span>
+            <span class="subtotal"></span>
+          </li>
+          <li class="cart_sale text2 d-flex justify-content-between">
+            <span>쿠폰 할인가</span>
+            <span class="discount">0</span>
+          </li>
+          <li class="cart_price tt_03 d-flex justify-content-between">
+            <span><strong>합계</strong></span>
+            <span><strong class="grandtotal">0</strong></span>
+          </li>
+        </ul>
+        <div class="cart_checkout text-center">
+          <a href="checkout.html" class="btn btn-primary radius_large checkout-btn text2">구매하기</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="/attention/user/js/jquery.number.min.js"></script>
   <script>
