@@ -26,7 +26,11 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 <body>
   <header>
       <nav class="d-flex justify-content-between align-items-center container">
-          <h1><img src="/attention/user/img/coderabbit_logo.svg" alt="코드래빗 로고"></h1>
+          <h1>
+            <a href="/attention/user/index.php">
+              <img src="/attention/user/img/coderabbit_logo.svg" alt="코드래빗 로고">
+            </a>
+          </h1>
           <ul class="d-flex justify-content-between menu-list">
             <li><a href="" class="tt_03">ABOUT</a></li>
             <li><a href="" class="tt_03">강의</a></li>
