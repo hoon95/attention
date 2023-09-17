@@ -27,6 +27,7 @@ const mainSwiper = new Swiper(".banner-slide", {
 });
 /* /Banner slide */
 
+
 /* Banner pager */
 $(".main-slide-btn").click(function (e) {
   let $this = $(this);

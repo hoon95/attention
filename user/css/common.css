@@ -424,15 +424,14 @@ hr {
 }
 
 /* Container */
-
-.container {
+.common_container {
   max-width: 1272px;
   margin: 0 auto;
-  padding: 0;
 }
-
-.common_mg {
-  margin: 120px 0;
+.container {
+  max-width: 1272px;
+  margin: 100px auto;
+  padding: 0;
 }
 
 /* hidden */
@@ -469,6 +468,7 @@ header .menu-list li:hover a {
   color: var(--mint);
   /* border-bottom: 1px solid var(--mint); */
 }
+
 header .login-btn{
   gap: var(--gap-unit);
 }
