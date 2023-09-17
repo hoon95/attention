@@ -427,12 +427,12 @@ hr {
 .container {
   max-width: 1272px;
   margin: 0 auto;
+  padding: 0;
 }
 
 .common_container {
   max-width: 1272px;
   margin: 100px auto;
-  padding: 0;
 }
 
 /* hidden */
@@ -484,6 +484,11 @@ header .login-btn a {
 
 header .login-btn a+a {
   width: 80px;
+}
+
+header .login-ok-btn > a:hover > i,
+header .login-ok-btn > div:hover > a > i {
+  color: var(--mint);
 }
 
 /* login mypage */

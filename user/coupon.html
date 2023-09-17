@@ -73,12 +73,12 @@
         <div class="coup_line"></div>
       </div>
     </section>
-    <section class="coup_content">
+    <section class="coup_content mg_bot2">
       <div class="d-flex justify-content-between align-items-center">
        <h3 class="text1"> 할인쿠폰 전체</h3>
        <div class="coup_right d-flex align-items-center">
-        <button><i class="bi bi-check-circle d-flex align-items-center"><span class="text4">전체</span></i></button>
-        <button><i class="bi bi-trash-fill red d-flex align-items-center"><span class="text4">삭제</span></i></button>
+        <button class="coup_check_js"><i class="bi bi-check-circle d-flex align-items-center coup_check"><span class="text4 gray">전체</span></i></button>
+        <button class="coup_trash"><i class="bi bi-trash-fill red"><span class="text4">삭제</span></i></button>
         <select name="select" id="select">
           <option>유효기간 순</option>
           <option>발급일 순</option>
@@ -88,18 +88,84 @@
       </div>
     </section>
     <form action="" method="">
-      <div class="row row-cols-3 coup_list">
-        <div class="col white_back d-flex align-items-center">
+      <div class="row row-cols-3 coup_list gap">
+        <div class="col white_back d-flex align-items-center posi">
           <div class="coup_box container d-flex justify-content-between align-items-center">
             <div class="coup_thumbnail">
               <img src="img/coup/coup_js.png" alt="">
             </div>
-            <div class="coup_text d-flex flex-column justify-content-between">
-              <h3 class="tt_03">10,000원<span class="text3">할인</span></h3>
+            <div class="coup_text">
+              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
               <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
-              <p class="text4">2023.09.11~2023.09.17<span>D-7</span></p>
+              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
             </div>
           </div>  
+          <button class="bi bi-check-circle coup_checkbox gray"></button>
+        </div>
+        <div class="col white_back d-flex align-items-center posi">
+          <div class="coup_box container d-flex justify-content-between align-items-center">
+            <div class="coup_thumbnail">
+              <img src="img/coup/coup_js.png" alt="">
+            </div>
+            <div class="coup_text">
+              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
+              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
+              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
+            </div>
+          </div>  
+          <button class="bi bi-check-circle coup_checkbox gray"></button>
+        </div>
+        <div class="col white_back d-flex align-items-center posi">
+          <div class="coup_box container d-flex justify-content-between align-items-center">
+            <div class="coup_thumbnail">
+              <img src="img/coup/coup_js.png" alt="">
+            </div>
+            <div class="coup_text">
+              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
+              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
+              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
+            </div>
+          </div>  
+          <button class="bi bi-check-circle coup_checkbox gray"></button>
+        </div>
+        <div class="col white_back d-flex align-items-center posi">
+          <div class="coup_box container d-flex justify-content-between align-items-center">
+            <div class="coup_thumbnail">
+              <img src="img/coup/coup_js.png" alt="">
+            </div>
+            <div class="coup_text">
+              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
+              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
+              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
+            </div>
+          </div>  
+          <button class="bi bi-check-circle coup_checkbox gray"></button>
+        </div>
+        <div class="col white_back d-flex align-items-center posi">
+          <div class="coup_box container d-flex justify-content-between align-items-center">
+            <div class="coup_thumbnail">
+              <img src="img/coup/coup_js.png" alt="">
+            </div>
+            <div class="coup_text">
+              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
+              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
+              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
+            </div>
+          </div>  
+          <button class="bi bi-check-circle coup_checkbox gray"></button>
+        </div>
+        <div class="col white_back d-flex align-items-center posi">
+          <div class="coup_box container d-flex justify-content-between align-items-center">
+            <div class="coup_thumbnail">
+              <img src="img/coup/coup_js.png" alt="">
+            </div>
+            <div class="coup_text">
+              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
+              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
+              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
+            </div>
+          </div>  
+          <button class="bi bi-check-circle coup_checkbox gray"></button>
         </div>
       </div>
     </form>
@@ -109,7 +175,7 @@
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/coup.js"></script>
   <script>
     $( function() {
       $( "#select" ).selectmenu();

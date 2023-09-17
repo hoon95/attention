@@ -39,9 +39,22 @@
   width: 60px;
 }
 /* /banner-slide */
-
-.mg_bot2 {
+.main_icon h2 {
   margin-bottom: 48px;
+}
+
+.main_icon li:hover h3 {
+  color: var(--mint);
+}
+
+.main_icon a {
+  gap: 5px 0;
+}
+
+.main_icon img {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
 }
 
 
@@ -54,6 +67,15 @@
   overflow: hidden;
   box-shadow: 2px 5px 15px 0px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
+  height: 360px;
+}
+
+.new .text_box .text2 {
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  display: -webkit-box; 
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; 
 }
 
 .new i {

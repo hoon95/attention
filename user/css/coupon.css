@@ -30,17 +30,65 @@
 /* coup_content */
 .coup_content {
   border-bottom: 1px solid var(--black);
-  padding: 10px 0;
+  padding-bottom: 14px;
 }
+
+.mg_bot2 {
+  margin-bottom: calc( var(--gap-unit)*2);
+}
+
 .coup_content .coup_right {
   gap: 0 18px;
 }
+
 .coup_content .coup_right i {
   gap: 0 5px;
+}
+
+.coup_content .coup_right .coup_check {
+  color: var(--gray);
+}
+
+.coup_content .coup_right .coup_trash {
+  display: inline-block;
+  width: 66px;
+  height: 38px;
+  line-height: 36px;
+  border: 1px solid var(--red);
+  border-radius: 6px;
+}
+.coup_trash:hover {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.coup_content .coup_check_js.active i {
+  color: var(--mint);
+}
+
+.coup_checkbox.active {
+  color: var(--mint);
+}
+
+.coup_trash i.bi {
+  font-size: 12px;
+}
+
+.coup_trash span {
+  margin-left: 5px;
 }
 /* /coup_content */
 
 /* form */
+form .row {
+  margin: 0;
+}
+
+form .row-cols-3>* {
+  flex: 0 0 auto;
+  width: 32.07%;
+}
+
 .coup_list > div {
   display: inline-block;
   height: 192px;
@@ -49,7 +97,8 @@
   box-sizing: border-box;
   box-shadow: 2px 3px 9px 0px rgba(0, 0, 0, 0.55);
 }
-.coup_box .coup_thumbnail {
+
+.coup_list .coup_box .coup_thumbnail {
   display: inline-block;
   width: 180px;
   height: 120px;
@@ -57,9 +106,32 @@
   box-sizing: border-box;
   overflow: hidden;
 }
-.coup_box .coup_thumbnail img {
+.coup_list .coup_box .coup_thumbnail img {
   width: 100%;
   height: 100%;
+}
+
+.coup_list .coup_box .coup_text .text3 {
+  margin: 15px 0;
+}
+
+.coup_list .coup_box .coup_day {
+  display: inline-block;
+  width: 32px;
+  height: 18px;
+  line-height: 16px;
+  border: 1px solid var(--gray);
+  border-radius: 6px;
+  box-sizing: border-box;
+  text-align: center;
+  margin-left: 12px;
+}
+
+.coup_list button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
 }
 
 /* select 정렬 */
