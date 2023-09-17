@@ -1,0 +1,107 @@
+.swiper {
+  position: relative;
+}
+
+.banner .swiper-slide {
+  width: 100%;
+  height: 60vh;
+  padding: 82px;
+  box-sizing: border-box;
+  background: url(../img/main/banner_1.png) no-repeat center / cover;
+}
+
+.banner .slide2 {
+  background-image: url(../img/main/banner_2.png);
+}
+
+.banner .slide3 {
+  background-image: url(../img/main/banner_3.png);
+}
+
+.main-play{
+  display: none;
+}
+
+.main-pager {
+  position: absolute;
+  left: 17%;
+  bottom: 10%;
+  padding: 5px;
+  color: var(--white);
+  background-color: var(--dark-gray);
+  border-radius: 24px;
+  z-index: 100;
+}
+
+.main-pager .swiper-pagination  {
+  position: static;
+  display: inline-block;
+  width: 60px;
+}
+/* /banner-slide */
+
+.mg_bot2 {
+  margin-bottom: 48px;
+}
+
+
+/* new-slide */
+.new {
+  position: relative;
+}
+
+.new .swiper-slide {
+  overflow: hidden;
+  box-shadow: 2px 5px 15px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+}
+
+.new i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc(100% + var(--gap-unit));
+  font-size: 50px;
+} 
+
+.new i+i {
+  left: calc(100% + var(--gap-unit));
+  right: 0;
+}
+/* /new-slide */
+
+
+/* over_pd 그림자 부분이 스와이퍼 자체 hidden 땜에 줌 */
+.over_pd {
+  padding: 5px 0;
+}
+
+.common_mg {
+  margin-bottom: 120px;
+}
+
+/* font */
+section .text2 {
+  line-height: 1.5;
+}
+
+.name {
+  margin: 12px 0 24px;
+}
+/* /font */
+
+/* line */
+.line {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background: var(--dark-gray);
+  margin: 0 5px;
+}
+/* /line */
+
+/* text_box */
+  .text_box {
+    padding: 20px;
+  }
+/* /text_box */

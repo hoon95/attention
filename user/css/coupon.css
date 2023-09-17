@@ -1,0 +1,73 @@
+.tt_01 {
+  font-size: 32px;
+}
+
+.container h2 {
+  margin: var(--gap-unit) 0;
+}
+
+.coupon_top {
+  position: relative;
+  padding: calc(var(--gap-unit)*1.2) 0;
+  background-color: var(--light-gray);
+  margin: 0;
+  border-radius: 12px;
+}
+
+.coup_line {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1px;
+  height: 52px;
+  background: var(--dark-gray);
+  margin: 0;
+  padding: 0;
+}
+
+/* coup_content */
+.coup_content {
+  border-bottom: 1px solid var(--black);
+  padding: 10px 0;
+}
+.coup_content .coup_right {
+  gap: 0 18px;
+}
+.coup_content .coup_right i {
+  gap: 0 5px;
+}
+/* /coup_content */
+
+/* form */
+.coup_list > div {
+  display: inline-block;
+  height: 192px;
+  padding: 32px 10px;
+  border-radius: 16px;
+  box-sizing: border-box;
+  box-shadow: 2px 3px 9px 0px rgba(0, 0, 0, 0.55);
+}
+.coup_box .coup_thumbnail {
+  display: inline-block;
+  width: 180px;
+  height: 120px;
+  border-radius: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.coup_box .coup_thumbnail img {
+  width: 100%;
+  height: 100%;
+}
+
+/* select 정렬 */
+.ui-selectmenu-button.ui-button {
+  display: flex;
+  align-items: center;
+  justify-content:  center
+}
+.ui-selectmenu-icon {
+  order: 2;
+}

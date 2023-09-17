@@ -424,11 +424,12 @@ hr {
 }
 
 /* Container */
-.common_container {
+.container {
   max-width: 1272px;
   margin: 0 auto;
 }
-.container {
+
+.common_container {
   max-width: 1272px;
   margin: 100px auto;
   padding: 0;
@@ -464,6 +465,10 @@ header {
 header .menu-list li{
   padding: 0 var(--gap-unit);
 }
+header .menu-list li:hover a {
+  color: var(--mint);
+  /* border-bottom: 1px solid var(--mint); */
+}
 
 header .login-btn{
   gap: var(--gap-unit);
@@ -482,11 +487,12 @@ header .login-btn a+a {
 }
 
 /* login mypage */
-.login_mypage {
+
+.main_admin .login_mypage {
+  display: none;
   position: absolute;
-  top: 194%;
+  top: 100%;
   right: -24px;
-  display: inline-block;
   width: 292px;
   height: 250px;
   box-shadow: 2px 3px 9px 0px rgba(0, 0, 0, 0.55);
