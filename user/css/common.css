@@ -532,8 +532,9 @@ header .login-btn a+a {
   box-sizing: border-box;
 }
 .login_mypage .thumbnail img {
-  width: 100%;
+  width: 87%;
   height: 100%;
+  margin: 0 auto;
   object-fit: cover;
 }
 
