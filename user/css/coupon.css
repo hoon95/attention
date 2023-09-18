@@ -134,12 +134,3 @@ form .row-cols-3>* {
   padding: 0;
 }
 
-/* select 정렬 */
-.ui-selectmenu-button.ui-button {
-  display: flex;
-  align-items: center;
-  justify-content:  center
-}
-.ui-selectmenu-icon {
-  order: 2;
-}

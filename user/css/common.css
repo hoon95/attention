@@ -403,6 +403,17 @@ button{
   border: var(--bs-border-width) solid var(--mint);
 }
 
+
+/* select 정렬 */
+.ui-selectmenu-button.ui-button {
+  display: flex;
+  align-items: center;
+  justify-content:  center
+}
+.ui-selectmenu-icon {
+  order: 2;
+}
+
 /* hr */
 hr {
   margin: var(--base-unit) 0;
@@ -411,10 +422,9 @@ hr {
 }
 
 /* Container */
-.container {
+.container_cr {
   max-width: 1272px;
   margin: 0 auto;
-  padding: 0;
 }
 
  /* Header */
@@ -445,10 +455,10 @@ header .login-btn a+a {
   width: 80px;
 }
 
-header .login-ok-btn > a:hover > i,
+/* header .login-ok-btn > a:hover > i,
 header .login-ok-btn > div:hover > a > i {
   color: var(--mint);
-}
+} */
 
 /* login mypage */
 
@@ -535,3 +545,4 @@ header .login-ok-btn > div:hover > a > i {
   border-bottom: 1px solid var(--mint);
 }
 /* /login mypage */
+

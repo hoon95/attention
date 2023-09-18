@@ -22,7 +22,7 @@
   $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
 
 	/* 검색 */ 
-	var_dump($status);
+	// var_dump($status);
 
 	$search_where = '';
 	  if($status){
@@ -77,7 +77,7 @@
 
   $query = $sql.$order.$limit; //쿼리 문장 조합
 
-var_dump($query);
+  // var_dump($query);
   $result = $mysqli -> query($query);
   
   while($rs = $result -> fetch_object()){
