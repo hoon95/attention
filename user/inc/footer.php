@@ -20,12 +20,7 @@
       </ul>
     </div>
   </footer>
-  <script src="js/main.js"></script>
   <script>
-    $( function() {
-      $( "#select" ).selectmenu();
-    } );
-
     //사업자 등록 번호
     let url =
       "http://www.ftc.go.kr/bizCommPop.do?wrkr_no=사업자 등록 번호"
