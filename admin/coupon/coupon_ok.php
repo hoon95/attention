@@ -6,7 +6,7 @@
 
   $coupon_name = $_POST['coupon_name'];
   $coupon_price = $_POST['coupon_price']?? 0;
-  $status = $_POST['status']; //활성화 비활성화
+  $status = $_POST['status']?? 0; //활성화 비활성화
   $regdate = $_POST['regdate']?? 0;  //무제한 클릭시 기간
 
 
@@ -52,7 +52,7 @@
   $sql = "INSERT INTO coupons 
     (coupon_name, coupon_image, coupon_price,  status, regdate) 
     VALUES 
-    ('{$coupon_name}', '{$coupon_image}', {$coupon_price}, '{$status}' , '{$regdate}')";
+    ('{$coupon_name}', '{$coupon_image}', {$coupon_price}, {$status} , '{$regdate}')";
   // var_dump($sql);
   $result = $mysqli -> query($sql);
   

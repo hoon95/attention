@@ -1,5 +1,5 @@
 h2{
-    color: var(--dark-gray);
+    margin-top: calc(var(--gap-unit) * 5);
 }
 input{
     border: 1px solid #DEE2E6 !important;
@@ -14,12 +14,12 @@ label{
 .warning{
     color: var(--red);
 }
-.hidden{
-    display: none;
-}
 .easy_join{
     color: var(--gray);
 }
 .sns{
-    gap: 10px;
+    gap: 20px;
+}
+.sns img{
+    width: 3vw;
 }

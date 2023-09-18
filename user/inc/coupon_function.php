@@ -18,7 +18,7 @@ function user_coupon($mysqli, $uid, $num, $reason){
 
   echo "<script>
     alert('가입 완료! ".$cname."이 발행되었습니다.');
-    location.href= '/attention/user/member/signup.php';
+    location.href= '/attention/user/login.php';
   </script>";
 
 }

@@ -12,7 +12,7 @@
 	/* 페이지 내 검색 및 활성화 */
 	$cid = $_GET['cid']?? '';
   $search = $_GET['search'] ?? '';
-	$status = $_GET['status'] ?? '';
+	$status = $_GET['status'] ?? '-1';
 	
 	/* 페이지네이션 */
   $pageNumber = $_GET['pageNumber'] ?? 1;
@@ -22,21 +22,33 @@
   $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
 
 	/* 검색 */ 
+	var_dump($status);
+
 	$search_where = '';
+	  if($status){
+			if($status == '-1') {
+				$search_where .= "";
+			}
+			if($status == '1') {
+				$search_where .= " and status = 1";
+			}
+			if($status == '2') {
+				$search_where .= " and status = 0";
+			}
+			
+	}
 
   if($search){
     $search_where .= " and coupon_name like '%{$search}%'";
   }
-  if($status){
-		// if($status == 'all') {
-		// 	$search_where .= "";
-		// }
-    $search_where .= " and status = '{$status}'";
-  }
+
 	 
 	//검색 키워드 게시물 전체
   $pagesql = "SELECT COUNT(*) AS cnt FROM coupons where 1=1";
 	$pagesql .= $search_where;
+
+
+
   $page_result = $mysqli->query($pagesql);
   $page_row = $page_result->fetch_object();
   $row_num = $page_row->cnt; //전체 게시물 수
@@ -65,6 +77,7 @@
 
   $query = $sql.$order.$limit; //쿼리 문장 조합
 
+var_dump($query);
   $result = $mysqli -> query($query);
   
   while($rs = $result -> fetch_object()){
@@ -83,9 +96,9 @@
 			<div class="d-flex align-items-center justify-content-between">
 				<select name="status" id="status"  aria-label="대기설정 변경">
 					<option disabled value="">쿠폰 활성화 선택</option>
-					<option value="" <?php if($status=='') {echo "selected"; } ?> >전체 쿠폰</option>
-					<option value="활성화"  <?php if($status=='활성화') {echo "selected"; } ?> >활성된 쿠폰</option>
-					<option value="비활성화" <?php if($status=='비활성화') {echo "selected"; } ?> >비활성된 쿠폰</option>
+					<option value="-1" <?php if($status=='-1') {echo "selected"; } ?> >전체 쿠폰</option>
+					<option value="1"  <?php if($status=='1') {echo "selected"; } ?> >활성된 쿠폰</option>
+					<option value="2" <?php if($status=='2') {echo "selected"; } ?> >비활성된 쿠폰</option>
 				</select>
 					<a href="coupon_list.php" class="btn btn-primary">
 						<span>목록</span>
@@ -139,7 +152,7 @@
 						</div>
 						<div class="coup_icon d-flex flex-column align-items-end justify-content-lg-end">
 							<div class="form-check form-switch coup_status_toggle">
-								<input class="form-check-input" type="checkbox" role="switch" value="<?= $item->status ?>" <?php if ($item->status == "활성화") {echo "checked";} else{echo '';} ?>>							
+								<input class="form-check-input" type="checkbox" role="switch" value="<?= $item->status ?>" <?php if ($item->status == "1") {echo "checked";} else{echo '';} ?>>							
 							</div>
 							<div class="coup_common_icon d-flex">
 								<a href = "coupon_modify.php?cid=<?= $item-> cid ?>" class="bi bi-pencil-square icon_mint"></a>
@@ -162,7 +175,7 @@
       ?>  
 	</div>
 		<!-- 페이지네이션 -->
-		<nav aria-label="페이지네이션" class="space">
+	<nav aria-label="페이지네이션" class="space">
       <ul class="pagination justify-content-center align-items-center">
         <?php
           if($pageNumber>1){                   
@@ -191,10 +204,8 @@
     </nav>
 		<!-- /페이지네이션 -->
 <script>
-	$('.coup_menu').css({backgroundColor: "#252a38"});
-	$('.coup_menu').find('a').css({color: 'white'});
 	$("#status").selectmenu({
-  change: function( event, data ) {
+	change: function( event, data ) {
 		let selected_value = data.item.value;//item으로 받음
 		location.href=`/attention/admin/coupon/coupon_list.php?status=${selected_value}`;
 	}
@@ -214,11 +225,11 @@
 	$(".coup_status_toggle input").change(function() {
 		let coup_toggle= $(this);
 
-		//check 되면 1 아니면 0을 value로 넘기기
+	// 	//check 되면 1 아니면 0을 value로 넘기기
 		if(coup_toggle.prop('checked')) {
-			coup_toggle.val("활성화");
+			coup_toggle.val("1");
 		}else {
-			coup_toggle.val("비활성화");
+			coup_toggle.val("0");
 		}
 		console.log(coup_toggle.val());
 		
@@ -241,7 +252,7 @@
 			},
 			success: function(return_data){
 				console.log(return_data.result);
-				if(return_data.result == '활성화'){
+				if(return_data.result == '1'){
 					alert('변경되었습니다.');
 					location.reload();//새로고침
 				} else{

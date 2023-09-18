@@ -1,0 +1,13 @@
+h2{
+    margin-top: calc(var(--gap-unit) * 5);
+}
+input{
+    border: 1px solid #DEE2E6 !important;
+}
+label{
+    color: var(--dark-gray);
+}
+#find_form div, #change_form div, button{
+    width: 20vw;
+    margin: 0 auto;
+}

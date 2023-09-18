@@ -1,0 +1,13 @@
+#search_form{
+  margin-top: -18px;
+}
+.card_tt{
+  font-weight: bold;
+  line-height: 1.25;
+}
+.my_list li{
+  width: 32%;
+}
+.my_list i.bi{
+  color: var(--mint);
+}

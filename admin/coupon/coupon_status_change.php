@@ -1,5 +1,5 @@
 <?php
-	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+	// include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 
   $cid = $_POST['cid'] ;
@@ -11,15 +11,15 @@
   $result = $mysqli->query($sql);
 
   if(isset($result)){
-    $return_data = array("result"=> '활성화');
+    $return_data = array("result"=> '1');
     echo json_encode($return_data);
     exit;
   } else{
-    $return_data = array("result"=> '비활성화');
+    $return_data = array("result"=> '0');
     echo json_encode($return_data);
     exit;
   }
 ?> 
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
+  // include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>

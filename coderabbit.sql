@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- 생성 시간: 23-09-07 16:38
--- 서버 버전: 8.0.34
--- PHP 버전: 7.4.33
+-- Host: 127.0.0.1
+-- 생성 시간: 23-09-16 13:02
+-- 서버 버전: 10.4.28-MariaDB
+-- PHP 버전: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 데이터베이스: `hoon95`
+-- 데이터베이스: `coderabbit`
 --
 
 -- --------------------------------------------------------
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admins` (
-  `idx` int NOT NULL,
-  `userid` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `username` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `passwd` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `idx` int(11) NOT NULL,
+  `userid` varchar(10) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `passwd` varchar(200) NOT NULL,
   `regdate` datetime NOT NULL,
-  `level` int DEFAULT NULL,
+  `level` int(4) DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   `end_login` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -44,7 +44,29 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`idx`, `userid`, `email`, `username`, `passwd`, `regdate`, `level`, `last_login`, `end_login`) VALUES
-(1, 'admin', 'admin@shop.com', '관리자', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2023-01-01 17:12:32', 100, '2023-09-07 15:54:50', NULL);
+(1, 'admin', 'admin@shop.com', '관리자', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2023-01-01 17:12:32', 100, '2023-09-12 15:48:12', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `cart`
+--
+
+CREATE TABLE `cart` (
+  `cartid` int(11) NOT NULL,
+  `pid` int(11) DEFAULT NULL,
+  `userid` varchar(100) DEFAULT NULL,
+  `regdate` datetime DEFAULT NULL,
+  `total` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `cart`
+--
+
+INSERT INTO `cart` (`cartid`, `pid`, `userid`, `regdate`, `total`) VALUES
+(3, 134, 'hoon', '2023-08-31 10:49:37', 31000),
+(4, 135, 'hoon', '2023-08-31 11:04:51', 40000);
 
 -- --------------------------------------------------------
 
@@ -53,11 +75,11 @@ INSERT INTO `admins` (`idx`, `userid`, `email`, `username`, `passwd`, `regdate`,
 --
 
 CREATE TABLE `category` (
-  `cid` int NOT NULL,
-  `code` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `pcode` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `step` tinyint DEFAULT NULL
+  `cid` int(11) NOT NULL,
+  `code` varchar(10) DEFAULT NULL,
+  `pcode` varchar(10) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `step` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -65,34 +87,18 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`cid`, `code`, `pcode`, `name`, `step`) VALUES
-(13, NULL, '12', '엘지그램', 3),
-(14, NULL, '10', '프론트엔드', 2),
-(15, NULL, '10', '백엔드', 2),
-(16, NULL, NULL, '프로그래밍', 1),
-(17, NULL, '16', 'Front-end', 2),
-(18, NULL, '16', 'Back-end', 2),
-(19, NULL, '17', 'Html', 3),
-(20, NULL, '17', 'Css', 3),
-(21, NULL, '17', 'Jquery', 3),
-(22, NULL, '17', 'Java script', 3),
-(23, NULL, NULL, '디자인', 1),
-(25, NULL, '23', '웹 디자인', 2),
-(26, NULL, '25', '포토샵', 3),
-(27, NULL, '25', 'Figma', 3),
-(28, NULL, '25', '일러스트', 3),
-(29, NULL, NULL, '보안 · 네트워크', 1),
-(30, NULL, '29', '블록체인', 2),
-(31, NULL, '30', '블록체인', 3),
-(32, NULL, '16', '기타', 2),
-(33, NULL, '32', '기타', 3),
-(34, NULL, '16', '데이터 분석', 2),
-(35, NULL, '34', '데이터 분석', 3),
-(36, NULL, NULL, '인공 지능', 1),
-(37, NULL, '36', '데이터 사이언스', 2),
-(38, NULL, '37', '인공 지능', 3),
-(39, NULL, NULL, '하드웨어', 1),
-(40, NULL, '39', '반도체', 2),
-(41, NULL, '40', '반도체 시스템', 3);
+(10, NULL, NULL, '컴퓨터', 1),
+(11, NULL, NULL, '핸드폰', 1),
+(12, NULL, '10', '노트북', 2),
+(13, NULL, '10', '태블릿', 2),
+(14, NULL, '12', '엘지그램', 3),
+(16, NULL, '12', '갤러시북', 3),
+(17, NULL, '11', '아이폰', 2),
+(18, NULL, '11', '갤럭시', 2),
+(19, NULL, '17', '아이폰14', 3),
+(20, NULL, '17', '아이폰15', 3),
+(21, NULL, '18', '갤럭시s23', 3),
+(22, NULL, '18', '갤럭시s20', 3);
 
 -- --------------------------------------------------------
 
@@ -101,20 +107,20 @@ INSERT INTO `category` (`cid`, `code`, `pcode`, `name`, `step`) VALUES
 --
 
 CREATE TABLE `class` (
-  `pid` int NOT NULL,
-  `name` varchar(500) COLLATE utf8mb4_general_ci NOT NULL COMMENT '강좌명',
-  `cate` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '카테고리',
-  `content` text COLLATE utf8mb4_general_ci COMMENT '강좌소개',
-  `thumbnail` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '썸네일',
-  `price` tinyint DEFAULT NULL COMMENT '강좌가격',
+  `pid` int(11) NOT NULL,
+  `name` varchar(500) NOT NULL COMMENT '강좌명',
+  `cate` varchar(100) DEFAULT NULL COMMENT '카테고리',
+  `content` text DEFAULT NULL COMMENT '강좌소개',
+  `thumbnail` varchar(100) DEFAULT NULL COMMENT '썸네일',
+  `price` tinyint(10) DEFAULT NULL COMMENT '강좌가격',
   `price_val` double DEFAULT NULL,
-  `level` tinyint DEFAULT NULL COMMENT '강좌난이도',
-  `video` text COLLATE utf8mb4_general_ci NOT NULL COMMENT '강좌영상',
-  `sale_end_date` tinyint DEFAULT NULL COMMENT '수강기한',
+  `level` tinyint(4) DEFAULT NULL COMMENT '강좌난이도',
+  `video` text NOT NULL COMMENT '강좌영상',
+  `sale_end_date` tinyint(10) DEFAULT NULL COMMENT '수강기한',
   `date_val` double DEFAULT NULL,
   `regdate` datetime DEFAULT NULL COMMENT '강좌등록일',
-  `status` tinyint DEFAULT NULL COMMENT '활성화 상태',
-  `file_table_id` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '추가이미지 아이디'
+  `status` tinyint(4) DEFAULT NULL COMMENT '활성화 상태',
+  `file_table_id` varchar(50) DEFAULT NULL COMMENT '추가이미지 아이디'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -122,52 +128,16 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`pid`, `name`, `cate`, `content`, `thumbnail`, `price`, `price_val`, `level`, `video`, `sale_end_date`, `date_val`, `regdate`, `status`, `file_table_id`) VALUES
-(141, '우디의 진짜 쓰는 일러스트레이터', '23/25/28', '<p>입문자를 위해 준비한</p><p>[그래픽 디자인, 디자인 툴] 강의입니다.</p>', '/attention/pdata/class/20230907032902148595.png', 1, 60000, 2, '', 0, 0, '2023-09-07 10:29:02', 0, '329,330,331'),
-(143, '비트코인 백서의 이해', '29/30/31', '<p>입문자를 위해 준비한</p><p>[금융 · 재테크, 비트코인] 강의입니다.</p>', '/attention/pdata/class/20230907033221136584.jpeg', 1, 150000, 1, '', 0, 0, '2023-09-07 10:32:21', 0, '335,336,337'),
-(144, '인프콘 2023 다시보기', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개발 · 프로그래밍, 커리어] 강의입니다.</p>', '/attention/pdata/class/20230907033404181600.png', 0, 0, 1, '', 0, 0, '2023-09-07 10:34:04', 0, '338,339,340'),
-(145, '[개정판] 웹 애플리케이션 개발을 위한 IntelliJ IDEA 설정', '16/32/33', '<p>증급자를 위해 준비한</p><p>[백엔드] 강의입니다.</p>', '/attention/pdata/class/20230907033525109571.png', 1, 200000, 2, '', 1, 6, '2023-09-07 10:35:25', 1, '341,342,343'),
-(146, '[리뉴얼] 렛츠기릿 자바스크립트', '16//', '<p>초급자를 위해 준비한</p><p>[프로그래밍 언어] 강의입니다.</p>', '/attention/pdata/class/20230907033757187488.png', 1, 600000, 3, '', 0, 3, '2023-09-07 10:37:57', 1, '344,345,346'),
-(147, '인프콘 2022 다시보기', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개발 · 프로그래밍, 커리어] 강의입니다.</p>', '/attention/pdata/class/20230907033920168831.png', 1, 120000, 2, '', 0, 0, '2023-09-07 10:39:20', 1, '347,348,349'),
-(148, 'Google이 인정하는 개발자 되기 [커뮤니티와 함께 성장하는 개발자]', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개인 브랜딩, 개발 · 프로그래밍] 강의입니다.</p>', '/attention/pdata/class/20230907034148105186.png', 0, 0, 3, '', 1, 3, '2023-09-07 10:41:48', 1, '350,351,352'),
-(149, '[백문이불여일타] 데이터 분석을 위한 SQL 실전편 (무료 미니 코스)', '16/34/35', '<p>중급자를 위해 준비한</p><p>[데이터 분석, 비즈니스 · 마케팅] 강의입니다.</p>', '/attention/pdata/class/20230907034429867615.png', 1, 150000, 2, '', 1, 6, '2023-09-07 10:44:29', 0, '353,354,355'),
-(150, '핵심만 빠르게, 입문자를 위한 딥러닝(Deep Learnig)과 텐서플로(Tensorflow)', '36/37/38', '<p>상급자를 위해 준비한</p><p>[인공지능] 강의입니다.</p>', '/attention/pdata/class/20230907034648208359.png', 1, 150000, 3, '', 1, 6, '2023-09-07 10:46:48', 1, '356,357,358'),
-(151, '제품부터 시작하는 인우의 반도체 CHIP 회로설계 이야기', '39/40/41', '<p>중급자를 위해 준비한</p><p>[반도체, 임베디드 · IoT] 강의입니다.</p>', '/attention/pdata/class/20230907034929305748.png', 1, 70000, 2, '', 1, 6, '2023-09-07 10:49:29', 1, '359,360,361'),
-(159, '우디의 진짜 쓰는 일러스트레이터', '23/25/28', '<p>입문자를 위해 준비한</p><p>[그래픽 디자인, 디자인 툴] 강의입니다.</p>', '/attention/pdata/class/20230907032902148595.png', 1, 60000, 2, '', 0, 0, '2023-09-07 10:29:02', 0, NULL),
-(160, '비트코인 백서의 이해', '29/30/31', '<p>입문자를 위해 준비한</p><p>[금융 · 재테크, 비트코인] 강의입니다.</p>', '/attention/pdata/class/20230907033221136584.jpeg', 1, 150000, 1, '', 0, 0, '2023-09-07 10:32:21', 0, NULL),
-(161, '인프콘 2023 다시보기', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개발 · 프로그래밍, 커리어] 강의입니다.</p>', '/attention/pdata/class/20230907033404181600.png', 0, 0, 1, '', 0, 0, '2023-09-07 10:34:04', 0, NULL),
-(162, '[개정판] 웹 애플리케이션 개발을 위한 IntelliJ IDEA 설정', '16/32/33', '<p>증급자를 위해 준비한</p><p>[백엔드] 강의입니다.</p>', '/attention/pdata/class/20230907033525109571.png', 1, 200000, 2, '', 1, 6, '2023-09-07 10:35:25', 1, NULL),
-(163, '[리뉴얼] 렛츠기릿 자바스크립트', '16//', '<p>초급자를 위해 준비한</p><p>[프로그래밍 언어] 강의입니다.</p>', '/attention/pdata/class/20230907033757187488.png', 1, 600000, 3, '', 0, 3, '2023-09-07 10:37:57', 1, NULL),
-(164, '인프콘 2022 다시보기', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개발 · 프로그래밍, 커리어] 강의입니다.</p>', '/attention/pdata/class/20230907033920168831.png', 1, 120000, 2, '', 0, 0, '2023-09-07 10:39:20', 1, NULL),
-(165, 'Google이 인정하는 개발자 되기 [커뮤니티와 함께 성장하는 개발자]', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개인 브랜딩, 개발 · 프로그래밍] 강의입니다.</p>', '/attention/pdata/class/20230907034148105186.png', 0, 0, 3, '', 1, 3, '2023-09-07 10:41:48', 1, NULL),
-(166, '[백문이불여일타] 데이터 분석을 위한 SQL 실전편 (무료 미니 코스)', '16/34/35', '<p>중급자를 위해 준비한</p><p>[데이터 분석, 비즈니스 · 마케팅] 강의입니다.</p>', '/attention/pdata/class/20230907034429867615.png', 1, 150000, 2, '', 1, 6, '2023-09-07 10:44:29', 0, NULL),
-(167, '핵심만 빠르게, 입문자를 위한 딥러닝(Deep Learnig)과 텐서플로(Tensorflow)', '36/37/38', '<p>상급자를 위해 준비한</p><p>[인공지능] 강의입니다.</p>', '/attention/pdata/class/20230907034648208359.png', 1, 150000, 3, '', 1, 6, '2023-09-07 10:46:48', 1, NULL),
-(168, '제품부터 시작하는 인우의 반도체 CHIP 회로설계 이야기', '39/40/41', '<p>중급자를 위해 준비한</p><p>[반도체, 임베디드 · IoT] 강의입니다.</p>', '/attention/pdata/class/20230907034929305748.png', 1, 70000, 2, '', 1, 6, '2023-09-07 10:49:29', 1, NULL),
-(169, '우디의 진짜 쓰는 일러스트레이터', '23/25/28', '<p>입문자를 위해 준비한</p><p>[그래픽 디자인, 디자인 툴] 강의입니다.</p>', '/attention/pdata/class/20230907032902148595.png', 1, 60000, 2, '', 0, 0, '2023-09-07 10:29:02', 0, '329,330,331'),
-(170, '비트코인 백서의 이해', '29/30/31', '<p>입문자를 위해 준비한</p><p>[금융 · 재테크, 비트코인] 강의입니다.</p>', '/attention/pdata/class/20230907033221136584.jpeg', 1, 150000, 1, '', 0, 0, '2023-09-07 10:32:21', 0, '335,336,337'),
-(171, '인프콘 2023 다시보기', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개발 · 프로그래밍, 커리어] 강의입니다.</p>', '/attention/pdata/class/20230907033404181600.png', 0, 0, 1, '', 0, 0, '2023-09-07 10:34:04', 0, '338,339,340'),
-(172, '[개정판] 웹 애플리케이션 개발을 위한 IntelliJ IDEA 설정', '16/32/33', '<p>증급자를 위해 준비한</p><p>[백엔드] 강의입니다.</p>', '/attention/pdata/class/20230907033525109571.png', 1, 200000, 2, '', 1, 6, '2023-09-07 10:35:25', 1, '341,342,343'),
-(173, '[리뉴얼] 렛츠기릿 자바스크립트', '16//', '<p>초급자를 위해 준비한</p><p>[프로그래밍 언어] 강의입니다.</p>', '/attention/pdata/class/20230907033757187488.png', 1, 600000, 3, '', 0, 3, '2023-09-07 10:37:57', 1, '344,345,346'),
-(174, '인프콘 2022 다시보기', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개발 · 프로그래밍, 커리어] 강의입니다.</p>', '/attention/pdata/class/20230907033920168831.png', 1, 120000, 2, '', 0, 0, '2023-09-07 10:39:20', 1, '347,348,349'),
-(175, 'Google이 인정하는 개발자 되기 [커뮤니티와 함께 성장하는 개발자]', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개인 브랜딩, 개발 · 프로그래밍] 강의입니다.</p>', '/attention/pdata/class/20230907034148105186.png', 0, 0, 3, '', 1, 3, '2023-09-07 10:41:48', 1, '350,351,352'),
-(176, '[백문이불여일타] 데이터 분석을 위한 SQL 실전편 (무료 미니 코스)', '16/34/35', '<p>중급자를 위해 준비한</p><p>[데이터 분석, 비즈니스 · 마케팅] 강의입니다.</p>', '/attention/pdata/class/20230907034429867615.png', 1, 150000, 2, '', 1, 6, '2023-09-07 10:44:29', 0, '353,354,355'),
-(177, '핵심만 빠르게, 입문자를 위한 딥러닝(Deep Learnig)과 텐서플로(Tensorflow)', '36/37/38', '<p>상급자를 위해 준비한</p><p>[인공지능] 강의입니다.</p>', '/attention/pdata/class/20230907034648208359.png', 1, 150000, 3, '', 1, 6, '2023-09-07 10:46:48', 1, '356,357,358'),
-(178, '제품부터 시작하는 인우의 반도체 CHIP 회로설계 이야기', '39/40/41', '<p>중급자를 위해 준비한</p><p>[반도체, 임베디드 · IoT] 강의입니다.</p>', '/attention/pdata/class/20230907034929305748.png', 1, 70000, 2, '', 1, 6, '2023-09-07 10:49:29', 1, '359,360,361'),
-(179, '우디의 진짜 쓰는 일러스트레이터', '23/25/28', '<p>입문자를 위해 준비한</p><p>[그래픽 디자인, 디자인 툴] 강의입니다.</p>', '/attention/pdata/class/20230907032902148595.png', 1, 60000, 2, '', 0, 0, '2023-09-07 10:29:02', 0, '329,330,331'),
-(180, '비트코인 백서의 이해', '29/30/31', '<p>입문자를 위해 준비한</p><p>[금융 · 재테크, 비트코인] 강의입니다.</p>', '/attention/pdata/class/20230907033221136584.jpeg', 1, 150000, 1, '', 0, 0, '2023-09-07 10:32:21', 0, '335,336,337'),
-(181, '인프콘 2023 다시보기', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개발 · 프로그래밍, 커리어] 강의입니다.</p>', '/attention/pdata/class/20230907033404181600.png', 0, 0, 1, '', 0, 0, '2023-09-07 10:34:04', 0, '338,339,340'),
-(182, '[개정판] 웹 애플리케이션 개발을 위한 IntelliJ IDEA 설정', '16/32/33', '<p>증급자를 위해 준비한</p><p>[백엔드] 강의입니다.</p>', '/attention/pdata/class/20230907033525109571.png', 1, 200000, 2, '', 1, 6, '2023-09-07 10:35:25', 1, '341,342,343'),
-(183, '[리뉴얼] 렛츠기릿 자바스크립트', '16//', '<p>초급자를 위해 준비한</p><p>[프로그래밍 언어] 강의입니다.</p>', '/attention/pdata/class/20230907033757187488.png', 1, 600000, 3, '', 0, 3, '2023-09-07 10:37:57', 1, '344,345,346'),
-(184, '인프콘 2022 다시보기', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개발 · 프로그래밍, 커리어] 강의입니다.</p>', '/attention/pdata/class/20230907033920168831.png', 1, 120000, 2, '', 0, 0, '2023-09-07 10:39:20', 1, '347,348,349'),
-(185, 'Google이 인정하는 개발자 되기 [커뮤니티와 함께 성장하는 개발자]', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개인 브랜딩, 개발 · 프로그래밍] 강의입니다.</p>', '/attention/pdata/class/20230907034148105186.png', 0, 0, 3, '', 1, 3, '2023-09-07 10:41:48', 1, '350,351,352'),
-(186, '[백문이불여일타] 데이터 분석을 위한 SQL 실전편 (무료 미니 코스)', '16/34/35', '<p>중급자를 위해 준비한</p><p>[데이터 분석, 비즈니스 · 마케팅] 강의입니다.</p>', '/attention/pdata/class/20230907034429867615.png', 1, 150000, 2, '', 1, 6, '2023-09-07 10:44:29', 0, '353,354,355'),
-(187, '핵심만 빠르게, 입문자를 위한 딥러닝(Deep Learnig)과 텐서플로(Tensorflow)', '36/37/38', '<p>상급자를 위해 준비한</p><p>[인공지능] 강의입니다.</p>', '/attention/pdata/class/20230907034648208359.png', 1, 150000, 3, '', 1, 6, '2023-09-07 10:46:48', 1, '356,357,358'),
-(188, '제품부터 시작하는 인우의 반도체 CHIP 회로설계 이야기', '39/40/41', '<p>중급자를 위해 준비한</p><p>[반도체, 임베디드 · IoT] 강의입니다.</p>', '/attention/pdata/class/20230907034929305748.png', 1, 70000, 2, '', 1, 6, '2023-09-07 10:49:29', 1, '359,360,361'),
-(192, '우디의 진짜 쓰는 일러스트레이터', '23/25/28', '<p>입문자를 위해 준비한</p><p>[그래픽 디자인, 디자인 툴] 강의입니다.</p>', '/attention/pdata/class/20230907032902148595.png', 1, 60000, 2, '', 0, 0, '2023-09-07 10:29:02', 0, '329,330,331'),
-(193, '비트코인 백서의 이해', '29/30/31', '<p>입문자를 위해 준비한</p><p>[금융 · 재테크, 비트코인] 강의입니다.</p>', '/attention/pdata/class/20230907033221136584.jpeg', 1, 150000, 1, '', 0, 0, '2023-09-07 10:32:21', 0, '335,336,337'),
-(194, '인프콘 2023 다시보기', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개발 · 프로그래밍, 커리어] 강의입니다.</p>', '/attention/pdata/class/20230907033404181600.png', 0, 0, 1, '', 0, 0, '2023-09-07 10:34:04', 0, '338,339,340'),
-(195, '[개정판] 웹 애플리케이션 개발을 위한 IntelliJ IDEA 설정', '16/32/33', '<p>증급자를 위해 준비한</p><p>[백엔드] 강의입니다.</p>', '/attention/pdata/class/20230907033525109571.png', 1, 200000, 2, '', 1, 6, '2023-09-07 10:35:25', 1, '341,342,343'),
-(196, '[리뉴얼] 렛츠기릿 자바스크립트', '16//', '<p>초급자를 위해 준비한</p><p>[프로그래밍 언어] 강의입니다.</p>', '/attention/pdata/class/20230907033757187488.png', 1, 600000, 3, '', 0, 3, '2023-09-07 10:37:57', 1, '344,345,346'),
-(197, '인프콘 2022 다시보기', '16/32/33', '<p>입문자를 위해 준비한</p><p>[개발 · 프로그래밍, 커리어] 강의입니다.</p>', '/attention/pdata/class/20230907033920168831.png', 1, 120000, 2, '', 0, 0, '2023-09-07 10:39:20', 1, '347,348,349');
+(126, 'ㄷ', '10/12/13', '<p>ㄷ</p>', '/attention/pdata/class/20230906083352223577.png', 1, 30000, 2, '', 1, 1, '2023-09-06 15:33:52', 0, '282,283'),
+(127, 'ㄷ', '10//', '<p>ㄷㄷㄱ0</p>', '/attention/pdata/class/20230906083430196577.png', 0, 30000, 0, '', 0, 1, '2023-09-06 15:34:30', 0, '286,287'),
+(128, '2', '10/12/13', '<p>ㄷ</p>', '/attention/pdata/class/20230906083500112628.png', 1, 30000, 2, '', 1, 1, '2023-09-06 15:35:00', 0, '288,289'),
+(129, '7', '10/12/13', '<p>7</p>', '/attention/pdata/class/20230906083526133856.png', 0, 0, 3, '', 1, 1, '2023-09-06 15:35:26', 0, '290,291'),
+(130, '77', '10/12/13', '<p>7</p>', '/attention/pdata/class/20230906083550731753.png', 1, 30000, 2, '', 0, 0, '2023-09-06 15:35:50', 0, '292,293'),
+(133, ';', '10/12/13', '<p>ㅇ</p>', '/attention/pdata/class/20230906084126213177.png', 1, 30000, 2, '', 1, 1, '2023-09-06 15:41:26', 0, '300,301'),
+(134, '한 입 크기로 잘라먹는 타입스크립트(TypeScript)', '10/12/13', '<p>입문자를 위해 준비한 [프로그래밍 언어, 백엔드]강의입니다.</p><p><br></p>', '/attention/pdata/class/20230906084514970491.png', 1, 50000, 2, '', 0, 0, '2023-09-06 15:45:14', 1, '302,303,304'),
+(135, '자바스크립트 ES6+ 기초 핵심 문법', '10/11/', '<p><span style=\"box-sizing: inherit; color: rgb(52, 58, 64); font-weight: 700; font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 22px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: -0.3px;\">입문자</span><span style=\"color: rgb(52, 58, 64); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 22px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: -0.3px;\">를 위해 준비한</span><br style=\"box-sizing: inherit; color: rgb(52, 58, 64); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 22px; letter-spacing: -0.3px;\"><span style=\"box-sizing: inherit; color: rgb(52, 58, 64); font-weight: 700; font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 22px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: -0.3px;\">[개발 · 프로그래밍, 커리어] 강의입니다.</span><br></p>', '/attention/pdata/class/20230906084926172791.png', 1, 150000, 3, '', 1, 3, '2023-09-06 15:49:26', 0, '305,306,307,308,309,310'),
+(136, '시작해보세요! 당신의 첫 지식공유', '10/12/13', '<p><span style=\"box-sizing: inherit; color: rgb(52, 58, 64); font-weight: 700; font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 22px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: -0.3px;\">입문자</span><span style=\"color: rgb(52, 58, 64); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 22px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: -0.3px;\">를 위해 준비한</span><br style=\"box-sizing: inherit; color: rgb(52, 58, 64); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 22px; letter-spacing: -0.3px;\"><span style=\"box-sizing: inherit; color: rgb(52, 58, 64); font-weight: 700; font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 22px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: -0.3px;\">[커리어, 교양] 강의입니다.</span><br></p>', '/attention/pdata/class/20230906090623843599.png', 0, 0, 1, '', 0, 0, '2023-09-06 16:06:23', 1, '311,312,313'),
+(137, '12234', '10/12/13', '<p>124344</p>', '/attention/pdata/class/20230906091622125025.png', 0, 0, 1, '', 0, 0, '2023-09-06 16:16:22', 1, '314,315,316');
 
 -- --------------------------------------------------------
 
@@ -176,12 +146,12 @@ INSERT INTO `class` (`pid`, `name`, `cate`, `content`, `thumbnail`, `price`, `pr
 --
 
 CREATE TABLE `class_clips` (
-  `ccid` int NOT NULL,
-  `pid` int NOT NULL,
-  `userid` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `video_url` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `regdate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `status` tinyint DEFAULT NULL
+  `ccid` int(10) NOT NULL,
+  `pid` int(10) NOT NULL,
+  `userid` varchar(100) DEFAULT NULL,
+  `video_url` varchar(255) NOT NULL,
+  `regdate` datetime DEFAULT current_timestamp(),
+  `status` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -189,41 +159,41 @@ CREATE TABLE `class_clips` (
 --
 
 INSERT INTO `class_clips` (`ccid`, `pid`, `userid`, `video_url`, `regdate`, `status`) VALUES
-(39, 140, NULL, 'https://www.youtube.com/2', '2023-09-07 10:27:55', NULL),
-(40, 140, NULL, 'https://www.youtube.com/3', '2023-09-07 10:27:55', NULL),
-(41, 141, NULL, 'https://www.youtube.com/1', '2023-09-07 10:29:02', NULL),
-(42, 141, NULL, 'https://www.youtube.com/2', '2023-09-07 10:29:02', NULL),
-(43, 141, NULL, 'https://www.youtube.com/3', '2023-09-07 10:29:02', NULL),
-(44, 142, NULL, 'https://www.youtube.com/1', '2023-09-07 10:31:23', NULL),
-(45, 142, NULL, 'https://www.youtube.com/2', '2023-09-07 10:31:23', NULL),
-(46, 142, NULL, 'https://www.youtube.com/3', '2023-09-07 10:31:23', NULL),
-(47, 143, NULL, 'https://www.youtube.com/1', '2023-09-07 10:32:21', NULL),
-(48, 143, NULL, 'https://www.youtube.com/2', '2023-09-07 10:32:21', NULL),
-(49, 143, NULL, 'https://www.youtube.com/3', '2023-09-07 10:32:21', NULL),
-(50, 144, NULL, 'https://www.youtube.com/1', '2023-09-07 10:34:04', NULL),
-(51, 144, NULL, 'https://www.youtube.com/2', '2023-09-07 10:34:04', NULL),
-(52, 144, NULL, 'https://www.youtube.com/3', '2023-09-07 10:34:04', NULL),
-(53, 145, NULL, 'https://www.youtube.com/1', '2023-09-07 10:35:25', NULL),
-(54, 145, NULL, 'https://www.youtube.com/2', '2023-09-07 10:35:25', NULL),
-(55, 145, NULL, 'https://www.youtube.com/3', '2023-09-07 10:35:25', NULL),
-(56, 146, NULL, 'https://www.youtube.com/1', '2023-09-07 10:37:57', NULL),
-(57, 146, NULL, 'https://www.youtube.com/2', '2023-09-07 10:37:57', NULL),
-(58, 146, NULL, 'https://www.youtube.com/3', '2023-09-07 10:37:57', NULL),
-(59, 147, NULL, 'https://www.youtube.com/1', '2023-09-07 10:39:20', NULL),
-(60, 147, NULL, 'https://www.youtube.com/2', '2023-09-07 10:39:20', NULL),
-(61, 147, NULL, 'https://www.youtube.com/3', '2023-09-07 10:39:20', NULL),
-(62, 148, NULL, 'https://www.youtube.com/1', '2023-09-07 10:41:48', NULL),
-(63, 148, NULL, 'https://www.youtube.com/2', '2023-09-07 10:41:48', NULL),
-(64, 148, NULL, 'https://www.youtube.com/3', '2023-09-07 10:41:48', NULL),
-(65, 149, NULL, 'https://www.youtube.com/1', '2023-09-07 10:44:29', NULL),
-(66, 149, NULL, 'https://www.youtube.com/2', '2023-09-07 10:44:29', NULL),
-(67, 149, NULL, 'https://www.youtube.com/3', '2023-09-07 10:44:29', NULL),
-(68, 150, NULL, 'https://www.youtube.com/1', '2023-09-07 10:46:48', NULL),
-(69, 150, NULL, 'https://www.youtube.com/2', '2023-09-07 10:46:48', NULL),
-(70, 150, NULL, 'https://www.youtube.com/3', '2023-09-07 10:46:48', NULL),
-(71, 151, NULL, 'https://www.youtube.com/1', '2023-09-07 10:49:29', NULL),
-(72, 151, NULL, 'https://www.youtube.com/2', '2023-09-07 10:49:29', NULL),
-(73, 151, NULL, 'https://www.youtube.com/3', '2023-09-07 10:49:29', NULL);
+(1, 112, NULL, '', '2023-09-06 13:02:06', NULL),
+(2, 112, NULL, '', '2023-09-06 13:02:06', NULL),
+(3, 113, NULL, 'https://www.youtube.com/premium', '2023-09-06 13:04:20', NULL),
+(4, 113, NULL, 'https://www.youtube.com/premium', '2023-09-06 13:04:20', NULL),
+(5, 114, NULL, 'https://www.youtube.com/premium', '2023-09-06 13:16:40', NULL),
+(6, 116, NULL, 'https://www.youtube.com/premium', '2023-09-06 13:18:13', NULL),
+(7, 117, NULL, 'https://www.youtube.com/premium', '2023-09-06 13:19:06', NULL),
+(8, 118, NULL, 'https://www.youtube.com/premium', '2023-09-06 13:21:44', NULL),
+(9, 118, NULL, '', '2023-09-06 13:21:44', NULL),
+(10, 119, NULL, 'http://localhost/abcmall/admin/coupon/coupon_up.php', '2023-09-06 14:24:49', NULL),
+(11, 120, NULL, 'http://localhost/abcmall/admin/coupon/coupon_up.php', '2023-09-06 14:28:25', NULL),
+(12, 120, NULL, 'https://www.youtube.com/premium', '2023-09-06 14:28:25', NULL),
+(13, 121, NULL, 'http://localhost/abcmall/admin/coupon/coupon_up.php', '2023-09-06 14:31:36', NULL),
+(14, 121, NULL, 'https://www.youtube.com/premium', '2023-09-06 14:31:36', NULL),
+(15, 122, NULL, 'https://www.youtube.com/premium', '2023-09-06 14:39:24', NULL),
+(16, 122, NULL, 'http://localhost/abcmall/admin/coupon/coupon_up.php', '2023-09-06 14:39:24', NULL),
+(17, 123, NULL, 'https://www.youtube.com/premium', '2023-09-06 14:40:30', NULL),
+(18, 123, NULL, 'http://localhost/abcmall/admin/coupon/coupon_up.php', '2023-09-06 14:40:30', NULL),
+(19, 124, NULL, '', '2023-09-06 15:08:26', NULL),
+(20, 125, NULL, 'http://localhost/abcmall/admin/coupon/coupon_up.php', '2023-09-06 15:22:55', NULL),
+(21, 125, NULL, 'http://localhost/abcmall/admin/coupon/coupon_up.php', '2023-09-06 15:22:55', NULL),
+(22, 126, NULL, 'ㄷ', '2023-09-06 15:33:52', NULL),
+(23, 127, NULL, 'a', '2023-09-06 15:34:30', NULL),
+(24, 128, NULL, 'https://www.youtube.com/premium', '2023-09-06 15:35:00', NULL),
+(25, 129, NULL, 'a', '2023-09-06 15:35:26', NULL),
+(26, 130, NULL, 'http://localhost/abcmall/admin/coupon/coupon_up.php', '2023-09-06 15:35:50', NULL),
+(27, 131, NULL, 'https://www.youtube.com/premium', '2023-09-06 15:36:24', NULL),
+(28, 132, NULL, 'https://www.youtube.com/premium', '2023-09-06 15:36:47', NULL),
+(29, 132, NULL, 'https://www.youtube.com/premium', '2023-09-06 15:36:47', NULL),
+(30, 133, NULL, 'https://www.youtube.com/premium', '2023-09-06 15:41:26', NULL),
+(31, 134, NULL, 'https://www.youtube.com/1234', '2023-09-06 15:45:14', NULL),
+(32, 134, NULL, 'https://www.youtube.com/365', '2023-09-06 15:45:14', NULL),
+(33, 135, NULL, 'http://localhost/abcmall/admin/coupon/coupon_up.php', '2023-09-06 15:49:26', NULL),
+(34, 136, NULL, 'http://localhost/abcmall/admin/coupon/coupon_up.php', '2023-09-06 16:06:23', NULL),
+(35, 137, NULL, 'https://www.youtube.com/12234', '2023-09-06 16:16:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -232,12 +202,12 @@ INSERT INTO `class_clips` (`ccid`, `pid`, `userid`, `video_url`, `regdate`, `sta
 --
 
 CREATE TABLE `class_image_table` (
-  `imgid` int NOT NULL,
-  `pid` int DEFAULT NULL,
-  `userid` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `filename` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `regdate` datetime DEFAULT CURRENT_TIMESTAMP,
-  `status` tinyint DEFAULT '1'
+  `imgid` int(11) NOT NULL,
+  `pid` int(11) DEFAULT NULL,
+  `userid` varchar(100) DEFAULT NULL,
+  `filename` varchar(100) DEFAULT NULL,
+  `regdate` datetime DEFAULT current_timestamp(),
+  `status` tinyint(4) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -245,39 +215,277 @@ CREATE TABLE `class_image_table` (
 --
 
 INSERT INTO `class_image_table` (`imgid`, `pid`, `userid`, `filename`, `regdate`, `status`) VALUES
-(329, 141, 'admin', '20230907032858612787.jpg', '2023-09-07 10:28:58', 1),
-(330, 141, 'admin', '20230907032858127060.jpg', '2023-09-07 10:28:58', 1),
-(331, 141, 'admin', '20230907032858126085.jpg', '2023-09-07 10:28:58', 1),
-(332, 142, 'admin', '20230907033123410492.jpg', '2023-09-07 10:31:23', 1),
-(333, 142, 'admin', '20230907033123382185.jpg', '2023-09-07 10:31:23', 1),
-(334, 142, 'admin', '20230907033123185837.jpg', '2023-09-07 10:31:23', 1),
-(335, 143, 'admin', '20230907033220585306.jpg', '2023-09-07 10:32:20', 1),
-(336, 143, 'admin', '20230907033220599644.jpg', '2023-09-07 10:32:20', 1),
-(337, 143, 'admin', '20230907033220912191.jpg', '2023-09-07 10:32:20', 1),
-(338, 144, 'admin', '20230907033403170490.jpg', '2023-09-07 10:34:03', 1),
-(339, 144, 'admin', '20230907033403891099.jpg', '2023-09-07 10:34:03', 1),
-(340, 144, 'admin', '20230907033403211020.jpg', '2023-09-07 10:34:03', 1),
-(341, 145, 'admin', '20230907033524210892.jpg', '2023-09-07 10:35:24', 1),
-(342, 145, 'admin', '20230907033524129440.jpg', '2023-09-07 10:35:24', 1),
-(343, 145, 'admin', '20230907033524877585.jpg', '2023-09-07 10:35:24', 1),
-(344, 146, 'admin', '20230907033756737636.jpg', '2023-09-07 10:37:56', 1),
-(345, 146, 'admin', '20230907033756185316.jpg', '2023-09-07 10:37:56', 1),
-(346, 146, 'admin', '20230907033756437638.jpg', '2023-09-07 10:37:56', 1),
-(347, 147, 'admin', '20230907033920681768.jpg', '2023-09-07 10:39:20', 1),
-(348, 147, 'admin', '20230907033920182788.jpg', '2023-09-07 10:39:20', 1),
-(349, 147, 'admin', '20230907033920826300.jpg', '2023-09-07 10:39:20', 1),
-(350, 148, 'admin', '20230907034145146597.jpg', '2023-09-07 10:41:45', 1),
-(351, 148, 'admin', '20230907034145419845.jpg', '2023-09-07 10:41:45', 1),
-(352, 148, 'admin', '20230907034145209807.jpg', '2023-09-07 10:41:45', 1),
-(353, 149, 'admin', '20230907034429825459.jpg', '2023-09-07 10:44:29', 1),
-(354, 149, 'admin', '20230907034429136721.jpg', '2023-09-07 10:44:29', 1),
-(355, 149, 'admin', '20230907034429312650.jpg', '2023-09-07 10:44:29', 1),
-(356, 150, 'admin', '20230907034647163041.jpg', '2023-09-07 10:46:47', 1),
-(357, 150, 'admin', '20230907034647173472.jpg', '2023-09-07 10:46:47', 1),
-(358, 150, 'admin', '20230907034647158204.jpg', '2023-09-07 10:46:47', 1),
-(359, 151, 'admin', '20230907034925498628.jpg', '2023-09-07 10:49:25', 1),
-(360, 151, 'admin', '20230907034925155734.jpg', '2023-09-07 10:49:25', 1),
-(361, 151, 'admin', '20230907034925205990.jpg', '2023-09-07 10:49:25', 1);
+(46, 50, 'admin', '20230903195147163493.png', '2023-09-04 02:51:47', 1),
+(47, 50, 'admin', '20230903195147766187.png', '2023-09-04 02:51:47', 1),
+(48, 51, 'admin', '20230903195826178981.png', '2023-09-04 02:58:26', 1),
+(49, 51, 'admin', '20230903195826130558.png', '2023-09-04 02:58:26', 1),
+(50, NULL, '', '20230903200017502418.png', '2023-09-04 03:00:17', 1),
+(51, NULL, '', '20230903200018198433.png', '2023-09-04 03:00:18', 1),
+(52, 54, 'admin', '20230903205936126321.png', '2023-09-04 03:59:36', 1),
+(53, 54, 'admin', '20230903205936343756.png', '2023-09-04 03:59:36', 1),
+(54, 55, 'admin', '20230903211042209141.png', '2023-09-04 04:10:42', 1),
+(55, 55, 'admin', '20230903211042475997.png', '2023-09-04 04:10:42', 1),
+(56, 56, 'admin', '20230903211400193516.png', '2023-09-04 04:14:00', 1),
+(57, 56, 'admin', '20230903211400103110.png', '2023-09-04 04:14:00', 1),
+(58, 57, 'admin', '20230903211820204707.png', '2023-09-04 04:18:20', 1),
+(59, 57, 'admin', '20230903211820838219.png', '2023-09-04 04:18:20', 1),
+(60, NULL, 'admin', '20230903212146868332.png', '2023-09-04 04:21:46', 1),
+(61, NULL, 'admin', '20230903212146803755.png', '2023-09-04 04:21:46', 1),
+(62, NULL, 'admin', '20230903212503202715.png', '2023-09-04 04:25:03', 1),
+(63, NULL, 'admin', '20230903212503162699.png', '2023-09-04 04:25:03', 1),
+(64, 58, 'admin', '20230903212708163687.png', '2023-09-04 04:27:08', 1),
+(65, 58, 'admin', '20230903212708221894.png', '2023-09-04 04:27:08', 1),
+(66, NULL, 'admin', '20230903213104214481.png', '2023-09-04 04:31:04', 1),
+(67, NULL, 'admin', '20230903213104182143.png', '2023-09-04 04:31:04', 1),
+(68, NULL, 'admin', '20230903213139199552.png', '2023-09-04 04:31:39', 1),
+(69, NULL, 'admin', '20230903213139141354.png', '2023-09-04 04:31:39', 1),
+(70, 59, 'admin', '20230903213424153384.png', '2023-09-04 04:34:24', 1),
+(71, 59, 'admin', '20230903213424184869.png', '2023-09-04 04:34:24', 1),
+(72, 60, 'admin', '20230903213739194940.png', '2023-09-04 04:37:39', 1),
+(73, 60, 'admin', '20230903213739676900.png', '2023-09-04 04:37:39', 1),
+(74, NULL, 'admin', '20230903214817897678.png', '2023-09-04 04:48:17', 1),
+(75, NULL, 'admin', '20230903214817104078.png', '2023-09-04 04:48:17', 1),
+(76, NULL, 'admin', '20230903214955394795.png', '2023-09-04 04:49:55', 1),
+(77, NULL, 'admin', '20230903214955455250.png', '2023-09-04 04:49:55', 1),
+(78, NULL, 'admin', '20230903215054129926.png', '2023-09-04 04:50:54', 1),
+(79, NULL, 'admin', '20230903215054186629.png', '2023-09-04 04:50:54', 1),
+(80, 61, 'admin', '20230903215207148025.png', '2023-09-04 04:52:07', 1),
+(81, 61, 'admin', '20230903215207151670.png', '2023-09-04 04:52:07', 1),
+(82, NULL, 'admin', '20230903221126573344.png', '2023-09-04 05:11:26', 1),
+(83, NULL, 'admin', '20230903221127926408.png', '2023-09-04 05:11:27', 1),
+(84, NULL, 'admin', '20230903221236983978.png', '2023-09-04 05:12:36', 1),
+(85, NULL, 'admin', '20230903221237175866.png', '2023-09-04 05:12:37', 1),
+(86, NULL, 'admin', '20230903221411149704.png', '2023-09-04 05:14:11', 1),
+(87, NULL, 'admin', '20230903221411148400.png', '2023-09-04 05:14:11', 1),
+(88, 62, 'admin', '20230903221444174574.png', '2023-09-04 05:14:44', 1),
+(89, NULL, 'admin', '20230903222335918724.png', '2023-09-04 05:23:35', 1),
+(90, 63, 'admin', '20230903222400108555.png', '2023-09-04 05:24:00', 1),
+(91, 63, 'admin', '20230903222400153163.png', '2023-09-04 05:24:00', 1),
+(92, NULL, 'admin', '20230903222648612014.png', '2023-09-04 05:26:48', 1),
+(93, NULL, 'admin', '20230903222648180378.png', '2023-09-04 05:26:48', 1),
+(94, 64, 'admin', '20230903222717214267.png', '2023-09-04 05:27:17', 1),
+(95, 64, 'admin', '20230903222717583147.png', '2023-09-04 05:27:17', 1),
+(96, NULL, 'admin', '20230904043641205334.png', '2023-09-04 11:36:41', 1),
+(97, NULL, 'admin', '20230904043641124506.png', '2023-09-04 11:36:41', 1),
+(98, NULL, 'admin', '20230904141547121050.png', '2023-09-04 21:15:47', 1),
+(99, NULL, 'admin', '20230904141547187134.png', '2023-09-04 21:15:47', 1),
+(100, NULL, 'admin', '20230904142047687821.png', '2023-09-04 21:20:47', 1),
+(101, NULL, 'admin', '20230904142047811772.png', '2023-09-04 21:20:47', 1),
+(102, NULL, 'admin', '20230904142113175315.png', '2023-09-04 21:21:13', 1),
+(103, NULL, 'admin', '20230904142113208743.png', '2023-09-04 21:21:13', 1),
+(104, NULL, 'admin', '20230904143031170492.png', '2023-09-04 21:30:31', 1),
+(105, NULL, 'admin', '20230904143031210625.png', '2023-09-04 21:30:31', 1),
+(106, NULL, 'admin', '20230904143104207896.png', '2023-09-04 21:31:04', 1),
+(107, NULL, 'admin', '20230904143104128268.png', '2023-09-04 21:31:04', 1),
+(108, NULL, 'admin', '20230904143128131676.png', '2023-09-04 21:31:28', 1),
+(109, NULL, 'admin', '20230904143128179524.png', '2023-09-04 21:31:28', 1),
+(110, 65, 'admin', '20230904143515164464.png', '2023-09-04 21:35:15', 1),
+(111, 65, 'admin', '20230904143515157312.png', '2023-09-04 21:35:15', 1),
+(112, NULL, 'admin', '20230904152831192179.png', '2023-09-04 22:28:31', 1),
+(113, NULL, 'admin', '20230904152831158618.png', '2023-09-04 22:28:31', 1),
+(114, 66, 'admin', '20230904192111173925.png', '2023-09-05 02:21:11', 1),
+(115, 66, 'admin', '20230904192111183468.png', '2023-09-05 02:21:11', 1),
+(116, 67, 'admin', '20230904192851895609.png', '2023-09-05 02:28:51', 1),
+(117, 67, 'admin', '20230904192851576542.png', '2023-09-05 02:28:51', 1),
+(118, 68, 'admin', '20230904193052855272.png', '2023-09-05 02:30:52', 1),
+(119, 68, 'admin', '20230904193052486807.png', '2023-09-05 02:30:52', 1),
+(120, 69, 'admin', '20230904193303197506.png', '2023-09-05 02:33:03', 1),
+(121, 69, 'admin', '20230904193303195732.png', '2023-09-05 02:33:03', 1),
+(122, 70, 'admin', '20230904194256109650.png', '2023-09-05 02:42:56', 1),
+(123, 70, 'admin', '20230904194256151563.png', '2023-09-05 02:42:56', 1),
+(124, 71, 'admin', '20230904194501158428.png', '2023-09-05 02:45:01', 1),
+(125, 71, 'admin', '20230904194501166168.png', '2023-09-05 02:45:01', 1),
+(126, NULL, 'admin', '20230905073515843871.png', '2023-09-05 14:35:15', 1),
+(127, NULL, 'admin', '20230905073515130039.png', '2023-09-05 14:35:15', 1),
+(128, NULL, 'admin', '20230905073732508742.png', '2023-09-05 14:37:32', 1),
+(129, NULL, 'admin', '20230905073732139729.png', '2023-09-05 14:37:32', 1),
+(130, NULL, 'admin', '20230905073817208991.png', '2023-09-05 14:38:17', 1),
+(131, NULL, 'admin', '20230905073817142297.png', '2023-09-05 14:38:17', 1),
+(132, 77, 'admin', '20230905075313151484.png', '2023-09-05 14:53:13', 1),
+(133, 77, 'admin', '20230905075313428008.png', '2023-09-05 14:53:13', 1),
+(134, 77, 'admin', '20230905075313148061.png', '2023-09-05 14:53:13', 1),
+(135, 79, 'admin', '20230905075717672181.png', '2023-09-05 14:57:17', 1),
+(136, 79, 'admin', '20230905075717178811.png', '2023-09-05 14:57:17', 1),
+(137, 79, 'admin', '20230905075717249506.png', '2023-09-05 14:57:17', 1),
+(138, NULL, 'admin', '20230905091826690706.png', '2023-09-05 16:18:26', 1),
+(139, NULL, 'admin', '20230905091826949684.png', '2023-09-05 16:18:26', 1),
+(140, NULL, 'admin', '20230905091826103439.png', '2023-09-05 16:18:26', 1),
+(141, 80, 'admin', '20230905091918615518.png', '2023-09-05 16:19:18', 1),
+(142, 80, 'admin', '20230905091918911281.png', '2023-09-05 16:19:18', 1),
+(143, NULL, 'admin', '20230905092025140675.png', '2023-09-05 16:20:25', 1),
+(144, NULL, 'admin', '20230905092025979452.png', '2023-09-05 16:20:25', 1),
+(145, NULL, 'admin', '20230905092048534732.png', '2023-09-05 16:20:48', 1),
+(146, NULL, 'admin', '20230905092048162580.png', '2023-09-05 16:20:48', 1),
+(147, 81, 'admin', '20230905092117692266.png', '2023-09-05 16:21:17', 1),
+(148, 81, 'admin', '20230905092117111557.png', '2023-09-05 16:21:17', 1),
+(149, 82, 'admin', '20230905092209212234.png', '2023-09-05 16:22:09', 1),
+(150, 82, 'admin', '20230905092209174367.png', '2023-09-05 16:22:09', 1),
+(151, 83, 'admin', '20230905093211155536.png', '2023-09-05 16:32:11', 0),
+(152, 83, 'admin', '20230905093211143643.png', '2023-09-05 16:32:11', 0),
+(153, 83, 'admin', '20230905093225185108.png', '2023-09-05 16:32:25', 1),
+(154, 83, 'admin', '20230905093225187970.png', '2023-09-05 16:32:25', 1),
+(155, 84, 'admin', '20230905093309150493.png', '2023-09-05 16:33:09', 1),
+(156, 84, 'admin', '20230905093309835917.png', '2023-09-05 16:33:09', 1),
+(157, 85, 'admin', '20230905093343253297.png', '2023-09-05 16:33:43', 1),
+(158, 85, 'admin', '20230905093343965543.png', '2023-09-05 16:33:43', 1),
+(159, 86, 'admin', '20230905093503201298.png', '2023-09-05 16:35:03', 1),
+(160, 86, 'admin', '20230905093503142323.png', '2023-09-05 16:35:03', 1),
+(161, 87, 'admin', '20230905093533338751.png', '2023-09-05 16:35:33', 1),
+(162, 87, 'admin', '20230905093533898903.png', '2023-09-05 16:35:33', 1),
+(163, 88, 'admin', '20230905093611815282.png', '2023-09-05 16:36:11', 1),
+(164, 88, 'admin', '20230905093611108818.png', '2023-09-05 16:36:11', 1),
+(165, 89, 'admin', '20230905093641341051.png', '2023-09-05 16:36:41', 1),
+(166, 89, 'admin', '20230905093641156415.png', '2023-09-05 16:36:41', 1),
+(167, 90, 'admin', '20230905094231194344.png', '2023-09-05 16:42:31', 1),
+(168, 90, 'admin', '20230905094231299793.png', '2023-09-05 16:42:31', 1),
+(169, 91, 'admin', '20230905100633725596.png', '2023-09-05 17:06:33', 1),
+(170, 91, 'admin', '20230905100633844312.png', '2023-09-05 17:06:33', 1),
+(171, 92, 'admin', '20230905101605928300.png', '2023-09-05 17:16:05', 1),
+(172, 92, 'admin', '20230905101605100590.png', '2023-09-05 17:16:05', 1),
+(173, 93, 'admin', '20230905104709813681.png', '2023-09-05 17:47:09', 1),
+(174, 93, 'admin', '20230905104709109573.png', '2023-09-05 17:47:09', 1),
+(175, 104, 'admin', '20230905112146711559.png', '2023-09-05 18:21:46', 1),
+(176, 104, 'admin', '20230905112146743158.png', '2023-09-05 18:21:46', 1),
+(177, NULL, 'admin', '20230905114050132477.png', '2023-09-05 18:40:50', 1),
+(178, NULL, 'admin', '20230905114050763291.png', '2023-09-05 18:40:50', 1),
+(179, NULL, 'admin', '20230906025809142097.png', '2023-09-06 09:58:09', 1),
+(180, NULL, 'admin', '20230906025809125418.png', '2023-09-06 09:58:09', 1),
+(181, 105, 'admin', '20230906030120125336.png', '2023-09-06 10:01:20', 1),
+(182, 105, 'admin', '20230906030120118788.png', '2023-09-06 10:01:20', 1),
+(183, NULL, 'admin', '20230906033700578329.png', '2023-09-06 10:37:00', 1),
+(184, NULL, 'admin', '20230906033700128375.png', '2023-09-06 10:37:00', 1),
+(185, NULL, 'admin', '20230906033726871183.png', '2023-09-06 10:37:26', 1),
+(186, NULL, 'admin', '20230906034208638434.png', '2023-09-06 10:42:08', 1),
+(187, NULL, 'admin', '20230906034208179007.png', '2023-09-06 10:42:08', 1),
+(188, 106, 'admin', '20230906034452812471.png', '2023-09-06 10:44:52', 1),
+(189, 106, 'admin', '20230906034452131275.png', '2023-09-06 10:44:52', 1),
+(190, 107, 'admin', '20230906034947130130.png', '2023-09-06 10:49:47', 1),
+(191, 107, 'admin', '20230906034947185285.png', '2023-09-06 10:49:47', 1),
+(192, NULL, 'admin', '20230906045840193911.png', '2023-09-06 11:58:40', 1),
+(193, NULL, 'admin', '20230906045840766095.png', '2023-09-06 11:58:40', 1),
+(194, NULL, 'admin', '20230906045840191428.png', '2023-09-06 11:58:40', 1),
+(195, NULL, 'admin', '20230906045840767635.png', '2023-09-06 11:58:40', 1),
+(196, NULL, 'admin', '20230906045840164636.png', '2023-09-06 11:58:40', 1),
+(197, NULL, 'admin', '20230906045840141090.png', '2023-09-06 11:58:40', 1),
+(198, NULL, 'admin', '20230906045840389115.png', '2023-09-06 11:58:40', 1),
+(199, NULL, 'admin', '20230906045840203009.png', '2023-09-06 11:58:40', 1),
+(200, NULL, 'admin', '20230906045840153125.png', '2023-09-06 11:58:40', 1),
+(201, NULL, 'admin', '20230906045840196264.jpg', '2023-09-06 11:58:40', 1),
+(202, NULL, 'admin', '20230906045840204043.png', '2023-09-06 11:58:40', 1),
+(203, NULL, 'admin', '20230906045840798766.png', '2023-09-06 11:58:40', 1),
+(204, NULL, 'admin', '20230906045840205440.png', '2023-09-06 11:58:40', 1),
+(205, NULL, 'admin', '20230906045840158423.png', '2023-09-06 11:58:40', 1),
+(206, NULL, 'admin', '20230906045840143252.png', '2023-09-06 11:58:40', 1),
+(207, NULL, 'admin', '20230906045840204594.png', '2023-09-06 11:58:40', 1),
+(208, NULL, 'admin', '20230906045840104748.png', '2023-09-06 11:58:40', 1),
+(209, NULL, 'admin', '20230906045840175503.jpg', '2023-09-06 11:58:40', 1),
+(210, 108, 'admin', '20230906050154181897.jpg', '2023-09-06 12:01:54', 1),
+(211, 108, 'admin', '20230906050154608026.png', '2023-09-06 12:01:54', 1),
+(212, 108, 'admin', '20230906050154101277.png', '2023-09-06 12:01:54', 1),
+(213, 108, 'admin', '20230906050154118945.png', '2023-09-06 12:01:54', 1),
+(214, 108, 'admin', '20230906050154214444.png', '2023-09-06 12:01:54', 1),
+(215, 108, 'admin', '20230906050154132185.png', '2023-09-06 12:01:54', 1),
+(216, 108, 'admin', '20230906050154159774.png', '2023-09-06 12:01:54', 1),
+(217, 108, 'admin', '20230906050154146047.png', '2023-09-06 12:01:54', 1),
+(218, 108, 'admin', '20230906050154204135.png', '2023-09-06 12:01:54', 1),
+(219, 108, 'admin', '20230906050154178402.png', '2023-09-06 12:01:54', 1),
+(220, 108, 'admin', '20230906050154575449.png', '2023-09-06 12:01:54', 1),
+(221, 108, 'admin', '20230906050154139446.png', '2023-09-06 12:01:54', 1),
+(222, 108, 'admin', '20230906050154121112.png', '2023-09-06 12:01:54', 1),
+(223, 108, 'admin', '20230906050154150417.png', '2023-09-06 12:01:54', 1),
+(224, 108, 'admin', '20230906050154127749.png', '2023-09-06 12:01:54', 1),
+(225, 108, 'admin', '20230906050154184957.png', '2023-09-06 12:01:54', 1),
+(226, 108, 'admin', '20230906050154792662.png', '2023-09-06 12:01:54', 1),
+(227, 108, 'admin', '20230906050154195624.jpg', '2023-09-06 12:01:54', 1),
+(228, 109, 'admin', '20230906053919198019.png', '2023-09-06 12:39:19', 1),
+(229, 109, 'admin', '20230906053919205288.jpg', '2023-09-06 12:39:19', 1),
+(230, 109, 'admin', '20230906053919972220.png', '2023-09-06 12:39:19', 1),
+(231, 109, 'admin', '20230906053919113991.png', '2023-09-06 12:39:19', 1),
+(232, 109, 'admin', '20230906053919120717.png', '2023-09-06 12:39:19', 1),
+(233, 109, 'admin', '20230906053919143603.png', '2023-09-06 12:39:19', 1),
+(234, 109, 'admin', '20230906053919878830.png', '2023-09-06 12:39:19', 1),
+(235, 109, 'admin', '20230906053919753195.png', '2023-09-06 12:39:19', 1),
+(236, 109, 'admin', '20230906053919194340.png', '2023-09-06 12:39:19', 1),
+(237, 109, 'admin', '20230906053919199681.png', '2023-09-06 12:39:19', 1),
+(238, 109, 'admin', '20230906053919205929.png', '2023-09-06 12:39:19', 1),
+(239, 109, 'admin', '20230906053919169148.png', '2023-09-06 12:39:19', 1),
+(240, 109, 'admin', '20230906053919428327.png', '2023-09-06 12:39:19', 1),
+(241, 109, 'admin', '20230906053919371908.png', '2023-09-06 12:39:19', 1),
+(242, 109, 'admin', '20230906053919133080.png', '2023-09-06 12:39:19', 1),
+(243, 109, 'admin', '20230906053919874548.png', '2023-09-06 12:39:19', 1),
+(244, 109, 'admin', '20230906053919729097.png', '2023-09-06 12:39:19', 1),
+(245, 109, 'admin', '20230906053919171398.jpg', '2023-09-06 12:39:19', 1),
+(246, 110, 'admin', '20230906055013181237.jpg', '2023-09-06 12:50:13', 0),
+(247, 110, 'admin', '20230906055120147631.jpg', '2023-09-06 12:51:20', 0),
+(248, 110, 'admin', '20230906055120312184.jpg', '2023-09-06 12:51:20', 0),
+(249, 111, 'admin', '20230906055257161513.jpg', '2023-09-06 12:52:57', 0),
+(250, 111, 'admin', '20230906055257109537.jpg', '2023-09-06 12:52:57', 0),
+(251, 118, 'admin', '20230906062012196888.jpg', '2023-09-06 13:20:12', 1),
+(252, 118, 'admin', '20230906062012605737.jpg', '2023-09-06 13:20:12', 1),
+(253, NULL, 'admin', '20230906062330163905.jpg', '2023-09-06 13:23:30', 1),
+(254, NULL, 'admin', '20230906062330401205.jpg', '2023-09-06 13:23:30', 1),
+(255, NULL, 'admin', '20230906062336216128.jpg', '2023-09-06 13:23:36', 1),
+(256, NULL, 'admin', '20230906062336630020.jpg', '2023-09-06 13:23:36', 1),
+(257, NULL, 'admin', '20230906062351131166.jpg', '2023-09-06 13:23:51', 1),
+(258, NULL, 'admin', '20230906062351980117.jpg', '2023-09-06 13:23:51', 1),
+(259, NULL, 'admin', '20230906062406662810.jpg', '2023-09-06 13:24:06', 1),
+(260, NULL, 'admin', '20230906062406211892.jpg', '2023-09-06 13:24:06', 1),
+(261, NULL, 'admin', '20230906062449178777.jpg', '2023-09-06 13:24:49', 1),
+(262, NULL, 'admin', '20230906062449604804.jpg', '2023-09-06 13:24:49', 1),
+(263, NULL, 'admin', '20230906062603153642.jpg', '2023-09-06 13:26:03', 1),
+(264, NULL, 'admin', '20230906062603102721.jpg', '2023-09-06 13:26:03', 1),
+(265, NULL, 'admin', '20230906062732188148.jpg', '2023-09-06 13:27:32', 1),
+(266, NULL, 'admin', '20230906062732950080.jpg', '2023-09-06 13:27:32', 1),
+(267, NULL, 'admin', '20230906070628128120.jpg', '2023-09-06 14:06:28', 1),
+(268, NULL, 'admin', '20230906070628122142.jpg', '2023-09-06 14:06:28', 1),
+(269, NULL, 'admin', '20230906072237179326.png', '2023-09-06 14:22:37', 1),
+(270, NULL, 'admin', '20230906072237112101.png', '2023-09-06 14:22:37', 1),
+(271, 119, 'admin', '20230906072448340254.png', '2023-09-06 14:24:48', 1),
+(272, 119, 'admin', '20230906072448413917.png', '2023-09-06 14:24:48', 1),
+(273, 121, 'admin', '20230906072824932038.png', '2023-09-06 14:28:24', 1),
+(274, 121, 'admin', '20230906072824235305.png', '2023-09-06 14:28:24', 1),
+(275, 122, 'admin', '20230906073922699112.png', '2023-09-06 14:39:22', 1),
+(276, 122, 'admin', '20230906073922775470.png', '2023-09-06 14:39:22', 1),
+(277, 123, 'admin', '20230906074030940309.png', '2023-09-06 14:40:30', 1),
+(278, 123, 'admin', '20230906074030203130.png', '2023-09-06 14:40:30', 1),
+(279, 124, 'admin', '20230906080824486024.png', '2023-09-06 15:08:24', 1),
+(280, 125, 'admin', '20230906082255129447.png', '2023-09-06 15:22:55', 1),
+(281, 125, 'admin', '20230906082255962192.png', '2023-09-06 15:22:55', 1),
+(282, 126, 'admin', '20230906083351140286.png', '2023-09-06 15:33:51', 1),
+(283, 126, 'admin', '20230906083351198460.png', '2023-09-06 15:33:51', 1),
+(284, NULL, 'admin', '20230906083412127951.png', '2023-09-06 15:34:12', 1),
+(285, NULL, 'admin', '20230906083412914642.png', '2023-09-06 15:34:12', 1),
+(286, 127, 'admin', '20230906083425108103.png', '2023-09-06 15:34:25', 1),
+(287, 127, 'admin', '20230906083425175293.png', '2023-09-06 15:34:25', 1),
+(288, 128, 'admin', '20230906083459152180.png', '2023-09-06 15:34:59', 1),
+(289, 128, 'admin', '20230906083459166449.png', '2023-09-06 15:34:59', 1),
+(290, 129, 'admin', '20230906083526123678.png', '2023-09-06 15:35:26', 1),
+(291, 129, 'admin', '20230906083526153422.png', '2023-09-06 15:35:26', 1),
+(292, 130, 'admin', '20230906083549188217.png', '2023-09-06 15:35:49', 1),
+(293, 130, 'admin', '20230906083549144032.png', '2023-09-06 15:35:49', 1),
+(294, 131, 'admin', '20230906083622199388.png', '2023-09-06 15:36:22', 1),
+(295, 131, 'admin', '20230906083622101182.png', '2023-09-06 15:36:22', 1),
+(296, 132, 'admin', '20230906083647180492.png', '2023-09-06 15:36:47', 1),
+(297, 132, 'admin', '20230906083647142379.png', '2023-09-06 15:36:47', 1),
+(298, NULL, 'admin', '20230906083707163695.png', '2023-09-06 15:37:07', 1),
+(299, NULL, 'admin', '20230906083707140687.png', '2023-09-06 15:37:07', 1),
+(300, 133, 'admin', '20230906084126182906.png', '2023-09-06 15:41:26', 1),
+(301, 133, 'admin', '20230906084126106174.png', '2023-09-06 15:41:26', 1),
+(302, 134, 'admin', '20230906084512692735.jpg', '2023-09-06 15:45:12', 1),
+(303, 134, 'admin', '20230906084512454941.jpg', '2023-09-06 15:45:12', 1),
+(304, 134, 'admin', '20230906084512205860.jpg', '2023-09-06 15:45:12', 1),
+(305, 135, 'admin', '20230906084842847579.png', '2023-09-06 15:48:42', 0),
+(306, 135, 'admin', '20230906084842147355.png', '2023-09-06 15:48:42', 0),
+(307, 135, 'admin', '20230906084842203138.png', '2023-09-06 15:48:42', 0),
+(308, 135, 'admin', '20230906084850149596.jpg', '2023-09-06 15:48:50', 1),
+(309, 135, 'admin', '20230906084850678133.jpg', '2023-09-06 15:48:50', 1),
+(310, 135, 'admin', '20230906084850174489.jpg', '2023-09-06 15:48:50', 1),
+(311, 136, 'admin', '20230906090622154742.jpg', '2023-09-06 16:06:22', 1),
+(312, 136, 'admin', '20230906090622189044.jpg', '2023-09-06 16:06:22', 1),
+(313, 136, 'admin', '20230906090622576841.jpg', '2023-09-06 16:06:22', 1),
+(314, 137, 'admin', '20230906091609584282.jpg', '2023-09-06 16:16:09', 1),
+(315, 137, 'admin', '20230906091609201534.jpg', '2023-09-06 16:16:09', 1),
+(316, 137, 'admin', '20230906091609425974.jpg', '2023-09-06 16:16:09', 1);
 
 -- --------------------------------------------------------
 
@@ -286,40 +494,27 @@ INSERT INTO `class_image_table` (`imgid`, `pid`, `userid`, `filename`, `regdate`
 --
 
 CREATE TABLE `coupons` (
-  `cid` int NOT NULL,
-  `coupon_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '쿠폰명',
-  `coupon_image` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '쿠폰이미지',
+  `cid` int(11) NOT NULL,
+  `coupon_name` varchar(100) DEFAULT NULL COMMENT '쿠폰명',
+  `coupon_image` varchar(100) DEFAULT NULL COMMENT '쿠폰이미지',
+  `coupon_type` varchar(10) DEFAULT NULL COMMENT '쿠폰타입',
   `coupon_price` double DEFAULT NULL COMMENT '할인금액',
-  `status` text COLLATE utf8mb4_general_ci COMMENT '활성화 상태',
-  `regdate` varchar(24) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '쿠폰기한'
+  `status` varchar(50) DEFAULT NULL COMMENT '활성화 상태',
+  `regdate` datetime DEFAULT NULL COMMENT '쿠폰기한'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 테이블의 덤프 데이터 `coupons`
 --
 
-INSERT INTO `coupons` (`cid`, `coupon_name`, `coupon_image`, `coupon_price`, `status`, `regdate`) VALUES
-(16, '비전공자의 전공자 따라잡기 - 자료PDF', '/attention/pdata/coupon/20230905075807102463.png', 30000, '비활성화', '1'),
-(18, '[신규가입] 웰컴팩 패키지 할인', '/attention/pdata/coupon/20230904090714142128.png', 7000, '활성화', '무제한'),
-(19, '부트캠프에서 만든 고농축 백엔드 코스', '/attention/pdata/coupon/20230904090840131470.png', 10000, '활성화', '3'),
-(33, '데이터베이스 교재 할인', '/attention/pdata/coupon/20230905045050102631.jpg', 8000, '비활성화', '3'),
-(36, '비전공자의 전공자 따라잡기 - 자료PDF', '/attention/pdata/coupon/20230905075807102463.png', 30000, '비활성화', '1'),
-(37, '기초부터 꼼꼼, Javascript 강의', '/attention/pdata/coupon/20230904090506484676.png', 20000, '비활성화', '4'),
-(38, '[신규가입] 웰컴팩 패키지 할인', '/attention/pdata/coupon/20230904090714142128.png', 7000, '활성화', '무제한'),
-(39, '부트캠프에서 만든 고농축 백엔드 코스', '/attention/pdata/coupon/20230904090840131470.png', 10000, '활성화', '3'),
-(40, '데이터베이스 교재 할인', '/attention/pdata/coupon/20230905045050102631.jpg', 8000, '비활성화', '3'),
-(42, '대학생이면 추가 5만원 할인', '/attention/pdata/coupon/20230906025138190647.jpg', 50000, '활성화', '3'),
-(43, '비전공자의 전공자 따라잡기 - 자료PDF', '/attention/pdata/coupon/20230905075807102463.png', 30000, '비활성화', '1'),
-(44, '기초부터 꼼꼼, Javascript 강의', '/attention/pdata/coupon/20230904090506484676.png', 20000, '비활성화', '4'),
-(45, '[신규가입] 웰컴팩 패키지 할인', '/attention/pdata/coupon/20230904090714142128.png', 7000, '활성화', '무제한'),
-(46, '부트캠프에서 만든 고농축 백엔드 코스', '/attention/pdata/coupon/20230904090840131470.png', 10000, '활성화', '3'),
-(47, '데이터베이스 교재 할인', '/attention/pdata/coupon/20230905045050102631.jpg', 8000, '비활성화', '3'),
-(49, '대학생이면 추가 5만원 할인', '/attention/pdata/coupon/20230906025138190647.jpg', 50000, '활성화', '3'),
-(50, '비전공자의 전공자 따라잡기 - 자료PDF', '/attention/pdata/coupon/20230905075807102463.png', 30000, '비활성화', '1'),
-(51, '기초부터 꼼꼼, Javascript 강의', '/attention/pdata/coupon/20230904090506484676.png', 20000, '비활성화', '4'),
-(52, '[신규가입] 웰컴팩 패키지 할인', '/attention/pdata/coupon/20230904090714142128.png', 7000, '활성화', ''),
-(53, '부트캠프에서 만든 고농축 백엔드 코스123', '/attention/pdata/coupon/20230906095323212291.png', 10000, '비활성화', '3'),
-(54, '데이터베이스 교재 할인', '/attention/pdata/coupon/20230907030604113149.png', 8000, '비활성화', '3');
+INSERT INTO `coupons` (`cid`, `coupon_name`, `coupon_image`, `coupon_type`, `coupon_price`, `status`, `regdate`) VALUES
+(1, '회원가입 축하쿠폰', '/abcmall/pdata/coupon/20230824024400213435.jpg', '0', 10000, '활성화', '2023-08-24 00:00:00'),
+(3, '쿠폰테스트', '/abcmall/pdata/coupon/20230824025640848282.jpg', '0', 10000, '비활성화', '2023-08-24 00:00:00'),
+(4, '쿠폰테스트', '/abcmall/pdata/coupon/20230824030816988546.jpg', '0', 20000, '비활성화', '2023-08-24 00:00:00'),
+(5, '쿠폰테스트', '/abcmall/pdata/coupon/20230824030921181117.jpg', '0', 10000, '비활성화', '2023-08-24 00:00:00'),
+(6, '쿠폰테스트', '/abcmall/pdata/coupon/20230824031449843495.jpg', '0', 50000, '활성화', '2023-08-24 00:00:00'),
+(7, '쿠폰테스트2', '/abcmall/pdata/coupon/20230824031521673533.jpg', '0', 0, '비활성화', '2023-08-24 00:00:00'),
+(8, '쿠폰테스트3', '/abcmall/pdata/coupon/20230824031728600373.jpg', '0', 20000, '비활성화', '2023-08-24 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -328,13 +523,13 @@ INSERT INTO `coupons` (`cid`, `coupon_name`, `coupon_image`, `coupon_price`, `st
 --
 
 CREATE TABLE `members` (
-  `mid` int NOT NULL,
-  `username` varchar(100) COLLATE utf8mb4_general_ci NOT NULL COMMENT '회원명',
-  `userid` varchar(50) COLLATE utf8mb4_general_ci NOT NULL COMMENT '회원 아이디',
-  `userpw` varchar(200) COLLATE utf8mb4_general_ci NOT NULL COMMENT '회원 비밀번호',
-  `useremail` varchar(200) COLLATE utf8mb4_general_ci NOT NULL COMMENT '회원 이메일',
-  `regdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '가입 날짜',
-  `status` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '일반'
+  `mid` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL COMMENT '회원명',
+  `userid` varchar(50) NOT NULL COMMENT '회원 아이디',
+  `userpw` varchar(200) NOT NULL COMMENT '회원 비밀번호',
+  `useremail` varchar(200) NOT NULL COMMENT '회원 이메일',
+  `regdate` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '가입 날짜',
+  `status` varchar(50) NOT NULL DEFAULT '일반'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1345,7 +1540,9 @@ INSERT INTO `members` (`mid`, `username`, `userid`, `userpw`, `useremail`, `regd
 (997, '정현훈', 'kb59can2hoks6oznnba', 'b7a0a82641624dd466eb8659284d0ea3664ade323f5452d9af1bbe8a0f73d9ded1ec1dc9c3a76d2e7e9724558b7bea454feb24c78a3e767381e7088a0bb71cd3', 'kb59can2ho@daum.net', '2023-08-27 22:47:41', '일반'),
 (998, '정현상', 'lfp959', '009bb391ec02a2d30b811bb4da1c62601ac04b1234531f65f47bc1ec9123ae232e614cd77fa0fb2a96a568a2b08641e992750176bf80612b80d5878bad40750a', 'lfp959@naver.com', '2023-08-25 02:45:01', '일반'),
 (999, '정희영', '6dzi59o3', 'a977649050e90af50786659551fc4f9d37f7bb93e1446c02cb79896bc54f9a7376dda86db6a4cb310a29cb520cd59188dfe1bd62c04e06420d37f014389c31cf', '6dzi59o3@yahoo.com', '2023-08-04 08:48:22', '일반'),
-(1000, '임호상', 'w6zw2d', '767673008d9cf532368cbf1a54b1d93bc6cd8fd900f5909f717fb43bcdef89ee887c1a9ad4f6e0f658a37eb2fa2419c2a4558e3416d890e8a48269865e96477b', 'w6zw2d@naver.com', '2023-08-03 01:30:15', '일반');
+(1000, '임호상', 'w6zw2d', '767673008d9cf532368cbf1a54b1d93bc6cd8fd900f5909f717fb43bcdef89ee887c1a9ad4f6e0f658a37eb2fa2419c2a4558e3416d890e8a48269865e96477b', 'w6zw2d@naver.com', '2023-08-03 01:30:15', '일반'),
+(1020, '김다훈', 'hoon', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'hoon@gmail.com', '2023-09-14 21:57:29', '일반'),
+(1021, 'dadasad', 'dadasdadas', 'd404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db', 'adsadasddasda@abc.com', '2023-09-14 15:09:47', '일반');
 
 -- --------------------------------------------------------
 
@@ -1354,12 +1551,12 @@ INSERT INTO `members` (`mid`, `username`, `userid`, `userpw`, `useremail`, `regd
 --
 
 CREATE TABLE `notice` (
-  `idx` int NOT NULL,
-  `title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL COMMENT '글 제목',
-  `content` text COLLATE utf8mb4_general_ci NOT NULL COMMENT '글 내용',
-  `regdate` datetime NOT NULL COMMENT '작성날짜',
-  `hit` int NOT NULL,
-  `file` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '첨부파일'
+  `idx` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL COMMENT '글 제목',
+  `content` text NOT NULL COMMENT '글 내용',
+  `regdate` date NOT NULL COMMENT '작성날짜',
+  `hit` int(10) DEFAULT NULL,
+  `file` varchar(100) DEFAULT NULL COMMENT '첨부파일'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1367,104 +1564,118 @@ CREATE TABLE `notice` (
 --
 
 INSERT INTO `notice` (`idx`, `title`, `content`, `regdate`, `hit`, `file`) VALUES
-(1, 'React 기본 강의 업데이트 안내', 'React 기본 강의에 새로운 내용이 추가되었습니다. State 관리와 훅에 대한 세부 설명을 확인하실 수 있습니다.', '2023-08-01 09:56:03', 0, NULL),
-(2, 'Vue.js 중급 강의 신규 오픈!', 'Vue.js에 대한 중급 강의가 신규로 오픈되었습니다. 컴포넌트 설계와 Vuex 사용법을 학습하세요.', '2023-08-02 17:20:43', 0, ''),
-(3, '웹 접근성 워크숍 개최 안내', '웹 접근성에 대한 워크숍을 진행합니다. 모든 회원은 무료로 참여 가능합니다.', '2023-08-03 03:25:25', 1, ''),
-(4, 'Angular 강의 잠시 중단 안내', '시스템 업데이트로 인해 Angular 강의가 잠시 중단됩니다. 양해 부탁드립니다.', '2023-08-04 09:45:53', 1, ''),
-(5, 'CSS Flexbox 특강 곧 시작!', 'CSS Flexbox에 대한 특강을 진행합니다. 실시간 Q&A 세션도 준비되어 있습니다.', '2023-08-05 17:48:59', 1, ''),
-(6, 'TypeScript 기초 강좌 추가', 'TypeScript의 기초를 다루는 강좌가 추가되었습니다. 타입 스크립트를 처음 접하는 분들께 추천드립니다.', '2023-08-06 17:20:43', 1, ''),
-(7, 'Sass와 SCSS 디자인 패턴 강의', 'Sass와 SCSS를 활용한 모던 디자인 패턴 강의가 업데이트되었습니다.', '2023-08-06 17:29:39', 1, ''),
-(8, 'PWA 강좌 시리즈 신규 출시', '프로그레시브 웹 앱(PWA)에 대한 전반적인 내용을 다루는 강좌 시리즈가 출시되었습니다.', '2023-08-07 17:48:51', 2, ''),
-(9, 'Webpack 설정법 특강 안내', 'Webpack의 기본부터 고급 설정까지 다루는 특강을 진행합니다.', '2023-08-07 19:48:59', 10, ''),
-(10, '프론트엔드 면접 팁 웹세미나', '프론트엔드 개발 직무 면접 팁에 대한 웹세미나를 진행합니다. 많은 참여 바랍니다.', '2023-08-08 03:25:25', 66, ''),
-(11, 'GraphQL 사용법 강의 출시', 'GraphQL의 기본 사용법과 Apollo 클라이언트 사용법 강의가 신규로 추가되었습니다.', '2023-08-08 09:45:35', 113, ''),
-(12, 'Next.js 강좌 업데이트', '서버 사이드 렌더링을 위한 Next.js 강좌가 최신 버전으로 업데이트되었습니다.', '2023-08-09 09:45:44', 12, ''),
-(13, '모바일 프론트엔드 성능 최적화 워크숍', '모바일 환경에서의 프론트엔드 성능 최적화 전략과 기법에 대한 워크숍을 진행합니다.', '2023-08-09 17:20:43', 4, ''),
-(14, 'Tailwind CSS 기본 강좌', 'Tailwind CSS의 기본적인 사용법을 알려주는 강좌가 추가되었습니다.', '2023-08-10 09:46:02', 13, ''),
-(15, '웹 애니메이션 GreenSock(GSAP) 튜토리얼', '웹에서 멋진 애니메이션을 만들고 싶으신가요? GSAP 튜토리얼로 시작하세요!', '2023-08-11 03:25:25', 4, ''),
-(16, '프론트엔드 개발 환경 설정법', 'Node.js, npm, Yarn, Babel 등의 프론트엔드 개발 환경 설정 방법에 대해 알려드립니다.', '2023-08-11 09:45:53', 4, ''),
-(17, '반응형 웹 디자인 원칙 및 기법', '다양한 디바이스에서 웹사이트가 올바르게 표시되게 하려면? 반응형 웹 디자인 강좌를 확인하세요.', '2023-08-11 17:21:39', 4, ''),
-(18, 'Three.js를 활용한 3D 웹 개발', '웹에서 3D 그래픽을 구현하는 방법을 알려주는 Three.js 강좌가 업데이트되었습니다.', '2023-08-12 09:45:53', 4, ''),
-(19, '프론트엔드 보안 기법', '웹사이트의 보안을 강화하는 프론트엔드 보안 기법과 원칙에 대해 알려드립니다.', '2023-08-12 11:45:53', 4, ''),
-(20, 'React 기본 강의 업데이트 안내', 'React 기본 강의에 새로운 내용이 추가되었습니다. State 관리와 훅에 대한 세부 설명을 확인하실 수 있습니다.', '2023-08-12 12:21:39', 66, ''),
-(21, 'Vue.js 중급 강의 신규 오픈!', 'Vue.js에 대한 중급 강의가 신규로 오픈되었습니다. 컴포넌트 설계와 Vuex 사용법을 학습하세요.', '2023-08-12 13:20:43', 5, ''),
-(22, '웹 접근성 워크숍 개최 안내', '웹 접근성에 대한 워크숍을 진행합니다. 모든 회원은 무료로 참여 가능합니다.', '2023-08-12 15:25:25', 7, ''),
-(23, 'Angular 강의 잠시 중단 안내', '시스템 업데이트로 인해 Angular 강의가 잠시 중단됩니다. 양해 부탁드립니다.', '2023-08-12 17:45:53', 2, ''),
-(24, 'CSS Flexbox 특강 곧 시작!', 'CSS Flexbox에 대한 특강을 진행합니다. 실시간 Q&A 세션도 준비되어 있습니다.', '2023-08-12 19:48:59', 13, ''),
-(25, 'TypeScript 기초 강좌 추가', 'TypeScript의 기초를 다루는 강좌가 추가되었습니다. 타입 스크립트를 처음 접하는 분들께 추천드립니다.', '2023-08-13 13:20:43', 1, ''),
-(26, 'Sass와 SCSS 디자인 패턴 강의', 'Sass와 SCSS를 활용한 모던 디자인 패턴 강의가 업데이트되었습니다.', '2023-08-13 17:21:39', 26, ''),
-(27, 'PWA 강좌 시리즈 신규 출시', '프로그레시브 웹 앱(PWA)에 대한 전반적인 내용을 다루는 강좌 시리즈가 출시되었습니다.', '2023-08-13 21:48:51', 2, ''),
-(28, 'Webpack 설정법 특강 안내', 'Webpack의 기본부터 고급 설정까지 다루는 특강을 진행합니다.', '2023-08-14 17:48:59', 10, ''),
-(29, 'Angular 강의 잠시 중단 안내', '시스템 업데이트로 인해 Angular 강의가 잠시 중단됩니다. 양해 부탁드립니다.', '2023-08-15 09:45:53', 2, ''),
-(30, 'CSS Flexbox 특강 곧 시작!', 'CSS Flexbox에 대한 특강을 진행합니다. 실시간 Q&A 세션도 준비되어 있습니다.', '2023-08-15 13:48:59', 13, ''),
-(31, 'TypeScript 기초 강좌 추가', 'TypeScript의 기초를 다루는 강좌가 추가되었습니다. 타입 스크립트를 처음 접하는 분들께 추천드립니다.', '2023-08-15 17:20:43', 1, ''),
-(32, 'Sass와 SCSS 디자인 패턴 강의', 'Sass와 SCSS를 활용한 모던 디자인 패턴 강의가 업데이트되었습니다.', '2023-08-15 22:21:39', 26, ''),
-(33, 'PWA 강좌 시리즈 신규 출시', '프로그레시브 웹 앱(PWA)에 대한 전반적인 내용을 다루는 강좌 시리즈가 출시되었습니다.', '2023-08-16 17:48:51', 2, ''),
-(34, 'Webpack 설정법 특강 안내', 'Webpack의 기본부터 고급 설정까지 다루는 특강을 진행합니다.', '2023-08-17 09:45:35', 10, ''),
-(35, 'GraphQL 사용법 강의 출시', 'GraphQL의 기본 사용법과 Apollo 클라이언트 사용법 강의가 신규로 추가되었습니다.', '2023-08-17 13:20:43', 113, ''),
-(36, 'Next.js 강좌 업데이트', '서버 사이드 렌더링을 위한 Next.js 강좌가 최신 버전으로 업데이트되었습니다.', '2023-08-17 17:20:43', 12, ''),
-(37, '모바일 프론트엔드 성능 최적화 워크숍', '모바일 환경에서의 프론트엔드 성능 최적화 전략과 기법에 대한 워크숍을 진행합니다.', '2023-08-18 07:20:43', 4, ''),
-(38, 'Tailwind CSS 기본 강좌', 'Tailwind CSS의 기본적인 사용법을 알려주는 강좌가 추가되었습니다.', '2023-08-18 19:46:02', 13, ''),
-(39, '웹 애니메이션 GreenSock(GSAP) 튜토리얼', '웹에서 멋진 애니메이션을 만들고 싶으신가요? GSAP 튜토리얼로 시작하세요!', '2023-08-18 23:25:25', 4, ''),
-(40, '프론트엔드 개발 환경 설정법', 'Node.js, npm, Yarn, Babel 등의 프론트엔드 개발 환경 설정 방법에 대해 알려드립니다.', '2023-08-19 08:45:53', 4, ''),
-(41, '반응형 웹 디자인 원칙 및 기법', '다양한 디바이스에서 웹사이트가 올바르게 표시되게 하려면? 반응형 웹 디자인 강좌를 확인하세요.', '2023-08-20 17:21:39', 4, ''),
-(42, 'Three.js를 활용한 3D 웹 개발', '웹에서 3D 그래픽을 구현하는 방법을 알려주는 Three.js 강좌가 업데이트되었습니다.', '2023-08-20 21:45:53', 4, ''),
-(43, '프론트엔드 보안 기법', '웹사이트의 보안을 강화하는 프론트엔드 보안 기법과 원칙에 대해 알려드립니다.', '2023-08-21 11:45:53', 4, ''),
-(44, '프론트엔드 면접 팁 웹세미나', '프론트엔드 개발 직무 면접 팁에 대한 웹세미나를 진행합니다. 많은 참여 바랍니다.', '2023-08-21 16:25:25', 66, ''),
-(45, 'GraphQL 사용법 강의 출시', 'GraphQL의 기본 사용법과 Apollo 클라이언트 사용법 강의가 신규로 추가되었습니다.', '2023-08-22 09:45:35', 113, ''),
-(46, 'Next.js 강좌 업데이트', '서버 사이드 렌더링을 위한 Next.js 강좌가 최신 버전으로 업데이트되었습니다.', '2023-08-23 11:32:44', 12, ''),
-(47, '모바일 프론트엔드 성능 최적화 워크숍', '모바일 환경에서의 프론트엔드 성능 최적화 전략과 기법에 대한 워크숍을 진행합니다.', '2023-08-23 14:45:53', 4, ''),
-(48, 'Vue.js 중급 강의 신규 오픈!', 'Vue.js에 대한 중급 강의가 신규로 오픈되었습니다. 컴포넌트 설계와 Vuex 사용법을 학습하세요.', '2023-08-24 07:20:43', 5, ''),
-(49, '웹 접근성 워크숍 개최 안내', '웹 접근성에 대한 워크숍을 진행합니다. 모든 회원은 무료로 참여 가능합니다.', '2023-08-24 10:25:25', 7, ''),
-(50, 'Angular 강의 잠시 중단 안내', '시스템 업데이트로 인해 Angular 강의가 잠시 중단됩니다. 양해 부탁드립니다.', '2023-08-24 12:45:53', 2, ''),
-(51, 'CSS Flexbox 특강 곧 시작!', 'CSS Flexbox에 대한 특강을 진행합니다. 실시간 Q&A 세션도 준비되어 있습니다.', '2023-08-24 15:48:59', 13, ''),
-(52, 'TypeScript 기초 강좌 추가', 'TypeScript의 기초를 다루는 강좌가 추가되었습니다. 타입 스크립트를 처음 접하는 분들께 추천드립니다.', '2023-08-24 18:20:43', 1, ''),
-(53, 'Sass와 SCSS 디자인 패턴 강의', 'Sass와 SCSS를 활용한 모던 디자인 패턴 강의가 업데이트되었습니다.', '2023-08-25 09:21:39', 26, ''),
-(54, 'PWA 강좌 시리즈 신규 출시', '프로그레시브 웹 앱(PWA)에 대한 전반적인 내용을 다루는 강좌 시리즈가 출시되었습니다.', '2023-08-25 11:48:51', 2, ''),
-(55, 'Webpack 설정법 특강 안내', 'Webpack의 기본부터 고급 설정까지 다루는 특강을 진행합니다.', '2023-08-25 13:48:59', 10, ''),
-(56, 'Angular 강의 잠시 중단 안내', '시스템 업데이트로 인해 Angular 강의가 잠시 중단됩니다. 양해 부탁드립니다.', '2023-08-25 15:45:53', 2, ''),
-(57, 'CSS Flexbox 특강 곧 시작!', 'CSS Flexbox에 대한 특강을 진행합니다. 실시간 Q&A 세션도 준비되어 있습니다.', '2023-08-25 16:48:59', 13, ''),
-(58, 'TypeScript 기초 강좌 추가', 'TypeScript의 기초를 다루는 강좌가 추가되었습니다. 타입 스크립트를 처음 접하는 분들께 추천드립니다.', '2023-08-25 19:20:43', 1, ''),
-(59, 'Sass와 SCSS 디자인 패턴 강의', 'Sass와 SCSS를 활용한 모던 디자인 패턴 강의가 업데이트되었습니다.', '2023-08-26 08:21:39', 26, ''),
-(60, 'PWA 강좌 시리즈 신규 출시', '프로그레시브 웹 앱(PWA)에 대한 전반적인 내용을 다루는 강좌 시리즈가 출시되었습니다.', '2023-08-26 11:48:51', 2, ''),
-(61, 'Webpack 설정법 특강 안내', 'Webpack의 기본부터 고급 설정까지 다루는 특강을 진행합니다.', '2023-08-26 13:48:59', 10, ''),
-(62, 'GraphQL 사용법 강의 출시', 'GraphQL의 기본 사용법과 Apollo 클라이언트 사용법 강의가 신규로 추가되었습니다.', '2023-08-26 14:45:35', 113, ''),
-(63, 'Next.js 강좌 업데이트', '서버 사이드 렌더링을 위한 Next.js 강좌가 최신 버전으로 업데이트되었습니다.', '2023-08-26 15:45:44', 12, ''),
-(64, '모바일 프론트엔드 성능 최적화 워크숍', '모바일 환경에서의 프론트엔드 성능 최적화 전략과 기법에 대한 워크숍을 진행합니다.', '2023-08-26 17:20:43', 4, ''),
-(65, 'Tailwind CSS 기본 강좌', 'Tailwind CSS의 기본적인 사용법을 알려주는 강좌가 추가되었습니다.', '2023-08-26 18:46:02', 13, ''),
-(66, '모바일 프론트엔드 성능 최적화 워크숍', '모바일 환경에서의 프론트엔드 성능 최적화 전략과 기법에 대한 워크숍을 진행합니다.', '2023-08-27 07:20:43', 4, ''),
-(67, 'Tailwind CSS 기본 강좌', 'Tailwind CSS의 기본적인 사용법을 알려주는 강좌가 추가되었습니다.', '2023-08-27 18:46:02', 13, ''),
-(68, '웹 애니메이션 GreenSock(GSAP) 튜토리얼', '웹에서 멋진 애니메이션을 만들고 싶으신가요? GSAP 튜토리얼로 시작하세요!', '2023-08-27 21:25:25', 4, ''),
-(69, '프론트엔드 개발 환경 설정법', 'Node.js, npm, Yarn, Babel 등의 프론트엔드 개발 환경 설정 방법에 대해 알려드립니다.', '2023-08-27 21:45:53', 4, ''),
-(70, '반응형 웹 디자인 원칙 및 기법', '다양한 디바이스에서 웹사이트가 올바르게 표시되게 하려면? 반응형 웹 디자인 강좌를 확인하세요.', '2023-08-28 11:21:39', 4, ''),
-(71, 'Three.js를 활용한 3D 웹 개발', '웹에서 3D 그래픽을 구현하는 방법을 알려주는 Three.js 강좌가 업데이트되었습니다.', '2023-08-28 14:45:53', 4, ''),
-(72, '프론트엔드 보안 기법', '웹사이트의 보안을 강화하는 프론트엔드 보안 기법과 원칙에 대해 알려드립니다.', '2023-08-28 17:45:53', 4, ''),
-(73, '프론트엔드 면접 팁 웹세미나', '프론트엔드 개발 직무 면접 팁에 대한 웹세미나를 진행합니다. 많은 참여 바랍니다.', '2023-08-29 16:25:25', 66, ''),
-(74, 'GraphQL 사용법 강의 출시', 'GraphQL의 기본 사용법과 Apollo 클라이언트 사용법 강의가 신규로 추가되었습니다.', '2023-08-30 09:45:35', 113, ''),
-(75, 'Next.js 강좌 업데이트', '서버 사이드 렌더링을 위한 Next.js 강좌가 최신 버전으로 업데이트되었습니다.', '2023-08-30 11:32:44', 12, ''),
-(76, '모바일 프론트엔드 성능 최적화 워크숍', '모바일 환경에서의 프론트엔드 성능 최적화 전략과 기법에 대한 워크숍을 진행합니다.', '2023-08-30 14:45:53', 4, ''),
-(77, '프론트엔드 면접 팁 웹세미나', '프론트엔드 개발 직무 면접 팁에 대한 웹세미나를 진행합니다. 많은 참여 바랍니다.', '2023-08-31 03:25:25', 66, ''),
-(78, 'GraphQL 사용법 강의 출시', 'GraphQL의 기본 사용법과 Apollo 클라이언트 사용법 강의가 신규로 추가되었습니다.', '2023-09-01 09:45:35', 113, ''),
-(79, 'Next.js 강좌 업데이트', '서버 사이드 렌더링을 위한 Next.js 강좌가 최신 버전으로 업데이트되었습니다.', '2023-09-02 17:20:43', 12, ''),
-(80, '모바일 프론트엔드 성능 최적화 워크숍', '모바일 환경에서의 프론트엔드 성능 최적화 전략과 기법에 대한 워크숍을 진행합니다.', '2023-09-03 09:45:53', 4, ''),
-(81, 'Tailwind CSS 기본 강좌', 'Tailwind CSS의 기본적인 사용법을 알려주는 강좌가 추가되었습니다.', '2023-09-03 17:36:22', 13, ''),
-(82, '웹 애니메이션 GreenSock(GSAP) 튜토리얼', '웹에서 멋진 애니메이션을 만들고 싶으신가요? GSAP 튜토리얼로 시작하세요!', '2023-09-04 09:45:53', 54, ''),
-(83, '프론트엔드 개발 환경 설정법', 'Node.js, npm, Yarn, Babel 등의 프론트엔드 개발 환경 설정 방법에 대해 알려드립니다.', '2023-09-05 11:05:41', 4, ''),
-(84, '반응형 웹 디자인 원칙 및 기법', '양한 디바이스에서 웹사이트가 올바르게 표시되게 하려면? 반응형 웹 디자인 강좌를 확인하세요.', '2023-09-06 07:36:22', 108, ''),
-(85, 'Three.js를 활용한 3D 웹 개발', '웹에서 3D 그래픽을 구현하는 방법을 알려주는 Three.js 강좌가 업데이트되었습니다.', '2023-09-07 09:45:53', 73, ''),
-(86, '프론트엔드 보안 기법', '웹사이트의 보안을 강화하는 프론트엔드 보안 기법과 원칙에 대해 알려드립니다.', '2023-09-07 15:13:26', 41, ''),
-(87, '웹 접근성 워크숍 개최 안내', '<p>웹 접근성에 대한 워크숍을 진행합니다. 모든 회원은 무료로 참여 가능합니다.<br></p>', '2023-09-07 15:13:48', 0, ''),
-(88, 'Angular 강의 잠시 중단 안내', '<p>시스템 업데이트로 인해 Angular 강의가 잠시 중단됩니다. 양해 부탁드립니다.<br></p>', '2023-09-07 15:14:07', 0, ''),
-(89, 'CSS Flexbox 특강 곧 시작!', '<p>CSS Flexbox에 대한 특강을 진행합니다. 실시간 Q&amp;A 세션도 준비되어 있습니다.<br></p>', '2023-09-07 15:14:30', 6, '/attention/pdata/notice/20230907081430141329.png'),
-(90, 'Next.js 강좌 업데이트', '<p>서버 사이드 렌더링을 위한 Next.js 강좌가 최신 버전으로 업데이트되었습니다.<br></p>', '2023-09-07 15:17:24', 7, '/attention/pdata/notice/20230907081724331863.png'),
-(91, 'GraphQL 사용법 강의 출시', '<p>GraphQL의 기본 사용법과 Apollo 클라이언트 사용법 강의가 신규로 추가되었습니다.<br></p>', '2023-09-07 15:17:38', 11, ''),
-(92, '모바일 프론트엔드 성능 최적화 워크숍', '<p>모바일 환경에서의 프론트엔드 성능 최적화 전략과 기법에 대한 워크숍을 진행합니다.<br></p>', '2023-09-07 15:17:52', 8, ''),
-(93, 'React 기본 강의 업데이트 안내', '<p>React 기본 강의에 새로운 내용이 추가되었습니다. State 관리와 훅에 대한 세부 설명을 확인하실 수 있습니다.<br></p>', '2023-09-07 15:18:40', 28, '/attention/pdata/notice/20230907081840112406.png'),
-(94, 'Angular 강의 잠시 중단 안내', '<p>시스템 업데이트로 인해 Angular 강의가 잠시 중단됩니다. 양해 부탁드립니다.<br></p>', '2023-09-07 15:18:53', 17, ''),
-(95, 'JavaScript 기초 강좌 추가', '<p>JavaScript의 기초를 다루는 강좌가 추가되었습니다. 자바 스크립트를 처음 접하는 분들께 추천드립니다.<br></p>', '2023-09-07 15:21:27', 1, '/attention/pdata/notice/20230907082127142372.png'),
-(96, '프론트엔드 면접 팁 웹세미나', '<p>프론트엔드 개발 직무 면접 팁에 대한 웹세미나를 진행합니다. 많은 참여 바랍니다.<br></p>', '2023-09-07 15:23:38', 19, ''),
-(97, '반응형 웹 디자인 원칙 및 기법', '<p>다양한 디바이스에서 웹사이트가 올바르게 표시되게 하려면? 반응형 웹 디자인 강좌를 확인하세요.<br></p>', '2023-09-07 15:24:44', 11, ''),
-(98, '웹 접근성 워크숍 개최 안내', '<p>웹 접근성에 대한 워크숍을 진행합니다. 모든 회원은 무료로 참여 가능합니다.<br></p>', '2023-09-07 15:28:01', 5, '/attention/pdata/notice/20230907082801310215.pdf');
+(1, '테스트', '첫번째글', '2023-08-31', 0, NULL),
+(2, '테스트', '<p>되라되라도리ㅏ</p>', '2023-08-31', 0, '이현정 - 레퍼런스 조사 - 코알라.pdf'),
+(3, '테스트', '<p>되라되라도리ㅏ</p>', '2023-08-31', 0, '이현정 - 레퍼런스 조사 - 코알라.pdf'),
+(4, '테스트', '<p>되라되라도리ㅏ</p>', '2023-08-31', 0, '이현정 - 레퍼런스 조사 - 코알라.pdf'),
+(5, '두번째', '오류 왜 남', '2023-08-31', 0, '문방구.png'),
+(6, '6번째', '테스트', '2023-08-31', 0, ''),
+(7, '치즈고양이', '고앵쓰', '2023-08-31', 0, ''),
+(8, '코숏', '<p>고앵고앵</p>', '2023-08-31', 1, ''),
+(9, '러시안블루', '<p>고앵고앵고앵</p>', '2023-08-31', 1, ''),
+(10, '고등어태비', '<p>고애애애ㅐㅇ앵</p>', '2023-08-31', 1, ''),
+(11, '에스파', '<p>도깨비불</p>', '2023-08-31', 0, '문방구.png'),
+(12, '고먐미', '<p>치즈</p>', '2023-08-31', 0, ''),
+(13, '고먐미', '<p>고등어</p>', '2023-08-31', 0, ''),
+(14, '고먐미', '작성', '2023-08-31', 0, ''),
+(15, '고먐미', '<p>귀찮</p>', '2023-08-31', 1, ''),
+(16, 'Dr', 'Goldenrod', '0000-00-00', 0, NULL),
+(17, 'Mr', 'Fuscia', '0000-00-00', 0, NULL),
+(18, 'Mr', 'Indigo', '0000-00-00', 0, NULL),
+(19, 'Honorable', 'Green', '0000-00-00', 0, NULL),
+(20, 'Honorable', 'Pink', '0000-00-00', 0, NULL),
+(21, 'Honorable', 'Fuscia', '0000-00-00', 0, NULL),
+(22, 'Mr', 'Orange', '0000-00-00', 0, NULL),
+(23, 'Mrs', 'Red', '0000-00-00', 0, NULL),
+(24, 'Rev', 'Purple', '0000-00-00', 0, NULL),
+(25, 'Mrs', 'Pink', '0000-00-00', 0, NULL),
+(26, 'Rev', 'Violet', '0000-00-00', 0, NULL),
+(27, 'Honorable', 'Mauv', '0000-00-00', 0, NULL),
+(28, 'Mr', 'Khaki', '0000-00-00', 0, NULL),
+(29, 'Rev', 'Mauv', '0000-00-00', 0, NULL),
+(30, 'Ms', 'Yellow', '0000-00-00', 0, NULL),
+(31, 'Honorable', 'Blue', '0000-00-00', 0, NULL),
+(32, 'Rev', 'Puce', '0000-00-00', 0, NULL),
+(33, 'Rev', 'Mauv', '0000-00-00', 0, NULL),
+(34, 'Ms', 'Puce', '0000-00-00', 0, NULL),
+(35, 'Honorable', 'Goldenrod', '0000-00-00', 0, NULL),
+(36, 'Rev', 'Green', '0000-00-00', 0, NULL),
+(37, 'Mr', 'Orange', '0000-00-00', 0, NULL),
+(38, 'Rev', 'Indigo', '0000-00-00', 0, NULL),
+(39, 'Mrs', 'Khaki', '0000-00-00', 0, NULL),
+(40, 'Ms', 'Goldenrod', '0000-00-00', 0, NULL),
+(41, 'Dr', 'Fuscia', '0000-00-00', 0, NULL),
+(42, 'Honorable', 'Goldenrod', '0000-00-00', 0, NULL),
+(43, 'Ms', 'Red', '0000-00-00', 0, NULL),
+(44, 'Rev', 'Red', '0000-00-00', 0, NULL),
+(45, 'Ms', 'Mauv', '0000-00-00', 0, NULL),
+(46, 'Mrs', 'Pink', '0000-00-00', 0, NULL),
+(47, 'Mr', 'Fuscia', '0000-00-00', 0, NULL),
+(48, 'Mrs', 'Turquoise', '0000-00-00', 0, NULL),
+(49, 'Ms', 'Fuscia', '0000-00-00', 0, NULL),
+(50, 'Ms', 'Aquamarine', '0000-00-00', 0, NULL),
+(51, 'Mrs', 'Blue', '0000-00-00', 0, NULL),
+(52, 'Rev', 'Violet', '0000-00-00', 0, NULL),
+(53, 'Rev', 'Violet', '0000-00-00', 0, NULL),
+(55, 'Rev', 'Crimson', '0000-00-00', 0, NULL),
+(56, 'Honorable', 'Blue', '0000-00-00', 0, NULL),
+(57, 'Mr', 'Pink', '0000-00-00', 0, NULL),
+(58, 'Ms', 'Red', '0000-00-00', 0, NULL),
+(59, 'Rev', 'Khaki', '0000-00-00', 0, NULL),
+(60, 'Dr', 'Violet', '0000-00-00', 0, NULL),
+(61, 'Rev', 'Fuscia', '0000-00-00', 0, NULL),
+(62, 'Honorable', 'Fuscia', '0000-00-00', 0, NULL),
+(63, 'Honorable', 'Indigo', '0000-00-00', 0, NULL),
+(64, 'Honorable', 'Purple', '0000-00-00', 0, NULL),
+(66, 'Rev', 'Turquoise', '0000-00-00', 0, NULL),
+(67, 'Mrs', 'Green', '0000-00-00', 0, NULL),
+(68, 'Ms', 'Fuscia', '0000-00-00', 0, NULL),
+(69, 'Mrs', 'Goldenrod', '0000-00-00', 0, NULL),
+(70, 'Dr', 'Yellow', '0000-00-00', 0, NULL),
+(76, '고먐미', '<p>ㅇㅎㅇㄴㅁㅍ</p>', '2023-08-31', 0, 'heart-regular.svg'),
+(77, '안녕하세요. 이 글은 공지사항입니다. ', '<p>나는 심장이 없어~~</p>', '2023-08-31', 0, ''),
+(79, '결국 어떤 작업을 하기 위해서는 클래스가 있어야 하며, 이에 대한 객체가 있어야 하며, 해당 객체가 가지고 있는 메쏘드를 호출하여야 합니다.', '<p>클래스가 있어야 한대유</p>', '2023-08-31', 0, ''),
+(80, '첨부파일 OOO', '<p>dfsfd</p>', '2023-08-31', 0, 'New Piskel.png'),
+(81, '첨부파일 OOO', '<p>gfwhsgbsGSFc</p>', '2023-08-31', 0, 'a_bc50509641ed4a3d943c23177fb88a82.png'),
+(82, '첨부파일 OOO', '<p>htgtzbrsrfws</p>', '2023-08-31', 0, 'url-yApMx8xY7ag0Ov25.png'),
+(83, '첨부파일 OOO', '<p>hteghgftstzd</p>', '2023-08-31', 0, 'Lovepik_com-400271091-travel-shoes-casual-shoes-scene-map.png'),
+(84, '첨부파일 OOO', '<p>yjthdzrfhw</p>', '2023-08-31', 0, '16T90R_00_sum.png'),
+(85, '첨부파일 XXX', '<p>ㄹㅇㅎㅈㄱㅇ</p>', '2023-09-01', 0, ''),
+(86, '첨부파일 OOO', '<p>mfkdnsnvpdsmpvS</p>', '2023-09-01', 0, 'Cetificate_20230718_서류전형.pdf'),
+(87, '첨부파일 OOO', '<p>frhhbeafe</p>', '2023-09-01', 0, 'heart-regular.svg'),
+(88, '첨부파일 OOO', '<p>fdgwgaf</p>', '2023-09-01', 0, 'heart-regular.svg'),
+(90, '첨부파일 OOO', '<p>fdgwgaf</p>', '2023-09-01', 0, 'heart-regular.svg'),
+(91, '첨부파일 OOO', '<p>bscfvsdc</p>', '2023-09-01', 0, 'heart-regular.svg'),
+(92, '첨부파일 OOO', '<p>fhbszsvds</p>', '2023-09-01', 0, ''),
+(99, '첨부파일 OOO 15:17', '<p>gdsfd</p>', '2023-09-01', 0, '11.png'),
+(100, '첨부파일 OOO 15:17', '<p>gdsfd</p>', '2023-09-01', 0, '11.png'),
+(101, '첨부파일 있어유', '<p>ㅇㅎㄹㅇㅁㅋㅍㅁㅇㅋ</p>', '2023-09-01', 0, 'New Piskel.png'),
+(102, 'pdf 첨부', '<p>ㅇㅎ늏ㄱㄹㄶ</p>', '2023-09-01', 0, 'Cetificate_20230718_서류전형.pdf'),
+(105, 'dfedfwd', '<p>dwswwfcwd</p>', '2023-09-01', 0, 'heart-solid.svg'),
+(107, 'ㄹㄷㅇ', '<p>ㅎㄷㅇㅁ</p>', '2023-09-01', 0, 'heart-regular.svg'),
+(108, '여기 사진', '<p>ㄹ</p>', '2023-09-01', 0, '문방구.png'),
+(109, 'ㅇㄹㅇㄹㅇㄹ', '<p>ㅇㅇ</p>', '2023-09-01', 0, '/attention/pdata/notice/20230901121857132400.png'),
+(110, 'PDF', '<p>fdagdafcsa</p>', '2023-09-01', 0, '/attention/pdata/notice/20230901122056109282.pdf'),
+(111, 'PNG', '<p>fsvdzs</p>', '2023-09-01', 0, '/attention/pdata/notice/20230901122131185285.png'),
+(112, 'PNG2', '<p>fdzdvza</p>', '2023-09-01', 0, '/attention/pdata/notice/20230901122200712105.webp'),
+(113, '테스트 7:58', '<p>dgfsdzvdzc</p>', '2023-09-01', 0, 'heart-solid.svg'),
+(114, 'svg', '<p>dsvfd</p>', '2023-09-01', 0, '/attention/pdata/notice/20230901125932111037.svg'),
+(115, 'EXO 백현, 두 번째 미니앨범 ‘Delight’ 공개!', '<p><span style=\"color: rgb(97, 94, 93); font-family: 나눔바른고딕, NanumBarunGothic, helvetica, 돋움, Dotum, &quot;Apple SD Gothic Neo&quot;, &quot;MS PGothic&quot;, arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400;\">타이틀 곡 ‘Candy’는 중독성 있는 신스 사운드 위로 물결치듯 전개되는 트렌디한 멜로디가 인상적인 퓨처리스틱 R&amp;B 곡으로, 가사에는 백현의 다채로운 매력을 여러 가지 맛의 캔디에 비유해 위트 있게 풀어냈다.</span><br style=\"margin: 0px; padding: 0px; color: rgb(97, 94, 93); font-family: 나눔바른고딕, NanumBarunGothic, helvetica, 돋움, Dotum, &quot;Apple SD Gothic Neo&quot;, &quot;MS PGothic&quot;, arial, sans-serif; font-size: 14px;\"><br style=\"margin: 0px; padding: 0px; color: rgb(97, 94, 93); font-family: 나눔바른고딕, NanumBarunGothic, helvetica, 돋움, Dotum, &quot;Apple SD Gothic Neo&quot;, &quot;MS PGothic&quot;, arial, sans-serif; font-size: 14px;\"><span style=\"color: rgb(97, 94, 93); font-family: 나눔바른고딕, NanumBarunGothic, helvetica, 돋움, Dotum, &quot;Apple SD Gothic Neo&quot;, &quot;MS PGothic&quot;, arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400;\">또한 ‘R U Ridin’?’은 백현의 도시적인 이미지를 담은 R&amp;B 트랩 곡으로, 칠한 비트와 멜로디, 사랑을 속삭이는 가사가 어우러져 있으며, ‘Bungee’는 피아노 선율이 돋보이는 미디엄 템포의 곡으로, 사랑에 빠지는 과정을 바다에 빠져 헤엄치는 모습에 빗대어 표현해 눈길을 끈다.</span><br style=\"margin: 0px; padding: 0px; color: rgb(97, 94, 93); font-family: 나눔바른고딕, NanumBarunGothic, helvetica, 돋움, Dotum, &quot;Apple SD Gothic Neo&quot;, &quot;MS PGothic&quot;, arial, sans-serif; font-size: 14px;\"><br style=\"margin: 0px; padding: 0px; color: rgb(97, 94, 93); font-family: 나눔바른고딕, NanumBarunGothic, helvetica, 돋움, Dotum, &quot;Apple SD Gothic Neo&quot;, &quot;MS PGothic&quot;, arial, sans-serif; font-size: 14px;\"><span style=\"color: rgb(97, 94, 93); font-family: 나눔바른고딕, NanumBarunGothic, helvetica, 돋움, Dotum, &quot;Apple SD Gothic Neo&quot;, &quot;MS PGothic&quot;, arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400;\">더불어 몽환적인 R&amp;B 곡 ‘Underwater’는 사랑하는 사람을 잃고 슬퍼하는 마음을 백현의 감성적인 목소리로 노래해 곡의 애절한 분위기를 배가시켰으며, ‘Poppin’‘은 사랑을 느끼는 순간, 걷잡을 수 없이 터져 나오는 행복의 감정을 솔직한 가사와 세련된 감성으로 들려준다.</span><br style=\"margin: 0px; padding: 0px; color: rgb(97, 94, 93); font-family: 나눔바른고딕, NanumBarunGothic, helvetica, 돋움, Dotum, &quot;Apple SD Gothic Neo&quot;, &quot;MS PGothic&quot;, arial, sans-serif; font-size: 14px;\"><br style=\"margin: 0px; padding: 0px; color: rgb(97, 94, 93); font-family: 나눔바른고딕, NanumBarunGothic, helvetica, 돋움, Dotum, &quot;Apple SD Gothic Neo&quot;, &quot;MS PGothic&quot;, arial, sans-serif; font-size: 14px;\"><span style=\"color: rgb(97, 94, 93); font-family: 나눔바른고딕, NanumBarunGothic, helvetica, 돋움, Dotum, &quot;Apple SD Gothic Neo&quot;, &quot;MS PGothic&quot;, arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400;\">이 밖에도 떠난 후 잔상처럼 남아있는 연인을 유령에 빗대어 이별의 힘겨움을 표현한 곡 ‘Ghost’, 사랑의 끝과 이별의 시작 사이에 서 있는 연인에게 다시 사랑을 갈구하는 가사의 컨템퍼러리 R&amp;B 곡 ‘Love Again’까지 총 7곡을 만날 수 있다.</span><br></p>', '2023-09-03', 24, '/attention/pdata/notice/20230903120719140287.jpg'),
+(116, '첨부파일 없어어어어어어어어여기없어어어어어어어', '<p>ㅇㅎㅁㅈㅎㅎㄿㅇ</p>', '2023-09-03', 45, ''),
+(117, 'imgimgimg', '<p>dfasfawe</p>', '2023-09-03', 37, '20230903130643584235.jpg'),
+(118, 'pdf', '게시물 테스트', '2023-09-03', 35, '20230903130715175507.pdf'),
+(119, '첨부xx', '없는거', '2023-09-03', 0, ''),
+(120, '헤이즈', '<p>아직도 비가 내리면 빗소리를 비트 삼아 너를 끄적이곤해</p><p>괜찮지 않아 난 내일도 알람이 아닌 그리움이 날 깨울게 뻔해<br><br></p><p>난 다시 한 번 나의 널 안고싶어</p><p>이렇게 널 보내고 후회속에 살고있어</p><p>혹시 이 노랠 듣게 되더라도 그냥 듣고 흘려줄래</p>', '2023-09-03', 47, ''),
+(121, 'djfdsifew', '<p style=\"font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; font-size: medium; font-family: Inter, sans-serif; background-color: rgb(230, 236, 236);\">아직도 비가 내리면 빗소리를 비트 삼아 너를 끄적이곤해</p><p style=\"font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; font-size: medium; font-family: Inter, sans-serif; background-color: rgb(230, 236, 236);\">괜찮지 않아 난 내일도 알람이 아닌 그리움이 날 깨울게 뻔해<br><br></p><p style=\"font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; font-size: medium; font-family: Inter, sans-serif; background-color: rgb(230, 236, 236);\">난 다시 한 번 나의 널 안고싶어</p><p style=\"font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; font-size: medium; font-family: Inter, sans-serif; background-color: rgb(230, 236, 236);\">이렇게 널 보내고 후회속에 살고있어</p><p style=\"font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; font-size: medium; font-family: Inter, sans-serif; background-color: rgb(230, 236, 236);\">혹시 이 노랠 듣게 되더라도 그냥 듣고 흘려줄래</p>', '2023-09-03', 17, ''),
+(122, '테스트 (첨부O)', '테스트', '2023-09-04', 5, '/attention/pdata/notice/20230904023454165980.png'),
+(123, 'img test', '<p>test</p>', '2023-09-04', 26, '20230904051804145274.webp'),
+(124, 'webp test', '<p>test</p>', '2023-09-04', 133, '/attention/pdata/notice/20230904051955140255.webp'),
+(125, 'pdf fileOOO', 'file', '2023-09-04', 25, '/attention/pdata/notice/20230904084213154600.pdf');
+INSERT INTO `notice` (`idx`, `title`, `content`, `regdate`, `hit`, `file`) VALUES
+(126, '썸머노트 img', '<p><img style=\"width: 163px;\" src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYzIiBoZWlnaHQ9IjcxIiB2aWV3Qm94PSIwIDAgMTYzIDcxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNNDIuOTk2NCAzMS40ODU5QzQwLjM2NTMgMzEuNDg1OSAzOC4wMTE5IDMwLjk3NDMgMzUuOTM2MiAyOS45NTExQzMzLjg2MDYgMjguOTI3OSAzMi4yMzggMjcuNTEgMzEuMDY4NiAyNS42OTc0QzI5LjkyODUgMjMuODU1NiAyOS4zNTg0IDIxLjc2NTMgMjkuMzU4NCAxOS40MjY1VjExLjk3MTdDMjkuMzU4NCA5LjYzMjg4IDI5LjkxMzkgNy41NTcyIDMxLjAyNDggNS43NDQ2NEMzMi4xNjQ5IDMuOTMyMDggMzMuNzQzNiAyLjUyODgxIDM1Ljc2MDggMS41MzQ4M0MzNy44MDczIDAuNTExNjEgNDAuMTMxNCAwIDQyLjczMzMgMEM0NS4zMzUyIDAgNDcuNjU5NCAwLjM5NDY3IDQ5LjcwNTggMS4xODQwMUM1MS43NTIzIDEuOTQ0MTIgNTMuMzMxIDMuMDI1OCA1NC40NDE5IDQuNDI5MDhDNTUuNTgyIDUuODMyMzUgNTYuMTUyMSA3LjQyNTY0IDU2LjE1MjEgOS4yMDg5N0M1Ni4xNTIxIDEwLjM3ODQgNTUuNzcyMSAxMS4yOTkzIDU1LjAxMiAxMS45NzE3QzU0LjI1MTkgMTIuNjE0OCA1My4yMTQgMTIuOTM2NCA1MS44OTg0IDEyLjkzNjRDNTEuMTM4MyAxMi45MzY0IDUwLjM5MjkgMTIuODM0MSA0OS42NjIgMTIuNjI5NEM0OS43NDk3IDEyLjAxNTUgNDkuNzkzNSAxMS4yNyA0OS43OTM1IDEwLjM5M0M0OS43OTM1IDguOTg5NzEgNDkuMTM1OCA3Ljg0OTU1IDQ3LjgyMDIgNi45NzI1MUM0Ni41MDQ2IDYuMDY2MjMgNDQuODA5IDUuNjEzMDkgNDIuNzMzMyA1LjYxMzA5QzQwLjY4NjkgNS42MTMwOSAzOS4wMjA1IDYuMjEyNCAzNy43MzQyIDcuNDExMDNDMzYuNDQ3OCA4LjU4MDQyIDM1LjgwNDcgMTAuMTAwNiAzNS44MDQ3IDExLjk3MTdWMTkuNDI2NUMzNS44MDQ3IDIxLjMyNjggMzYuNDYyNSAyMi44NzYzIDM3Ljc3OCAyNC4wNzQ5QzM5LjEyMjggMjUuMjczNSA0MC44NjIzIDI1Ljg3MjggNDIuOTk2NCAyNS44NzI4QzQ1LjA3MjEgMjUuODcyOCA0Ni43NTMxIDI1LjQzNDMgNDguMDM5NCAyNC41NTczQzQ5LjM1NSAyMy42ODAyIDUwLjAxMjggMjIuNTQgNTAuMDEyOCAyMS4xMzY4QzUwLjAxMjggMjAuMTcyIDQ5Ljk2ODkgMTkuNDcwNCA0OS44ODEyIDE5LjAzMTlDNTAuNjcwNiAxOC44NTY1IDUxLjM4NjggMTguNzY4OCA1Mi4wMyAxOC43Njg4QzUzLjM0NTYgMTguNzY4OCA1NC4zOTggMTkuMTA1IDU1LjE4NzQgMTkuNzc3NEM1NS45NzY3IDIwLjQ0OTggNTYuMzcxNCAyMS4zNzA3IDU2LjM3MTQgMjIuNTRDNTYuMzcxNCAyNC4yNjQ5IDU1LjgwMTMgMjUuODE0NCA1NC42NjExIDI3LjE4ODRDNTMuNTUwMiAyOC41MzMyIDUxLjk3MTUgMjkuNTg1NiA0OS45MjUxIDMwLjM0NTdDNDcuOTA3OSAzMS4xMDU5IDQ1LjU5ODMgMzEuNDg1OSA0Mi45OTY0IDMxLjQ4NTlaTTY4LjY1NjcgMzEuNDg1OUM2Ni43MjcyIDMxLjQ4NTkgNjQuOTczMSAzMS4xMzUxIDYzLjM5NDQgMzAuNDMzNEM2MS44MTU4IDI5LjczMTggNjAuNTczMyAyOC43NjcxIDU5LjY2NyAyNy41MzkyQzU4Ljc2MDcgMjYuMjgyMSA1OC4zMDc2IDI0Ljg2NDIgNTguMzA3NiAyMy4yODU1VjE3LjQ1MzJDNTguMzA3NiAxNS44NDUzIDU4Ljc0NjEgMTQuMzgzNSA1OS42MjMxIDEzLjA2OEM2MC41MDAyIDExLjcyMzIgNjEuNzI4IDEwLjY3MDcgNjMuMzA2NyA5LjkxMDZDNjQuODg1NCA5LjE1MDUgNjYuNjY4NyA4Ljc3MDQ1IDY4LjY1NjcgOC43NzA0NUM3MC42NDQ3IDguNzcwNDUgNzIuNDI4IDkuMTUwNSA3NC4wMDY3IDkuOTEwNkM3NS41ODU0IDEwLjY3MDcgNzYuODEzMiAxMS43MjMyIDc3LjY5MDMgMTMuMDY4Qzc4LjU2NzMgMTQuMzgzNSA3OS4wMDU4IDE1Ljg0NTMgNzkuMDA1OCAxNy40NTMyVjIzLjI4NTVDNzkuMDA1OCAyNC44NjQyIDc4LjU1MjcgMjYuMjgyMSA3Ny42NDY0IDI3LjUzOTJDNzYuNzQwMSAyOC43NjcxIDc1LjQ5NzYgMjkuNzMxOCA3My45MTkgMzAuNDMzNEM3Mi4zNDAzIDMxLjEzNTEgNzAuNTg2MiAzMS40ODU5IDY4LjY1NjcgMzEuNDg1OVpNNjguNjU2NyAyNi4zMTEzQzcwLjAzMDcgMjYuMzExMyA3MS4wOTc4IDI2LjAwNDQgNzEuODU3OSAyNS4zOTA0QzcyLjYxOCAyNC43NzY1IDcyLjk5ODEgMjMuOTI4NyA3Mi45OTgxIDIyLjg0N1YxNy43NjAyQzcyLjk5ODEgMTYuNjIgNzIuNjAzNCAxNS42OTkxIDcxLjgxNDEgMTQuOTk3NUM3MS4wNTQgMTQuMjk1OCA3MC4wMDE1IDEzLjk0NSA2OC42NTY3IDEzLjk0NUM2Ny4zMTE5IDEzLjk0NSA2Ni4yNDQ4IDE0LjI5NTggNjUuNDU1NSAxNC45OTc1QzY0LjY5NTQgMTUuNjk5MSA2NC4zMTUzIDE2LjYyIDY0LjMxNTMgMTcuNzYwMlYyMi44NDdDNjQuMzE1MyAyMy45Mjg3IDY0LjY5NTQgMjQuNzc2NSA2NS40NTU1IDI1LjM5MDRDNjYuMjE1NiAyNi4wMDQ0IDY3LjI4MjcgMjYuMzExMyA2OC42NTY3IDI2LjMxMTNaTTg5LjkwOCAzMS40ODU5Qzg4LjM1ODUgMzEuNDg1OSA4Ni45NTUzIDMxLjE0OTcgODUuNjk4MiAzMC40NzczQzg0LjQ0MTEgMjkuNzc1NyA4My40NDcxIDI4LjgyNTUgODIuNzE2MiAyNy42MjY5QzgxLjk4NTMgMjYuMzk5IDgxLjYxOTkgMjUuMDI1IDgxLjYxOTkgMjMuNTA0OFYxNi43NTE2QzgxLjYxOTkgMTUuMjMxMyA4MiAxMy44NzE5IDgyLjc2MDEgMTIuNjczM0M4My41NDk0IDExLjQ0NTQgODQuNjMxMSAxMC40OTUzIDg2LjAwNTEgOS44MjI5Qzg3LjM3OTIgOS4xMjEyNyA4OC44OTk0IDguNzcwNDUgOTAuNTY1OCA4Ljc3MDQ1QzkxLjU1OTcgOC43NzA0NSA5Mi42MjY4IDguOTc1MDkgOTMuNzY3IDkuMzg0MzhDOTQuOTM2NCA5Ljc5MzY3IDk1LjkwMTEgMTAuMzYzNyA5Ni42NjEyIDExLjA5NDZMOTYuODM2NiAxMC44NzU0Qzk2LjY5MDUgMTAuNjQxNSA5Ni4zNjg5IDEwLjM0OTEgOTUuODcxOSA5Ljk5ODMxVjMuOTQ2N0M5NS44NzE5IDIuNzE4ODQgOTYuMzY4OSAxLjc1NDA5IDk3LjM2MjkgMS4wNTI0NUM5OC4zODYxIDAuMzUwODE4IDk5LjkyMDkgMCAxMDEuOTY3IDBWMjcuNDk1NEMxMDEuOTY3IDI4LjYzNTUgMTAxLjUxNCAyOS41ODU2IDEwMC42MDggMzAuMzQ1N0M5OS43MDE2IDMxLjEwNTkgOTguMzEzIDMxLjQ4NTkgOTYuNDQyIDMxLjQ4NTlWMjkuMTE3OUM5Ni43OTI4IDI4LjY3OTQgOTcuMDcwNSAyOC4yODQ3IDk3LjI3NTIgMjcuOTMzOUw5Ny4wNTU5IDI3Ljc1ODVDOTYuMTIwNCAyOS4wMTU2IDk1LjExMTggMjkuOTUxMSA5NC4wMzAxIDMwLjU2NUM5Mi45Nzc2IDMxLjE3ODkgOTEuNjAzNiAzMS40ODU5IDg5LjkwOCAzMS40ODU5Wk05MS43OTM2IDI2LjMxMTNDOTMuMDIxNSAyNi4zMTEzIDk0LjAxNTUgMjYuMDMzNiA5NC43NzU2IDI1LjQ3ODFDOTUuNTY0OSAyNC44OTM0IDk1Ljk1OTYgMjQuMTYyNiA5NS45NTk2IDIzLjI4NTVWMTYuOTcwOEM5NS45NTk2IDE2LjEyMyA5NS41NjQ5IDE1LjQwNjggOTQuNzc1NiAxNC44MjIxQzk0LjAxNTUgMTQuMjM3NCA5My4wMjE1IDEzLjk0NSA5MS43OTM2IDEzLjk0NUM5MC40NDg4IDEzLjk0NSA4OS40MTEgMTQuMjIyNyA4OC42ODAxIDE0Ljc3ODJDODcuOTc4NSAxNS4zMzM3IDg3LjYyNzcgMTYuMTIzIDg3LjYyNzcgMTcuMTQ2MlYyMy4wNjYzQzg3LjYyNzcgMjQuMTE4NyA4Ny45Nzg1IDI0LjkyMjcgODguNjgwMSAyNS40NzgxQzg5LjQxMSAyNi4wMzM2IDkwLjQ0ODggMjYuMzExMyA5MS43OTM2IDI2LjMxMTNaTTExNi42MjkgMzEuNDg1OUMxMTQuODE2IDMxLjQ4NTkgMTEzLjEzNSAzMS4xMjA1IDExMS41ODYgMzAuMzg5NkMxMTAuMDY1IDI5LjY1ODcgMTA4Ljg1MiAyOC42NjQ3IDEwNy45NDYgMjcuNDA3NkMxMDcuMDQgMjYuMTUwNiAxMDYuNTg2IDI0Ljc0NzMgMTA2LjU4NiAyMy4xOTc4VjE3LjU4NDdDMTA2LjU4NiAxNS45NDc2IDEwNy4wNCAxNC40NTY2IDEwNy45NDYgMTMuMTExOEMxMDguODgxIDExLjczNzggMTEwLjEyNCAxMC42NzA3IDExMS42NzMgOS45MTA2QzExMy4yMjMgOS4xNTA1IDExNC44ODkgOC43NzA0NSAxMTYuNjcyIDguNzcwNDVDMTE4LjQyNyA4Ljc3MDQ1IDEyMC4wMzQgOS4xMzU4OCAxMjEuNDk2IDkuODY2NzVDMTIyLjk4NyAxMC41Njg0IDEyNC4xNTcgMTEuNTc3IDEyNS4wMDQgMTIuODkyNkMxMjUuODUyIDE0LjE3ODkgMTI2LjI3NiAxNS42NDA2IDEyNi4yNzYgMTcuMjc3OFYxOS42NDU4QzEyNi4yNzYgMjAuMzQ3NCAxMjYuMDEzIDIwLjk0NjggMTI1LjQ4NyAyMS40NDM3QzEyNC45NjEgMjEuOTExNSAxMjQuMjg4IDIyLjE0NTQgMTIzLjQ3IDIyLjE0NTRIMTEyLjQxOVYyMi43NTkzQzExMi40MTkgMjMuOTI4NyAxMTIuNzcgMjQuODkzNSAxMTMuNDcxIDI1LjY1MzZDMTE0LjIwMiAyNi4zODQ0IDExNS4yNjkgMjYuNzQ5OSAxMTYuNjcyIDI2Ljc0OTlDMTE4LjA0NiAyNi43NDk5IDExOS4wNTUgMjYuNDU3NSAxMTkuNjk4IDI1Ljg3MjhDMTIwLjM0MSAyNS4yNTg5IDEyMC42NjMgMjQuNDk4OCAxMjAuNjYzIDIzLjU5MjVDMTIxLjI0OCAyMy41MzQgMTIxLjY4NiAyMy41MDQ4IDEyMS45NzkgMjMuNTA0OEMxMjMuMTc3IDIzLjUwNDggMTI0LjA5OCAyMy43NTMzIDEyNC43NDEgMjQuMjUwM0MxMjUuMzg0IDI0Ljc0NzMgMTI1LjcwNiAyNS40NzgxIDEyNS43MDYgMjYuNDQyOUMxMjUuNzA2IDI3LjIzMjIgMTI1LjMxMSAyOC4wMjE2IDEyNC41MjIgMjguODEwOUMxMjMuNzMzIDI5LjYwMDMgMTIyLjYzNiAzMC4yNDM0IDEyMS4yMzMgMzAuNzQwNEMxMTkuODU5IDMxLjIzNzQgMTE4LjMyNCAzMS40ODU5IDExNi42MjkgMzEuNDg1OVpNMTIwLjgzOCAxNy44OTE3VjE3LjI3NzhDMTIwLjgzOCAxNi4xMDg0IDEyMC40NDQgMTUuMTg3NSAxMTkuNjU0IDE0LjUxNTFDMTE4Ljg5NCAxMy44MTM1IDExNy44ODYgMTMuNDYyNiAxMTYuNjI5IDEzLjQ2MjZDMTE1LjM3MiAxMy40NjI2IDExNC4zNDggMTMuODEzNSAxMTMuNTU5IDE0LjUxNTFDMTEyLjc5OSAxNS4xODc1IDExMi40MTkgMTYuMTA4NCAxMTIuNDE5IDE3LjI3NzhWMTcuODkxN0gxMjAuODM4WiIgZmlsbD0iIzI1MkEzOCIvPgo8cGF0aCBkPSJNMi41NjA1NSAzNS4wMDQ2QzIuNTYwNTUgMzQuMTU2OCAyLjg2NzUxIDMzLjQ1NTIgMy40ODE0NCAzMi44OTk3QzQuMTI0NjEgMzIuMzQ0MyA0Ljg5OTMzIDMyLjA2NjUgNS44MDU2MSAzMi4wNjY1SDE3LjMzODhDMjAuNjEzMSAzMi4wNjY1IDIzLjEyNzIgMzIuOTE0NCAyNC44ODEzIDM0LjYxQzI2LjY2NDcgMzYuMjc2NCAyNy41NTYzIDM4LjY1OSAyNy41NTYzIDQxLjc1NzlDMjcuNTU2MyA0My40ODI3IDI3LjIwNTUgNDQuOTI5OSAyNi41MDM5IDQ2LjA5OTNDMjUuODMxNSA0Ny4yNjg3IDI0Ljc3OSA0OC4xODk1IDIzLjM0NjUgNDguODYxOVY0OS4wMzc0QzI1Ljg4OTkgNTAuMTc3NSAyNy4xNjE3IDUyLjMyNjMgMjcuMTYxNyA1NS40ODM2VjU4LjUwOTRDMjcuMTYxNyA2MC4wMjk2IDI2LjYwNjIgNjEuMTg0NCAyNS40OTUzIDYxLjk3MzhDMjQuNDEzNiA2Mi43NjMxIDIyLjgyMDMgNjMuMTU3OCAyMC43MTU0IDYzLjE1NzhWNTUuNzAyOUMyMC43MTU0IDU0LjI0MTIgMjAuNDIzIDUzLjE3NDEgMTkuODM4MyA1Mi41MDE3QzE5LjI4MjkgNTEuOCAxOC40MjA0IDUxLjQ0OTIgMTcuMjUxIDUxLjQ0OTJIOC45MTkxMlY1OC41MDk0QzguOTE5MTIgNjAuMDI5NiA4LjM3ODI4IDYxLjE4NDQgNy4yOTY1OSA2MS45NzM4QzYuMjE0OSA2Mi43NjMxIDQuNjM2MjIgNjMuMTU3OCAyLjU2MDU1IDYzLjE1NzhWMzUuMDA0NlpNMTYuOTg3OSA0NS45Njc3QzE4LjMzMjcgNDUuOTY3NyAxOS4zNTYgNDUuNjAyMyAyMC4wNTc2IDQ0Ljg3MTRDMjAuNzU5MiA0NC4xNDA1IDIxLjExIDQzLjA4ODEgMjEuMTEgNDEuNzE0QzIxLjExIDQwLjI4MTUgMjAuNzczOCAzOS4yMjkxIDIwLjEwMTQgMzguNTU2N0MxOS40NTgzIDM3Ljg4NDMgMTguNDIwNCAzNy41NDgxIDE2Ljk4NzkgMzcuNTQ4MUg4LjkxOTEyVjQ1Ljk2NzdIMTYuOTg3OVpNMzguMTA0MiA2My4xNTc4QzM2LjY3MTcgNjMuMTU3OCAzNS4zMjY5IDYyLjg4IDM0LjA2OTggNjIuMzI0NkMzMi44NDE5IDYxLjczOTkgMzEuODQ3OSA2MC45MDY3IDMxLjA4NzggNTkuODI1QzMwLjMyNzcgNTguNzE0MSAyOS45NDc3IDU3LjM4MzkgMjkuOTQ3NyA1NS44MzQ1QzI5Ljk0NzcgNTQuMjg1IDMwLjM1NyA1Mi45NTQ4IDMxLjE3NTUgNTEuODQzOUMzMS45OTQxIDUwLjcwMzcgMzMuMDc1OCA0OS44NDEzIDM0LjQyMDYgNDkuMjU2NkMzNS43OTQ2IDQ4LjY3MTkgMzcuMjg1NiA0OC4zNzk2IDM4Ljg5MzUgNDguMzc5NkM0MC4yMzgzIDQ4LjM3OTYgNDEuNDIyMyA0OC41ODQyIDQyLjQ0NTYgNDguOTkzNUM0My40OTggNDkuNDAyOCA0NC40Nzc0IDUwLjAwMjEgNDUuMzgzNyA1MC43OTE0TDQ1LjYwMjkgNTAuNTI4M0M0NC45ODkgNDkuOTcyOSA0NC41MDY2IDQ5LjU3ODIgNDQuMTU1OCA0OS4zNDQzVjQ4Ljc3NDJDNDQuMTU1OCA0Ny42NjMzIDQzLjc0NjUgNDYuNzg2MyA0Mi45Mjc5IDQ2LjE0MzFDNDIuMTM4NiA0NS40NzA3IDQxLjAxMzEgNDUuMTM0NSAzOS41NTEzIDQ1LjEzNDVDMzguMjY1IDQ1LjEzNDUgMzcuMTI0OCA0NS4zNjg0IDM2LjEzMDggNDUuODM2MUMzNS4xMzY5IDQ2LjMwMzkgMzQuMzMyOSA0Ni45OTA5IDMzLjcxOSA0Ny44OTcyQzMzLjAxNzMgNDcuNzIxOCAzMi40MTggNDcuNDAwMiAzMS45MjEgNDYuOTMyNUMzMS40NTMzIDQ2LjQzNTUgMzEuMjE5NCA0NS44OTQ2IDMxLjIxOTQgNDUuMzA5OUMzMS4yMTk0IDQ0LjQwMzYgMzEuNjE0MSA0My41ODUxIDMyLjQwMzQgNDIuODU0MkMzMy4xOTI3IDQyLjA5NDEgMzQuMjU5OCA0MS41MDk0IDM1LjYwNDYgNDEuMTAwMUMzNi45Nzg2IDQwLjY2MTYgMzguNDg0MiA0MC40NDIzIDQwLjEyMTQgNDAuNDQyM0M0My4zMDggNDAuNDQyMyA0NS43NjM3IDQxLjE3MzIgNDcuNDg4NiA0Mi42MzQ5QzQ5LjIxMzQgNDQuMDk2NyA1MC4wNzU4IDQ2LjA4NDYgNTAuMDc1OCA0OC41OTg4VjU5LjI1NDlDNTAuMDc1OCA2MC42MjkgNDkuNjIyNyA2MS42MjI5IDQ4LjcxNjQgNjIuMjM2OUM0Ny44Mzk0IDYyLjg1MDggNDYuNDM2MSA2My4xNTc4IDQ0LjUwNjYgNjMuMTU3OFY2MS40NDc1QzQ0Ljk0NTEgNjEuMDM4MiA0NS4yOTYgNjAuNjcyOCA0NS41NTkxIDYwLjM1MTJMNDUuMzM5OCA2MC4xMzJDNDQuMzc1MSA2MS4xMjYgNDMuMzY2NSA2MS44ODYxIDQyLjMxNCA2Mi40MTIzQzQxLjI2MTUgNjIuOTA5MyAzOS44NTgzIDYzLjE1NzggMzguMTA0MiA2My4xNTc4Wk0zOS43NzA2IDU4Ljg2MDNDNDEuMTczOCA1OC44NjAzIDQyLjI3MDEgNTguNTk3MSA0My4wNTk1IDU4LjA3MDlDNDMuODQ4OCA1Ny41NDQ3IDQ0LjI0MzUgNTYuNzg0NiA0NC4yNDM1IDU1Ljc5MDZDNDQuMjQzNSA1NC44MjU5IDQzLjgzNDIgNTQuMDY1NyA0My4wMTU2IDUzLjUxMDNDNDIuMjI2MyA1Mi45NTQ4IDQxLjE0NDYgNTIuNjc3MSAzOS43NzA2IDUyLjY3NzFDMzguNTQyNyA1Mi42NzcxIDM3LjU2MzMgNTIuOTU0OCAzNi44MzI1IDUzLjUxMDNDMzYuMTMwOCA1NC4wNjU3IDM1Ljc4IDU0LjgyNTkgMzUuNzggNTUuNzkwNkMzNS43OCA1Ni43ODQ2IDM2LjEzMDggNTcuNTQ0NyAzNi44MzI1IDU4LjA3MDlDMzcuNTYzMyA1OC41OTcxIDM4LjU0MjcgNTguODYwMyAzOS43NzA2IDU4Ljg2MDNaTTU0LjY3NzkgMzUuNjE4NkM1NC42Nzc5IDM0LjM5MDcgNTUuMTc0OSAzMy40MjYgNTYuMTY4OSAzMi43MjQzQzU3LjE5MjEgMzIuMDIyNyA1OC43MjY5IDMxLjY3MTkgNjAuNzczNCAzMS42NzE5VjQxLjY3MDJDNjAuMjc2NCA0Mi4wMjEgNTkuOTU0OCA0Mi4zMTMzIDU5LjgwODYgNDIuNTQ3Mkw1OS45ODQgNDIuNzY2NUM2MC43NDQxIDQyLjAzNTYgNjEuNzUyNSA0MS40NjU1IDYzLjAwOTYgNDEuMDU2M0M2NC4yOTYgNDAuNjQ3IDY1LjQ1MDcgNDAuNDQyMyA2Ni40NzQgNDAuNDQyM0M2OS4wNzU5IDQwLjQ0MjMgNzEuMTUxNSA0MS4xODc4IDcyLjcwMSA0Mi42Nzg4Qzc0LjI1MDQgNDQuMTQwNSA3NS4wMjUyIDQ2LjA0MDggNzUuMDI1MiA0OC4zNzk2VjU1LjE3NjdDNzUuMDI1MiA1Ni42OTY5IDc0LjYzMDUgNTguMDcwOSA3My44NDExIDU5LjI5ODhDNzMuMDgxIDYwLjQ5NzQgNzIuMDU3OCA2MS40NDc1IDcwLjc3MTUgNjIuMTQ5MkM2OS41MTQ0IDYyLjgyMTYgNjguMTY5NiA2My4xNTc4IDY2LjczNzEgNjMuMTU3OEM2NS4xMjkyIDYzLjE1NzggNjMuNzU1MSA2Mi44NTA4IDYyLjYxNSA2Mi4yMzY5QzYxLjUwNCA2MS41OTM3IDYwLjQ5NTYgNjAuNjU4MiA1OS41ODkzIDU5LjQzMDNMNTkuMzcwMSA1OS42MDU3QzU5LjUxNjMgNTkuODY4OSA1OS43OTQgNjAuMjQ4OSA2MC4yMDMzIDYwLjc0NTlDNjAuMjAzMyA2MS41MDYgNTkuNzc5NCA2Mi4xMDUzIDU4LjkzMTYgNjIuNTQzOEM1OC4wODM4IDYyLjk1MzEgNTYuNjY1OSA2My4xNTc4IDU0LjY3NzkgNjMuMTU3OFYzNS42MTg2Wk02NC44NTE0IDU3Ljk4MzJDNjYuMTk2MiA1Ny45ODMyIDY3LjIxOTUgNTcuNzA1NSA2Ny45MjExIDU3LjE1QzY4LjY1MiA1Ni41OTQ2IDY5LjAxNzQgNTUuNzkwNiA2OS4wMTc0IDU0LjczODFWNDguODE4MUM2OS4wMTc0IDQ3Ljc5NDkgNjguNjUyIDQ3LjAwNTUgNjcuOTIxMSA0Ni40NTAxQzY3LjIxOTUgNDUuODk0NiA2Ni4xOTYyIDQ1LjYxNjkgNjQuODUxNCA0NS42MTY5QzYzLjYyMzYgNDUuNjE2OSA2Mi42MTUgNDUuOTA5MiA2MS44MjU2IDQ2LjQ5MzlDNjEuMDY1NSA0Ny4wNzg2IDYwLjY4NTcgNDcuNzk0OSA2MC42ODU3IDQ4LjY0MjdWNTQuOTU3NEM2MC42ODU3IDU1LjgzNDUgNjEuMDY1NSA1Ni41NjUzIDYxLjgyNTYgNTcuMTVDNjIuNjE1IDU3LjcwNTUgNjMuNjIzNiA1Ny45ODMyIDY0Ljg1MTQgNTcuOTgzMlpNNzkuNjQ0OSAzNS42MTg2Qzc5LjY0NDkgMzQuMzkwNyA4MC4xNDE4IDMzLjQyNiA4MS4xMzU4IDMyLjcyNDNDODIuMTU5IDMyLjAyMjcgODMuNjkzOSAzMS42NzE5IDg1Ljc0MDMgMzEuNjcxOVY0MS42NzAyQzg1LjI0MzMgNDIuMDIxIDg0LjkyMTcgNDIuMzEzMyA4NC43NzU2IDQyLjU0NzJMODQuOTUxIDQyLjc2NjVDODUuNzExMSA0Mi4wMzU2IDg2LjcxOTcgNDEuNDY1NSA4Ny45NzY4IDQxLjA1NjNDODkuMjYzMSA0MC42NDcgOTAuNDE3OSA0MC40NDIzIDkxLjQ0MTEgNDAuNDQyM0M5NC4wNDMgNDAuNDQyMyA5Ni4xMTg3IDQxLjE4NzggOTcuNjY4MSA0Mi42Nzg4Qzk5LjIxNzYgNDQuMTQwNSA5OS45OTIzIDQ2LjA0MDggOTkuOTkyMyA0OC4zNzk2VjU1LjE3NjdDOTkuOTkyMyA1Ni42OTY5IDk5LjU5NzYgNTguMDcwOSA5OC44MDgzIDU5LjI5ODhDOTguMDQ4MiA2MC40OTc0IDk3LjAyNSA2MS40NDc1IDk1LjczODYgNjIuMTQ5MkM5NC40ODE1IDYyLjgyMTYgOTMuMTM2NyA2My4xNTc4IDkxLjcwNDIgNjMuMTU3OEM5MC4wOTYzIDYzLjE1NzggODguNzIyMyA2Mi44NTA4IDg3LjU4MjEgNjIuMjM2OUM4Ni40NzEyIDYxLjU5MzcgODUuNDYyNiA2MC42NTgyIDg0LjU1NjMgNTkuNDMwM0w4NC4zMzcxIDU5LjYwNTdDODQuNDgzMiA1OS44Njg5IDg0Ljc2MSA2MC4yNDg5IDg1LjE3MDIgNjAuNzQ1OUM4NS4xNzAyIDYxLjUwNiA4NC43NDYzIDYyLjEwNTMgODMuODk4NSA2Mi41NDM4QzgzLjA1MDcgNjIuOTUzMSA4MS42MzI4IDYzLjE1NzggNzkuNjQ0OSA2My4xNTc4VjM1LjYxODZaTTg5LjgxODYgNTcuOTgzMkM5MS4xNjM0IDU3Ljk4MzIgOTIuMTg2NiA1Ny43MDU1IDkyLjg4ODIgNTcuMTVDOTMuNjE5MSA1Ni41OTQ2IDkzLjk4NDUgNTUuNzkwNiA5My45ODQ1IDU0LjczODFWNDguODE4MUM5My45ODQ1IDQ3Ljc5NDkgOTMuNjE5MSA0Ny4wMDU1IDkyLjg4ODIgNDYuNDUwMUM5Mi4xODY2IDQ1Ljg5NDYgOTEuMTYzNCA0NS42MTY5IDg5LjgxODYgNDUuNjE2OUM4OC41OTA3IDQ1LjYxNjkgODcuNTgyMSA0NS45MDkyIDg2Ljc5MjggNDYuNDkzOUM4Ni4wMzI3IDQ3LjA3ODYgODUuNjUyNiA0Ny43OTQ5IDg1LjY1MjYgNDguNjQyN1Y1NC45NTc0Qzg1LjY1MjYgNTUuODM0NSA4Ni4wMzI3IDU2LjU2NTMgODYuNzkyOCA1Ny4xNUM4Ny41ODIxIDU3LjcwNTUgODguNTkwNyA1Ny45ODMyIDg5LjgxODYgNTcuOTgzMlpNMTA4LjUxNCAzOC43NzU5QzEwNy40MDMgMzguNzc1OSAxMDYuNDY4IDM4LjQ1NDMgMTA1LjcwOCAzNy44MTEyQzEwNC45NzcgMzcuMTM4OCAxMDQuNjExIDM2LjI3NjQgMTA0LjYxMSAzNS4yMjM5QzEwNC42MTEgMzQuMTcxNCAxMDQuOTc3IDMzLjMyMzYgMTA1LjcwOCAzMi42ODA1QzEwNi40NjggMzIuMDA4MSAxMDcuNDAzIDMxLjY3MTkgMTA4LjUxNCAzMS42NzE5QzEwOS42MjUgMzEuNjcxOSAxMTAuNTQ2IDMyLjAwODEgMTExLjI3NyAzMi42ODA1QzExMi4wMzcgMzMuMzIzNiAxMTIuNDE3IDM0LjE3MTQgMTEyLjQxNyAzNS4yMjM5QzExMi40MTcgMzYuMjc2NCAxMTIuMDM3IDM3LjEzODggMTExLjI3NyAzNy44MTEyQzExMC41NDYgMzguNDU0MyAxMDkuNjI1IDM4Ljc3NTkgMTA4LjUxNCAzOC43NzU5Wk0xMDUuNDg4IDQzLjk1MDVDMTA1LjQ4OCA0Mi42OTM0IDEwNS45ODUgNDEuODAxNyAxMDYuOTc5IDQxLjI3NTVDMTA3Ljk3MyA0MC43MjAxIDEwOS40NzkgNDAuNDQyMyAxMTEuNDk2IDQwLjQ0MjNWNTkuNjQ5NkMxMTEuNDk2IDYwLjkwNjcgMTEwLjk5OSA2MS44MTMgMTEwLjAwNSA2Mi4zNjg0QzEwOS4wMTEgNjIuODk0NyAxMDcuNTA2IDYzLjE1NzggMTA1LjQ4OCA2My4xNTc4VjQzLjk1MDVaTTEyNi4yODIgNjMuMTU3OEMxMjMuNzk3IDYzLjE1NzggMTIxLjk3IDYyLjQ0MTUgMTIwLjggNjEuMDA5QzExOS42MzEgNTkuNTc2NSAxMTkuMDQ2IDU3LjczNDcgMTE5LjA0NiA1NS40ODM2VjQ1LjI2NjFIMTE0LjM5OEMxMTQuMzk4IDQzLjc3NTEgMTE0LjY3NSA0Mi42NjQyIDExNS4yMzEgNDEuOTMzM0MxMTUuNzg2IDQxLjIwMjQgMTE2LjUxNyA0MC44MzcgMTE3LjQyNCA0MC44MzdIMTE5LjEzNFYzNy4zNzI3QzExOS4xMzQgMzYuMTE1NiAxMTkuNjE2IDM1LjIyMzkgMTIwLjU4MSAzNC42OTc3QzEyMS41NDYgMzQuMTQyMiAxMjMuMDA3IDMzLjg2NDUgMTI0Ljk2NiAzMy44NjQ1VjQwLjgzN0gxMzAuNzk4QzEzMC43OTggNDIuNDE1NyAxMzAuNTA2IDQzLjU1NTggMTI5LjkyMSA0NC4yNTc1QzEyOS4zMzcgNDQuOTI5OSAxMjguMzcyIDQ1LjI2NjEgMTI3LjAyNyA0NS4yNjYxSDEyNS4wNTRWNTUuMjY0NEMxMjUuMDU0IDU2LjIyOTEgMTI1LjI0NCA1Ni45MzA4IDEyNS42MjQgNTcuMzY5M0MxMjYuMDA0IDU3Ljc3ODYgMTI2LjY2MiA1Ny45ODMyIDEyNy41OTcgNTcuOTgzMkMxMjguNjIxIDU3Ljk4MzIgMTI5LjY3MyA1Ny42OTA5IDEzMC43NTUgNTcuMTA2MkMxMzEuMDc2IDU3LjM5ODUgMTMxLjMyNSA1Ny43NjQgMTMxLjUgNTguMjAyNUMxMzEuNzA1IDU4LjY0MSAxMzEuODA3IDU5LjA3OTUgMTMxLjgwNyA1OS41MThDMTMxLjgwNyA2MC4xMDI3IDEzMS42MDIgNjAuNjcyOCAxMzEuMTkzIDYxLjIyODNDMTMwLjc4NCA2MS43ODM3IDEzMC4xNTUgNjIuMjUxNSAxMjkuMzA4IDYyLjYzMTVDMTI4LjQ4OSA2Mi45ODI0IDEyNy40OCA2My4xNTc4IDEyNi4yODIgNjMuMTU3OFoiIGZpbGw9IiMyNTJBMzgiLz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzk4N182MDI4KSI+CjxwYXRoIGQ9Ik0xNDEuNDU5IDUzLjQwNjFDMTQxLjMzNyA1My4yODQ1IDE0MS4yNCA1My4wMDcgMTQxLjM1MyA1Mi40Mzg4QzE0MS40NjIgNTEuODkwMiAxNDEuNzQ4IDUxLjE4MzMgMTQyLjIwOSA1MC4zNTk4QzE0My4xMjcgNDguNzE4MiAxNDQuNjg2IDQ2LjcwNDEgMTQ2LjY3MiA0NC43MThDMTQ4LjY1OCA0Mi43MzIgMTUwLjY3MiA0MS4xNzM2IDE1Mi4zMTMgNDAuMjU1NEMxNTMuMTM3IDM5Ljc5NDggMTUzLjg0NCAzOS41MDgzIDE1NC4zOTIgMzkuMzk5MkMxNTQuOTYxIDM5LjI4NjIgMTU1LjIzOCAzOS4zODM2IDE1NS4zNiAzOS41MDUyQzE1NS40ODEgMzkuNjI2OCAxNTUuNTc5IDM5LjkwNDMgMTU1LjQ2NiA0MC40NzI1QzE1NS4zNTcgNDEuMDIxMSAxNTUuMDcgNDEuNzI4IDE1NC42MDkgNDIuNTUxNUMxNTMuNjkxIDQ0LjE5MzEgMTUyLjEzMyA0Ni4yMDcyIDE1MC4xNDcgNDguMTkzM0MxNDguMTYxIDUwLjE3OTMgMTQ2LjE0NyA1MS43Mzc3IDE0NC41MDUgNTIuNjU1OUMxNDMuNjgyIDUzLjExNjUgMTQyLjk3NSA1My40MDMgMTQyLjQyNiA1My41MTIxQzE0MS44NTggNTMuNjI1MiAxNDEuNTggNTMuNTI3NyAxNDEuNDU5IDUzLjQwNjFaIiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjMjUyQTM4IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTE0Ny4xNDcgNDcuODIyOEMxNDcuMDQyIDQ3Ljg3NjIgMTQ3LjAxMSA0Ny44NzQgMTQ3LjAwNSA0Ny44NzI5QzE0Ny4wMDQgNDcuODY2OSAxNDcuMDAyIDQ3LjgzNjQgMTQ3LjA1NSA0Ny43MzE2QzE0Ny4xMTggNDcuNjA5MiAxNDcuMjMyIDQ3LjQzMzggMTQ3LjQgNDcuMjEyNEMxNDcuNzM0IDQ2Ljc3MjYgMTQ4LjI0NCA0Ni4xOTQ4IDE0OC44NTEgNDUuNTg3M0MxNDkuNDU5IDQ0Ljk3OTggMTUwLjAzNiA0NC40Njk5IDE1MC40NzYgNDQuMTM2M0MxNTAuNjk4IDQzLjk2ODUgMTUwLjg3MyA0My44NTM3IDE1MC45OTUgNDMuNzkxNEMxNTEuMSA0My43MzggMTUxLjEzMSA0My43NDAyIDE1MS4xMzcgNDMuNzQxM0MxNTEuMTM4IDQzLjc0NzMgMTUxLjE0IDQzLjc3NzggMTUxLjA4NyA0My44ODI2QzE1MS4wMjQgNDQuMDA1IDE1MC45MSA0NC4xODA0IDE1MC43NDIgNDQuNDAxN0MxNTAuNDA4IDQ0Ljg0MTYgMTQ5Ljg5OCA0NS40MTk0IDE0OS4yOTEgNDYuMDI2OUMxNDguNjgzIDQ2LjYzNDQgMTQ4LjEwNiA0Ny4xNDQzIDE0Ny42NjYgNDcuNDc3OEMxNDcuNDQ0IDQ3LjY0NTcgMTQ3LjI2OSA0Ny43NjA0IDE0Ny4xNDcgNDcuODIyOFoiIGZpbGw9IiMyNTJBMzgiIHN0cm9rZT0iIzI1MkEzOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHBhdGggZD0iTTE0NS44ODIgNTcuODI5OUMxNDUuNzYgNTcuNzA4MyAxNDUuNjYzIDU3LjQzMDggMTQ1Ljc3NiA1Ni44NjI3QzE0NS44ODUgNTYuMzE0MSAxNDYuMTcxIDU1LjYwNzIgMTQ2LjYzMiA1NC43ODM2QzE0Ny41NSA1My4xNDIxIDE0OS4xMDggNTEuMTI3OSAxNTEuMDk0IDQ5LjE0MTlDMTUzLjA4MSA0Ny4xNTU4IDE1NS4wOTUgNDUuNTk3NCAxNTYuNzM2IDQ0LjY3OTNDMTU3LjU2IDQ0LjIxODYgMTU4LjI2NyA0My45MzIxIDE1OC44MTUgNDMuODIzQzE1OS4zODMgNDMuNzEgMTU5LjY2MSA0My44MDc0IDE1OS43ODMgNDMuOTI5QzE1OS45MDQgNDQuMDUwNiAxNjAuMDAyIDQ0LjMyODIgMTU5Ljg4OSA0NC44OTYzQzE1OS43NzkgNDUuNDQ0OSAxNTkuNDkzIDQ2LjE1MTggMTU5LjAzMiA0Ni45NzUzQzE1OC4xMTQgNDguNjE2OSAxNTYuNTU2IDUwLjYzMTEgMTU0LjU3IDUyLjYxNzFDMTUyLjU4NCA1NC42MDMxIDE1MC41NyA1Ni4xNjE2IDE0OC45MjggNTcuMDc5N0MxNDguMTA0IDU3LjU0MDQgMTQ3LjM5NyA1Ny44MjY4IDE0Ni44NDkgNTcuOTM2QzE0Ni4yODEgNTguMDQ5IDE0Ni4wMDMgNTcuOTUxNSAxNDUuODgyIDU3LjgyOTlaIiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjMjUyQTM4IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTE1My4wMjkgNTAuNzUwMUMxNTIuOTU2IDUwLjc4NDIgMTUyLjkzMyA1MC43ODEyIDE1Mi45MjkgNTAuNzgwMUMxNTIuOTI4IDUwLjc3NTcgMTUyLjkyNSA1MC43NTM0IDE1Mi45NTkgNTAuNjc5NUMxNTIuOTk5IDUwLjU5MzMgMTUzLjA3NCA1MC40NzA5IDE1My4xODYgNTAuMzE3NEMxNTMuNDA5IDUwLjAxMjUgMTUzLjc1NCA0OS42MTUxIDE1NC4xNjkgNDkuMjAwNkMxNTQuNTgzIDQ4Ljc4NjEgMTU0Ljk4IDQ4LjQ0MTIgMTU1LjI4NSA0OC4yMTg1QzE1NS40MzkgNDguMTA2MyAxNTUuNTYxIDQ4LjAzMDggMTU1LjY0NyA0Ny45OTFDMTU1LjcyMSA0Ny45NTY5IDE1NS43NDQgNDcuOTU5OCAxNTUuNzQ4IDQ3Ljk2MDlDMTU1Ljc0OSA0Ny45NjUzIDE1NS43NTIgNDcuOTg3NiAxNTUuNzE4IDQ4LjA2MTVDMTU1LjY3OCA0OC4xNDc3IDE1NS42MDMgNDguMjcwMSAxNTUuNDkxIDQ4LjQyMzZDMTU1LjI2OCA0OC43Mjg2IDE1NC45MjMgNDkuMTI1OSAxNTQuNTA4IDQ5LjU0MDRDMTU0LjA5NCA0OS45NTUgMTUzLjY5NiA1MC4yOTk4IDE1My4zOTIgNTAuNTIyNkMxNTMuMjM4IDUwLjYzNDcgMTUzLjExNiA1MC43MTAzIDE1My4wMjkgNTAuNzUwMVoiIGZpbGw9IiMyNTJBMzgiIHN0cm9rZT0iIzI1MkEzOCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHBhdGggZD0iTTE1Mi42ODggNjEuMDIzNUMxNDkuMzk5IDY0LjMxMjYgMTQzLjc4NSA2NC4yNjE3IDEzOS41NjQgNjAuMDQwOEMxMzUuMzQzIDU1LjgyIDEzNC45MTggNTAuNTc4OSAxMzguMjA3IDQ3LjI4OThDMTQyLjg0MyA0NC4wMjcxIDE0Ny4xMTEgNDQuMDUxNiAxNTEuMzMyIDQ4LjI3MjRDMTU1LjU1MyA1Mi40OTMzIDE1NS43NDQgNTYuMTgxMiAxNTIuNjg4IDYxLjAyMzVaIiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjMjUyQTM4IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTE0Ny42OTkgNTcuNTkxOEMxNDguNTI3IDU4LjQyMDYgMTQ5Ljg3MSA1OC40MjA2IDE1MC43IDU3LjU5MThDMTUxLjUyOSA1Ni43NjMgMTUxLjUyOSA1NS40MTkzIDE1MC43IDU0LjU5MDVDMTQ5Ljg3MSA1My43NjE3IDE0OC41MjcgNTMuNzYxNyAxNDcuNjk5IDU0LjU5MDVDMTQ2Ljg3IDU1LjQxOTMgMTQ2Ljg3IDU2Ljc2MyAxNDcuNjk5IDU3LjU5MThaIiBzdHJva2U9IiMyNTJBMzgiIHN0cm9rZS13aWR0aD0iMC41Ii8+CjxwYXRoIGQ9Ik0xNDguMzMgNTYuOTU5OUMxNDguODEgNTcuNDM5OCAxNDkuNTg4IDU3LjQzOTggMTUwLjA2OCA1Ni45NTk5QzE1MC41NDggNTYuNDgwMSAxNTAuNTQ4IDU1LjcwMjIgMTUwLjA2OCA1NS4yMjIzQzE0OS41ODggNTQuNzQyNSAxNDguODEgNTQuNzQyNSAxNDguMzMgNTUuMjIyM0MxNDcuODUxIDU1LjcwMjEgMTQ3Ljg1MSA1Ni40ODAxIDE0OC4zMyA1Ni45NTk5WiIgZmlsbD0iIzI1MkEzOCIgc3Ryb2tlPSIjMjUyQTM4IiBzdHJva2Utd2lkdGg9IjAuNSIvPgo8cGF0aCBkPSJNMTQxLjY5NiA1MS41ODk5QzE0Mi41MjQgNTIuNDE4NyAxNDMuODY4IDUyLjQxODcgMTQ0LjY5NyA1MS41ODk5QzE0NS41MjYgNTAuNzYxMSAxNDUuNTI2IDQ5LjQxNzQgMTQ0LjY5NyA0OC41ODg2QzE0My44NjggNDcuNzU5OCAxNDIuNTI0IDQ3Ljc1OTggMTQxLjY5NiA0OC41ODg2QzE0MC44NjcgNDkuNDE3MyAxNDAuODY3IDUwLjc2MTEgMTQxLjY5NiA1MS41ODk5WiIgc3Ryb2tlPSIjMjUyQTM4IiBzdHJva2Utd2lkdGg9IjAuNSIvPgo8cGF0aCBkPSJNMTQyLjMyNyA1MC45NThDMTQyLjgwNyA1MS40Mzc4IDE0My41ODUgNTEuNDM3OCAxNDQuMDY1IDUwLjk1OEMxNDQuNTQ1IDUwLjQ3ODIgMTQ0LjU0NSA0OS43MDAyIDE0NC4wNjUgNDkuMjIwNEMxNDMuNTg1IDQ4Ljc0MDUgMTQyLjgwNyA0OC43NDA1IDE0Mi4zMjcgNDkuMjIwNEMxNDEuODQ4IDQ5LjcwMDIgMTQxLjg0OCA1MC40NzgyIDE0Mi4zMjcgNTAuOTU4WiIgZmlsbD0iIzI1MkEzOCIgc3Ryb2tlPSIjMjUyQTM4IiBzdHJva2Utd2lkdGg9IjAuNSIvPgo8cGF0aCBkPSJNMTQzLjU3NSA1Ni4wNDAzTDE0NC42MTYgNTUuOTA1QzE0NC44OTEgNTUuODY5MSAxNDUuMDA2IDU1LjUzMjQgMTQ0LjgwOSA1NS4zMzU4TDE0My45MDQgNTQuNDMwN0MxNDMuNzA4IDU0LjIzNDEgMTQzLjM3MSA1NC4zNDg3IDE0My4zMzUgNTQuNjI0NUwxNDMuMiA1NS42NjQ4QzE0My4xNzEgNTUuODgyOSAxNDMuMzU3IDU2LjA2ODcgMTQzLjU3NSA1Ni4wNDAzWiIgZmlsbD0iIzI1MkEzOCIgc3Ryb2tlPSIjMjUyQTM4IiBzdHJva2Utd2lkdGg9IjAuNSIvPgo8cGF0aCBkPSJNMTM4Ljk3MiA1MC4wNzY2QzEzOC4wNjggNDguNTcxMSAxMzcuMTI4IDQ3LjE4OTQgMTM1LjM0NyA0Ni44MzMxIiBzdHJva2U9IiMyNTJBMzgiIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTEzNy43NjIgNTAuNjQ4N0MxMzcuMDQ1IDQ5Ljk1NjQgMTM2LjI3OSA0OS4zNTkxIDEzNS4yNzggNDkuMTgyNUMxMzQuOTA3IDQ5LjExNyAxMzQuMjU5IDQ5LjE1MTUgMTMzLjk0NiA0OC45OTUyIiBzdHJva2U9IiMyNTJBMzgiIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTE0OS41OTMgNjAuNTcwM0MxNTAuMTQxIDYxLjE0NjUgMTUxLjAxOSA2MS45OTkgMTUxLjI0NiA2Mi43OTYzQzE1MS4zNzggNjMuMjU4NSAxNTEuNTQzIDYzLjc1MDYgMTUxLjY5MSA2NC4xOTU0IiBzdHJva2U9IiMyNTJBMzgiIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTE0OC44OTQgNjEuNjUyM0MxNDkuNzY5IDYyLjY5NDEgMTQ5LjUzIDY0LjEwMzYgMTQ5LjUzIDY1LjM0MSIgc3Ryb2tlPSIjMjUyQTM4IiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0xNDMuNDQ4IDU1LjYxNTNDMTQzLjQxNyA1Ni4yNjM4IDE0Mi40ODMgNTYuNzkyNiAxNDEuOTE3IDU2LjQ2MjFDMTQxLjU4MyA1Ni4yNjczIDE0MS4zNjkgNTUuODkzIDE0MS4yMDQgNTUuNTYzMSIgc3Ryb2tlPSIjMjUyQTM4IiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0xNDMuNDQ5IDU1LjgyNDJDMTQyLjkzNSA1Ni4zMzg0IDE0Mi41NjUgNTYuODExNCAxNDIuOTAxIDU3LjUyMDlDMTQzLjE1NiA1OC4wNTk2IDE0My4zNTQgNTcuOTU0MyAxNDMuOTE5IDU3Ljg2MDIiIHN0cm9rZT0iIzI1MkEzOCIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTM5LjA0NyA0OS4yNTA5QzEzNy44MTkgNDkuMjUwOSAxMzYuODExIDQ4Ljg3MDkgMTM2LjAyMSA0OC4xMTA4QzEzNS4yMzIgNDcuMzUwNyAxMzQuODM3IDQ2LjM1NjcgMTM0LjgzNyA0NS4xMjg5QzEzNC44MzcgNDMuOTU5NSAxMzUuMjMyIDQyLjk4MDEgMTM2LjAyMSA0Mi4xOTA4QzEzNi44NCA0MS4zNzIyIDEzNy44NDkgNDAuOTYyOSAxMzkuMDQ3IDQwLjk2MjlDMTQwLjIxNyA0MC45NjI5IDE0MS4yMTEgNDEuMzcyMiAxNDIuMDI5IDQyLjE5MDhDMTQyLjg3NyA0Mi45ODAxIDE0My4zMDEgNDMuOTU5NSAxNDMuMzAxIDQ1LjEyODlDMTQzLjMwMSA0Ni4zMjc1IDE0Mi44OTIgNDcuMzIxNCAxNDIuMDczIDQ4LjExMDhDMTQxLjI1NCA0OC44NzA5IDE0MC4yNDYgNDkuMjUwOSAxMzkuMDQ3IDQ5LjI1MDlaTTEzNi4xMDkgNzAuMDM2OUMxMzcuMjIgNjkuMDQyOSAxMzguMDUzIDY3Ljk5MDUgMTM4LjYwOSA2Ni44Nzk1QzEzOS4xOTMgNjUuNzk3OCAxMzkuNDg2IDY0Ljg5MTYgMTM5LjQ4NiA2NC4xNjA4QzEzOS4yMjMgNjQuMzM2MiAxMzguODU3IDY0LjQyMzggMTM4LjM4OSA2NC40MjM4QzEzNy4zOTUgNjQuNDIzOCAxMzYuNTQ4IDY0LjA3MyAxMzUuODQ2IDYzLjM3MTNDMTM1LjE3NCA2Mi42NDA1IDEzNC44MzcgNjEuNzA1IDEzNC44MzcgNjAuNTY0OEMxMzQuODM3IDU5LjM2NjIgMTM1LjIzMiA1OC4zODY4IDEzNi4wMjEgNTcuNjI2N0MxMzYuODExIDU2Ljg2NjYgMTM3LjgxOSA1Ni40ODY2IDEzOS4wNDcgNTYuNDg2NkMxNDAuMzYzIDU2LjQ4NjYgMTQxLjQwMSA1Ni45MTA1IDE0Mi4xNjEgNTcuNzU4M0MxNDIuOTUgNTguNTc2OSAxNDMuMzQ1IDU5LjU1NjIgMTQzLjM0NSA2MC42OTY0QzE0My4zNDUgNjIuNjI1OSAxNDMuMDA5IDY0LjM2NTMgMTQyLjMzNiA2NS45MTQ4QzE0MS42OTMgNjcuNDkzNSAxNDAuNzQzIDY4LjgwOTEgMTM5LjQ4NiA2OS44NjE1QzEzOS4yODEgNzAuMDM2OSAxMzguOTg5IDcwLjE2ODQgMTM4LjYwOSA3MC4yNTYxQzEzOC4yNTggNzAuMzczMSAxMzcuODkyIDcwLjQzMTYgMTM3LjUxMiA3MC40MzE2QzEzNi44NCA3MC40MzE2IDEzNi4zNzIgNzAuMyAxMzYuMTA5IDcwLjAzNjlaIiBmaWxsPSIjMjUyQTM4Ii8+CjwvZz4KPHBhdGggZD0iTTE0LjYxNCAxNC45NDk2TDE0LjcyMTMgMTUuNDYyN0MxNC43Nzc5IDE1LjY4NCAxNC44NDg0IDE1Ljk0NDggMTQuOTM2OSAxNi4yNDg3QzE1LjAyNTMgMTYuNTUyNiAxNS4xNDg3IDE2Ljg3OTggMTUuMjg1NCAxNy4yMzkyQzE1Ljk1MjIgMTkuMDA2OSAxNi43NTQgMjAuNzIwNCAxNy42ODM4IDIyLjM2NDZDMTguMjA0MiAyMy4yNTMyIDE4LjgwOSAyNC4wODk1IDE5LjQ4OTggMjQuODYxOUMyMC4wOTkzIDI1LjU2NTUgMjAuODI3MyAyNi4xNTY4IDIxLjY0MDggMjYuNjA5MkMyMS45NzgyIDI2Ljc5NDIgMjIuMzM0NiAyNi45NDI0IDIyLjcwMzcgMjcuMDUxNEMyMi45OTI1IDI3LjEzODEgMjMuMjg4NyAyNy4xOTc4IDIzLjU4ODYgMjcuMjI5NkwyMy45MjI2IDI3LjI0OTJMMjQuMTcwMiAyNy4yNDkzTDI0LjM4MDUgMjcuMjQ0N0wyNC4zMDcyIDI2LjEyNjdMMjQuMTQ1IDI2LjEzMTNMMjMuOTUzMyAyNi4xMzgxQzIzLjg3ODcgMjYuMTI4OSAyMy43OTM0IDI2LjEyNDIgMjMuNjkzNCAyNi4xMjA1QzIzLjQ1OTcgMjYuMDk3OCAyMy4yMjgyIDI2LjA1NjkgMjMuMDAwOSAyNS45OTgyQzIyLjcwMDQgMjUuOTE5MyAyMi40MDk3IDI1LjgwNyAyMi4xMzQzIDI1LjY2MzRDMjEuNDEzMyAyNS4yODE2IDIwLjc1ODcgMjQuNzg2MiAyMC4xOTU2IDI0LjE5NkMxOS41MjQgMjMuNDk1MyAxOC45MjA4IDIyLjczMTkgMTguMzk0MiAyMS45MTY0QzE3LjM4NDEgMjAuMzU5NCAxNi40OTMyIDE4LjcyOCAxNS43MjkgMTcuMDM2MkMxNS40MDk1IDE2LjM0NjcgMTUuMTIxMSAxNS43ODA1IDE0LjkxNSAxNS4zODE4TDE0LjU4MTYgMTQuNzU2MUwxNC42MTQgMTQuOTQ5NloiIGZpbGw9IiMyNTJBMzgiLz4KPHBhdGggZD0iTTE2LjM3NDMgNi44NTYyM0MxNi4xNTM1IDYuMjc1NzUgMTUuNzQ5IDUuNzgzNzUgMTUuMjIyNCA1LjQ1NTA3QzE0LjY5NTcgNS4xMjYzOSAxNC4wNzU4IDQuOTc5MDIgMTMuNDU2OSA1LjAzNTQyQzEyLjgzOCA1LjA5MTg0IDEyLjI1NDEgNS4zNDg5MyAxMS43OTQgNS43Njc1NUMxMS4zMzM5IDYuMTg2MTggMTEuMDIyOCA2Ljc0MzQyIDEwLjkwODEgNy4zNTQ0OEMxMC40OTU3IDkuNDI1MTcgMTIuOTgxMiAxMS44MTI5IDEzLjkzOTkgMTMuNDc1MUMxNC4xMjIxIDEzLjc5NzkgMTQuNDQ4MSAxNC40MjQxIDE0LjA5OTMgMTQuNjYwN0MxMy43NTA1IDE0Ljg5NzIgMTMuMjkwNyAxNC4zNjIyIDEzLjA1OTIgMTQuMDcyNkMxMS44Njc5IDEyLjU2ODIgMTAuNTc0NSA5LjM4OTc2IDguNDk1NTcgOS4wMDA4M0M3Ljg4NzE5IDguODg1NjYgNy4yNTc0NCA4Ljk3MTU2IDYuNzAxMyA5LjI0NTU2QzYuMTQ1MTcgOS41MTk1NyA1LjY5MjgxIDkuOTY2ODMgNS40MTI0IDEwLjUxOTlDNS4xMzE5OSAxMS4wNzMgNS4wMzg3NSAxMS43MDE5IDUuMTQ2NzQgMTIuMzExOEM1LjI1NDczIDEyLjkyMTcgNS41NTgxIDEzLjQ3OTUgNi4wMTExIDEzLjkwMTFDNS40MzIxNiAxNC4xMjU3IDQuOTQxNjUgMTQuNTMyNSA0LjYxMzgyIDE1LjA2MDJDNC4yODU5OSAxNS41ODc4IDQuMTM4NjQgMTYuMjA3NiA0LjE5NDA4IDE2LjgyNTZDNC4yNDk1MSAxNy40NDM3IDQuNTA0NzIgMTguMDI2NSA0LjkyMTA3IDE4LjQ4NThDNS4zMzc0MyAxOC45NDUxIDUuODkyMjkgMTkuMjU2IDYuNTAxNzEgMTkuMzcxNEM4LjU3MDkxIDE5Ljc3OTYgMTAuOTYzMSAxNy4yODg0IDEyLjYyNjggMTYuMzI1OUMxMi45NDU5IDE2LjEzOTYgMTMuNTggMTUuODExNyAxMy44MTU4IDE2LjE2QzE0LjA1MTUgMTYuNTA4NCAxMy41MTIzIDE2Ljk3MzUgMTMuMjIyMyAxNy4yMDU2QzExLjcxNTggMTguNDAwNCA4LjUzNTY4IDE5LjcwMDkgOC4xMzg2IDIxLjc3NzhDOC4wMTczNiAyMi4zODk0IDguMDk5MjUgMjMuMDIzMyA4LjM3MTggMjMuNTgzMUM4LjY0NDM0IDI0LjE0MjkgOS4wOTI1OSAyNC41OTc4IDkuNjQ4MjEgMjQuODc4NUMxMC4yMDM4IDI1LjE1OTIgMTAuODM2NCAyNS4yNTAzIDExLjQ0OTMgMjUuMTM3OEMxMi4wNjIzIDI1LjAyNTQgMTIuNjIyMiAyNC43MTU2IDEzLjA0MzUgMjQuMjU1N0MxMy4yNjYgMjQuODM0NiAxMy42NzExIDI1LjMyNDkgMTQuMTk3NCAyNS42NTI0QzE0LjcyMzggMjUuOTc5OSAxNS4zNDI4IDI2LjEyNjggMTUuOTYwOCAyNi4wNzA5QzE2LjU3ODggMjYuMDE1IDE3LjE2MjMgMjUuNzU5MyAxNy42MjI5IDI1LjM0MjVDMTguMDgzNSAyNC45MjU4IDE4LjM5NjIgMjQuMzcwNSAxOC41MTM3IDIzLjc2MDlDMTguOTI2IDIxLjY5MDIgMTYuNDQwNiAxOS4zMDI0IDE1LjQ4MTkgMTcuNjQwM0MxNS4yOTU4IDE3LjMxNDEgMTQuOTY5OCAxNi42ODc5IDE1LjMxODUgMTYuNDUxM0MxNS42NjczIDE2LjIxNDcgMTYuMTI3MiAxNi43NDk4IDE2LjM2MjYgMTcuMDQyN0MxNy41NTM4IDE4LjU0NzIgMTguODUwNyAyMS43MjE3IDIwLjkyMjggMjIuMTE4NUMyMS41MzQ3IDIyLjIzODUgMjIuMTY5NCAyMi4xNTQ4IDIyLjczMDEgMjEuODhDMjMuMjkwNyAyMS42MDUzIDIzLjc0NjQgMjEuMTU0NyAyNC4wMjc1IDIwLjU5NzFDMjQuMzA4NiAyMC4wMzk1IDI0LjM5OTcgMTkuNDA1NSAyNC4yODY4IDE4Ljc5MjFDMjQuMTczOCAxOC4xNzg3IDIzLjg2MzIgMTcuNjE5NSAyMy40MDIzIDE3LjIwMDFDMjMuOTgxMiAxNi45NzU2IDI0LjQ3MTcgMTYuNTY4NyAyNC43OTk1IDE2LjA0MUMyNS4xMjc0IDE1LjUxMzQgMjUuMjc0NyAxNC44OTM2IDI1LjIxOTMgMTQuMjc1NkMyNS4xNjM4IDEzLjY1NzUgMjQuOTA4NiAxMy4wNzQ3IDI0LjQ5MjMgMTIuNjE1NEMyNC4wNzU5IDEyLjE1NiAyMy41MjExIDExLjg0NTIgMjIuOTExNiAxMS43Mjk4QzIwLjg0NjQgMTEuMzI1IDE4LjQ1NDIgMTMuODE2MiAxNi43OTA1IDE0Ljc3ODdDMTYuNDY3NSAxNC45NjE2IDE1LjgzNzMgMTUuMjkzIDE1LjYwMTYgMTQuOTQ0NkMxNS4zNjU4IDE0LjU5NjIgMTUuOTAxMSAxNC4xMjc3IDE2LjE5NSAxMy44OTlDMTcuNzAxNSAxMi43MDQyIDIwLjg3NzcgMTEuNDAwMyAyMS4yNzQ4IDkuMzIzMzVDMjEuMzkxMSA4LjcxMzc0IDIxLjMwNjEgOC4wODMyMiAyMS4wMzI0IDcuNTI3MDdDMjAuNzU4NyA2Ljk3MDkyIDIwLjMxMTMgNi41MTkzOCAxOS43NTc4IDYuMjQwN0MxOS4yMDQyIDUuOTYyMDMgMTguNTc0NyA1Ljg3MTM3IDE3Ljk2NDMgNS45ODI0MkMxNy4zNTM4IDYuMDkzNDYgMTYuNzk1OCA2LjQwMDE5IDE2LjM3NDMgNi44NTYyM1oiIGZpbGw9IiMyNTJBMzgiLz4KPHBhdGggZD0iTTE2LjYxMjQgMTAuMjE2N0wxNi40MzE0IDEwLjMwM0MxNi4yMTQyIDEwLjQxODkgMTYuMDAyOSAxMC41NDU3IDE1Ljc5ODMgMTAuNjgyOUwxNS41NzMyIDEwLjg0MjZMMTUuNzI1NyA5Ljk2NTIyTDE1LjU0MTggMTAuODM5OEMxNS41MTIyIDEwLjc5IDE1LjQ2MiAxMC43MDc4IDE1LjM4OTcgMTAuNjA2NkMxNS4yNDk1IDEwLjQwMDEgMTUuMDk3MSAxMC4yMDIxIDE0LjkzMzUgMTAuMDEzNkwxNC43OTgxIDkuODY3NjVDMTQuNzU3IDkuODE3MSAxNC43MTE5IDkuNzY5OTkgMTQuNjYzMSA5LjcyNjhDMTQuNTY4OSA5LjY0NTM4IDE0LjQ4MDEgOS41Njg3NCAxNC40MDI1IDkuNTAxNjhDMTQuMjUyNyA5LjM3MjM1IDE0LjEzMzMgOS4zMDMyIDE0LjEzMzMgOS4zMDMyQzE0LjEzMzMgOS4zMDMyIDE0LjIzNTkgOS4zOTE4IDE0LjM4NTcgOS41MjExM0MxNC40NjMzIDkuNTg4MTkgMTQuNTQ5MyA5LjY2MjQzIDE0LjYzNDMgOS43NjAxNUMxNC42ODE1IDkuODAwODcgMTQuNzE2NiA5Ljg1NTQ4IDE0Ljc2MTggOS45MDQxNUMxNC44MDY5IDkuOTUyODIgMTQuODQ2OCAxMC4wMDE5IDE0Ljg5MjMgMTAuMDU1N0MxNS4wNDU2IDEwLjI0NTIgMTUuMTg4NCAxMC40NDI5IDE1LjMxOTkgMTAuNjQ4MkMxNS40MjU3IDEwLjgxNzIgMTUuNDg4OCAxMC45MzQ3IDE1LjQ4ODggMTAuOTM0N0wxNS4zMzMxIDExLjczMThDMTUuMzAwNyAxMS42Nzk2IDE1LjI1NDEgMTEuNjEwMiAxNS4xOTI5IDExLjUxODVDMTUuMDc5NSAxMS4zNTI3IDE0LjkxNTggMTEuMTM4NSAxNC43MzY2IDEwLjkyNTZMMTQuNjAxMyAxMC43Nzk2QzE0LjU1MTMgMTAuNzM2NCAxNC41MTM0IDEwLjY3OTUgMTQuNDY2MyAxMC42Mzg3QzE0LjM3MiAxMC41NTczIDE0LjI4MzIgMTAuNDgwNyAxNC4yMDU2IDEwLjQxMzZDMTQuMDU1OCAxMC4yODQzIDEzLjkzNjQgMTAuMjE1MSAxMy45MzY0IDEwLjIxNTFDMTMuOTM2NCAxMC4yMTUxIDE0LjAzOSAxMC4zMDM3IDE0LjE4ODggMTAuNDMzMUMxNC4yNjY0IDEwLjUwMDEgMTQuMzUyNCAxMC41NzQ0IDE0LjQ0OTUgMTAuNjU4MkMxNC40OTUyIDEwLjcwMjkgMTQuNTM4NiAxMC43NSAxNC41NzkzIDEwLjc5OTRDMTQuNjI5MiAxMC44NDI1IDE0LjY2NDcgMTAuOTAyMyAxNC43MDk4IDEwLjk1MUMxNC44NzMxIDExLjE1OTkgMTUuMDI5MiAxMS4zNzcyIDE1LjEzNSAxMS41NDYyQzE1LjI0MDggMTEuNzE1MiAxNS4yODgyIDExLjc5NDkgMTUuMzAwNCAxMS44MkwxNS4xMzYzIDEyLjYwOTlDMTUuMTA2NyAxMi41NiAxNS4wNjI5IDEyLjQ5MzEgMTUuMDA4IDEyLjQxNjVDMTQuODY3NyAxMi4yMSAxNC43MTU0IDEyLjAxMiAxNC41NTE3IDExLjgyMzZMMTQuNDE2NCAxMS42Nzc2QzE0LjM3MzkgMTEuNjI4MyAxNC4zMjg5IDExLjU4MTMgMTQuMjgxNCAxMS41MzY4QzE0LjE4NzEgMTEuNDU1MyAxNC4wOTg0IDExLjM3ODcgMTQuMDIwNyAxMS4zMTE2QzEzLjg1OSAxMS4xOTYyIDEzLjc1MTYgMTEuMTEzMSAxMy43NTE2IDExLjExMzFDMTMuNzUxNiAxMS4xMTMxIDEzLjg1NDIgMTEuMjAxOCAxNC4wMDM5IDExLjMzMTFDMTQuMDgxNiAxMS4zOTgxIDE0LjE3MDMgMTEuNDc0OCAxNC4yNTI2IDExLjU3MDFDMTQuMjk5NyAxMS42MTA4IDE0LjMzNDkgMTEuNjY1NCAxNC4zOCAxMS43MTQxQzE0LjQyNTEgMTEuNzYyOCAxNC40Njc4IDExLjgxNDIgMTQuNTEwNiAxMS44NjU3QzE0LjY2MzkgMTIuMDU1MSAxNC44MDY2IDEyLjI1MjkgMTQuOTM4MiAxMi40NTgxQzE1LjAxNDQgMTIuNTc3MyAxNS4wNjUyIDEyLjY2OTggMTUuMDkxNyAxMi43MTJMMTQuOTI1MiAxMy41MDQ2QzE0Ljg5NTYgMTMuNDU0OCAxNC44NTc3IDEzLjM5NzggMTQuODA4NyAxMy4zMzEyQzE0LjY2NzkgMTMuMTI0OSAxNC41MTY0IDEyLjkyNiAxNC4zNTQ5IDEyLjczNTVMMTQuMjE5NSAxMi41ODk1QzE0LjE2OTYgMTIuNTQ2NCAxNC4xMzE3IDEyLjQ4OTQgMTQuMDg0NSAxMi40NDg3QzEzLjk5MDIgMTIuMzY3MyAxMy45MDE1IDEyLjI5MDYgMTMuODIzOCAxMi4yMjM2QzEzLjY3NDEgMTIuMDk0MiAxMy41NTQ3IDEyLjAyNTEgMTMuNTU0NyAxMi4wMjUxQzEzLjU1NDcgMTIuMDI1MSAxMy42NTczIDEyLjExMzcgMTMuODA3IDEyLjI0M0MxMy44ODQ3IDEyLjMxMDEgMTMuOTczNCAxMi4zODY3IDE0LjA1NTcgMTIuNDgyQzE0LjEwMiAxMi41MjY1IDE0LjE0NDYgMTIuNTc0NyAxNC4xODMxIDEyLjYyNkMxNC4yMzMxIDEyLjY2OTEgMTQuMjcxIDEyLjcyNjEgMTQuMzE2MSAxMi43NzQ4QzE0LjQ3OTQgMTIuOTgzOCAxNC42MzU1IDEzLjIwMSAxNC43NDEzIDEzLjM3QzE0LjgxMTIgMTMuNDc0MSAxNC44NTYyIDEzLjU1NjYgMTQuODgzIDEzLjYwNEwxNC42NDg5IDE0LjcyMTZDMTQuNjY2NCAxNC44NDE1IDE0LjY0OTcgMTQuOTY0MSAxNC42MDA4IDE1LjA3NTJDMTQuNTUxOSAxNS4xODYzIDE0LjQ3MjcgMTUuMjgxNCAxNC4zNzIzIDE1LjM0OTdDMTQuMjcxOSAxNS40MTc5IDE0LjE1NDQgMTUuNDU2NSAxNC4wMzMyIDE1LjQ2MTFDMTMuOTEyIDE1LjQ2NTcgMTMuNzkyMSAxNS40MzYgMTMuNjg3MSAxNS4zNzU2TDEyLjU2MDMgMTUuMTgzNUMxMi41MTg3IDE1LjE0NzYgMTIuNDY4NSAxNS4wNjU1IDEyLjM5NjIgMTQuOTY0MkMxMi4yNTM2IDE0Ljc2NTIgMTIuMTIxNiAxNC41NTg5IDEyLjAwMDYgMTQuMzQ2QzExLjk3MyAxNC4yODgyIDExLjk0MDMgMTQuMjMwOCAxMS45MDk5IDE0LjE3MDdDMTEuODc4NyAxNC4xMTQ3IDExLjg1MSAxNC4wNTY4IDExLjgyNzIgMTMuOTk3M0MxMS43NzcyIDEzLjg4MTQgMTEuNzI4IDEzLjc3NTggMTEuNjk1MSAxMy42Nzk1TDExLjU5OTEgMTMuMzU4OUwxMS42ODUxIDEzLjY4NTRDMTEuNzE1MyAxMy43Nzk0IDExLjc2MjEgMTMuODg3OCAxMS44MDQ1IDE0LjAwNjhDMTEuODQ2OSAxNC4xMjU5IDExLjg1OTYgMTQuMTIyNCAxMS44ODQ4IDE0LjE4MjlMMTEuOTczIDE0LjM2MUMxMi4wODY0IDE0LjU4MDcgMTIuMjEzNyAxNC43OTI3IDEyLjM1NDMgMTQuOTk2QzEyLjM5ODUgMTUuMDY4MSAxMi40Mzg4IDE1LjEyMjMgMTIuNDcwOCAxNS4xNjk0TDExLjY3NTUgMTUuMDMwOEMxMS42MzY3IDE0Ljk5NzIgMTEuNTc4MiAxNC45MDc5IDExLjQ5NzIgMTQuNzk0M0MxMS4zNTQ2IDE0LjU5NTMgMTEuMjIyNSAxNC4zODg5IDExLjEwMTUgMTQuMTc2MUwxMS4wMDgxIDEzLjk5ODNDMTAuOTgwNSAxMy45NDA2IDEwLjk0NTQgMTMuODg2IDEwLjkyMyAxMy44Mjc4QzEwLjkwMDYgMTMuNzY5NyAxMC44MjYyIDEzLjYwMzUgMTAuNzk2IDEzLjUwOTVMMTAuNzAwMSAxMy4xODg5TDEwLjc4MzMgMTMuNTEzMUMxMC44MTYyIDEzLjYwOTUgMTAuODYwMyAxMy43MTU0IDEwLjkwNTQgMTMuODM2OUMxMC45MjUxIDEzLjg5MjcgMTAuOTU3OCAxMy45NTAxIDEwLjk4NTggMTQuMDEzTDExLjA3NCAxNC4xOTExQzExLjE4NjUgMTQuNDA5OSAxMS4zMTI5IDE0LjYyMTIgMTEuNDUyNSAxNC44MjM2QzExLjUwNSAxNC45MDMgMTEuNTUxMyAxNC45NjcyIDExLjU4MzMgMTUuMDE0MkwxMC43OTA3IDE0Ljg3OEMxMC43NzEzIDE0Ljg2MTIgMTAuNjk5MyAxNC43NjUxIDEwLjU5NTQgMTQuNjIyQzEwLjQ1MjggMTQuNDIzIDEwLjMyMDggMTQuMjE2NiAxMC4xOTk4IDE0LjAwMzdMMTAuMTA5MSAxMy44Mjg0QzEwLjA3NjMgMTMuNzcyIDEwLjA0NzcgMTMuNzEzMyAxMC4wMjM2IDEzLjY1MjdDOS45NzY0MSAxMy41MzkyIDkuOTI3MTkgMTMuNDMzNiA5Ljg5NDIzIDEzLjMzNzJMOS43OTgyOSAxMy4wMTY2TDkuODg0MjYgMTMuMzQzMUM5LjkxNDQ0IDEzLjQzNzEgOS45NjEyNiAxMy41NDU1IDEwLjAwMzcgMTMuNjY0NkMxMC4wMjYxIDEzLjcyMjcgMTAuMDU4OCAxMy43ODAxIDEwLjA4NCAxMy44NDA3TDEwLjE3MjIgMTQuMDE4OEMxMC4yODU2IDE0LjIzODQgMTAuNDEyOSAxNC40NTA1IDEwLjU1MzUgMTQuNjUzN0MxMC42MTE5IDE0Ljc0MyAxMC42NjEzIDE0LjgxNDggMTAuNjk4NSAxNC44NjE0TDkuODkwMDQgMTQuNzIxMkM5Ljg5MDA0IDE0LjcyMTIgOS44MTIxNyAxNC42MTUxIDkuNjk2MzkgMTQuNDUyMUM5LjU1MzgxIDE0LjI1MyA5LjQyMTczIDE0LjA0NjcgOS4zMDA3MiAxMy44MzM4TDkuMjA3MzEgMTMuNjU2MUM5LjE3NjA3IDEzLjYwMDIgOS4xNDg0MiAxMy41NDIzIDkuMTI0NTggMTMuNDgyOEM5LjA3NDYxIDEzLjM2NjggOS4wMjU0IDEzLjI2MTMgOC45OTUyMiAxMy4xNjczQzguOTM0NDggMTIuOTc0MSA4Ljg5OTI3IDEyLjg0NjcgOC44OTkyNyAxMi44NDY3TDguOTgyNDcgMTMuMTcwOEM5LjAxMjY1IDEzLjI2NDggOS4wNTk0NyAxMy4zNzMyIDkuMTAxODcgMTMuNDkyM0M5LjE0NDI2IDEzLjYxMTQgOS4xNTcwMSAxMy42MDc4IDkuMTg0OTUgMTMuNjcwOEw5LjI3MzIyIDEzLjg0ODlDOS4zODY0OSAxNC4wNjc2IDkuNTEyMDQgMTQuMjc5NyA5LjY0OTI5IDE0LjQ4NDJDOS43MTkyIDE0LjU4ODIgOS43NzY1NSAxNC42NjIgOS44MDg1NSAxNC43MDlMOS4wMTUzOCAxNC41Mjg2TDkuODg2NTEgMTQuNzA4NEM5Ljg1MDUxIDE0Ljc1MDEgOS43NTcyMyAxNC43OTA5IDkuNjU1ODQgMTQuODYzNEM5LjQ0ODg4IDE1LjAwMzggOS4yNTA2MiAxNS4xNTY2IDkuMDYyMTQgMTUuMzIxTDguOTEzMTIgMTUuNDU0M0M4Ljg2OTkyIDE1LjUwNDQgOC44MjY3MiAxNS41NTQ0IDguNzg1OTIgMTUuNjAxNkM4LjcwNDMyIDE1LjY5NjEgOC42Mjc1MiAxNS43ODUgOC41NjI3MiAxNS44NjAxTDguMzYxMzMgMTYuMTMyNUw4LjU4MjEzIDE1Ljg3NjhDOC42NDY5MyAxNS44MDE4IDguNzIzNzMgMTUuNzEyOSA4LjgwNTMzIDE1LjYxODRDOC44NDk4OCAxNS41NzIgOC44OTgxMSAxNS41MjkzIDguOTQ5NTUgMTUuNDkwNkw5LjA5ODU3IDE1LjM1NzNDOS4zMDc3OSAxNS4xOTM2IDkuNTI1MzMgMTUuMDM3IDkuNjk0NTEgMTQuOTMwOEM5Ljg2MzY4IDE0LjgyNDYgOS45ODA5NyAxNC43NTYgOS45ODA5NyAxNC43NTZMMTAuNzc3OCAxNC45MTU0TDEwLjU2NjcgMTUuMDUzM0MxMC4zOTgzIDE1LjE2OTggMTAuMTg2MyAxNS4zMzEyIDkuOTcyOTkgMTUuNTEwOUw5LjgyNjc1IDE1LjY0NjZDOS43NzczNiAxNS42ODkyIDkuNzMwMjggMTUuNzM0MyA5LjY4NTY5IDE1Ljc4MTlDOS42MDQwOSAxNS44NzY0IDkuNTI3MjggMTUuOTY1MyA5LjQ2MjQ4IDE2LjA0MDRMOS4yNjEwOSAxNi4zMTI4TDkuNDY4MDMgMTYuMDQ1Mkw5LjcwNzg4IDE1LjgwMTFDOS43NTI2NyAxNS43NTUyIDkuNzk5ODggMTUuNzExNyA5Ljg0OTMyIDE1LjY3MDlMMTAuMDAxMSAxNS41NEMxMC4yMTAzIDE1LjM3NjIgMTAuNDI3OSAxNS4yMTk2IDEwLjU5NzEgMTUuMTEzNEMxMC43NjYyIDE1LjAwNzIgMTAuODQ4NCAxNC45NTY5IDEwLjg3MzUgMTQuOTQ0N0wxMS42NjA0IDE1LjEwOTlDMTEuNjI0NCAxNS4xNTE2IDExLjU0NTkgMTUuMTgwOCAxMS40NjkyIDE1LjIzNTlDMTEuMjYyNiAxNS4zNzY4IDExLjA2NDQgMTUuNTI5NiAxMC44NzU1IDE1LjY5MzZMMTAuNzI2NSAxNS44MjY5QzEwLjY4MzMgMTUuODc2OSAxMC42MjYyIDE1LjkxNDkgMTAuNTg1NCAxNS45NjIyQzEwLjUwMzggMTYuMDU2NyAxMC40MjcgMTYuMTQ1NiAxMC4zNjIyIDE2LjIyMDZMMTAuMTYwOSAxNi40OTMxTDEwLjM4MTcgMTYuMjM3NEMxMC40NDY1IDE2LjE2MjQgMTAuNTIzMyAxNi4wNzM0IDEwLjYwNDkgMTUuOTc4OUMxMC42NDk0IDE1LjkzMjUgMTAuNjk3NiAxNS44ODk4IDEwLjc0OTEgMTUuODUxMkwxMC44OTgxIDE1LjcxNzlDMTEuMTA3MyAxNS41NTQxIDExLjMyNDkgMTUuMzk3NSAxMS40OTQgMTUuMjkxM0wxMS43NTA2IDE1LjEzNDRMMTIuNTQwMiAxNS4zMDIxTDEyLjM2NjIgMTUuNDEzOEMxMi4xOTc4IDE1LjUzMDQgMTEuOTg1OCAxNS42OTE4IDExLjc3MjUgMTUuODcxNEwxMS42MjYzIDE2LjAwNzJDMTEuNTgxMiAxNi4wNTM4IDExLjUzODcgMTYuMTAzIDExLjQ5OTEgMTYuMTU0NEMxMS40MTc1IDE2LjI0ODkgMTEuMzQwNyAxNi4zMzc5IDExLjI3NTkgMTYuNDEyOUwxMS4wNzQ1IDE2LjY4NTNMMTEuMjk1MyAxNi40Mjk2QzExLjM2MDEgMTYuMzU0NiAxMS40MzY5IDE2LjI2NTcgMTEuNTE4NSAxNi4xNzEyQzExLjU2MzMgMTYuMTI1MyAxMS42MTA1IDE2LjA4MTkgMTEuNjU5OSAxNi4wNDExTDExLjgxMTcgMTUuOTEwMUMxMi4wMjEgMTUuNzQ2NCAxMi4yMzg1IDE1LjU4OTggMTIuNDA3NyAxNS40ODM2QzEyLjQ4MzkgMTUuNDMxIDEyLjU2MjkgMTUuMzgyNiAxMi42NDQzIDE1LjMzODZMMTMuNzU4NiAxNS41NzMxQzEzLjk5MDEgMTUuNjA0MSAxNC4yMDg1IDE1LjY5ODYgMTQuMzg5NCAxNS44NDYyQzE0LjQ1NzIgMTYuMDY5NCAxNC40NjQ0IDE2LjMwNjcgMTQuNDEwNCAxNi41MzM5TDE0LjIxNTcgMTcuNjU2M0MxNC4xNDY1IDE3LjcxNjMgMTQuMDczMSAxNy43NzEyIDEzLjk5NjEgMTcuODIwOUMxMy43OTgyIDE3Ljk2NTIgMTMuNTkyNSAxOC4wOTg2IDEzLjM4IDE4LjIyMDNMMTMuMjAyMSAxOC4zMTQyQzEzLjE0NDMgMTguMzQxOSAxMy4wODY5IDE4LjM3NDcgMTMuMDI4NyAxOC4zOTczTDEyLjcxMDYgMTguNTMwMUwxMi4zOTIzIDE4LjYyNEwxMi43MTM4IDE4LjUzNzdDMTIuODEwNiAxOC41MDk3IDEyLjkxOSAxOC40NjI2IDEzLjAzNTQgMTguNDE3NkMxMy4wOTU4IDE4LjM5NDQgMTMuMTU0NiAxOC4zNjc1IDEzLjIxMTYgMTguMzM2OUwxMy4zOTUgMTguMjQ3OEMxMy42MTIyIDE4LjEzMTggMTMuODIzNSAxOC4wMDUgMTQuMDI4MSAxNy44Njc5TDE0LjE5ODkgMTcuNzQ4NkwxNC4wNjE1IDE4LjU0NjlMMTMuODI0NyAxOC43MjU3QzEzLjY2MTUgMTguODQxOCAxMy40MzggMTguOTg4NSAxMy4yMDU5IDE5LjEyMjhMMTMuMDMwNCAxOS4yMTM4QzEyLjk3MDIgMTkuMjQ0MyAxMi45MTI3IDE5LjI3NzIgMTIuODU0NiAxOS4yOTk3QzEyLjc5NjQgMTkuMzIyMiAxMi42MzUzIDE5LjM5NjYgMTIuNTM4OSAxOS40Mjk4TDEyLjIxODIgMTkuNTI2NEwxMi41NDQ4IDE5LjQzOTdDMTIuNjM4OCAxOS40MDkzIDEyLjc0NzIgMTkuMzYyMyAxMi44NjM2IDE5LjMxNzJDMTIuOTI0MyAxOS4yOTQ4IDEyLjk4MzIgMTkuMjY3OCAxMy4wMzk4IDE5LjIzNjVMMTMuMjIwOCAxOS4xNTAzQzEzLjQzODEgMTkuMDM0MyAxMy42NDk0IDE4LjkwNzUgMTMuODU0IDE4Ljc3MDNMMTQuMDQ0NyAxOC42MzkxTDEzLjkwNjkgMTkuNDMyMkMxMy44OTAxIDE5LjQ1MTcgMTMuNzkzOSAxOS41MjM4IDEzLjY1MDYgMTkuNjI4MUMxMy40NTI0IDE5Ljc3MDYgMTMuMjQ2NiAxOS45MDIzIDEzLjAzNDEgMjAuMDIyNEwxMi44NTYyIDIwLjExNjNDMTIuNzk4NCAyMC4xNDQgMTIuNzQxIDIwLjE3NjggMTIuNjgyOCAyMC4xOTk0QzEyLjU2NjggMjAuMjQ5NiAxMi40NjExIDIwLjI5OSAxMi4zNjQ3IDIwLjMzMjJMMTIuMDQ2NCAyMC40MjYxTDEyLjM2NzkgMjAuMzM5OEMxMi40NjQ3IDIwLjMxMTggMTIuNTczMSAyMC4yNjQ3IDEyLjY4OTUgMjAuMjE5N0MxMi43NDk4IDIwLjE5NjUgMTIuODA4NyAyMC4xNjk2IDEyLjg2NTcgMjAuMTM5TDEzLjA0NjcgMjAuMDUyN0MxMy4yODQ0IDE5LjkyMzIgMTMuNTE2MiAxOS43ODM3IDEzLjY4MjIgMTkuNjdDMTMuNzcxNiAxOS42MTEzIDEzLjg0MzQgMTkuNTYxOCAxMy44OTAyIDE5LjUyNDVMMTMuNzQ4MyAyMC4zMzM1QzEzLjY1NDggMjAuMzkyOSAxMy41NjQ4IDIwLjQ1NzggMTMuNDc4OCAyMC41Mjc4QzEzLjI3OTYgMjAuNjcwOCAxMy4wNzMgMjAuODAzNCAxMi44NTk5IDIwLjkyNDhMMTIuNjg0NSAyMS4wMTU5QzEyLjYyODEgMjEuMDQ4OCAxMi41NjkzIDIxLjA3NzUgMTIuNTA4NiAyMS4xMDE4QzEyLjM5NSAyMS4xNDkyIDEyLjI4OTQgMjEuMTk4NyAxMi4xOTMgMjEuMjMxOUwxMS44NzIzIDIxLjMyODVMMTIuMTkzNyAyMS4yNDIyQzEyLjI5MjkgMjEuMjExNCAxMi40MDEzIDIxLjE2NDQgMTIuNTE3NyAyMS4xMTkzQzEyLjU3ODcgMjEuMDk3NiAxMi42Mzc3IDIxLjA3MDYgMTIuNjkzOSAyMS4wMzg2TDEyLjg3NDkgMjAuOTUyM0MxMy4wOTIyIDIwLjgzNjQgMTMuMzAzNSAyMC43MDk2IDEzLjUwODEgMjAuNTcyNEwxMy43MzYgMjAuNDE1MUwxMy41NTkxIDIxLjIwODRMMTMuNzQ1OSAyMC4zMzYzQzEzLjc4NzUgMjAuMzcyMiAxMy44MjI4IDIwLjQ2NTggMTMuODk1MSAyMC41NjcxQzE0LjAzNTQgMjAuNzczNiAxNC4xODc3IDIwLjk3MTYgMTQuMzUxNCAyMS4xNkwxNC40ODk1IDIxLjMwODRDMTQuNTMwNSAyMS4zNTkxIDE0LjU3NTYgMjEuNDA2MiAxNC42MjQ1IDIxLjQ0OTNDMTQuNzE4OCAyMS41MzA3IDE0LjgwNzUgMjEuNjA3MyAxNC44ODI0IDIxLjY3MkMxNS4wNDY5IDIxLjc4OTggMTUuMTUxNiAyMS44NzA1IDE1LjE1MTYgMjEuODcwNUMxNS4xNTE2IDIxLjg3MDUgMTUuMDUxNyAyMS43ODQzIDE0Ljg5OTIgMjEuNjUyNUMxNC44MjQzIDIxLjU4NzkgMTQuNzM1NiAyMS41MTEyIDE0LjY1MzMgMjEuNDE1OUMxNC42MDYxIDIxLjM3NTIgMTQuNTU2MiAyMS4zMzIxIDE0LjUyNTkgMjEuMjcxOUMxNC40OTU1IDIxLjIxMTcgMTQuNDI2MSAyMS4xODU3IDE0LjM5NTMgMjEuMTIwM0MxNC4yMzU3IDIwLjkyNjggMTQuMDg3MyAyMC43MjQyIDEzLjk1MTEgMjAuNTEzNUMxMy44NDUzIDIwLjM0NDUgMTMuNzgyMiAyMC4yMjcgMTMuNzgyMiAyMC4yMjdMMTMuOTQwNyAxOS40MzIzQzEzLjk0MDcgMTkuNDMyMyAxNC4wMTk3IDE5LjU1MzkgMTQuMDc4MiAxOS42NDMyQzE0LjE5MTUgMTkuODA5IDE0LjM1NTIgMjAuMDIzMiAxNC41MzQ0IDIwLjIzNjFMMTQuNjY5NyAyMC4zODIxQzE0LjcxOTcgMjAuNDI1MiAxNC43NTQ4IDIwLjQ3OTkgMTQuODAyIDIwLjUyMDZDMTQuODk5IDIwLjYwNDQgMTQuOTg3OCAyMC42ODEgMTUuMDYyNiAyMC43NDU3QzE1LjIxNTIgMjAuODc3NCAxNS4zMzE4IDIwLjk0NDIgMTUuMzMxOCAyMC45NDQyQzE1LjMzMTggMjAuOTQ0MiAxNS4yMzIgMjAuODU4IDE1LjA3OTQgMjAuNzI2MkMxNS4wMDQ2IDIwLjY2MTYgMTQuOTE1OCAyMC41ODQ5IDE0LjgzMzUgMjAuNDg5NkMxNC43ODc4IDIwLjQ0NDkgMTQuNzQ0NCAyMC4zOTc4IDE0LjcwMzcgMjAuMzQ4NEMxNC42NTM4IDIwLjMwNTMgMTQuNjE4MyAyMC4yNDU1IDE0LjU3MzIgMjAuMTk2OEMxNC40MDcxIDE5Ljk4NTUgMTQuMjUzOCAxOS43NzA2IDE0LjEzMTMgMTkuNTg3MkMxNC4wMDg5IDE5LjQwMzkgMTMuOTc4MiAxOS4zMzg1IDEzLjk2NiAxOS4zMTM0TDE0LjEzMjggMTguNTI2QzE0LjE2MjQgMTguNTc1OCAxNC4yMDM1IDE4LjY0MDMgMTQuMjU4NCAxOC43MTY5QzE0LjM5ODYgMTguOTIzNCAxNC41NTEgMTkuMTIxNCAxNC43MTQ2IDE5LjMwOThMMTQuODUyNyAxOS40NTgyQzE0Ljg5NDMgMTkuNTA2NyAxNC45Mzg0IDE5LjU1MyAxNC45ODUgMTkuNTk2N0MxNS4wODIgMTkuNjgwNSAxNS4xNzA4IDE5Ljc1NzEgMTUuMjQ1NiAxOS44MjE4QzE1LjM5ODIgMTkuOTUzNSAxNS41MTQ4IDIwLjAyMDMgMTUuNTE0OCAyMC4wMjAzQzE1LjUxNDggMjAuMDIwMyAxNS40MTUgMTkuOTM0MSAxNS4yNjI0IDE5LjgwMjNDMTUuMTg3NiAxOS43Mzc3IDE1LjA5ODggMTkuNjYxIDE1LjAxNjUgMTkuNTY1N0MxNC45Njk0IDE5LjUyNSAxNC45MzE1IDE5LjQ2OCAxNC44ODkxIDE5LjQyMTdDMTQuODQ2OCAxOS4zNzU1IDE0LjgwMTMgMTkuMzIxNiAxNC43NTg2IDE5LjI3MDJDMTQuNTk4OSAxOS4wNzY3IDE0LjQ1MDYgMTguODc0IDE0LjMxNDMgMTguNjYzM0MxNC4yMzgxIDE4LjU0NDIgMTQuMTg3MiAxOC40NTE3IDE0LjE2MDggMTguNDA5NEwxNC4zMjczIDE3LjYxNjhDMTQuMzY4OSAxNy42NTI3IDE0LjM5NDggMTcuNzIzNyAxNC40NDM4IDE3Ljc5MDJDMTQuNTg0NiAxNy45OTY2IDE0LjczNjEgMTguMTk1NSAxNC44OTc2IDE4LjM4NTlMMTUuMDM1OCAxOC41MzQzQzE1LjA4NTcgMTguNTc3NSAxNS4xMzI4IDE4LjYxODIgMTUuMTggMTguNjU4OUMxNS4yNzcgMTguNzQyNyAxNS4zNjU4IDE4LjgxOTMgMTUuNDQwNyAxOC44ODRDMTUuNTkzMiAxOS4wMTU3IDE1LjcwOTggMTkuMDgyNSAxNS43MDk4IDE5LjA4MjVDMTUuNzA5OCAxOS4wODI1IDE1LjYxIDE4Ljk5NjMgMTUuNDU3NCAxOC44NjQ2QzE1LjM4MjYgMTguNzk5OSAxNS4yOTM4IDE4LjcyMzIgMTUuMjExNSAxOC42Mjc5QzE1LjE2NTYgMTguNTgzNCAxNS4xMjIzIDE4LjUzNjIgMTUuMDgxNyAxOC40ODY3QzE1LjAzMTggMTguNDQzNiAxNC45OTYzIDE4LjM4MzggMTQuOTUxMiAxOC4zMzUyQzE0Ljc4NTEgMTguMTIzOCAxNC42MjkgMTcuOTA2NSAxNC41MDkzIDE3LjcyNTVDMTQuNDQyMiAxNy42MjM5IDE0LjM5NzIgMTcuNTQxNCAxNC4zNjc3IDE3LjQ5MTZMMTQuNjAxNyAxNi4zNzRDMTQuNjM1NCAxNi4xNDMyIDE0LjczMTIgMTUuOTI1NyAxNC44Nzg4IDE1Ljc0NDlDMTUuMTAwNCAxNS42NzI4IDE1LjMzNzYgMTUuNjY0MiAxNS41NjM1IDE1LjcyTDE2LjY5MDQgMTUuOTEyQzE2LjczMiAxNS45NDggMTYuNzgyMSAxNi4wMzAxIDE2Ljg1NDQgMTYuMTMxM0MxNi45OTcgMTYuMzMwNCAxNy4xMjkxIDE2LjUzNjcgMTcuMjUwMSAxNi43NDk2TDE3LjM0MzUgMTYuOTI3M0MxNy4zNzQ3IDE2Ljk4MzMgMTcuNDAyNCAxNy4wNDExIDE3LjQyNjIgMTcuMTAwNkMxNy40NzM0IDE3LjIxNDIgMTcuNTI1NCAxNy4zMjIxIDE3LjU1NTYgMTcuNDE2MUwxNy42NTE1IDE3LjczNjdMMTcuNTY4MyAxNy40MTI2QzE3LjUzNTQgMTcuMzE2MiAxNy40OTEzIDE3LjIxMDIgMTcuNDQ2MiAxNy4wODg3QzE3LjQyNjUgMTcuMDMzIDE3LjM5MzggMTYuOTc1NiAxNy4zNjU4IDE2LjkxMjZMMTcuMjc3NiAxNi43MzQ1QzE3LjE2NTIgMTYuNTE1OCAxNy4wMzg3IDE2LjMwNDUgMTYuODk5MSAxNi4xMDJMMTYuNzgyNiAxNS45Mjg2TDE3LjU3NzkgMTYuMDY3MkMxNy42MTQgMTYuMDk4NCAxNy42NzI0IDE2LjE4NzYgMTcuNzU2MiAxNi4zMDM3QzE3Ljg5ODggMTYuNTAyNyAxOC4wMzA5IDE2LjcwOTEgMTguMTUxOSAxNi45MjE5QzE4LjE3OTQgMTYuOTc5NyAxOC4yMTIyIDE3LjAzNzEgMTguMjQyNSAxNy4wOTcyQzE4LjI3NTMgMTcuMTUzNiAxOC4zMDM5IDE3LjIxMjMgMTguMzI4IDE3LjI3M0MxOC4zNzUyIDE3LjM4NjUgMTguNDI0NCAxNy40OTIxIDE4LjQ1NzQgMTcuNTg4NUwxOC41NTMzIDE3LjkwOUwxOC40NjczIDE3LjU4MjVDMTguNDM3MiAxNy40ODg1IDE4LjM5MDQgMTcuMzgwMiAxOC4zNDggMTcuMjYxMUMxOC4zMDU2IDE3LjE0MiAxOC4yOTI4IDE3LjE0NTUgMTguMjY3NiAxNy4wODVMMTguMTc5NCAxNi45MDY5QzE4LjA2NTIgMTYuNjg3MyAxNy45Mzg3IDE2LjQ3NDQgMTcuODAwNSAxNi4yNjkyTDE3LjY2NzQgMTYuMDgxNEwxOC40NjI3IDE2LjIyQzE4LjQ4MjEgMTYuMjM2OCAxOC41NTQxIDE2LjMzMjkgMTguNjU1MiAxNi40NzM2QzE4Ljc5ODIgMTYuNjcyMyAxOC45MzAzIDE2Ljg3ODcgMTkuMDUwOSAxNy4wOTE4TDE5LjE0NDMgMTcuMjY5NkMxOS4xNzU2IDE3LjMyNTUgMTkuMjAzMiAxNy4zODM0IDE5LjIyNyAxNy40NDI5QzE5LjI3NyAxNy41NTg4IDE5LjMyNjIgMTcuNjY0NCAxOS4zNTY0IDE3Ljc1ODRMMTkuNDUyMyAxOC4wNzlMMTkuMzY5MiAxNy43NTQ4QzE5LjMzNjIgMTcuNjU4NSAxOS4yOTIxIDE3LjU1MjUgMTkuMjQ5OCAxNy40MzM0QzE5LjIyNzQgMTcuMzc1MiAxOS4xOTQ2IDE3LjMxNzkgMTkuMTY2NyAxNy4yNTQ5TDE5LjA3ODQgMTcuMDc2OEMxOC45NjYgMTYuODU4IDE4LjgzOTUgMTYuNjQ2NyAxOC42OTk5IDE2LjQ0NDNDMTguNjQxNSAxNi4zNTUgMTguNTkyMSAxNi4yODMyIDE4LjU1NDkgMTYuMjM2NkwxOS4zNjM0IDE2LjM3NjhDMTkuMzYzNCAxNi4zNzY4IDE5LjQ0MTIgMTYuNDgyOSAxOS41NTcgMTYuNjQ1OUMxOS42OTk2IDE2Ljg0NDkgMTkuODMxNyAxNy4wNTEzIDE5Ljk1MjcgMTcuMjY0MkMxOS45ODMgMTcuMzI0MyAyMC4wMTU4IDE3LjM4MTcgMjAuMDQzMyAxNy40Mzk1QzIwLjA3NjEgMTcuNDk1OSAyMC4xMDQ3IDE3LjU1NDYgMjAuMTI4OCAxNy42MTUyQzIwLjE3NiAxNy43Mjg4IDIwLjIyNTIgMTcuODM0MyAyMC4yNTgyIDE3LjkzMDdMMjAuMzU0MSAxOC4yNTEzTDIwLjI2ODIgMTcuOTI0OEMyMC4yMzggMTcuODMwOCAyMC4xOTEyIDE3LjcyMjQgMjAuMTQ4OCAxNy42MDMzQzIwLjEwNjQgMTcuNDg0MiAyMC4wOTM2IDE3LjQ4NzggMjAuMDY4NSAxNy40MjcyTDE5Ljk4MDIgMTcuMjQ5MUMxOS44NjYgMTcuMDI5NiAxOS43Mzk2IDE2LjgxNjcgMTkuNjAxMyAxNi42MTE0QzE5LjUzNDIgMTYuNTA5OCAxOS40NzY5IDE2LjQzNiAxOS40NDIxIDE2LjM4NjZMMjAuMzE4OSAxNi41MzczTDE5LjQ0NzggMTYuMzU3NUwxOS42ODEyIDE2LjIwNUMxOS44ODcxIDE2LjA2MzEgMjAuMDg1MyAxNS45MTAzIDIwLjI3NDkgMTUuNzQ3M0wyMC40MjEyIDE1LjYxMTZDMjAuNDY2MyAxNS41NjQ5IDIwLjUwODggMTUuNTE1OCAyMC41NDg0IDE1LjQ2NDNDMjAuNjMgMTUuMzY5OSAyMC43MDY4IDE1LjI4MDkgMjAuNzcxNiAxNS4yMDU5TDIwLjk3MyAxNC45MzM0TDIwLjc1MjIgMTUuMTg5MUwyMC41MTIzIDE1LjQzMzJDMjAuNDY3NSAxNS40NzkxIDIwLjQyMDMgMTUuNTIyNSAyMC4zNzA5IDE1LjU2MzNMMjAuMjE5MSAxNS42OTQzQzIwLjAyODUgMTUuODQ3NCAxOS44Mjk2IDE1Ljk4OTggMTkuNjIzMiAxNi4xMjA4QzE5LjQ1NDQgMTYuMjMyMiAxOS4zMzY3IDE2LjI5NTUgMTkuMzM2NyAxNi4yOTU1TDE4LjUzOTkgMTYuMTM2MkMxOC41Mzk5IDE2LjEzNjIgMTguNjY0MyAxNi4wNTk0IDE4Ljc1MzQgMTUuOTk1NkMxOC45NjAzIDE1Ljg1NTIgMTkuMTU4NiAxNS43MDIzIDE5LjM0NzEgMTUuNTM3OUwxOS40OTYxIDE1LjQwNDZDMTkuNTM5MyAxNS4zNTQ2IDE5LjU5NCAxNS4zMTkzIDE5LjYzNzIgMTUuMjY5M0MxOS43MTg4IDE1LjE3NDggMTkuNzk1NiAxNS4wODU5IDE5Ljg2MDQgMTUuMDEwOUwyMC4wNjE4IDE0LjczODRMMTkuODQwOSAxNC45OTQxQzE5Ljc3NjEgMTUuMDY5MSAxOS42OTk0IDE1LjE1ODEgMTkuNjAzOSAxNS4yNDA2QzE5LjU1OTMgMTUuMjg3IDE5LjUxMTEgMTUuMzI5NyAxOS40NTk3IDE1LjM2ODNMMTkuMzEwNyAxNS41MDE2QzE5LjEwMTQgMTUuNjY1NCAxOC44ODM5IDE1LjgyMiAxOC43MTQ3IDE1LjkyODJMMTguNDM4MiAxNi4wOTdMMTcuNjUxNCAxNS45MzE3TDE3Ljg0MjUgMTUuODA1N0MxOC4wNDgxIDE1LjY2MzMgMTguMjQ2MiAxNS41MTA2IDE4LjQzNjIgMTUuMzQ4MUwxOC41ODI0IDE1LjIxMjRDMTguNjI3NiAxNS4xNjU3IDE4LjY3IDE1LjExNjUgMTguNzA5NyAxNS4wNjUxQzE4Ljc5MTMgMTQuOTcwNiAxOC44NjgxIDE0Ljg4MTcgMTguOTMyOSAxNC44MDY2TDE5LjEzNDIgMTQuNTM0MkwxOC45MTM0IDE0Ljc4OTlMMTguNjczNiAxNS4wMzM5QzE4LjYyODggMTUuMDc5OCAxOC41ODE2IDE1LjEyMzMgMTguNTMyMiAxNS4xNjQxTDE4LjM4MDQgMTUuMjk1QzE4LjE3MTIgMTUuNDU4OCAxNy45NTM2IDE1LjYxNTQgMTcuNzg0NCAxNS43MjE2QzE3LjY2NzkgMTUuODAwNSAxNy41NzU0IDE1Ljg1MTUgMTcuNTI3OSAxNS44Nzg1TDE2Ljc0MSAxNS43MTMyTDE2LjkxMjIgMTUuNTk5MUMxNy4xMTkxIDE1LjQ1ODUgMTcuMzE3NCAxNS4zMDU3IDE3LjUwNTkgMTUuMTQxNUwxNy42NTUgMTUuMDA4MUMxNy43MDAxIDE0Ljk2MTUgMTcuNzQyNSAxNC45MTIzIDE3Ljc4MjIgMTQuODYwOUwxOC4wMDU0IDE0LjYwMjRMMTguMjA0NCAxNC4zMzI3TDE3Ljk4NiAxNC41ODU2QzE3LjkyMTIgMTQuNjYwNyAxNy44NDQ0IDE0Ljc0OTYgMTcuNzYyOCAxNC44NDQxQzE3LjcyMiAxNC44OTEzIDE3LjY2NzMgMTQuOTI2NiAxNy42MTg1IDE0Ljk3MThMMTcuNDY2NyAxNS4xMDI3QzE3LjI3NyAxNS4yNTY1IDE3LjA3OSAxNS4zOTk3IDE2Ljg3MzYgMTUuNTMxN0wxNi42MzcgMTUuNjc2N0wxNS41MjI3IDE1LjQ0MjJDMTUuNDAyMSAxNS40NjA4IDE1LjI3ODggMTUuNDQ1IDE1LjE2NyAxNS4zOTY0QzE1LjA1NTIgMTUuMzQ3OSAxNC45NTk2IDE1LjI2ODYgMTQuODkxMSAxNS4xNjc5QzE0LjgyMjYgMTUuMDY3MSAxNC43ODQxIDE0Ljk0ODkgMTQuNzggMTQuODI3QzE0Ljc3NTkgMTQuNzA1MSAxNC44MDY1IDE0LjU4NDQgMTQuODY4MSAxNC40NzlMMTUuMDY1MiAxMy4zNTM4TDE1LjI4MjQgMTMuMTkyQzE1LjQ4MTMgMTMuMDQ4NiAxNS42ODc5IDEyLjkxNiAxNS45MDEyIDEyLjc5NUwxNi4wNzkxIDEyLjcwMTFDMTYuMTM2OSAxMi42NzM0IDE2LjE5MTYgMTIuNjM4MiAxNi4yNDk4IDEyLjYxNTZMMTYuNTY3OCAxMi40ODI4TDE2Ljg4ODkgMTIuMzkxM0wxNi41NjQ3IDEyLjQ3NTJDMTYuNDcwNyAxMi41MDU2IDE2LjM2MjIgMTIuNTUyNyAxNi4yNDMxIDEyLjU5NTNDMTYuMTgyMSAxMi42MTU0IDE2LjEyNzUgMTIuNjUwNyAxNi4wNjY5IDEyLjY3NkwxNS44ODM1IDEyLjc2NTFDMTUuNjY2MiAxMi44ODEgMTUuNDU0OSAxMy4wMDc4IDE1LjI1MDMgMTMuMTQ1TDE1LjA3OTUgMTMuMjY0M0wxNS4yMTk4IDEyLjQ2ODRMMTUuNDU2NSAxMi4yODk2QzE1LjY1NTggMTIuMTQ2NSAxNS44NjIzIDEyLjAxNCAxNi4wNzU0IDExLjg5MjVMMTYuMjUwOSAxMS44MDE1QzE2LjMxMTEgMTEuNzcxIDE2LjM2NTcgMTEuNzM1NyAxNi40MjM5IDExLjcxMzJMMTYuNzM5NiAxMS41ODMxTDE3LjA2MzEgMTEuNDg4OUwxNi43MzY1IDExLjU3NTVDMTYuNjQyNCAxMS42MDU5IDE2LjUzNCAxMS42NTMgMTYuNDE0OSAxMS42OTU3QzE2LjI5NTcgMTEuNzM4MyAxNi4zMDE2IDExLjc0ODMgMTYuMjM4NiAxMS43NzY0TDE2LjA1NzYgMTEuODYyNkMxNS44NDA0IDExLjk3ODYgMTUuNjI5MSAxMi4xMDU0IDE1LjQyNDUgMTIuMjQyNkwxNS4yMzY1IDEyLjM3NjJMMTUuMzc0MyAxMS41ODMxQzE1LjQ1NTUgMTEuNTE0MyAxNS41NDAzIDExLjQ0OTggMTUuNjI4MyAxMS4zODk5QzE1LjgyNjkgMTEuMjQ2IDE2LjAzMzYgMTEuMTEzNSAxNi4yNDcxIDEwLjk5MjlMMTYuNDI1IDEwLjg5OUMxNi40ODI4IDEwLjg3MTMgMTYuNTM3NSAxMC44MzYxIDE2LjU5NTcgMTAuODEzNkwxNi45MTM4IDEwLjY4MDdMMTcuMjM0OCAxMC41ODkyTDE2LjkxMDYgMTAuNjczMUMxNi44MTY2IDEwLjcwMzUgMTYuNzA4MSAxMC43NTA2IDE2LjU4OSAxMC43OTMyQzE2LjQ2OTkgMTAuODM1OSAxNi40NzM0IDEwLjg0ODYgMTYuNDEyOCAxMC44NzM5TDE2LjIzMTggMTAuOTYwMkMxNi4wMTM3IDExLjA3NzEgMTUuODAxNiAxMS4yMDQ4IDE1LjU5NjMgMTEuMzQyOUwxNS4zODgzIDExLjQ4ODRMMTUuNTMwMiAxMC42Nzk0QzE1LjYyNTMgMTAuNjIxOSAxNS43MTYzIDEwLjU1NzggMTUuODAyNCAxMC40ODc1QzE2LjAwMTcgMTAuMzQ0NSAxNi4yMDgzIDEwLjIxMTkgMTYuNDIxMyAxMC4wOTA0TDE2LjU5NjggOS45OTkzOUMxNi42NTcgOS45Njg5MSAxNi43MTE3IDkuOTMzNjUgMTYuNzY5OCA5LjkxMTEyTDE3LjA4NTUgOS43ODEwNEwxNy40MDkgOS42ODY4TDE3LjA4NDggOS43NzA2OUwxNi43NjA4IDkuODkzNThDMTYuNjk5MyA5Ljk5NTM4IDE2LjY0OTYgMTAuMTAzOCAxNi42MTI0IDEwLjIxNjdaIiBmaWxsPSJ3aGl0ZSIvPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF85ODdfNjAyOCI+CjxyZWN0IHdpZHRoPSIzMy4yODI3IiBoZWlnaHQ9IjI5Ljg2OTEiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNjMgMzcuNTQ4OCkgcm90YXRlKDkwKSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=\" data-filename=\"coderabbit_logo.svg\"><br></p>', '2023-09-04', 11, '');
+INSERT INTO `notice` (`idx`, `title`, `content`, `regdate`, `hit`, `file`) VALUES
+(128, '썸머노트', '<p><img style=\"width: 279px;\" src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjc5IiBoZWlnaHQ9IjM1MSIgdmlld0JveD0iMCAwIDI3OSAzNTEiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgo8cmVjdCB3aWR0aD0iMjc5IiBoZWlnaHQ9IjM1MSIgZmlsbD0idXJsKCNwYXR0ZXJuMCkiLz4KPGRlZnM+CjxwYXR0ZXJuIGlkPSJwYXR0ZXJuMCIgcGF0dGVybkNvbnRlbnRVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPgo8dXNlIHhsaW5rOmhyZWY9IiNpbWFnZTBfMjA2XzIxMTIiIHRyYW5zZm9ybT0ibWF0cml4KDAuMDY0MjkyMSAwIDAgMC4wNTExMDQgLTAuNTY5ODkzIC0wLjMwOTExNykiLz4KPC9wYXR0ZXJuPgo8aW1hZ2UgaWQ9ImltYWdlMF8yMDZfMjExMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB4bGluazpocmVmPSJkYXRhOmltYWdlL3BuZztiYXNlNjQsaVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQUNBQUFBQWdDQVlBQUFCemVucjBBQUFBQVhOU1IwSUFyczRjNlFBQUFOOUpSRUZVV0VmdGxXRU9neUFNaGN0VmRMMkxSL1l1RmEreXBRYXdZV05Ra29hWXdDL0F5UHQ0OVZVSGc0Y2JyQThUWURyd1hBZGV5L0xtQkIzbjZlUmNtNm91QjFpUXZBZGMxd1FnMXhvSU5VQVVaNUVjUU82MVFqd1lnQWh3Mis0UzdEc0FZbkxGM29HaEFIemJNTmdGeXRhY0RGc0hoR0F1Rk10aUJzQUhYMG40QWFFVjU3T2FyWW8zS29uTGtwaVZvQ2JlQTZGeVlDaEE2b0FoZnFWdjROcFg5SU5tQjBvQU1vWnBiZ29RQzAzMG5UVEV1eitFSDFVdGpzME9wUGg1WHp0VDFZNVZBQkdpUm1BV3c1cHd6M08xQXowaS85NlpBTk9CNmNBSFVFUzBJWlFIeDhVQUFBQUFTVVZPUks1Q1lJSUEiLz4KPC9kZWZzPgo8L3N2Zz4K\" data-filename=\"piskel_rabbit.svg\"><br></p>', '2023-09-04', 19, '/attention/pdata/notice/20230904115333789195.png'),
+(131, '날짜 확인', '확인', '2023-09-05', 11, '');
 
 -- --------------------------------------------------------
 
@@ -1473,10 +1684,10 @@ INSERT INTO `notice` (`idx`, `title`, `content`, `regdate`, `hit`, `file`) VALUE
 --
 
 CREATE TABLE `sales` (
-  `sid` int NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL COMMENT '강좌명',
-  `userid` varchar(100) COLLATE utf8mb4_general_ci NOT NULL COMMENT '사용자명',
-  `price` int NOT NULL COMMENT '금액',
+  `sid` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL COMMENT '강좌명',
+  `userid` varchar(100) NOT NULL COMMENT '사용자명',
+  `price` int(11) NOT NULL COMMENT '금액',
   `regdate` datetime NOT NULL COMMENT '수강신청 날짜'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -3223,6 +3434,34 @@ INSERT INTO `sales` (`sid`, `name`, `userid`, `price`, `regdate`) VALUES
 (1927, 'CSS', 'fhelliwellpq', 50000, '2023-09-11 19:20:42'),
 (1928, 'Vue', 'cluckspr', 70000, '2023-08-05 08:41:38');
 
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `user_coupons`
+--
+
+CREATE TABLE `user_coupons` (
+  `ucid` int(11) NOT NULL,
+  `couponid` int(11) DEFAULT NULL COMMENT '쿠폰아이디',
+  `userid` varchar(100) DEFAULT NULL COMMENT '유저아이디',
+  `status` int(11) DEFAULT 1 COMMENT '상태',
+  `use_max_date` datetime DEFAULT NULL COMMENT '사용기한',
+  `regdate` datetime DEFAULT NULL COMMENT '등록일',
+  `reason` varchar(100) DEFAULT NULL COMMENT '쿠폰취득사유'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `user_coupons`
+--
+
+INSERT INTO `user_coupons` (`ucid`, `couponid`, `userid`, `status`, `use_max_date`, `regdate`, `reason`) VALUES
+(20, 1, 'fsdfds', 1, '2023-10-12 23:59:59', '2023-09-12 20:34:01', '회원가입'),
+(21, 1, 'rwererew', 1, '2023-10-12 23:59:59', '2023-09-12 20:34:35', '회원가입'),
+(23, 1, 'hoon1', 1, '2023-10-13 23:59:59', '2023-09-13 14:40:22', '회원가입'),
+(24, 1, 'hoon', 1, '2023-10-13 23:59:59', '2023-09-13 14:52:55', '회원가입'),
+(25, 6, 'hoon', 1, '2023-10-13 23:59:59', '2023-09-13 14:52:55', '테스트'),
+(26, 1, 'dadasdadas', 1, '2023-10-14 23:59:59', '2023-09-14 15:09:47', '회원가입');
+
 --
 -- 덤프된 테이블의 인덱스
 --
@@ -3232,6 +3471,14 @@ INSERT INTO `sales` (`sid`, `name`, `userid`, `price`, `regdate`) VALUES
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`idx`);
+
+--
+-- 테이블의 인덱스 `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cartid`),
+  ADD KEY `cart_pid_IDX` (`pid`),
+  ADD KEY `cart_userid_IDX` (`userid`);
 
 --
 -- 테이블의 인덱스 `category`
@@ -3282,6 +3529,12 @@ ALTER TABLE `sales`
   ADD PRIMARY KEY (`sid`);
 
 --
+-- 테이블의 인덱스 `user_coupons`
+--
+ALTER TABLE `user_coupons`
+  ADD PRIMARY KEY (`ucid`);
+
+--
 -- 덤프된 테이블의 AUTO_INCREMENT
 --
 
@@ -3289,55 +3542,67 @@ ALTER TABLE `sales`
 -- 테이블의 AUTO_INCREMENT `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `idx` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- 테이블의 AUTO_INCREMENT `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 테이블의 AUTO_INCREMENT `category`
 --
 ALTER TABLE `category`
-  MODIFY `cid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- 테이블의 AUTO_INCREMENT `class`
 --
 ALTER TABLE `class`
-  MODIFY `pid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- 테이블의 AUTO_INCREMENT `class_clips`
 --
 ALTER TABLE `class_clips`
-  MODIFY `ccid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `ccid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- 테이블의 AUTO_INCREMENT `class_image_table`
 --
 ALTER TABLE `class_image_table`
-  MODIFY `imgid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=362;
+  MODIFY `imgid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=317;
 
 --
 -- 테이블의 AUTO_INCREMENT `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `cid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- 테이블의 AUTO_INCREMENT `members`
 --
 ALTER TABLE `members`
-  MODIFY `mid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
+  MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1022;
 
 --
 -- 테이블의 AUTO_INCREMENT `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `idx` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- 테이블의 AUTO_INCREMENT `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1929;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1929;
+
+--
+-- 테이블의 AUTO_INCREMENT `user_coupons`
+--
+ALTER TABLE `user_coupons`
+  MODIFY `ucid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
