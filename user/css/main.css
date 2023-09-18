@@ -168,9 +168,6 @@ section .text2 {
   background: var(--mint-bg) url('../img/main/img_bag.png') center bottom no-repeat;
   padding: calc(var(--base-unit)*2);
 }
-.pick .pick_card{
-  padding: 15px;
-}
 .pick .pick_card img{
   height: 120px;
 }
@@ -192,5 +189,33 @@ section .text2 {
 }
 .notice > div > a{
   font-weight: bold;
+}
+
+/* aside */
+aside{
+  width: 100px;
+  border: 1px solid var(--gray);
+  bottom: 287px;
+  right: calc(50% + -825px);
+  cursor: pointer;
+}
+
+/* recentView */
+.modal-header{
+ border-bottom: none;
+}
+.modal-footer{
+  border-top: none;
+}
+.modal-body i.bi{
+  font-size: var(--text1-size);
+}
+.modal-footer i.bi{
+  font-size: var(--text2-size);
+}
+.modal-dialog{
+  margin-right: calc(50% + -825px);
+  /* margin-top: 100px; */
+  max-width: 600px;
 }
 /* 혜영 end */

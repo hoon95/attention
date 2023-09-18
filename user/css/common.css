@@ -115,7 +115,7 @@ body{
   font-weight: 400;
 }
 .text4{
-  font-size: var(--text4-size); /* 14px */
+  font-size: var(--text4-size); /* 15px */
   font-weight: 400;
 }
 .text5{
@@ -123,7 +123,7 @@ body{
   font-weight: 400;
 }
 .text6{
-  font-size: var(--text6-size); /* 14px */
+  font-size: var(--text6-size); /* 12px */
   font-weight: 400;
 }
 
@@ -252,9 +252,12 @@ input:focus::placeholder{
   position: relative;
   display: inline-block;
 }
+.search input{
+  padding-right: 35px;
+}
 .search button{
   position: absolute;
-  background: var(--white);
+  /* background: var(--white); */
   padding: 1px 5px 0; 
   top: 6px;
   right: 2px;
@@ -328,6 +331,9 @@ button{
   --bs-btn-hover-bg: var(--mint);
   --bs-btn-hover-border-color: var(--mint);
 }
+.btn-close{
+  --bs-btn-close-focus-shadow: none;
+}
 /* BOX-SHADOW */
 .box_shadow{
   background: var(--white);
@@ -352,6 +358,7 @@ button{
   --bs-pagination-focus-color: var(--mint);
   /* --bs-pagination-focus-box-shadow: inset var(--mint-focus); */
   --bs-pagination-focus-box-shadow: transparent;
+  --bs-pagination-focus-bg: transparent;
   --bs-pagination-active-bg: var(--mint);
   --bs-pagination-active-border-color: var(--mint);
   --bs-pagination-disabled-color: var(--light-gray);
@@ -453,4 +460,17 @@ header .login-btn a {
 }
 header .login-btn a+a {
   width: 80px;
+}
+
+/* top_btn */
+.top_btn{
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--gray);
+  border-radius: 50%;
+  bottom: 227px;
+  right: calc(50% + -800px);
+}
+.top_btn i.bi{
+  font-size: var(--text6-size);
 }
