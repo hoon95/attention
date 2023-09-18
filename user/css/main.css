@@ -4,10 +4,18 @@
 
 .banner .swiper-slide {
   width: 100%;
-  height: 60vh;
+  height: 62vh;
   padding: 82px;
   box-sizing: border-box;
   background: url(../img/main/banner_1.png) no-repeat center / cover;
+}
+
+.banner .swiper-slide .text1{
+  line-height: 1.4;
+}
+.banner .swiper-slide .tt_00{
+  line-height: 1.25;
+  margin-top: calc(var(--base-unit)*2);
 }
 
 .banner .slide2 {
@@ -40,6 +48,18 @@
 }
 /* /banner-slide */
 
+/* cate_list */
+.cate_list{
+  height: 30vh;
+}
+.cate_list img{
+  width: 70px;
+}
+.cate_list ul{
+  margin-top: calc(var(--base-unit)*1.5);
+}
+/* /cate_list */
+
 .mg_bot2 {
   margin-bottom: 48px;
 }
@@ -52,8 +72,13 @@
 
 .new .swiper-slide {
   overflow: hidden;
-  box-shadow: 2px 5px 15px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--card-shadow);
   border-radius: 12px;
+  transition: 0.3s;
+}
+.new .swiper-slide:hover{
+  transform: translateY(-10px);
+  transition: 0.3s;
 }
 
 .new i {
@@ -73,7 +98,7 @@
 
 /* over_pd 그림자 부분이 스와이퍼 자체 hidden 땜에 줌 */
 .over_pd {
-  padding: 5px 0;
+  padding: 15px;
 }
 
 .common_mg {
@@ -109,9 +134,6 @@ section .text2 {
 
 
 /* 혜영 start */
-.sec_mg_t{
-  margin-top: calc(var(--base-unit)*6);
-}
 .card_tt{
   font-weight: bold;
   line-height: 1.25;
@@ -197,31 +219,4 @@ section .text2 {
   font-weight: bold;
 }
 
-/* aside */
-aside{
-  width: 100px;
-  border: 1px solid var(--gray);
-  bottom: 287px;
-  right: calc(50% + -825px);
-  cursor: pointer;
-}
-
-/* recentView */
-.modal-header{
- border-bottom: none;
-}
-.modal-footer{
-  border-top: none;
-}
-.modal-body i.bi{
-  font-size: var(--text1-size);
-}
-.modal-footer i.bi{
-  font-size: var(--text2-size);
-}
-.modal-dialog{
-  margin-right: calc(50% + -825px);
-  /* margin-top: 100px; */
-  max-width: 600px;
-}
 /* 혜영 end */
