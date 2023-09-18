@@ -110,7 +110,7 @@
                 <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]" data-pid="<?= $item->pid ?>">
               </div>
               <div class="d-flex">
-              <a href="#" class="class_s_mr"><i class="bi bi-pencil-square icon_mint"></i></a>
+              <a href="class_modify.php?pid=<?php echo $item->pid ?>" class="class_s_mr"><i class="bi bi-pencil-square icon_mint"></i></a>
                 <form method="post" action="class_delete.php">
                   <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
                   <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까? :0')" class="class_delete">
