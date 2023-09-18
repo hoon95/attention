@@ -26,7 +26,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
 </head>
 <body>
   <header>
-      <nav class="d-flex justify-content-between align-items-center container">
+      <nav class="d-flex justify-content-between align-items-center common_container">
           <h1>
             <a href="/attention/user/index.php">
               <img src="/attention/user/img/main/coderabbit_logo.svg" alt="코드래빗 로고">
