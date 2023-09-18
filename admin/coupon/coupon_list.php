@@ -204,10 +204,8 @@ var_dump($query);
     </nav>
 		<!-- /페이지네이션 -->
 <script>
-	$('.coup_menu').css({backgroundColor: "#252a38"});
-	$('.coup_menu').find('a').css({color: 'white'});
 	$("#status").selectmenu({
-  change: function( event, data ) {
+	change: function( event, data ) {
 		let selected_value = data.item.value;//item으로 받음
 		location.href=`/attention/admin/coupon/coupon_list.php?status=${selected_value}`;
 	}
