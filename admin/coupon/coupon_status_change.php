@@ -1,5 +1,5 @@
 <?php
-	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
+	// include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 	include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
 
   $cid = $_POST['cid'] ;
@@ -21,5 +21,5 @@
   }
 ?> 
 <?php
-  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
+  // include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>
