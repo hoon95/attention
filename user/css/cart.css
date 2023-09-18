@@ -11,6 +11,9 @@ h2{
 .cart_list{
     width: 55vw;
 }
+.coupon{
+    width: 20vw;
+}
 .cart_product_img, .cart_product_price, .cart_product_cancel{
     width: 10%;
 }
@@ -25,9 +28,6 @@ h2{
 }
 .cart_limit{
     color: var(--mint-sub);
-}
-.coupon{
-    width: 20vw;
 }
 .coupon select{
     border: 1px solid #CED4DA !important;
@@ -73,7 +73,7 @@ h2{
 .cart_sale{
     margin-bottom: calc(var(--gap-unit) * 0.75);
 }
-.discount{
+.cart_sale > div span{
     color: var(--orange);
 }
 .grandtotal{
