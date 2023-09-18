@@ -402,16 +402,6 @@ button{
   box-shadow: var(--mint-focus);
   border: var(--bs-border-width) solid var(--mint);
 }
-/*
-.ui-button .ui-icon {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background-image: url(image/arrow_bot.svg);
-  background-position: 0 0;
-  order: 2;
-}
-*/
 
 /* hr */
 hr {
@@ -419,43 +409,12 @@ hr {
   color: var(--gray);
   opacity: 1;
 }
-.posi {
-  position: relative;
-}
 
 /* Container */
 .container {
   max-width: 1272px;
   margin: 0 auto;
   padding: 0;
-}
-
-.common_container {
-  max-width: 1272px;
-  margin: 100px auto;
-}
-
-/* hidden */
-.hidden {
-  display: none;
-}
-
-/* img */
-img{
-  width: 100%;
-  vertical-align: top;
-}
-
- /* Gap */
-.mg {
-  margin: calc(var(--gap-unit)/2) 0;
-}
-.mg_bot {
-  margin-bottom: var(--gap-unit);
-}
-
-.gap {
-  gap: 24px;
 }
 
  /* Header */
