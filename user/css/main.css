@@ -10,6 +10,14 @@
   background: url(../img/main/banner_1.png) no-repeat center / cover;
 }
 
+.banner .swiper-slide .text1{
+  line-height: 1.4;
+}
+.banner .swiper-slide .tt_00{
+  line-height: 1.25;
+  margin-top: calc(var(--base-unit)*2);
+}
+
 .banner .slide2 {
   background-image: url(../img/main/banner_2.png);
 }
@@ -40,12 +48,19 @@
 }
 /* /banner-slide */
 
-/* main_icon */
-.main_icon {
+/* cate_list */
+.cate_list{
   height: 30vh;
 }
+.cate_list img{
+  width: 70px;
+}
+.cate_list ul{
+  margin-top: calc(var(--base-unit)*1.5);
+}
+/* /cate_list */
 
-.main_icon h2 {
+.mg_bot2 {
   margin-bottom: 48px;
 }
 
@@ -74,9 +89,14 @@
 
 .new .swiper-slide {
   overflow: hidden;
-  box-shadow: 2px 5px 15px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--card-shadow);
   border-radius: 12px;
   height: 360px;
+  transition: 0.3s;
+}
+.new .swiper-slide:hover{
+  transform: translateY(-10px);
+  transition: 0.3s;
 }
 
 .new .text_box .text2 {
@@ -104,7 +124,7 @@
 
 /* over_pd 그림자 부분이 스와이퍼 자체 hidden 땜에 줌 */
 .over_pd {
-  padding:  15px;
+  padding: 15px;
 }
 
 .common_mg {
@@ -136,3 +156,93 @@ section .text2 {
     padding: 20px;
   }
 /* /text_box */
+
+
+
+/* 혜영 start */
+.card_tt{
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+/* best */
+.best{
+  background: linear-gradient(var(--mint-bg) 360px, #fff 360px);
+}
+.best .best_list li{
+  overflow: hidden;
+  transition: 0.3s;
+}
+.best .best_list li:hover{
+  transform: translateY(-10px);
+  transition: 0.3s;
+}
+.best .best_list li img{
+  height: 216px;
+}
+.best .best_list .best_box{
+  padding: 20px 15px;
+}
+.best .text5{
+  line-height: var(--base-unit);
+}
+.orange{
+  font-weight: bold;
+}
+
+/* total */
+.total{
+  margin-top: calc(var(--base-unit)*3);
+  padding: var(--base-unit) 0;
+  border: var(--bs-border-width) solid var(--mint);
+  background: rgba(50, 175, 143, .1) ;
+}
+.total img{
+  width: 80px;
+}
+.total span{
+  border: 1px solid var(--mint);
+  margin: var(--base-unit) 0;
+}
+
+/* event */
+.event{
+  background: #313A53 url('../img/main/event_banner.png') right bottom no-repeat;
+  padding: calc(var(--base-unit)*2);
+}
+.event .text1{
+  line-height: 1.25;
+}
+.event .app_box{
+  width: 40%;
+}
+
+/* pick */
+.pick .pick_box{
+  background: var(--mint-bg) url('../img/main/img_bag.png') center bottom no-repeat;
+  padding: calc(var(--base-unit)*2);
+}
+.pick .pick_card img{
+  height: 120px;
+}
+.pick .pick_card{
+  transition: 0.3s;
+}
+.pick .pick_card:hover{
+  transform: translateY(-10px);
+  transition: 0.3s;
+}
+
+/* notice */
+.notice{
+  padding: var(--base-unit) 0;
+}
+.notice .text2{
+  line-height: var(--base-unit);
+  font-weight: bold;
+}
+.notice > div > a{
+  font-weight: bold;
+}
+
+/* 혜영 end */
