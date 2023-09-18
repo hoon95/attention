@@ -6,7 +6,7 @@
       $where = "B.userid = '{$_SESSION['UID']}'";
   }
 
-  $sql = "SELECT A.thumbnail, A.name, A.price_val, A.level, A.sale_end_date, A.date_val, B.cartid FROM class A JOIN cart B ON A.pid = B.pid WHERE $where";
+  $sql = "SELECT A.pid, A.cate, A.thumbnail, A.name, A.price_val, A.level, A.sale_end_date, A.date_val, B.cartid FROM class A JOIN cart B ON A.pid = B.pid WHERE $where";
   $result = $mysqli -> query($sql);
   while($rs = $result->fetch_object()){
       $rsc[]=$rs;
@@ -16,6 +16,10 @@
   $result2 = $mysqli -> query($sql2);
   while($rs2 = $result2 -> fetch_object()){
       $rsc2[]=$rs2;
+  }
+
+  foreach($rsc as $item){
+    $sql3 = "INSERT INTO sales (pid, name, userid, price, cate, thumbnail, sale_end_date, date_val) VALUES ({$item->pid}, '{$item->name}', '{$_SESSION['UID']}', {$item->price_val}, '{$item->cate}', '{$item->thumbnail}', {$item->sale_end_date}, {$item->date_val})";
   }
 ?>
 
@@ -110,7 +114,6 @@
 
   <script src="/attention/user/js/jquery.number.min.js"></script>
   <script>
-    
     function cartCalc(){
         let subtotal = 0;
         $('.cart_area tr').each(function(){
@@ -173,8 +176,6 @@
                           }
                       }
                   });
-                }else{
-                    alert('초기화를 취소했습니다');
                 }
         })
         $('.subtotal').text(subtotal);
