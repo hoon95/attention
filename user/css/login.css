@@ -21,9 +21,6 @@
 .login form input{
   margin-bottom: 13px;
 }
-.login form button{
-  margin-bottom: 17px;
-}
 .login_id{
   display: inline-block;
 }
@@ -32,7 +29,7 @@
 }
 .login_link{
   width: 312px;
-  margin: 0 auto 25px;
+  margin: 17px auto 25px;
 }
 .login_find{
   width: 156px;
@@ -47,4 +44,9 @@
 }
 .login_sns li img{
   width: 2vw;
+}
+.login .pw_icon{
+  font-size: 18px;
+  vertical-align: -5px;
+  padding-right: 10px;
 }
