@@ -5,11 +5,10 @@
 <link rel="stylesheet" href="/attention/user/css/signup.css">
 <div class="container">
   <h2 class="text-center tt_03 mb-3">회원가입</h2>
-
   <form action="signup_ok.php" class="signup" method="POST" id="signup_form">
     <div class="mb-3 signup_name">
       <label for="username" class="form-label">이름</label>
-      <input type="text" name="username" id="username" class="form-control mb-2"placeholder="홍길동">
+      <input type="text" name="username" id="username" class="form-control mb-2" placeholder="홍길동">
       <span class="hidden warning">이름을 입력하세요</span>
     </div>
     <div class="mb-3 signup_id">
@@ -45,7 +44,6 @@
       </div>
     </div>
   </form>
-
 </div>
 <script>
   // input 값이 입력될 때마다 경고 문구 제거

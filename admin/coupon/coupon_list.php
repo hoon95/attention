@@ -84,8 +84,8 @@
 				<select name="status" id="status"  aria-label="대기설정 변경">
 					<option disabled value="">쿠폰 활성화 선택</option>
 					<option value="" <?php if($status=='') {echo "selected"; } ?> >전체 쿠폰</option>
-					<option value="활성화"  <?php if($status=='활성화') {echo "selected"; } ?> >활성된 쿠폰</option>
-					<option value="비활성화" <?php if($status=='비활성화') {echo "selected"; } ?> >비활성된 쿠폰</option>
+					<option value="1"  <?php if($status=='1') {echo "selected"; } ?> >활성된 쿠폰</option>
+					<option value="0" <?php if($status=='0') {echo "selected"; } ?> >비활성된 쿠폰</option>
 				</select>
 					<a href="coupon_list.php" class="btn btn-primary">
 						<span>목록</span>
@@ -139,7 +139,7 @@
 						</div>
 						<div class="coup_icon d-flex flex-column align-items-end justify-content-lg-end">
 							<div class="form-check form-switch coup_status_toggle">
-								<input class="form-check-input" type="checkbox" role="switch" value="<?= $item->status ?>" <?php if ($item->status == "활성화") {echo "checked";} else{echo '';} ?>>							
+								<input class="form-check-input" type="checkbox" role="switch" value="<?= $item->status ?>" <?php if ($item->status == "1") {echo "checked";} else{echo '';} ?>>							
 							</div>
 							<div class="coup_common_icon d-flex">
 								<a href = "coupon_modify.php?cid=<?= $item-> cid ?>" class="bi bi-pencil-square icon_mint"></a>
@@ -162,7 +162,7 @@
       ?>  
 	</div>
 		<!-- 페이지네이션 -->
-		<nav aria-label="페이지네이션" class="space">
+	<nav aria-label="페이지네이션" class="space">
       <ul class="pagination justify-content-center align-items-center">
         <?php
           if($pageNumber>1){                   
@@ -216,9 +216,9 @@
 
 		//check 되면 1 아니면 0을 value로 넘기기
 		if(coup_toggle.prop('checked')) {
-			coup_toggle.val("활성화");
+			coup_toggle.val("1");
 		}else {
-			coup_toggle.val("비활성화");
+			coup_toggle.val("0");
 		}
 		console.log(coup_toggle.val());
 		
@@ -241,7 +241,7 @@
 			},
 			success: function(return_data){
 				console.log(return_data.result);
-				if(return_data.result == '활성화'){
+				if(return_data.result == '1'){
 					alert('변경되었습니다.');
 					location.reload();//새로고침
 				} else{

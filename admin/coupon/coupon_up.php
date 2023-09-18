@@ -35,11 +35,11 @@
 					<th class="tt_03">쿠폰설정</th>
 						<td class="coupon_status_box d-flex">
 							<div class="coup_type coupon_status">
-								<input type="radio" name="status" checked value="활성화" id="price">
+								<input type="radio" name="status" checked value="1" id="price">
 								<label for="price" class="status">활성화</label>
 							</div>
 							<div class="coup_type coupon_status">
-								<input type="radio" name="status" value="비활성화" id="ratio">
+								<input type="radio" name="status" value="0" id="ratio">
 								<label for="ratio" class="status">비활성화</label>
 							</div>
 					</td>
