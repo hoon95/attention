@@ -46,12 +46,12 @@ footer address span:last-child:after,
 .business_number:after{
   content: none;
 }
+footer a:hover{
+  text-decoration: underline;
+}
 footer .footer_sns{
   gap: 25px;
 }
 footer .footer_sns li a:hover{
-  opacity: .6;
-}
-footer a:hover{
-  text-decoration: underline;
+  opacity: .65;
 }
