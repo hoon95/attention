@@ -11,3 +11,9 @@
 .my_list i.bi{
   color: var(--mint);
 }
+.my_list .play_btn{
+  position: absolute;
+  padding: 1rem;
+  bottom: 0;
+  right: 0;
+}
