@@ -1,6 +1,6 @@
 .login{
   text-align: center;
-  margin-top: 312px;
+  margin: 312px 0 268px 0;
 }
 .login h1{
   margin-bottom: 13px;
@@ -47,3 +47,4 @@
   vertical-align: -5px;
   padding-right: 10px;
 }
+
