@@ -18,8 +18,10 @@
       $rsc2[]=$rs2;
   }
 
-  foreach($rsc as $item){
-    $sql3 = "INSERT INTO sales (pid, name, userid, price, cate, thumbnail, sale_end_date, date_val) VALUES ({$item->pid}, '{$item->name}', '{$_SESSION['UID']}', {$item->price_val}, '{$item->cate}', '{$item->thumbnail}', {$item->sale_end_date}, {$item->date_val})";
+  if(isset($rsc)){
+    foreach($rsc as $item){
+      $sql3 = "INSERT INTO sales (pid, name, userid, price, cate, thumbnail, sale_end_date, date_val) VALUES ({$item->pid}, '{$item->name}', '{$_SESSION['UID']}', {$item->price_val}, '{$item->cate}', '{$item->thumbnail}', {$item->sale_end_date}, {$item->date_val})";
+    }
   }
 ?>
 
@@ -62,7 +64,11 @@
             <td class="cart_product_price text1 number"><span><?= $item->price_val ?></span></td>
             <td class="cart_product_cancel text-end"><button class="cart_item_del"><i class="bi bi-x-square"></i></button></td>
           </tr>
-          <?php }} ?>
+          <?php }}else{ ?>
+            <tr class="d-flex justify-content-center align-items-center">
+              <td>장바구니가 비었습니다</td>
+            </tr>
+          <?php } ?>
         </tbody>
       </table>
       <div class="cart_button d-flex justify-content-end">
@@ -205,9 +211,8 @@
         e.preventDefault();
         if(confirm('결제 하시겠습니까?')){
             let userid = '<?= $_SESSION['UID']; ?>'
-            
             let data = {
-                mid: ucid,
+                ucid: ucid,
                 userid: userid
             }
             $.ajax({
@@ -221,10 +226,10 @@
                     },
                     success: function(data){
                         if(data.result == 'ok'){
-                            alert('결제 완료');
-                            location.href = "/attention/cart/cart.php"
+                            alert('결제가 완료되었습니다.');
+                            location.href = "/attention/user/my_class/my_class.php"
                         }else{
-                            alert('결제 실패');
+                            alert('결제에 실패하였습니다.');
                             location.reload();
                         }
                     }
