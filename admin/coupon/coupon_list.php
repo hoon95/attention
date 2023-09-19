@@ -253,7 +253,7 @@
 			success: function(return_data){
 				console.log(return_data.result);
 				if(return_data.result == '1'){
-					alert('변경되었습니다.');
+					// alert('변경되었습니다.');
 					location.reload();//새로고침
 				} else{
 					alert('변경에 실패되었습니다.');

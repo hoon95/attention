@@ -68,7 +68,7 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
                   </div>
                 </div>
                 <div class="login_icon_box d-flex align-items-center justify-content-between">
-                  <a href="coupon.html"><i class="bi bi-ticket-perforated"><span>쿠폰</span></i></a>
+                  <a href="coupon.php"><i class="bi bi-ticket-perforated"><span>쿠폰</span></i></a>
                   <a href=""><i class="bi bi-mortarboard"><span>내 강의실</span></i></a>
                 </div>
               </div>

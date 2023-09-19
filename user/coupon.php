@@ -1,11 +1,13 @@
 <?php
+  session_start();
+  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/dbcon.php';
 
 	$where = '';
 	if(isset($_SESSION['UID'])){
 			$where = "B.userid = '{$_SESSION['UID']}'";
 	}
 
-  $sql2 = "SELECT A.coupon_name, B.ucid, A.coupon_price, A.coupon_image FROM coupons A JOIN user_coupons B ON A.cid = B.couponid  WHERE B.userid = '{$_SESSION['UID']}' AND B.use_max_date > now() AND A.status = 1 AND B.status = 1";
+  $sql2 = "SELECT A.coupon_name, B.ucid, A.coupon_price, A.coupon_image , A.regdate,  B.use_max_date FROM coupons A JOIN user_coupons B ON A.cid = B.couponid  WHERE B.userid = '{$_SESSION['UID']}' AND B.use_max_date > now() AND A.status = 1 AND B.status = 1";
   $result2 = $mysqli -> query($sql2);
   while($rs2 = $result2 -> fetch_object()){
       $rsc2[]=$rs2;
@@ -106,18 +108,16 @@
           if(isset($rsc2)){
               foreach($rsc2 as $item){
           ?>
-        <div class="col white_back d-flex align-items-center position-relative" data-id="<?= $item->cid ?>">
-          <div class="coup_box container_cr d-flex justify-content-between align-items-center">
-            <div class="coup_thumbnail">
-              <img src="img/coup/coup_js.png" alt="">
-            </div>
-            <div class="coup_text">
-              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
-              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
-              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
-            </div>
-          </div>  
-        </div>
+        <div class="col white_back d-flex justify-content-between align-items-center" data-id="$item->cid">
+          <div class="coup_thumbnail">
+            <img src="<?= $item->coupon_image ?>" alt="<?= $item->coupon_name ?>">
+          </div>
+          <div class="coup_text">
+            <h3 class="tt_02"><?= $item->coupon_price ?><span class="text3">할인</span></h3>
+            <p class="text3"><?= $item->coupon_name ?></p>
+            <p class="text4"><span><?= $item->regdate ?></span><span><?= $item->use_max_date ?></span></p>
+          </div>
+        </div>  
       </div>
 			<?php
         } //foreach

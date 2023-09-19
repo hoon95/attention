@@ -98,7 +98,7 @@ form .row-cols-3>* {
   box-shadow: 2px 3px 9px 0px rgba(0, 0, 0, 0.55);
 }
 
-.coup_list .coup_box .coup_thumbnail {
+.coup_list .coup_thumbnail {
   display: inline-block;
   width: 180px;
   height: 120px;
@@ -106,16 +106,16 @@ form .row-cols-3>* {
   box-sizing: border-box;
   overflow: hidden;
 }
-.coup_list .coup_box .coup_thumbnail img {
+.coup_list .coup_thumbnail img {
   width: 100%;
   height: 100%;
 }
 
-.coup_list .coup_box .coup_text .text3 {
+.coup_list .coup_text .text3 {
   margin: 15px 0;
 }
 
-.coup_list .coup_box .coup_day {
+.coup_list .coup_day {
   display: inline-block;
   width: 32px;
   height: 18px;
