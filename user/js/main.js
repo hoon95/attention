@@ -1,12 +1,3 @@
-/* Header */
-$(".main_admin").on("mouseenter" , function() {
-  $(".login_mypage ").show();
-});
-$(".main_admin").on("mouseleave" , function() {
-  $(".login_mypage ").hide();
-});
-/* /Header */
-
 /* Banner slide */
 const mainSwiper = new Swiper(".banner-slide", {
     spaceBetween: 30,

@@ -475,10 +475,9 @@ header .login-ok-btn > div:hover > a > i {
 .main_admin .login_mypage {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 160%;
   right: -24px;
-  width: 292px;
-  height: 250px;
+  width: 288px;
   box-shadow: 2px 3px 9px 0px rgba(0, 0, 0, 0.55);
   z-index: 999;
   background-color: var(--white);
@@ -488,21 +487,17 @@ header .login-ok-btn > div:hover > a > i {
   content: "";
   display: block;
   position: absolute;
-  width: 22px;
-  height: 20px;
-  top: -20px;
-  right: 13px;
-  border-bottom: 20px solid var(--white);
-  border-left: 22px solid transparent;
-  border-right: 22px solid transparent;
+  width: 15px;
+  height: 18px;
+  top: -18px;
+  right: 20px;
+  border-bottom: 15px solid var(--white);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
   filter: drop-shadow(0px -3px 2px rgba(0, 0, 0, 0.08));
 }
 .login_mypage .login_content {
   height: 100%;
-}
-
-.login_mypage .login_box {
-  padding: 20px;
 }
 
 .login_mypage .thumbnail {
@@ -510,7 +505,8 @@ header .login-ok-btn > div:hover > a > i {
   width: 80px;
   height: 80px;
   border-radius: 50px;
-  background-color:var(--light-gray);
+  border: var(--mint) solid 1px;
+  background-color: rgba(50, 175, 143, .1);
   padding: 15px;
   margin: 12px 0;
   box-sizing: border-box;
@@ -524,18 +520,25 @@ header .login-ok-btn > div:hover > a > i {
 
 .login_mypage .login_icon_box {
   gap: 8px;
+  width: 100%;
 }
 
 .login_mypage .login_icon_box a {
-  display: inline-block;
-  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--bs-border-radius);
   padding: 8px 10px;
   box-sizing: border-box;
-  background-color:var(--light-gray);
+  background-color:var(--mint-bg);
+  border: 1px solid var(--mint-bg);
+
 }
 
-.login_mypage .login_icon_box a:hover > * {
+.login_mypage .login_icon_box a:hover {
   color: var(--mint);
+  background: var(--white);
+  border: 1px solid var(--mint);
 }
 
 .login_mypage .login_icon_box a span {
@@ -546,14 +549,6 @@ header .login-ok-btn > div:hover > a > i {
   content: "\F6CA";
 }
 
-.login_mypage .login_bot {
-  padding: 10px 20px;
-  border-top: 1px solid var(--dark-gray);
-}
-.login_mypage .login_bot a:hover {
-  color: var(--mint);
-  border-bottom: 1px solid var(--mint);
-}
 /* /login mypage */
 
 /* recent */
