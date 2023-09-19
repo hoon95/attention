@@ -33,9 +33,9 @@
   padding-bottom: 14px;
 }
 
-.mg_bot2 {
+/* .mg_bot2 {
   margin-bottom: calc( var(--gap-unit)*2);
-}
+} */
 
 .coup_content .coup_right {
   gap: 0 18px;

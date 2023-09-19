@@ -1,3 +1,18 @@
+<?php
+
+	$where = '';
+	if(isset($_SESSION['UID'])){
+			$where = "B.userid = '{$_SESSION['UID']}'";
+	}
+
+  $sql2 = "SELECT A.coupon_name, B.ucid, A.coupon_price, A.coupon_image FROM coupons A JOIN user_coupons B ON A.cid = B.couponid  WHERE B.userid = '{$_SESSION['UID']}' AND B.use_max_date > now() AND A.status = 1 AND B.status = 1";
+  $result2 = $mysqli -> query($sql2);
+  while($rs2 = $result2 -> fetch_object()){
+      $rsc2[]=$rs2;
+  }
+	 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,67 +102,11 @@
     </section>
     <form action="" method="" class="mg_top sub_mg_b">
       <div class="row row-cols-3 coup_list gap">
-        <div class="col white_back d-flex align-items-center position-relative">
-          <div class="coup_box container_cr d-flex justify-content-between align-items-center">
-            <div class="coup_thumbnail">
-              <img src="img/coup/coup_js.png" alt="">
-            </div>
-            <div class="coup_text">
-              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
-              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
-              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
-            </div>
-          </div>  
-        </div>
-        <div class="col white_back d-flex align-items-center position-relative">
-          <div class="coup_box container_cr d-flex justify-content-between align-items-center">
-            <div class="coup_thumbnail">
-              <img src="img/coup/coup_js.png" alt="">
-            </div>
-            <div class="coup_text">
-              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
-              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
-              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
-            </div>
-          </div>  
-        </div>
-        <div class="col white_back d-flex align-items-center position-relative">
-          <div class="coup_box container_cr d-flex justify-content-between align-items-center">
-            <div class="coup_thumbnail">
-              <img src="img/coup/coup_js.png" alt="">
-            </div>
-            <div class="coup_text">
-              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
-              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
-              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
-            </div>
-          </div>  
-        </div>
-        <div class="col white_back d-flex align-items-center position-relative">
-          <div class="coup_box container_cr d-flex justify-content-between align-items-center">
-            <div class="coup_thumbnail">
-              <img src="img/coup/coup_js.png" alt="">
-            </div>
-            <div class="coup_text">
-              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
-              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
-              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
-            </div>
-          </div>  
-        </div>
-        <div class="col white_back d-flex align-items-center position-relative">
-          <div class="coup_box container_cr d-flex justify-content-between align-items-center">
-            <div class="coup_thumbnail">
-              <img src="img/coup/coup_js.png" alt="">
-            </div>
-            <div class="coup_text">
-              <h3 class="tt_02">10,000원<span class="text3">할인</span></h3>
-              <p class="text3">코드래빗 신규 가입 감사쿠폰</p>
-              <p class="text4">2023.09.11~2023.09.17<span class="coup_day">D-7</span></p>
-            </div>
-          </div>  
-        </div>
-        <div class="col white_back d-flex align-items-center position-relative">
+			<?php
+          if(isset($rsc2)){
+              foreach($rsc2 as $item){
+          ?>
+        <div class="col white_back d-flex align-items-center position-relative" data-id="<?= $item->cid ?>">
           <div class="coup_box container_cr d-flex justify-content-between align-items-center">
             <div class="coup_thumbnail">
               <img src="img/coup/coup_js.png" alt="">
@@ -160,8 +119,18 @@
           </div>  
         </div>
       </div>
+			<?php
+        } //foreach
+      } else {    
+      ?>  
+      <div>
+        <span>사용하실 수 있는 쿠폰이 없습니다.</span>
+			</div>
+      <?php
+        }  
+      ?>  
     </form>
-  </main>
+	</main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>

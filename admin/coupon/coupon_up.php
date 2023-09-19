@@ -49,11 +49,11 @@
 						<td class="coup_type_box d-flex">
 							<div class="d-flex">
 								<div class="coup_type coup_date">
-									<input type="radio" name="regdate" checked value="무제한" id="infinite_date_box">
+									<input type="radio" name="regdate" checked value="0" id="infinite_date_box">
 									<label for="infinite_date_box" class="infinite_date">무기한</label>
 								</div>
 								<div class="coup_type coup_date">
-									<input type="radio" name="regdate" value="제한" id="day_date_box">
+									<input type="radio" name="regdate" id="day_date_box">
 									<label for="day_date_box" class="day_date">제한</label>
 								</div>
 							</div>

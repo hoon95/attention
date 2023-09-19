@@ -52,7 +52,7 @@
   $sql = "INSERT INTO coupons 
     (coupon_name, coupon_image, coupon_price,  status, regdate) 
     VALUES 
-    ('{$coupon_name}', '{$coupon_image}', {$coupon_price}, {$status} , '{$regdate}')";
+    ('{$coupon_name}', '{$coupon_image}', {$coupon_price}, {$status} , {$regdate} )";
   // var_dump($sql);
   $result = $mysqli -> query($sql);
   

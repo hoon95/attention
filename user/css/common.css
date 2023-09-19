@@ -88,6 +88,10 @@ body{
 .mg_bot {
   margin-bottom: var(--gap-unit);
 }
+.mg_top {
+  margin-top: var(--gap-unit);
+}
+
 .gap {
   gap: 24px;
 }

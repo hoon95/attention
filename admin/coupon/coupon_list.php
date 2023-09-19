@@ -140,9 +140,9 @@
 						<div class="coup_text">
 							<h3 class="text2"><?= $item -> coupon_name ?></h3>
 							<p class="text3">할인액: <?= $item -> coupon_price ?>원</p>
-							<p class="text4 <?php if ($item->regdate == '무제한') echo 'coup_board'; ?>">
+							<p class="text4 <?php if ($item->regdate == '0') echo 'coup_board'; ?>">
 								<?php 
-										if ($item->regdate == '무제한') {
+										if ($item->regdate == '0') {
 											echo "무기한"; 
 										} else {
 											echo "기한: " . $item->regdate . "개월";
