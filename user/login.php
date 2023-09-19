@@ -16,7 +16,7 @@ if(isset($_SESSION['UID'])){
           </div>
           <div>
             <span class="search">
-              <input type="password" name="userpw" id="userpw" class="search form-control" placeholder="비밀번호" required>
+              <input type="password" name="userpw" id="userpw" class="user_pw search form-control" placeholder="비밀번호" required>
               <button type="button"><i class="pw_icon bi bi-eye-slash icon_gray"></i></button>
             </span>
           </div>
@@ -38,7 +38,19 @@ if(isset($_SESSION['UID'])){
           </ul>
       </div>
     </div>
-    
+  <script>
+    // 비밀번호 보기 기능
+    $('.pw_icon').click(function(){
+      $('.user_pw').toggleClass('active');
+        if($('.user_pw').hasClass('active')){
+          $('.user_pw').attr('type', 'text');
+          $(this).attr('class','bi-eye');
+        } else{
+          $('.user_pw').attr('type', 'password');
+          $(this).attr('class','bi-eye-slash');
+        }
+    })
+  </script>
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';
 ?>
