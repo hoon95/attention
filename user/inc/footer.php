@@ -50,7 +50,7 @@
         <img src="/attention/user/img/main/footer_coderabbit_logo.svg" alt="코드래빗 로고">
       </div>
       <address>
-        <p><a href="">코드래빗 소개</a><a href="">코드래빗 강좌리스트</a><a href="">코드래빗 공지사항</a><a href="#">개인정보처리방침</a><a href="#">이용약관</a></p>
+        <p><a href="#">코드래빗 소개</a><a href="/attention/user/product_whole_list.php">코드래빗 강좌리스트</a><a href="/attention/user/notice.php">코드래빗 공지사항</a><a href="#">개인정보처리방침</a><a href="#">이용약관</a></p>
         <ul>
           <li><span>&lbbrk;주&rbbrk;코드래빗</span><span>대표자&#58; Attention</span><span class="business_number">사업자번호&#58; 000&#45;00&#45;00000</span><a href="#" class="business_address">사업자 정보 확인</a></li>
           <li><span>통신판매업&#58; 0000&#45;서울종로&#45;0000</span><span>개인정보보호책임자&#58; Attention</span><span>이메일&#58; <a href="mailto:attention804@gmail.com">attention804&commat;gmail.com</a></span></li>
