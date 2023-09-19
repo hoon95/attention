@@ -23,3 +23,6 @@ label{
 .sns img{
     width: 3vw;
 }
+.hidden{
+    display: none;
+}
