@@ -1,12 +1,12 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
 
-if(isset($_SESSION['UID'])){
-    
-      echo "<script>
-        alert('이미 로그인 하셨습니다.');
-        location.href = '/attention/user/index.php';
-      </script>";
+  if(isset($_SESSION['UID'])){
+      
+    echo "<script>
+      alert('이미 로그인 하셨습니다.');
+      location.href = '/attention/user/index.php';
+    </script>";
    
   }
 ?>
