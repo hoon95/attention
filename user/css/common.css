@@ -558,6 +558,14 @@ header .login-ok-btn > div:hover > a > i {
   bottom: 292px;
   right: calc(50% + -825px);
   cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+#recent.active{
+  opacity: 1;
+	visibility: visible;
+  transition: 0.3s;
 }
 
 /* recentView */
@@ -594,7 +602,14 @@ header .login-ok-btn > div:hover > a > i {
   border-radius: 50%;
   bottom: 231px;
   right: calc(50% + -800px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
 }
 .top_btn i.bi{
   font-size: var(--text6-size);
+}
+.top_btn.active{
+  opacity: 1;
+	visibility: visible;
 }

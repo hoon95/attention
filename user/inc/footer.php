@@ -40,7 +40,7 @@
   </div>
 </div>
 
-<footer class="white dark_blue_back">
+  <footer class="white dark_blue_back">
     <div class="container_cr d-flex justify-content-between">
       <div class="d-flex align-items-center">
         <img src="/attention/user/img/main/footer_coderabbit_logo.svg" alt="코드래빗 로고">
@@ -62,6 +62,7 @@
       </ul>
     </div>
   </footer>
+
   <script>
     $( function() {
       $( "#select" ).selectmenu();
@@ -70,6 +71,30 @@
     $('#recent').click(function(){
       $('#recentView').modal('show');
     });
+
+    /* top_btn,recent */
+    let recent = $('#recent'),
+        topBtn = $('.top_btn'),
+        windowHeight = $(window).height(),
+        topOffset = windowHeight / 3,
+        topScroll = 0;
+
+    $(window).scroll(() => {
+      topScroll = $(window).scrollTop();
+      if (topScroll > topOffset) {
+        recent.addClass('active');
+        topBtn.addClass('active');
+      } else {
+        recent.removeClass('active');
+        topBtn.removeClass('active');
+      }
+    });
+
+    topBtn.on('click', function(e){
+      e.preventDefault();
+      $('html, body').animate({ scrollTop: 0 }, 'linear');
+    });
+    /* /top_btn,recent */
 
     /* Header */
     $(".main_admin").on("mouseenter" , function() {
