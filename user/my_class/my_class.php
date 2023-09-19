@@ -1,68 +1,68 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
-
-  $where = '';
-  if(isset($_SESSION['UID'])){
-      $where = "B.userid = '{$_SESSION['UID']}'";
-  }
-
-  $sql = "SELECT A.pid, A.cate, A.name, A.thumbnail, A.sale_end_date, B.userid FROM class A JOIN cart B ON A.pid = B.pid WHERE $where";
+  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/user_check.php';
+  
+  
+  $sql = "SELECT A.pid, A.name, A.cate, A.thumbnail, A.sale_end_date, A.date_val, A.price_val FROM class A JOIN sales B ON A.pid = B.pid WHERE userid='{$_SESSION['UID']}'";
   $result = $mysqli -> query($sql);
   while($rs = $result->fetch_object()){
-      $rsc[]=$rs;
+    $rsc[]=$rs;
   }
-  foreach($rsc as $item){
-    $msql = "INSERT INTO sales (pid, userid, cate, name, thumbnail, sale_end_date) VALUES ({$item->pid}, '{$_SESSION['UID']}', '{$item->cate}', '{$item->name}', '{$item->thumbnail}')";
-    var_dump($msql);
-  }
-
-
 ?>
+  <link rel="stylesheet" href="/attention/user/css/my_class.css">
 
-<main class="container_cr">
-    <section class="sec_mg_t">
+  <main class="container_cr">
+    <section class="sub_mg_t">
       <h2 class="tt_01">내 강의실</h2>
-      <p class="text2 gray mt-2">현재 수강 중인 강의 목록</p>
-      <form action="" id="search_form" class="text-end mb-4">
-        <div class="search col-3">
-          <input type="text" name="search" id="search" class="form-control" placeholder="강의명을 입력하세요">
-          <button type="submit"><i class="bi bi-search icon_mint"></i></button>
-        </div>
-      </form>
-      <ul class="my_list d-flex flex-wrap justify-content-between">
-        <li class="radius_medium box_shadow p-3 mb-4">
-          <a href="">
-            <p class="card_tt mb-3">[코드래빗x코드캠프] 훈훈한 JavaScript</p>
+      <p class="text2 gray mt-2 mb-4">현재 수강 중인 강의 목록</p>
+      <ul class="my_list d-flex flex-wrap align-content-between gap-4">
+        <!-- 강의 출력 -->
+        <?php foreach($rsc as $r){ ?>
+        <li class="radius_medium box_shadow p-3 position-relative">
+          <a href="/attention/user/product/product_view?pid=<?= $r->pid ?>">
+            <p class="card_tt mb-3"><?= $r->name ?></p>
             <div class="d-flex">
-              <img src="img/main/new_6.png" alt="썸네일 이미지" class="col-5 radius_medium">
-              <div class="ps-4 pt-2 col">
-                <p class="text5 dark_gray mb-3">코드캠프</p>
-                <p class="text5 dark_gray mb-3">기한 : 무기한</p>
-                <i class="bi material-symbols-outlined ms-auto">play_circle</i>
+              <img src="<?= $r->thumbnail ?>" alt="썸네일 이미지" class="col-5 radius_medium">
+              <div class="ps-4 col">
+                <p class="text5 dark_gray py-3">코드캠프</p>
+                <p class="text5 dark_gray">기한 : 
+                  <?php if($r->sale_end_date == '0'){echo '무기한';}else{echo $r->date_val; ?>개월<?php }; ?>
+                </p>
               </div>
             </div>
           </a>
+          <button class="play_btn">
+            <i class="bi material-symbols-outlined ms-auto">play_circle</i>
+          </button>
         </li>
+        <?php } ?>
+        <!-- /강의 출력 -->
       </ul>
     </section>
     
-    <section class="sec_mg">
+    <section class="mt-5 sub_mg_b">
       <h3 class="tt_02">이런 강의는 어떠세요?</h3>
       <p class="text2 gray mt-2">샘플 강의를 들어보세요!</p>
-      <ul class="my_list d-flex flex-wrap justify-content-between mt-4">
-        <li class="radius_medium box_shadow p-3">
+      <ul class="my_list d-flex flex-wrap justify-content-between mt-4 gap-4">
+        <?php foreach($rsc as $r){ ?>
+        <li class="radius_medium box_shadow p-3 position-relative">
           <a href="">
-            <p class="card_tt mb-3">[코드래빗x코드캠프] 훈훈한 JavaScript</p>
+            <p class="card_tt mb-3"><?=  $r->name ?></p>
             <div class="d-flex">
-              <img src="img/main/new_6.png" alt="썸네일 이미지" class="col-5 radius_medium">
-              <div class="ps-4 pt-2 col">
-                <p class="text5 dark_gray mb-3">코드캠프</p>
-                <p class="text5 dark_gray mb-3">기한 : 무기한</p>
-                <i class="bi material-symbols-outlined ms-auto">play_circle</i>
+              <img src="<?= $r->thumbnail ?>" alt="썸네일 이미지" class="col-5 radius_medium">
+              <div class="ps-4 col">
+                <p class="text5 dark_gray py-3">코드캠프</p>
+                <p class="text5 dark_gray">기한 : 
+                  <?php if($r->sale_end_date == '0'){echo '무기한';}else{echo $r->date_val; ?>개월<?php }; ?>
+                </p>
               </div>
             </div>
           </a>
+          <button class="play_btn">
+            <i class="bi material-symbols-outlined ms-auto">play_circle</i>
+          </button>
         </li>
+        <?php } ?>
       </ul>
     </section>
   </main>
