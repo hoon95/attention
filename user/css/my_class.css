@@ -1,9 +1,3 @@
-.sec_mg_t{
-  margin-top: calc(var(--base-unit)*6);
-}
-.sec_mg{
-  margin: calc(var(--base-unit)*4) 0;
-}
 #search_form{
   margin-top: -18px;
 }
