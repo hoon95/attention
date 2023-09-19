@@ -9,8 +9,8 @@
 
 <aside id="recent" class="radius_medium position-fixed text-center d-flex flex-wrap px-2 py-3 gap-3 white_back z-2">
   <p class="text5 m-auto">최근 본 강의</p>
-  <img src="img/main/new_7.png" alt="썸네일 이미지">
-  <img src="img/main/new_7.png" alt="썸네일 이미지">
+  <img src="/attention/user/img/main/new_7.png" alt="썸네일 이미지">
+  <img src="/attention/user/img/main/new_7.png" alt="썸네일 이미지">
 </aside>
 
 <!-- recentView Modal -->
@@ -26,7 +26,7 @@
 
         <div class="radius_medium box_shadow p-3 d-flex align-items-start mt-4">
           <a href="" class="d-flex">
-            <img src="img/main/new_8.png" alt="썸네일 이미지" class="col-4">
+            <img src="/attention/user/img/main/new_8.png" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-2">
               <p class="card_tt mb-4">Typescript with Vue 실전 프로젝트</p>
               <p class="text5 dark_gray mb-3">성도희</p>
@@ -66,7 +66,6 @@
       </ul>
     </div>
   </footer>
-  <script src="js/main.js"></script>
   <script>
     $( function() {
       $( "#select" ).selectmenu();
@@ -75,6 +74,15 @@
     $('#recent').click(function(){
       $('#recentView').modal('show');
     });
+
+    /* Header */
+    $(".main_admin").on("mouseenter" , function() {
+      $(".login_mypage ").show();
+    });
+    $(".main_admin").on("mouseleave" , function() {
+      $(".login_mypage ").hide();
+    });
+    /* /Header */
 
     //사업자 등록 번호
     let url =

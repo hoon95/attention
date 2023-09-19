@@ -1,7 +1,10 @@
 /* banner */
 .banner{
   background: url(../img/main/notice_banner.png) no-repeat center center;
-  height: 288px;
+  height: 240px;
+}
+.banner .tt_01{
+  font-size: 32px;
 }
 
 /* table */
@@ -18,4 +21,8 @@ table .board_bd{
   height: calc(var(--base-unit)*3);
   /* height: calc(var(--base-unit)*2.5); */
   border-bottom: 1px solid var(--gray);
+}
+table i.bi.bi-link-45deg{
+  font-size: var(--text2-size);
+  color: var(--black);
 }
