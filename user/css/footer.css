@@ -46,9 +46,12 @@
   .business_number:after{
     content: none;
   }
+  footer a:hover{
+    text-decoration: underline;
+  }
   footer .footer_sns{
     gap: 25px;
   }
-  footer a:hover{
-    text-decoration: underline;
+  footer .footer_sns li a:hover{
+    opacity: .65;
   }
