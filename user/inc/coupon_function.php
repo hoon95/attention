@@ -14,9 +14,9 @@ function user_coupon($mysqli, $uid, $num ,$reason){ //만기일(발행날부터 
   if($month == 0) {
     $duedate = 0; 
   } else{
-    $duedate = date("Y-m-d 23:59:59", strtotime(+$month));//쿠폰
+    $duedate = date("Y-m-d", strtotime(+$month));//쿠폰
   }
-
+// var_dump($month);
   // $duedate = date("Y-m-d 23:59:59", strtotime(+$month));//쿠폰
   // $duedate = date("Y-m-d 23:59:59", strtotime("+30 days"));//regdate //여기는 값마니하고 페이지에서 나오게 //회원가입
 
