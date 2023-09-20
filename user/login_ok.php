@@ -3,10 +3,10 @@
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/dbcon.php';
 
   $userid = $_POST['userid'];
-  $userpw = $_POST['passwd'];
+  $userpw = $_POST['userpw'];
   $passwd = hash('sha512',$userpw);
   
-  $query = "select * from members where userid='{$userid}' and userpw='{$passwd}'"; 
+  $query = "SELECT * FROM members WHERE userid='{$userid}' AND userpw='{$passwd}'";
   $result = $mysqli->query($query);
   $rs = $result->fetch_object();
 
@@ -14,9 +14,6 @@
 
     $_SESSION['UID'] = $rs->userid;
     $_SESSION['UNAME'] = $rs->username;
-
-    $sql = "UPDATE cart SET userid='{$userid}'";
-    $result = $mysqli->query($sql);
 
     echo "<script>
       alert('$rs->username 님 반갑습니다');
@@ -28,7 +25,4 @@
       history.back();
     </script>";
   }
-
-  
-
 ?>
