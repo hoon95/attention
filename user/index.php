@@ -6,13 +6,10 @@
   // $sql = "SELECT * FROM class WHERE pid='{$pid}'";
   $sql = "SELECT * FROM class WHERE 1=1";
   $result = $mysqli -> query($sql);
-  $rs = $result -> fetch_object();
 
-  // $result = $mysqli -> query($sql);
-
-  // while($rs = $result -> fetch_object()){
-  //   $rsc[] = $rs;
-  // }
+  while($rs = $result -> fetch_object()){
+    $rsc[] = $rs;
+  }
 
   /* 테이블 전체 값 가져오기 */
   $cnt_mem = "SELECT COUNT(*) AS count FROM members";
@@ -24,7 +21,7 @@
   $rs_sale = $re_sale -> fetch_object();
 
   /* 공지사항 sql */
-  $sqlNotice = "SELECT * FROM notice ORDER BY idx DESC LIMIT  0, 6";
+  $sqlNotice = "SELECT * FROM notice ORDER BY idx DESC LIMIT 0, 6";
 
   $resultNotice = $mysqli -> query($sqlNotice);
   $rsNotice = $resultNotice -> fetch_object();
@@ -33,7 +30,7 @@
     $rscNotice[] = $rsNotice;
   }
   
-  // var_dump($rs5);
+  // var_dump($rsc);
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
@@ -291,25 +288,25 @@
     </div>
     <ul class="col">
       <li>
-        <p class="tt_03 ms-3">Pick! 내가 이 구역 코딩 초보</p>
         <?php 
-          if(isset($rs)){
-            // foreach($rs as $item){
+        foreach ($rsc as $item) {
+          if($item -> pid == 134){
         ?>
+        <p class="tt_03 ms-3">Pick! 내가 이 구역 코딩 초보</p>
         <div class="pick_card radius_medium box_shadow p-3">
-          <a href="/attention/admin/class/class_list.php?pid=134" class="d-flex">
-            <img src="<?= $rs->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
+          <a href="/attention/admin/class/class_list.php" class="d-flex">
+            <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-3">
-              <!-- <p class="card_tt mb-4"><?= $rs -> name; ?></p> -->
-              <p class="card_tt mb-4"><?php echo $rs->name; ?></p>
+              <!-- <p class="card_tt mb-4"><?= $item -> name; ?></p> -->
+              <p class="card_tt mb-4"><?= $item->name; ?></p>
               <p class="text5 dark_gray mb-3">미출력</p>
-              <p class="text5 dark_gray"><?php if($rs->level==1){echo "초급";} if($rs->level==2){echo "중급";} if($rs->level==3){echo "상급";} ?> &nbsp;|&nbsp; <span class="orange">₩<?= $rs -> price_val; ?></span></p>
+              <p class="text5 dark_gray"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?> &nbsp;|&nbsp; <span class="orange">₩<?= number_format($item -> price_val); ?></span></p>
             </div>
           </a>
         </div>
         <?php
             }
-          // }
+          }
         ?>
       </li>
       <li>
