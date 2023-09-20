@@ -1,6 +1,3 @@
-h2{
-    margin-top: calc(var(--gap-unit) * 5);
-}
 input{
     border: 1px solid #DEE2E6 !important;
 }
@@ -22,4 +19,7 @@ label{
 }
 .sns img{
     width: 3vw;
+}
+.hidden{
+    display: none;
 }

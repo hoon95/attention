@@ -25,6 +25,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
   integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </head>
 <body>
   <header>
@@ -63,7 +64,7 @@
                 </div>
                 <div class="login_icon_box d-flex justify-content-between">
                   <a href="/attention/user/coupon.php" class="col"><i class="bi bi-ticket-perforated"></i><span>쿠폰함</span></a>
-                  <a href="/attention/user/my_class.php" class="col"><i class="bi bi-mortarboard"></i><span>내 강의실</span></a>
+                  <a href="/attention/user/my_class/my_class.php" class="col"><i class="bi bi-mortarboard"></i><span>내 강의실</span></a>
                 </div>
               </div>
               <div class="login_bot text-end icon_red mt-3 text5">

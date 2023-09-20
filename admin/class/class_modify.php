@@ -11,6 +11,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   while($rs = $result -> fetch_object()){
     $rc[] = $rs;
   }
+
+  
 ?>
 
 <div class="common_pd">
@@ -22,23 +24,50 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
               <tbody>
               <?php 
                 foreach($rc as $sqlobj){
+                  $cateAr = explode("/", $sqlobj->cate);
               ?>
                 <tr class="class_ss_mb">
                   <th class="tt_03">카테고리</th>
                   <td>
                     <span class="select">
-                      <select name="select" class="select_from">
-                        <option selected disabled>대분류</option>
+                      <select name="select" class="select_from" checked="<?php 
+                            $catesqlItem = "SELECT * FROM category WHERE cid='{$cateAr[0]}'";
+                            $result2 = $mysqli -> query($catesqlItem); 
+                            $rcss = $result2 -> fetch_object();
+                            echo $rcss->name;
+                          ?>">
+                        <option selected disabled>
+                          <?php 
+                            $catesqlItem = "SELECT * FROM category WHERE cid='{$cateAr[0]}'";
+                            $result2 = $mysqli -> query($catesqlItem); 
+                            $rcss = $result2 -> fetch_object();
+                            echo $rcss->name;
+                          ?>
+                        </option>
                       </select>
                     </span>
                     <span class="select class_ss_ml">
                       <select name="select" class="select_from">
-                        <option selected disabled>중분류</option>
+                        <option selected disabled>
+                          <?php 
+                            $catesqlItem = "SELECT * FROM category WHERE cid='{$cateAr[1]}'";
+                            $result2 = $mysqli -> query($catesqlItem); 
+                            $rcss = $result2 -> fetch_object();
+                            echo $rcss->name;
+                          ?>
+                        </option>
                       </select>
                     </span>
                     <span class="select class_ss_ml">
                       <select name="select" class="select_from">
-                        <option selected disabled>소분류</option>
+                        <option selected disabled>
+                          <?php 
+                              $catesqlItem = "SELECT * FROM category WHERE cid='{$cateAr[2]}'";
+                              $result2 = $mysqli -> query($catesqlItem); 
+                              $rcss = $result2 -> fetch_object();
+                              echo $rcss->name;
+                          ?>
+                        </option>
                       </select>
                     </span>
                   </td>

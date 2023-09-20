@@ -3,7 +3,7 @@
 
 ?>
 <link rel="stylesheet" href="/attention/user/css/signup.css">
-<div class="container">
+<div class="container_cr sub_mg_t sub_mg_b">
   <h2 class="text-center tt_03 mb-3">회원가입</h2>
   <form action="signup_ok.php" class="signup" method="POST" id="signup_form">
     <div class="mb-3 signup_name">
@@ -36,10 +36,10 @@
       <div class="text-center d-flex flex-column">
         <span class="easy_join text4 mb-4">간편 회원가입</span>
         <div class="d-flex justify-content-between sns">
-          <img src="/attention/user/img/kakaotalk.svg" alt="">
-          <img src="/attention/user/img/band.svg" alt="">
-          <img src="/attention/user/img/instagram.svg" alt="">
-          <img src="/attention/user/img/facebook.svg" alt="">
+          <img src="/attention/user/img/main/kakaotalk.svg" alt="카카오톡 로고">
+          <img src="/attention/user/img/main/band.svg" alt="밴드 로고">
+          <img src="/attention/user/img/main/instagram.svg" alt="인스타그램 로고">
+          <img src="/attention/user/img/main/facebook.svg" alt="페이스북 로고">
         </div>
       </div>
     </div>

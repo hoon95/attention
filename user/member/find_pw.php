@@ -3,7 +3,7 @@
 
 ?>
 <link rel="stylesheet" href="/attention/user/css/find.css">
-<div class="container">
+<div class="container_cr sub_mg_t sub_mg_b">
   <h2 class="text-center tt_03 mb-3">비밀번호 변경하기</h2>
   <form action="find_pw_ok.php" class="find" method="POST" id="find_form">
     <div class="mb-3 find_name">
