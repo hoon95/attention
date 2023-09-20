@@ -1,0 +1,28 @@
+/* banner */
+.banner{
+  background: url(../img/main/notice_banner.png) no-repeat center center/cover;
+  height: 240px;
+}
+.banner .tt_01{
+  font-size: 32px;
+}
+
+/* table */
+table{
+  width: 100%;
+}
+table .board_hd{
+  height: calc(var(--base-unit)*2);
+  /* height: calc(var(--base-unit)*2.5); */
+  border-top: var(--bs-border-width) solid var(--gray);
+  border-bottom: var(--bs-border-width) solid var(--gray);
+}
+table .board_bd{
+  height: calc(var(--base-unit)*3);
+  /* height: calc(var(--base-unit)*2.5); */
+  border-bottom: 1px solid var(--gray);
+}
+table i.bi.bi-link-45deg{
+  font-size: var(--text2-size);
+  color: var(--black);
+}

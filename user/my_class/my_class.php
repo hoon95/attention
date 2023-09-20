@@ -17,7 +17,10 @@
       <p class="text2 gray mt-2 mb-4">현재 수강 중인 강의 목록</p>
       <ul class="my_list d-flex flex-wrap align-content-between gap-4">
         <!-- 강의 출력 -->
-        <?php foreach($rsc as $r){ ?>
+        <?php 
+        if(isset($rsc)){
+          foreach($rsc as $r){
+        ?>
         <li class="radius_medium box_shadow p-3 position-relative">
           <a href="/attention/user/product/product_view?pid=<?= $r->pid ?>">
             <p class="card_tt mb-3"><?= $r->name ?></p>
@@ -31,10 +34,9 @@
               </div>
             </div>
           </a>
-          <button class="play_btn">
-            <i class="bi material-symbols-outlined ms-auto">play_circle</i>
-          </button>
         </li>
+        <?php }}else{?>
+          <p>현재 수강 중인 강의가 없습니다</p>
         <?php } ?>
         <!-- /강의 출력 -->
       </ul>
@@ -58,14 +60,12 @@
               </div>
             </div>
           </a>
-          <button class="play_btn">
-            <i class="bi material-symbols-outlined ms-auto">play_circle</i>
-          </button>
         </li>
         <?php } ?>
       </ul>
     </section>
   </main>
+
 
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';

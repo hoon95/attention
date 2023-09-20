@@ -63,7 +63,7 @@
                 </div>
                 <div class="login_icon_box d-flex justify-content-between">
                   <a href="/attention/user/coupon.php" class="col"><i class="bi bi-ticket-perforated"></i><span>쿠폰함</span></a>
-                  <a href="/attention/user/my_class.php" class="col"><i class="bi bi-mortarboard"></i><span>내 강의실</span></a>
+                  <a href="/attention/user/my_class/my_class.php" class="col"><i class="bi bi-mortarboard"></i><span>내 강의실</span></a>
                 </div>
               </div>
               <div class="login_bot text-end icon_red mt-3 text5">
