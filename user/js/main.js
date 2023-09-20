@@ -77,24 +77,6 @@ $(window).scroll(function () {
     $(window).off('scroll');
   }
 });
-
-// $('.count').each(function () { //숫자 카운트 애니메이션
-//   const $this = $(this),
-//         countTo = $this.attr('data-num');
-
-//   $({countNum: $this.text()}).animate({
-//       countNum: countTo
-//   }, {
-//       duration: 3000,
-//       easing: 'linear',
-//       step: function () {
-//           $this.text(Math.floor(this.countNum));
-//       },
-//       complete: function () {
-//           $this.text(this.countNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-//       }
-//   });
-// });
 /* /best-total */
 
 /* notice slide */
