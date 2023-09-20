@@ -1,5 +1,4 @@
 <?php
-$login_css = '<link rel="stylesheet" href="/attention/user/css/login.css">';
 require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
 
 if(isset($_SESSION['UID'])){
@@ -7,6 +6,7 @@ if(isset($_SESSION['UID'])){
     location.href = '/attention/user/index.php';</script>";
 }
 ?>
+<link rel="stylesheet"href="/attention/user/css/login.css">
 <div class="container_cr">
       <div class="login">
         <h1 class="">로그인</h1>

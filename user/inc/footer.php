@@ -1,7 +1,3 @@
-<?php
-  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
-?>
-
 <a href="#" class="top_btn position-fixed text-center d-block">
   <i class="bi bi-chevron-up d-block mt-1 mb-1"></i>
   <p class="text-uppercase">top</p>
@@ -66,7 +62,6 @@
       </ul>
     </div>
   </footer>
-
   <script>
     $( function() {
       $( "#select" ).selectmenu();
