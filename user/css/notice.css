@@ -1,6 +1,6 @@
 /* banner */
 .banner{
-  background: url(../img/main/notice_banner.png) no-repeat center center;
+  background: url(../img/main/notice_banner.png) no-repeat center center/cover;
   height: 240px;
 }
 .banner .tt_01{

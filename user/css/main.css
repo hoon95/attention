@@ -234,8 +234,8 @@ section .text2 {
 }
 
 /* notice */
-.notice{
-  padding: var(--base-unit) 0;
+.notice .notice_silde{
+  height: 72px;
 }
 .notice .text2{
   line-height: var(--base-unit);

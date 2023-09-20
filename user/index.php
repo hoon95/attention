@@ -1,7 +1,12 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
 
-  // $sql = "SELECT * from products order by pid desc limit 0, 6" ; // and 컬러명=값 and 컬러명=값 and 컬러명=값 
+  // $pid = $_GET['pid'];
+
+  // $sql = "SELECT * FROM class WHERE pid='{$pid}'";
+  $sql = "SELECT * FROM class WHERE 1=1";
+  $result = $mysqli -> query($sql);
+  $rs = $result -> fetch_object();
 
   // $result = $mysqli -> query($sql);
 
@@ -9,6 +14,15 @@
   //   $rsc[] = $rs;
   // }
 
+  $sqlNotice = "SELECT * FROM notice ORDER BY idx DESC LIMIT  0, 6";
+
+  $resultNotice = $mysqli -> query($sqlNotice);
+  $rsNotice = $resultNotice -> fetch_object();
+
+  while($rsNotice = $resultNotice -> fetch_object()){
+    $rscNotice[] = $rsNotice;
+  }
+  // var_dump($rscNotice);
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
@@ -263,19 +277,28 @@
       <p class="text1 card_tt mt-2">선택이 어렵다면,<br>
         코드래빗이 추천하는 강의를 선택해보세요 &#58;&#41;</p>
     </div>
-    <ul class="col-7">
+    <ul class="col">
       <li>
         <p class="tt_03 ms-3">Pick! 내가 이 구역 코딩 초보</p>
+        <?php 
+          if(isset($rs)){
+            // foreach($rs as $item){
+        ?>
         <div class="pick_card radius_medium box_shadow p-3">
-          <a href="" class="d-flex">
-            <img src="img/main/new_6.png" alt="썸네일 이미지" class="col-4">
+          <a href="/attention/admin/class/class_list.php?pid=134" class="d-flex">
+            <img src="<?= $rs->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-3">
-              <p class="card_tt mb-4">[코드래빗x코드캠프] 훈훈한 JavaScript</p>
-              <p class="text5 dark_gray mb-3">코드캠프</p>
-              <p class="text5 dark_gray">초급 &nbsp;|&nbsp; <span class="orange">₩22,000</span></p>
+              <!-- <p class="card_tt mb-4"><?= $rs -> name; ?></p> -->
+              <p class="card_tt mb-4"><?php echo $rs->name; ?></p>
+              <p class="text5 dark_gray mb-3">미출력</p>
+              <p class="text5 dark_gray"><?php if($rs->level==1){echo "초급";} if($rs->level==2){echo "중급";} if($rs->level==3){echo "상급";} ?> &nbsp;|&nbsp; <span class="orange">₩<?= $rs -> price_val; ?></span></p>
             </div>
           </a>
         </div>
+        <?php
+            }
+          // }
+        ?>
       </li>
       <li>
         <p class="tt_03 mt-3 ms-3">Pick! 그래도 할 줄은 안다</p>
@@ -303,15 +326,34 @@
           </a>
         </div>
       </li>
+      
     </ul>
   </section>
 
   <section class="notice main_mg_t blue_Gray_back">
     <div class="container_cr d-flex align-items-center">
-      <h3 class="text2 col-1 text-center">공지사항</h3>
-      <p class="col-8 ps-4 icon_mint"><a href="" class="d-block">코드래빗 긴급 점검 공지</a></p>
-      <p class="col-2 text-center">2023년 9월 12일</p>
-      <a href="/attention/user/notice.php" class="col-1 text-center icon_mint">전체보기 +</a>
+      <h3 class="text2 col-1">공지사항</h3>
+
+      <div class="swiper notice_silde col-10">
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <?php
+            if(isset($rscNotice)){
+              foreach($rscNotice as $no){            
+          ?>
+          <div class="swiper-slide d-flex align-items-center">
+            <!-- <p class="col-10 ps-4 icon_mint"><a href="/attention/user/notice_view.php?idx=<?= $no->idx; ?>" class="d-block"><?= $no->title; ?></a></p> -->
+            <p class="col-10 ps-4 icon_mint"><a href="/attention/user/notice.php" class="d-block"><?= $no->title; ?></a></p>
+            <p class="col-2 text-center"><?= $no -> regdate; ?></p>
+          </div>
+          <?php
+            } //foreach
+          } 
+          ?>
+        </div>
+      </div>
+
+      <a href="/attention/user/notice.php" class="col-1 text-end icon_mint">전체보기 +</a>
     </div>
   </section>
 </main>
