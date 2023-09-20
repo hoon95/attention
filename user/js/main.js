@@ -49,6 +49,54 @@ const newSwiper = new Swiper(".new-slide", {
 });
 /* /new slide */
 
+/* best-total */
+$(window).scroll(function () {
+  const bestOffset = $('.total').offset().top;
+  const windowHeight = $(window).height();
+  const scrollPoint = $(window).scrollTop();
+
+  // total 요소가 화면 안에 들어왔을 때 실행
+  if (scrollPoint + windowHeight >= bestOffset) {
+    $('.count').each(function () { //숫자 카운트 애니메이션
+      const $this = $(this),
+            countTo = $this.attr('data-num');
+
+      $({ countNum: $this.text() }).stop().animate({
+        countNum: countTo
+      }, {
+        duration: 3000,
+        easing: 'linear',
+        step: function () {
+          $this.text(Math.floor(this.countNum));
+        },
+        complete: function () {
+          $this.text(this.countNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+        }
+      });
+    });
+    $(window).off('scroll');
+  }
+});
+
+// $('.count').each(function () { //숫자 카운트 애니메이션
+//   const $this = $(this),
+//         countTo = $this.attr('data-num');
+
+//   $({countNum: $this.text()}).animate({
+//       countNum: countTo
+//   }, {
+//       duration: 3000,
+//       easing: 'linear',
+//       step: function () {
+//           $this.text(Math.floor(this.countNum));
+//       },
+//       complete: function () {
+//           $this.text(this.countNum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+//       }
+//   });
+// });
+/* /best-total */
+
 /* notice slide */
 const noticeSwiper = new Swiper('.notice_silde', {
   direction: 'vertical',

@@ -14,6 +14,16 @@
   //   $rsc[] = $rs;
   // }
 
+  /* 테이블 전체 값 가져오기 */
+  $cnt_mem = "SELECT COUNT(*) AS count FROM members";
+  $re_mem = $mysqli -> query($cnt_mem);
+  $rs_mem = $re_mem -> fetch_object();
+
+  $cnt_sale = "SELECT COUNT(*) AS count FROM sales";
+  $re_sale = $mysqli -> query($cnt_sale);
+  $rs_sale = $re_sale -> fetch_object();
+
+  /* 공지사항 sql */
   $sqlNotice = "SELECT * FROM notice ORDER BY idx DESC LIMIT  0, 6";
 
   $resultNotice = $mysqli -> query($sqlNotice);
@@ -22,7 +32,8 @@
   while($rsNotice = $resultNotice -> fetch_object()){
     $rscNotice[] = $rsNotice;
   }
-  // var_dump($rscNotice);
+  
+  // var_dump($rs5);
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
@@ -228,22 +239,23 @@
         </li>
         <li class="col radius_medium box_shadow"></li>
       </ul>
+
       <div class="total d-flex radius_medium">
         <div class="col text-center">
-          <img src="img/main/total_member.png" alt="">
-          <p class="text1 card_tt mt-2">5,200,000 +</p>
+          <img src="img/main/total_member.png" alt="회원 아이콘 이미지">
+          <p class="text1 card_tt mt-2"><spann class="count" data-num="<?= $rs_mem -> count; ?>"></spann> +</p>
           <p class="mt-2">회원수</p>
         </div>
         <span></span>
         <div class="col text-center">
-          <img src="img/main/total_education.png" alt="">
-          <p class="text1 card_tt mt-2">1,220,093 +</p>
+          <img src="img/main/total_education.png" alt="교육신청 아이콘 이미지">
+          <p class="text1 card_tt mt-2"><spann class="count" data-num="<?= $rs_sale -> count; ?>"></spann> +</p>
           <p class="mt-2">교육신청</p>
         </div>
         <span></span>
         <div class="col text-center">
-          <img src="img/main/total_partner.png" alt="">
-          <p class="text1 card_tt mt-2">1,293 +</p>
+          <img src="img/main/total_partner.png" alt="협력사 아이콘 이미지">
+          <p class="text1 card_tt mt-2">293 +</p>
           <p class="mt-2">협력사</p>
         </div>
       </div>
