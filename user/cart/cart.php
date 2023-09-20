@@ -28,7 +28,7 @@
 
   <link rel="stylesheet" href="/attention/user/css/cart.css">
 
-  <div class="cart_container d-flex justify-content-between">
+  <div class="container_cr sub_mg_t sub_mg_b d-flex justify-content-between">
     <div class="cart_list">
       <h2 class="tt_01 text-center">장바구니</h2>
       <table class="table">
