@@ -36,6 +36,7 @@ $(".main-slide-btn").click(function (e) {
 });
 /* /Banner pager */
 
+/* new slide */
 const newSwiper = new Swiper(".new-slide", {
     loop: true,
     slidesPerView: 4,
@@ -46,3 +47,16 @@ const newSwiper = new Swiper(".new-slide", {
       prevEl: ".new .bi-chevron-right",
     },
 });
+/* /new slide */
+
+/* notice slide */
+const noticeSwiper = new Swiper('.notice_silde', {
+  direction: 'vertical',
+  loop: true,
+  autoplay: {
+    pauseOnMouseEnter: true,
+    delay: 3000,
+    disableOnInteraction: false
+  }
+});
+/* /notice slide */
