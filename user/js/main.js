@@ -74,7 +74,7 @@ $(window).scroll(function () {
         }
       });
     });
-    $(window).off('scroll');
+    // $(window).off('scroll');
   }
 });
 /* /best-total */
@@ -90,3 +90,42 @@ const noticeSwiper = new Swiper('.notice_silde', {
   }
 });
 /* /notice slide */
+
+/* add cart */
+let cart_btn = $('.cart_btn');
+
+cart_btn.each(function(){
+  $(this).click(function(e) {
+    e.preventDefault();
+    // 선택된 강의의 pid 가져오기
+    let pid = $(this).val();
+    let total = parseFloat($(this).closest(".cart_add").find(".price").text().replace(',', ''));
+
+    let data = {
+        pid : pid,
+        total: total
+    }
+
+    $.ajax({
+      async:false,
+      type:'post',
+      url: '/attention/user/cart/cart_insert.php',
+      data: data,
+      dataType:'json',
+      error: function(error){
+        console.error(error);
+        alert("장바구니 추가 중 오류가 발생했습니다.");
+      },
+      success:function(data){
+        if(data.result == 'ok'){
+          if (confirm('장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?')) {
+            location.href = '/attention/user/cart/cart.php';
+          }
+        } else{
+          alert('장바구니 담기 실패');
+        }
+      }
+    });
+  });
+});
+/* /add cart */

@@ -234,7 +234,28 @@
             </div>
           </a>
         </li>
-        <li class="col radius_medium box_shadow"></li>
+        <?php 
+        foreach ($rsc as $item) {
+          if($item -> pid == 134){
+        ?>
+        <li class="cart_add col radius_medium box_shadow">
+          <a href="/attention/user/class_view.php?pid=<?= $item->pid; ?>" class="d-block">
+            <img src="<?= $item->thumbnail; ?>" alt="">
+            <div class="best_box">
+              <p class="card_tt mb-2"><?= $item->name; ?></p>
+              <p class="text5 dark_gray mb-2">미출력</p>
+              <p class="text5 dark_gray"><?= ($item->level == 1) ? '초급' : (($item->level == 2) ? '중급' : '상급'); ?> &nbsp;|&nbsp; 
+                <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
+              </p>
+            </div>
+          </a>
+          <button type="button" name="add_cart" class="cart_btn ctBtn" value="<?= $item->pid; ?>"><i class="bi bi-cart3 icon_mint"></i></button>
+        </li>
+        <?php
+            }
+          }
+        ?>
+      
       </ul>
 
       <div class="total d-flex radius_medium">
@@ -293,13 +314,13 @@
         foreach ($rsc as $item) {
           if($item -> pid == 134){
         ?>
-        <div class="pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
-          <a href="class_list.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
+        <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
+          <a href="/attention/user/class_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
             <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-3">
               <p class="card_tt mb-4"><?= $item->name; ?></p>
               <p class="text5 dark_gray mb-3">미출력</p>
-              <p class="text5 dark_gray"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?> &nbsp;|&nbsp; 
+              <p class="text5 dark_gray"><?= ($item->level == 1) ? '초급' : (($item->level == 2) ? '중급' : '상급'); ?> &nbsp;|&nbsp; 
                 <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
               </p>
             </div>
@@ -317,13 +338,13 @@
         foreach ($rsc as $item) {
           if($item -> pid == 137){
         ?>
-          <div class="pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
-            <a href="/attention/admin/class/class_list.php" class="d-flex col-11">
+          <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
+            <a href="/attention/user/class_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
               <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
               <div class="ms-4 mt-3">
                 <p class="card_tt mb-4"><?= $item->name; ?></p>
                 <p class="text5 dark_gray mb-3">미출력</p>
-                <p class="text5 dark_gray"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?> &nbsp;|&nbsp; 
+                <p class="text5 dark_gray"><?= ($item->level == 1) ? '초급' : (($item->level == 2) ? '중급' : '상급'); ?> &nbsp;|&nbsp; 
                   <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
                 </p>
               </div>
@@ -341,13 +362,13 @@
         foreach ($rsc as $item) {
           if($item -> pid == 136){
         ?>
-        <div class="pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
-          <a href="/attention/admin/class/class_list.php" class="d-flex col-11">
+        <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
+          <a href="/attention/user/class_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
             <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-3">
               <p class="card_tt mb-4"><?= $item->name; ?></p>
               <p class="text5 dark_gray mb-3">미출력</p>
-              <p class="text5 dark_gray"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?> &nbsp;|&nbsp; 
+              <p class="text5 dark_gray"><?= ($item->level == 1) ? '초급' : (($item->level == 2) ? '중급' : '상급'); ?> &nbsp;|&nbsp; 
                 <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
               </p>
             </div>
@@ -394,44 +415,6 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="/attention/user/js/main.js"></script>
 
-<script>
-  let cart_btn = $('.cart_btn');
-
-  cart_btn.each(function(){
-    $(this).click(function(e) {
-      e.preventDefault();
-      // 선택된 강의의 pid 가져오기
-      let pid = $(this).val();
-      let total = parseFloat($(this).closest(".pick_card").find(".price").text().replace(',', ''));
-
-      let data = {
-          pid : pid,
-          total: total
-      }
-
-      $.ajax({
-        async:false,
-        type:'post',
-        url: '/attention/user/cart/cart_insert.php',
-        data: data,
-        dataType:'json',
-        error: function(error){
-          console.error(error);
-          alert("장바구니 추가 중 오류가 발생했습니다.");
-        },
-        success:function(data){
-          if(data.result == 'ok'){
-            if (confirm('장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?')) {
-              location.href = '/attention/user/cart/cart.php';
-            }
-          } else{
-            alert('장바구니 담기 실패');
-          }
-        }
-      });
-    });
-  });
-</script>
 <?php
   ob_end_flush();
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';
