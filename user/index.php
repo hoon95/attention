@@ -131,7 +131,7 @@
     <div class="container_cr">
       <div class="d-flex align-items-end justify-content-between pt-5">
         <h2 class="tt_00">코드래빗의 BEST 강의를 만나보세요!</h2>
-        <a href="" class="text1 card_tt icon_mint">전체보기 +</a>
+        <a href="/attention/user/class_whole_list.php" class="text1 card_tt icon_mint">전체보기 +</a>
       </div>
       <p class="tt_03 pb-4">강의 볼 때마다 실력이 껑충!</p>
       <ul class="best_list d-flex gap-4">

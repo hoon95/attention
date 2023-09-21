@@ -37,7 +37,7 @@
       </h1>
       <ul class="d-flex align-items-center menu-list text1 fw-bold">
         <li><a href="#">ABOUT</a></li>
-        <li><a href="/attention/user/product_whole_list.php">강의</a></li>
+        <li><a href="/attention/user/class_whole_list.php">강의</a></li>
         <li><a href="/attention/user/notice.php">공지사항</a></li>
       </ul>
 
