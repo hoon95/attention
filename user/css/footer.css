@@ -1,0 +1,57 @@
+footer{
+  padding: 48px 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+}
+footer address{
+  width: 702px;
+}
+footer address p:first-child{
+  margin-bottom: 12px;
+}
+footer address p:last-child{
+  margin-top: 28px;
+}
+footer address ul li+li{
+  margin-top: 6px;
+}
+footer address a,
+footer address span{
+  position: relative;
+}
+footer address a:after,
+footer address span:after{
+  content: '' ;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  height: 10px;
+  border-right: 1px solid var(--white);
+  background: var(--white);
+}
+footer address a,
+footer address ul span{
+  margin: 0 6px;
+}
+footer address a:first-child,
+footer address span:first-child,
+.business_address{
+  margin-left: 0;
+}
+footer address a:last-child:after,
+footer address span:last-child:after,
+.business_number:after{
+  content: none;
+}
+footer a:hover{
+  text-decoration: underline;
+}
+footer .footer_sns{
+  gap: 25px;
+}
+footer .footer_sns li a:hover{
+  opacity: .65;
+}

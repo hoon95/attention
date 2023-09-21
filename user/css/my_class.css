@@ -1,0 +1,19 @@
+#search_form{
+  margin-top: -18px;
+}
+.card_tt{
+  font-weight: bold;
+  line-height: 1.25;
+}
+.my_list li{
+  width: 32.076%;
+}
+.my_list i.bi{
+  color: var(--mint);
+}
+.my_list .play_btn{
+  position: absolute;
+  padding: 1rem;
+  bottom: 0;
+  right: 0;
+}

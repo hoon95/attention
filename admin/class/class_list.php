@@ -75,6 +75,7 @@
       </span>
       <span>
         <span class="seach">
+          <a href="class_list.php" class="btn btn-primary class_sm_mr">전체목록</a>
           <input type="text" name="search" id="search" class="form-control" placeholder="강좌명 및 내용 입력">
           <button type="button"><i class="bi bi-search icon_gray"></i></button>
         </span>
@@ -102,18 +103,32 @@
               <span class="text4 fw-bold">수강기한</span><span class="class_date_tag orange"><?php if($item->sale_end_date==1){echo "{$item->date_val}개월";} if($item->sale_end_date==0){echo "무제한";} ?></span>
             </div>
           </td>
-          <td>
-            <div class="form-check form-switch class_ss_bb class_m_mt class_ss_br d-flex justify-content-end">
+          <td >
+            <div class="">
+              <div class="form-check form-switch class_ss_bb d-flex justify-content-end">
+                <input class="form-check-input status" type="checkbox" role="switch" value="<?= $item->status ?>"
+                <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]" data-pid="<?= $item->pid ?>">
+              </div>
+              <div class="d-flex">
+              <a href="class_modify.php?pid=<?php echo $item->pid ?>" class="class_s_mr"><i class="bi bi-pencil-square icon_mint"></i></a>
+                <form method="post" action="class_delete.php">
+                  <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
+                  <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까? :0')" class="class_delete">
+                  <i class="bi-trash-fill icon_red"></i></button>
+                </form>
+              </div>
+            </div>
+            <!-- <div class="form-check form-switch class_ss_bb class_m_mt class_ss_br">
               <input class="form-check-input status" type="checkbox" role="switch" value="<?= $item->status ?>"
               <?php if($item->status){ echo "checked"; } ?> name="status[<?php echo $item->pid ?>]" id="status[<?php echo $item->pid ?>]" data-pid="<?= $item->pid ?>">
             </div>
             <div class="d-flex class_sm_m class_ss_br">
-              <a href="#" class="class_ss_mr class_s_mr"><i class="bi bi-pencil-square icon_mint"></i></a>
+              <a href="#" class="class_ss_mr "><i class="bi bi-pencil-square icon_mint"></i></a>
               <form method="post" action="class_delete.php">
                 <input type="hidden" name="pid" value="<?php echo $item -> pid; ?>">
                 <button type="submit" name="confirm_delete" onclick="return confirm('정말 삭제하시겠습니까? :0')" class="class_delete"><i class="bi-trash-fill icon_red"></i></button>
               </form>
-            </div>
+            </div> -->
           </td>
         </tr>
         <?php
@@ -160,10 +175,9 @@
     <!-- /pagenation 끝 -->
  
   <script>
-    	$('.class_menu').css({backgroundColor: "#252a38"});
-	    $('.class_menu').find('a').css({color: 'white'});
-      $( function() {
-      $( ".select_from" ).selectmenu();
+      $(function() {
+        $(".select_from").selectmenu();
+      });
 
       //카테고리 시작
       $(function(){
@@ -218,8 +232,7 @@
       });
      });  
     })
-     //카테고리 끝
-    });
+    //카테고리 끝
 
     $('.class_list_item').click(function(e){
       e.preventDefault();

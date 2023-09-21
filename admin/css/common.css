@@ -2,6 +2,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
 
 :root{
   /* LAYOUT */
@@ -36,6 +37,9 @@
   --mint-focus: 0px 0px 0px 5px rgba(42, 193, 188, 0.35);
   --card-shadow: 2px 3px 15px 0px rgba(0, 0, 0, 0.15);
 }
+.container{
+  width: 1272px;
+}
 
 a{
   color: var(--dark);
@@ -44,10 +48,8 @@ a{
 
 /* LAYOUT */
 body{
-  background-color: var(--dark-blue);
   color: var(--black);
-  font-family: 'Inter', sans-serif;
-  padding: 1% 3%;
+  font-family: 'Pretendard', sans-serif;
 }
 .background{
   max-width: 1920px;
