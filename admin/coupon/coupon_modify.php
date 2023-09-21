@@ -11,7 +11,7 @@
 	// $coupon_name = $_POST['coupon_name'];
 	// $coupon_image = $_POST['coupon_image'];
 	// $coupon_price = $_POST['coupon_price'];
-	// $regdate = $_POST['regdate'];
+	// $due = $_POST['due'];
 
 	$sql ="SELECT * FROM coupons where cid='{$cid }' ";
 
@@ -52,16 +52,16 @@
 							<td class="coup_type_box d-flex">
 								<div class="d-flex">
 									<div class="coup_type coup_date coup_infinite_date">
-										<input type="radio" name="regdate" checked value="0" id="infinite_date_box" <?php if ($rs->regdate == '0') echo "checked";  ?>>
+										<input type="radio" name="due" checked value="0" id="infinite_date_box" <?php if ($rs->due == '0') echo "checked";  ?>>
 										<label for="infinite_date_box" class="infinite_date">무기한</label>
 									</div>
 									<div class="coup_type coup_date coup_day_date">
-										<input type="radio" name="regdate"  id="day_date_box" value="-1" <?php if ($rs->regdate != '0') echo "checked";  ?>>
+										<input type="radio" name="due"  id="day_date_box" value="-1" <?php if ($rs->due != '0') echo "checked";  ?>>
 										<label for="day_date_box" class="day_date">제한</label>
 									</div>
 								</div>
 								<div class="coup_type_date_box d-flex align-items-center">
-									<input type="number" id="regdate_box" name="regdate"  min="1" max="24" step="1"  class="form-control" value="<?= $rs-> regdate ?>" data-id="<?= $rs-> regdate ?>" <?php if ($rs->regdate == '0') echo "disabled";  ?>  >
+									<input type="number" id="regdate_box" name="due"  min="1" max="24" step="1"  class="form-control" value="<?= $rs-> due ?>" data-id="<?= $rs-> due ?>" <?php if ($rs->due == '0') echo "disabled";  ?>  >
 									<span>개월</span>
 								</div>
 							</td>

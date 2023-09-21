@@ -40,7 +40,8 @@ img{width:100%;}
 #fade {display: none;background: #000;position: fixed;left: 0;top: 0;width: 100%;height: 100%;opacity: .60;z-index: 9999;}
 #popup_gift{width:475px; height:505px; top:120px;}
 #popup_gift .lottery_present {text-align:center;}
-#popup_gift .lottery_present img{ display:block; margin: 50px auto 30px;}
+#popup_gift .lottery_present img{ display:block; margin: 50px auto 30px; width: 50%;}
 
 #popup_fail{width:475px; height:505px; top:120px;}
+.popup  .close{ display:inline-block; width:150px; height:50px; line-height:50px; color:#fff; background:#333; margin: 30px 0 0;} 
 .popup  .close{ display:inline-block; width:150px; height:50px; line-height:50px; color:#fff; background:#333; margin: 30px 0 0;} 

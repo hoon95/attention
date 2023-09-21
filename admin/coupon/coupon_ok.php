@@ -7,7 +7,7 @@
   $coupon_name = $_POST['coupon_name'];
   $coupon_price = $_POST['coupon_price']?? 0;
   $status = $_POST['status']?? 0; //활성화 비활성화
-  $regdate = $_POST['regdate']?? 0;  //무제한 클릭시 기간
+  $due = $_POST['due']?? 0;  //무제한 클릭시 기간
 
 
   if($_FILES['coupon_image']['name']){
@@ -50,9 +50,9 @@
   try{
 
   $sql = "INSERT INTO coupons 
-    (coupon_name, coupon_image, coupon_price,  status, regdate) 
+    (coupon_name, coupon_image, coupon_price,  status, due) 
     VALUES 
-    ('{$coupon_name}', '{$coupon_image}', {$coupon_price}, {$status} , {$regdate} )";
+    ('{$coupon_name}', '{$coupon_image}', {$coupon_price}, {$status} , {$due} )";
   // var_dump($sql);
   $result = $mysqli -> query($sql);
   

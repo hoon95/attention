@@ -18,12 +18,6 @@
       $rsc2[]=$rs2;
   }
 
-  $sql = "SELECT regdate FROM user_coupons WHERE 1=1"; 
-
-  $result = $mysqli -> query($sql);
-  while($rs = $result -> fetch_object()){
-      $rsc[]=$rs;
-  }
 ?>
 <link rel="stylesheet" href="/attention/user/css/coupon.css">
 <main class="container_cr">
@@ -62,10 +56,10 @@
               <p class="text3"><?= $item->coupon_name ?></p>
               <p class="text4">
                 <?php
-                if ($item->regdate == 0) {
+                if ($item->due == 0) {
                     echo '<span class="orange">무기한</span>';
                 } else {
-                    echo "<span>" . date('Y-m-d', strtotime($item->regdate)) . "</span>";
+                    echo "<span>" . date('Y-m-d', strtotime($item->due)) . "</span>";
                     echo "<span>" . date('Y-m-d', strtotime($item->use_max_date)) . "</span>";
                 }
                 ?>
@@ -82,15 +76,7 @@
             <?php
             }
             ?>
-            <?php
-            if (isset($rsc)) {
-              foreach ($rsc as $rr) {
-                  echo "<p class='text4'>";
-                  // 여기서 $rsc 배열의 값을 출력하거나 처리할 수 있습니다.
-                  echo "</p>";
-              }
-            }
-        ?>
+        
         </div>
     </form>
 </main>
@@ -101,45 +87,3 @@
 	 
 ?>
 
-<!-- 
-   <div class="col white_back d-flex align-items-center gap" data-id="$item->cid">
-          <div class="coup_thumbnail">
-            <img src="<?= $item->coupon_image ?>" alt="<?= $item->coupon_name ?>">
-          </div>
-          <div class="coup_text">
-            <h3 class="tt_02"><?= $item->coupon_price ?><span class="text3">할인</span></h3>
-            <p class="text3"><?= $item->coupon_name ?></p>
-            <?php
-              // if(isset($rsc)){
-              //   foreach($rsc as $rr){
-            ?>
-            <p class="text4">
-              <?php
-                // if($item->regdate == 0) {
-                //   echo '<span class="orange">무기한</span>';
-                // }
-                // else {
-                //   echo"<span>" . date('Y-m-d', strtotime($rr->regdate)) . "</span>";
-                //   echo"<span>" . date('Y-m-d', strtotime($item->use_max_date)) . "</span>";
-                // }
-              ?>
-            </p>
-            <?php
-            //   } 
-            // } 
-       
-            ?>
-          </div>
-        </div> 
-          <?php
-          //   } 
-          // } else {  
-            
-          ?>  
-          <div>
-            <span>사용하실 수 있는 쿠폰이 없습니다.</span>
-          </div>
-          <?php
-            //}  
-          ?>   
- -->
