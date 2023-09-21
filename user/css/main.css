@@ -88,6 +88,7 @@
 }
 
 .new .swiper-slide {
+  position: relative;
   overflow: hidden;
   box-shadow: var(--card-shadow);
   border-radius: 12px;
@@ -107,7 +108,7 @@
   -webkit-box-orient: vertical; 
 }
 
-.new i {
+.new i.chevron {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -115,9 +116,13 @@
   font-size: 50px;
 } 
 
-.new i+i {
+.new i.chevron+i.chevron {
   left: calc(100% + var(--gap-unit));
   right: 0;
+}
+
+.new img{
+  height: 200px;
 }
 /* /new-slide */
 
