@@ -101,7 +101,7 @@ if (count((array)$file_row["imgid"]))
 	{
 ?>
           <div class="product_addimg">
-            <img src="/attention/pdata/sclass/<?php echo $file_row["filename"][$i]?>" alt="">
+            <img src="/attention/pdata/class/<?php echo $file_row["filename"][$i]?>" alt="">
           </div>
 <?php
   }
