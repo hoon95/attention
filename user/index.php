@@ -23,6 +23,26 @@
     $rscNotice[] = $rsNotice;
   }
   // var_dump($rscNotice);
+
+  // $sqlCoupon = "SELECT * FROM coupons WHERE 1=1";
+
+  // $resCoup = $mysqli -> query($sqlCoupon);
+  // $rsCoup = $resCoup -> fetch_object();
+
+  // while($rsCoup = $rsCoup -> fetch_object()){
+  //   $rscCoup[] = $rsCoup;
+  // }
+  if(isset($_SESSION['UID'])){
+    $userid = $_SESSION['UID'];
+  }
+
+  else{
+    echo"<script>
+  alert('로그인 후 이용해주세요.');
+  history.back();
+  </script>";
+  }
+  // var_dump($userid);
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
@@ -330,6 +350,11 @@
     </ul>
   </section>
 
+  <section class="container_cr main_mg_t coup_event_sec">
+    <!--   <a href="/attention/user/event/event.php" class="btn btn-primary">쿠폰</a> -->
+    <button class="btn btn-primary coup_event" data-user="<?= $userid ?>">click Me</button>
+  </section>
+
   <section class="notice main_mg_t blue_Gray_back">
     <div class="container_cr d-flex align-items-center">
       <h3 class="text2 col-1">공지사항</h3>
@@ -360,6 +385,41 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="/attention/user/js/main.js"></script>
+
+<script>
+  $('.coup_event').click(function(){ 
+  // let userid = $(this).attr('data-user');
+  let userid =  <?php echo json_encode($userid); ?>;
+
+
+  let data = {
+    userid : userid,
+    cid: 2
+  }
+  console.log(data);
+
+  $.ajax({
+    async : false, 
+    type: 'post',     
+    data: data, 
+    url: "/attention/user/event/event.php", 
+    dataType: 'json', //결과 json 객체형식
+    error: function(error){
+      console.log('Error:', error);
+    },
+    success: function(return_data){
+      if(return_data.result == "ok"){
+        alert('쿠폰이 지급되었습니다.');
+        // location.href = "/attention/user/index.php";
+      } else{
+        alert('이미 발급받은 쿠폰입니다.');
+        // location.href = "/attention/user/index.php";
+      }
+    }
+  });//ajax
+});
+</script>
+
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';
 
