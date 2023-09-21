@@ -388,8 +388,7 @@
 
 <script>
   $('.coup_event').click(function(){ 
-  // let userid = $(this).attr('data-user');
-  let userid =  <?php echo json_encode($userid); ?>;
+  let userid = $(this).attr('data-user');
 
 
   let data = {

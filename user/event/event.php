@@ -25,7 +25,7 @@
     var_dump($rc);
     
     if(!isset($rc)){
-        user_coupon($mysqli, $uid, 2,'쿠폰이벤트');
+        user_coupon($mysqli, $userid, 2,'쿠폰이벤트');
     }else{
         echo "<script>
         alert('중복된 쿠폰이 있습니다.');
