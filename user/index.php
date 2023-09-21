@@ -1,9 +1,9 @@
 <?php
+  ob_start(); 
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
 
   // $pid = $_GET['pid'];
 
-  // $sql = "SELECT * FROM class WHERE pid='{$pid}'";
   $sql = "SELECT * FROM class WHERE 1=1";
   $result = $mysqli -> query($sql);
 
@@ -288,21 +288,23 @@
     </div>
     <ul class="col">
       <li>
+        <p class="tt_03 ms-3">Pick! 내가 이 구역 코딩 초보</p>
         <?php 
         foreach ($rsc as $item) {
           if($item -> pid == 134){
         ?>
-        <p class="tt_03 ms-3">Pick! 내가 이 구역 코딩 초보</p>
-        <div class="pick_card radius_medium box_shadow p-3">
-          <a href="/attention/admin/class/class_list.php" class="d-flex">
+        <div class="pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
+          <a href="class_list.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
             <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-3">
-              <!-- <p class="card_tt mb-4"><?= $item -> name; ?></p> -->
               <p class="card_tt mb-4"><?= $item->name; ?></p>
               <p class="text5 dark_gray mb-3">미출력</p>
-              <p class="text5 dark_gray"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?> &nbsp;|&nbsp; <span class="orange">₩<?= number_format($item -> price_val); ?></span></p>
+              <p class="text5 dark_gray"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?> &nbsp;|&nbsp; 
+                <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
+              </p>
             </div>
           </a>
+          <button type="button" name="add_cart" class="cart_btn col-1 p-2" value="<?= $item->pid; ?>"><i class="bi bi-cart3 icon_mint"></i></button>
         </div>
         <?php
             }
@@ -311,29 +313,51 @@
       </li>
       <li>
         <p class="tt_03 mt-3 ms-3">Pick! 그래도 할 줄은 안다</p>
-        <div class="pick_card radius_medium box_shadow p-3">
-          <a href="" class="d-flex">
-            <img src="img/main/new_7.png" alt="썸네일 이미지" class="col-4">
-            <div class="ms-4 mt-3">
-              <p class="card_tt mb-4">JavaScript ES6+ 제대로 알아보기</p>
-              <p class="text5 dark_gray mb-3">정재남</p>
-              <p class="text5 dark_gray">중급 &nbsp;|&nbsp; <span class="orange">₩49,000</span></p>
-            </div>
-          </a>
-        </div>
+        <?php 
+        foreach ($rsc as $item) {
+          if($item -> pid == 137){
+        ?>
+          <div class="pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
+            <a href="/attention/admin/class/class_list.php" class="d-flex col-11">
+              <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
+              <div class="ms-4 mt-3">
+                <p class="card_tt mb-4"><?= $item->name; ?></p>
+                <p class="text5 dark_gray mb-3">미출력</p>
+                <p class="text5 dark_gray"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?> &nbsp;|&nbsp; 
+                  <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
+                </p>
+              </div>
+            </a>
+            <button type="button" class="cart_btn col-1 p-2" value="<?= $item->pid; ?>"><i class="bi bi-cart3 icon_mint"></i></button>
+          </div>
+        <?php
+            }
+          }
+        ?>
       </li>
       <li>
         <p class="tt_03 mt-3 ms-3">Pick! 제법 하는데?</p>
-        <div class="pick_card radius_medium box_shadow p-3">
-          <a href="" class="d-flex">
-            <img src="img/main/new_8.png" alt="썸네일 이미지" class="col-4">
+        <?php 
+        foreach ($rsc as $item) {
+          if($item -> pid == 136){
+        ?>
+        <div class="pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
+          <a href="/attention/admin/class/class_list.php" class="d-flex col-11">
+            <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-3">
-              <p class="card_tt mb-4">Typescript with Vue 실전 프로젝트</p>
-              <p class="text5 dark_gray mb-3">성도희</p>
-              <p class="text5 dark_gray">고급 &nbsp;|&nbsp; <span class="orange">₩16,000</span></p>
+              <p class="card_tt mb-4"><?= $item->name; ?></p>
+              <p class="text5 dark_gray mb-3">미출력</p>
+              <p class="text5 dark_gray"><?php if($item->level==1){echo "초급";} if($item->level==2){echo "중급";} if($item->level==3){echo "상급";} ?> &nbsp;|&nbsp; 
+                <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
+              </p>
             </div>
           </a>
+          <button type="button" class="cart_btn col-1 p-2" value="<?= $item->pid; ?>"><i class="bi bi-cart3 icon_mint"></i></button>
         </div>
+        <?php
+            }
+          }
+        ?>
       </li>
       
     </ul>
@@ -369,7 +393,46 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="/attention/user/js/main.js"></script>
-<?php
-  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';
 
+<script>
+  let cart_btn = $('.cart_btn');
+
+  cart_btn.each(function(){
+    $(this).click(function(e) {
+      e.preventDefault();
+      // 선택된 강의의 pid 가져오기
+      let pid = $(this).val();
+      let total = parseFloat($(this).closest(".pick_card").find(".price").text().replace(',', ''));
+
+      let data = {
+          pid : pid,
+          total: total
+      }
+
+      $.ajax({
+        async:false,
+        type:'post',
+        url: '/attention/user/cart/cart_insert.php',
+        data: data,
+        dataType:'json',
+        error: function(error){
+          console.error(error);
+          alert("장바구니 추가 중 오류가 발생했습니다.");
+        },
+        success:function(data){
+          if(data.result == 'ok'){
+            if (confirm('장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?')) {
+              location.href = '/attention/user/cart/cart.php';
+            }
+          } else{
+            alert('장바구니 담기 실패');
+          }
+        }
+      });
+    });
+  });
+</script>
+<?php
+  ob_end_flush();
+  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';
 ?>
