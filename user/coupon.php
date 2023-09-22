@@ -10,7 +10,7 @@
 
   $sql2 = "SELECT cp.*, usercp.* FROM user_coupons usercp 
   JOIN coupons cp ON cp.cid = usercp.couponid  
-  WHERE usercp.userid='{$couponid}' and usercp.use_max_date > Now()
+  WHERE usercp.userid='{$couponid}' and usercp.use_max_date > Now() and usercp.status=1
   ORDER BY usercp.userid DESC";
   // var_dump($sql2);
 
@@ -50,7 +50,7 @@
  
    $query = $usql.$order; //쿼리 문장 조합
  
-   var_dump($query);
+  //  var_dump($query);
 
    $result = $mysqli -> query($query);
    
@@ -84,7 +84,7 @@
     </section>
     <section class="sub_mg_t coup_content">
       <div class="d-flex justify-content-between align-items-center">
-        <h3 class="text1"> 할인쿠폰 전체</h3>
+        <a href="coupon.php"><h3 class="text1"> 할인쿠폰 전체</h3></a>
         <div class="coup_right d-flex align-items-center">
             <form action="" id="sort">
               <select name="sort" id="select">
@@ -149,9 +149,9 @@
         change: function( event, data ) {
       let selected_value = data.item.value;//item으로 받음
   
-      // location.href=`/attention/user/coupon.php?sort=${selected_value}`;
+      location.href=`/attention/user/coupon.php?sort=${selected_value}`;
 
-      console.log(selected_value);
+      // console.log(selected_value);
     }
   });
 });
