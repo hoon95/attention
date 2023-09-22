@@ -25,6 +25,8 @@
   $select = $_GET['select'] ?? '';
 	$due = $_GET['due'] ?? '';
 
+  $sort = $_GET['sort']?? 'regdate';
+
   $expirecps = [];
   $expirecpsdate = strtotime('+10 days');
   foreach ($rsc2 as $cpdate) {
@@ -37,6 +39,26 @@
   // 만료쿠폰 수
   $expirecouponcount = count($expirecps);
 
+  // $couponid = $_GET['couponid']?? '';
+ 
+  $usql = "SELECT * from user_coupons where 1=1";
+ 
+  //  $usql .= $search_where;
+ 
+   $order = " order by {$sort} desc";//최근순 정렬
+  //  $limit = " limit $statLimit, $endLimit";
+ 
+   $query = $usql.$order; //쿼리 문장 조합
+ 
+   var_dump($query);
+
+   $result = $mysqli -> query($query);
+   
+   while($rs = $result -> fetch_object()){
+     $rsc[] = $rs;
+   }
+  // var_dump($rsc);
+   /* 사용가능한 쿠폰, 소멸예정 */
 ?>
 
 
@@ -64,10 +86,12 @@
       <div class="d-flex justify-content-between align-items-center">
         <h3 class="text1"> 할인쿠폰 전체</h3>
         <div class="coup_right d-flex align-items-center">
-          <select name="select" id="select">
-            <option value="-1" <?php if( $regdate=='-1') {echo "selected"; } ?>>유효기간 순</option>
-            <option value="1" <?php if( $use_max_date=='1') {echo "selected"; } ?>>발급일 순</option>
-          </select>
+            <form action="" id="sort">
+              <select name="sort" id="select">
+                <option value="use_max_date"  <?php if($sort== 'use_max_date') {echo "selected"; } ?> >유효기간 순</option>
+                <option value="regdate"  <?php if($sort== 'regdate') {echo "selected"; } ?>>발급일 순</option>
+              </select>
+            </form>
         </div>
       </div>
     </section>
@@ -121,8 +145,18 @@
 </main>
 <script>
   $( function() {
-    $( "#select" ).selectmenu();
-  } );
+    $( "#select" ).selectmenu({
+        change: function( event, data ) {
+      let selected_value = data.item.value;//item으로 받음
+  
+      // location.href=`/attention/user/coupon.php?sort=${selected_value}`;
+
+      console.log(selected_value);
+    }
+  });
+});
+
+
 </script>
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php'; 

@@ -23,7 +23,7 @@
 			if(isset($rsc)){
 				foreach($rsc as $item){            
 		?>
-		<div class="panel"><strong class="txt_posi tt_02" data-id="<?= $item -> cid ?>"><?= $item -> cid ?></strong></div>
+		<div class="panel"><strong class="txt_posi tt_02" data-id="<?= $item -> cid ?>"><?= ($item -> cid) -1 ?></strong></div>
 		<?php
         } //foreach
       } else {    
