@@ -384,8 +384,7 @@
   </section>
 
   <section class="container_cr main_mg_t coup_event_sec">
-      <a href="/attention/user/event/event_vs2.0.php" class="btn btn-primary">쿠폰 이벤트 참여하기</a>
-    <!-- <button class="btn btn-primary coup_event" data-user="<?= $userid ?>">click Me</button> -->
+      <a href="/attention/user/event_vs2.0.php" class="btn btn-primary">쿠폰 이벤트 참여하기</a>
   </section>
 
   <section class="notice main_mg_t blue_Gray_back">

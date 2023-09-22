@@ -1,6 +1,6 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
-
+  
 	$where = '';
 	if(isset($_SESSION['UID'])){
 			$where = "B.userid = '{$_SESSION['UID']}'";
@@ -12,13 +12,16 @@
   JOIN coupons cp ON cp.cid = usercp.couponid  
   WHERE usercp.userid='{$couponid}' and usercp.use_max_date > Now()
   ORDER BY usercp.userid DESC";
-var_dump($sql2);
+  // var_dump($sql2);
+  
   $result2 = $mysqli -> query($sql2);
   while($rs2 = $result2 -> fetch_object()){
       $rsc2[]=$rs2;
   }
 
 ?>
+
+
 <link rel="stylesheet" href="/attention/user/css/coupon.css">
 <main class="container_cr">
     <section class="sub_mg_t coup_top">
@@ -89,8 +92,11 @@ var_dump($sql2);
         </div>
     </form>
 </main>
-
-
+<script>
+  $( function() {
+    $( "#select" ).selectmenu();
+  } );
+</script>
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php'; 
 ?>
