@@ -1,12 +1,23 @@
-<a href="#" class="top_btn position-fixed text-center d-block">
+<a href="#" class="top_btn position-fixed text-center d-block white_back">
   <i class="bi bi-chevron-up d-block mt-1 mb-1"></i>
   <p class="text-uppercase">top</p>
 </a>
 
-<aside id="recent" class="radius_medium position-fixed text-center d-flex flex-wrap px-2 py-3 gap-3 white_back z-2">
-  <p class="text5 m-auto">최근 본 강의</p>
-  <img src="/attention/user/img/main/new_7.png" alt="썸네일 이미지">
-  <img src="/attention/user/img/main/new_7.png" alt="썸네일 이미지">
+<aside id="recent" class="radius_medium position-fixed text-center px-2 py-3 white_back z-2">
+  <p class="text5">최근 본 강의</p>
+  <div class="d-flex flex-wrap gap-3 mt-3">
+  <?php   
+    if (isset($_COOKIE['recent_view_pd'])) { 
+      $prc = json_decode($_COOKIE['recent_view_pd']); // 연관 배열로 변환
+      krsort($prc); // 최근 상품 위로 올라오도록 key 값을 기준으로 역순으로 정렬.
+      foreach ($prc as $pc) {
+  ?>
+    <img src="<?= $pc -> thumbnail; ?>" alt="썸네일 이미지">
+  <?php
+      }
+    }
+  ?>
+  </div>
 </aside>
 
 <!-- recentView Modal -->
@@ -17,24 +28,29 @@
         <h3 class="modal-title tt_03 ms-3 mt-3" id="exampleModalLabel">최근 본 강의</h3>
         <button type="button" class="btn-close me-2" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <p class="ms-3 text2 card_tt">전체 건</p>
-
-        <div class="radius_medium box_shadow p-3 d-flex align-items-start mt-4">
-          <a href="" class="d-flex">
-            <img src="/attention/user/img/main/new_8.png" alt="썸네일 이미지" class="col-4">
+      <div class="modal-body">                                      
+        <?php
+          if (isset($_COOKIE['recent_view_pd'])) { 
+            $prc = json_decode($_COOKIE['recent_view_pd']); // 연관 배열로 변환
+            krsort($prc); // 최근 상품 위로 올라오도록 key 값을 기준으로 역순으로 정렬.
+            foreach ($prc as $pc) {
+        ?>
+        <div class="radius_medium box_shadow p-3 d-flex align-items-start mb-4">
+          <a href="/attention/user/class_detail_view.php?pid=<?= $pc->pid; ?>" class="d-flex">
+            <img src="<?= $pc -> thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-2">
-              <p class="card_tt mb-4">Typescript with Vue 실전 프로젝트</p>
-              <p class="text5 dark_gray mb-3">성도희</p>
-              <p class="text5 dark_gray">고급 &nbsp;|&nbsp; <span class="orange">₩16,000</span></p>
+              <p class="card_tt mb-4"><?= $pc -> name; ?></p>
+              <p class="text5 dark_gray mb-3"><?= $pc -> teacher; ?></p>
+              <p class="text5 dark_gray"><?= ($pc->level == 1) ? '초급' : (($pc->level == 2) ? '중급' : '상급'); ?> &nbsp;|&nbsp; 
+                <span class="orange">₩<span class="price"><?= ($pc->price_val == 0) ? '무료' : number_format($pc->price_val); ?></span></span>
+              </p>
             </div>
           </a>
-          <button class="mt-2"><i class="bi bi-x-lg icon_red"></i></button>
         </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn text5 icon_red">전체삭제<i class="bi bi-trash-fill ms-1"></i></button>
+        <?php
+          }
+        }
+        ?>
       </div>
     </div>
   </div>
@@ -70,6 +86,18 @@
     $('#recent').click(function(){
       $('#recentView').modal('show');
     });
+
+    /* recent에 이미지가 포함된 경우에만 보이게 */
+    function checkImag(){
+      let recentAside = $('#recent');
+      let recentImg = recentAside.find('img').length > 0;
+      if(!recentImg){
+        recentAside.hide();
+      } else{
+        recentAside.show(); // 이미지가 있을 경우 요소를 보이게 설정
+      }
+    }
+    setInterval(checkImag); // 페이지 내용이 변경될 때마다 함수 실행
 
     /* top_btn,recent */
     let recent = $('#recent'),

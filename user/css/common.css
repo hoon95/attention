@@ -586,7 +586,8 @@ header .login-ok-btn > div:hover > a > i {
 }
 .modal-dialog{
   position: absolute;
-  max-width: 600px;
+  /* max-width: 600px; */
+  max-width: 500px;
   top: 50%;
   left: 60%;
 }

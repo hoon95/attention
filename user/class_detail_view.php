@@ -1,4 +1,5 @@
 <?php
+  ob_start();   
   //$product_dview_css = '<link rel="stylesheet" href="/attention/user/css/product_detail_view.css">';
   //$title = '강의 상세보기 - Code Rabbit';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/class/class_function.php';
@@ -7,6 +8,48 @@
   $product_row = sql_fetch("SELECT *, (SELECT `name` FROM `category` WHERE `cid` = `class`.`cate1` LIMIT 1) AS cate1_name  FROM `class` WHERE pid = ".$pid);
 
   $file_row = sql_fetch_array("SELECT * FROM class_image_table WHERE pid=".$pid." AND status = 1");
+
+  
+  
+  /* 최근 본 강의 (쿠키) */
+  $sql = "SELECT * FROM class WHERE pid={$pid}";
+  $result = $mysqli->query($sql);
+  $rs = $result->fetch_object();
+
+  //쿠키 확인
+  if (!isset($_COOKIE['recent_view_pd'])){ //쿠키가 없다면 빈 배열 생성
+    $pvc = array();
+  } else {
+    $pvc = json_decode($_COOKIE['recent_view_pd'], true); //쿠키가 있으면 json값을 배열로 변경, 저장
+  }
+
+  $compareVal = $rs->pid; //현재 상품 정보와 비교할 값 (이미 본 건지)
+  $found = false; //봤던 상품인지 여부 비교할 변수
+
+  //배열 내의 각 항목과 비교
+  foreach ($pvc as $pc){
+    if ($pc['pid'] == $compareVal) {
+      $found = true;
+      break;
+    }
+  }
+
+  //현재 상품 정보를 쿠키에 저장
+  if (!$found){
+    if (count($pvc) >= 3){ //이미 3개의 쿠키가 있다면 
+      array_shift($pvc); //배열의 첫번째 값을 지운다.
+    }
+    $pvc[] = array( //배열에 현재상품정보 추가
+      'pid' => $rs -> pid,
+      'thumbnail' => $rs -> thumbnail,
+      'name' => $rs -> name,
+      'teacher' => $rs -> teacher,
+      'level' => $rs -> level,
+      'price_val' => $rs -> price_val
+    );
+    //배열을 다시 json으로 인코딩, 쿠키 저장, 24시간 유지
+    setcookie('recent_view_pd', json_encode($pvc), time() + 86400);
+  }
 ?>
 
 <link rel="stylesheet" href="/attention/user/css/class_detail_view.css">
@@ -217,11 +260,11 @@
         var obj = JSON.parse(data);
         if (obj.result == "success"){
           if (confirm("장바구니에 담았습니다. \n장바구니로 이동하시겠습니까?")){
-            location.href = "../cart/cart.php";
+            location.href = "/attention/user/cart/cart.php";
           }
         } else if (obj.result == "exist"){
           if (confirm("이미 담겨있는 상품입니다. \n장바구니로 이동하시겠습니까?")){
-            location.href = "../cart/cart.php";
+            location.href = "/attention/user/cart/cart.php";
           }
         } else if (obj.result == "fail"){
           alert(obj.msg);
@@ -238,5 +281,6 @@
 </script>
 
 <?php
+  ob_end_flush();
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';
 ?>
