@@ -13,21 +13,7 @@
   }
 
 ?>
-<?php
-  $csql = "SELECT * from coupons where cid=7";
-  $cresult = $mysqli -> query($csql) or die($mysqli->error);
-  $crs = $cresult->fetch_object();
 
-  $month = $crs ->  due * 30;
-
-
-  if ($month == 0) {
-    $duedate = "무기한";
-  } else {
-      $duedate = date("Y-m-d", strtotime("+{$month} days")); // 수정된 부분
-  }
-echo $duedate;
-?>
 <link rel="stylesheet" href="/attention/user/css/event_vs2.css">
 
 <div class="container"> 
