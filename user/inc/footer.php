@@ -88,16 +88,16 @@
     });
 
     /* recent에 이미지가 포함된 경우에만 보이게 */
-    function checkImag(){
-      let recentAside = $('#recent');
-      let recentImg = recentAside.find('img').length > 0;
-      if(!recentImg){
-        recentAside.hide();
-      } else{
-        recentAside.show(); // 이미지가 있을 경우 요소를 보이게 설정
-      }
-    }
-    setInterval(checkImag); // 페이지 내용이 변경될 때마다 함수 실행
+    // function checkImag(){
+    //   let recentAside = $('#recent');
+    //   let recentImg = recentAside.find('img').length > 0;
+    //   if(!recentImg){
+    //     recentAside.hide();
+    //   } else{
+    //     recentAside.show(); // 이미지가 있을 경우 요소를 보이게 설정
+    //   }
+    // }
+    // setInterval(checkImag); // 페이지 내용이 변경될 때마다 함수 실행
 
     /* top_btn,recent */
     let recent = $('#recent'),

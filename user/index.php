@@ -105,7 +105,7 @@
             foreach($recentAdds as $item){            
         ?>
         <div class="swiper-slide cart_add">
-          <a href="/attention/user/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-block">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-block">
             <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지">
             <div class="text_box">
               <h3 class="card_tt mb-3"><?= $item->name; ?></h3>
@@ -140,7 +140,7 @@
           if($item -> pid == 25){
         ?>
         <li class="cart_add col radius_medium box_shadow">
-          <a href="/attention/user/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-block">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-block">
             <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지">
             <div class="best_box">
               <p class="card_tt mb-4"><?= $item->name; ?></p>
@@ -161,7 +161,7 @@
           if($item -> pid == 28){
         ?>
         <li class="cart_add col radius_medium box_shadow">
-          <a href="/attention/user/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-block">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-block">
             <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지">
             <div class="best_box">
               <p class="card_tt mb-4"><?= $item->name; ?></p>
@@ -182,7 +182,7 @@
           if($item -> pid == 29){
         ?>
         <li class="cart_add col radius_medium box_shadow">
-          <a href="/attention/user/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-block">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-block">
             <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지">
             <div class="best_box">
               <p class="card_tt mb-4"><?= $item->name; ?></p>
@@ -203,7 +203,7 @@
           if($item -> pid == 30){
         ?>
         <li class="cart_add col radius_medium box_shadow">
-          <a href="/attention/user/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-block">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-block">
             <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지">
             <div class="best_box">
               <p class="card_tt mb-4"><?= $item->name; ?></p>
@@ -279,7 +279,7 @@
           if($item -> pid == 28){
         ?>
         <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
-          <a href="/attention/user/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
             <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-3">
               <p class="card_tt mb-4"><?= $item->name; ?></p>
@@ -303,7 +303,7 @@
           if($item -> pid == 25){
         ?>
           <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
-            <a href="/attention/user/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
+            <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
               <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
               <div class="ms-4 mt-3">
                 <p class="card_tt mb-4"><?= $item->name; ?></p>
@@ -327,7 +327,7 @@
           if($item -> pid == 26){
         ?>
         <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
-          <a href="/attention/user/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
             <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-3">
               <p class="card_tt mb-4"><?= $item->name; ?></p>
@@ -361,7 +361,7 @@
           ?>
           <div class="swiper-slide d-flex align-items-center">
             <!-- <p class="col-10 ps-4 icon_mint"><a href="/attention/user/notice_view.php?idx=<?= $no->idx; ?>" class="d-block"><?= $no->title; ?></a></p> -->
-            <p class="col-10 ps-4 icon_mint"><a href="/attention/user/notice.php" class="d-block"><?= $no->title; ?></a></p>
+            <p class="col-10 ps-4 icon_mint"><a href="/attention/user/community/notice.php" class="d-block"><?= $no->title; ?></a></p>
             <p class="col-2 text-center"><?= $no -> regdate; ?></p>
           </div>
           <?php
@@ -370,8 +370,7 @@
           ?>
         </div>
       </div>
-
-      <a href="/attention/user/notice.php" class="col-1 text-end icon_mint">전체보기 +</a>
+      <a href="/attention/user/community/notice.php" class="col-1 text-end icon_mint">전체보기 +</a>
     </div>
   </section>
 </main>
