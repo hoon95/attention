@@ -3,12 +3,15 @@
   $title = '카테고리 관리 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/admin_check.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/category/category_func.php';
 
+/*
   $query = "SELECT * FROM category WHERE step=1";
   $result = $mysqli -> query($query);
   while($rs = $result -> fetch_object()){
     $cate1[] = $rs;
   }
+*/
 ?>
 
 <div class="container">
@@ -492,7 +495,7 @@
     target2.html(newOptionHTML);  //출력 영역에 추가
   }
 
-</script>
+</>
 
 <script src="/attention/admin/js/category.js"></script>   
 <?php

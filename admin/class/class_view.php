@@ -1,120 +1,173 @@
 <?php
-$class_view_css = '<link rel="stylesheet" href="/attention/admin/css/class_view.css">';
-$title = '강좌상세보기 - Code Rabbit';
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
-$pid = $_GET['pid'];
-$sql = "SELECT * FROM class where pid={$pid}";
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/class/class_function.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/header.php';
 
-$result = $mysqli -> query($sql);
-$rs = $result -> fetch_object();
+  $pid = $_GET['pid'];
+  $sql = "SELECT * FROM class WHERE pid={$pid}";
+  $result = $mysqli -> query($sql);
+  if($result->num_rows === 0) {
+	  echo "<script>
+      alert('해당하는 상품이 존재하지 않습니다.');
+      history.back();
+    </script>";
+  }
 
-$cateArray = explode("/", $rs->cate);
-$catenames = '';
+  $rs = $result -> fetch_object();
 
-foreach($cateArray as $cate){
-  $catesql = "SELECT name FROM category where cid={$cate}";
-  $cateresult = $mysqli -> query($catesql);
-  $cate = $cateresult-> fetch_object();
-  $catenames .= $cate->name.'>';
-}
-$catename = rtrim( $catenames,  $catenames[strlen( $catenames) - 1]); 
 
-$sql2 = "SELECT * FROM class_image_table where pid={$pid}";
-$result2 = $mysqli -> query($sql2);
+  $sql = "SELECT * FROM class_image_table WHERE pid={$pid} AND status = 1";
+  $file_row = sql_fetch_array($sql);
+?>
 
-while($rs2 = $result2 -> fetch_object()){
-  $imgs[] = $rs2;
-}
-$clipsql = "SELECT * FROM class_clips where pid={$pid}";
-$clipresult = $mysqli -> query($clipsql);
+<div class="container mt-5">
+  <h2>상품 상세</h2>
+  <table class="table mt-5">
+    <colgroup>
+        <col style="width :20%">
+        <col />
+    </colgroup>
+    <tbody>
+      <tr><th>분류:</th><td><?= $rs -> cate; ?></td></tr>
+      <tr><th>상품명:</th><td><?= $rs -> name; ?></td></tr>
+      <tr><th>부제:</th><td><?= $rs -> sub_name; ?></td></tr>
 
-while($rs2 = $clipresult -> fetch_object()){
-  $clips[] = $rs2;
+      <tr>
+        <th>전시옵션:</th>
+        <td>
+          <?php
+            if($rs -> isnew) {echo '신규';}
+            if($rs -> isbest) {echo '베스트';}
+            if($rs -> isrecom) {echo '추천';}
+          ?>
+        </td>
+      </tr>
+
+      <tr><th>난이도:</th><td><?= $rs -> level; ?></td></tr>
+      <tr class="decodeURI"><th>수강대상:</th><td><?= stripslashes($rs -> student); ?></td></tr>
+	  <tr class="decodeURI"><th>강사명:</th><td><?= stripslashes($rs -> teacher); ?></td></tr>
+      <tr><th>금액 타입:</th><td><?= $rs -> price == "0" ? "무료" : "유료"; ?></td></tr>
+      <tr><th>금액:</th><td><?= number_format($rs -> price_val); ?></td></tr>
+      <tr><th>수강기간 타입:</th><td><?= $rs -> sale_end_date == "0" ? "무제한" : "제한"; ?></td></tr>
+      <tr><th>수강기간:</th><td><?= $rs -> date_val; ?></td></tr>
+
+      <tr>
+        <th>썸네일:</th>
+        <td id="thumb"><img src="<?= $rs -> thumbnail; ?>" alt=""></td>
+      </tr>
+
+	  <tr class="decodeURI"><th>인사말:</th><td><?= stripslashes($rs -> greeting); ?></td></tr>
+      <tr><th>PR문구:</th><td><?= $rs -> promotion; ?></td></tr>
+	  <tr class="decodeURI"><th>상세설명:</th><td><?= stripslashes($rs -> content); ?></td></tr>
+
+<?php
+if (!empty($rs->video))
+{
+?>
+    <tr>
+        <th>유튜브 영상</th>
+        <td>
+            <iframe width="560" height="315" src="<?php echo $rs->video?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </td>
+    </tr>
+<?php
 }
 ?>
 
-<div class="common_pd">
-  <div>
-  <p class="tt_01 class_m_pd text-center">강좌상세보기</p>
-  <div class="d-flex d-flex align-items-center">
-    <div class="d-flex align-items-center">
-      <img src="<?php echo $rs->thumbnail ?>" alt="" class="class_v_img ">
-    </div>
-    <ul class="class_sm_pd">
-      <li class="text2 class_sm_pd">
-        <span class="class_bold class_tl">강좌명</span>
-        <span class="text2"><?php echo $rs->name ?></span>
-      </li>
-      <li class="text2 class_sm_pd">
-        <span class="class_bold class_tl">난이도</span>
-        <span class="text2 class_level_tag orange"><?php if($rs->level==1){echo "초급";} if($rs->level==2){echo "중급";} if($rs->level==3){echo "상급";} ?></span>
-      </li>
-      <li class="text2 class_sm_pd">
-        <span class="class_bold class_tl">공개 여부</span>
-        <span class="text2"><?php if($rs->status==0){echo "비공개";} if($rs->status==1){echo "공개";}  ?></span>
-      </li>
-      <li class="text2">
-        <span class="class_bold class_tl">수강기한</span>
-        <span class="text2"><?php if($rs->sale_end_date==1){echo "{$rs->date_val}개월";} if($rs->sale_end_date==0){echo "무제한";} ?></span>
-      </li>
-    </ul>
-  </div>
-  <hr class="class_sm_pd">
-  <div class="d-flex">
-    <ul>
-      <li class="text2 class_sm_pd">
-        <span class="class_bold class_tl2">카테고리</span>
-        <span><?= $catename; ?></span>
-      </li>
-      <li class="text2 class_sm_pd d-flex">
-        <span class="class_bold class_tl2">강좌영상</span>
-        <ul class="clips_ib">
-          <?php
-          if(isset($clips)){
-            foreach($clips as $clip){
-        ?>
-        <li>
-          <a href="<?php echo $clip->video_url; ?>" class="address_color">
-            <?php echo $clip->video_url; ?>
-          </a>
-        </li>
-        <?php 
-        }}
-        ?> 
-        </ul>
-      </li>
-      <li class="text2 class_sm_pd d-flex">
-      <div class="class_bold class_tl2">강좌소개</div>
-        <div class="class_into"><?php echo $rs->content ?></div>
-      </li>
-      <li class="text2 class_sm_pd d-flex class_view_img">
-        <div class="class_bold class_tl2">추가 이미지</div>
-        <div>
-      <?php
-        if(isset($imgs)){
-          foreach($imgs as $item){
-      ?>
-        <img src="../../pdata/class/<?php echo $item->filename ?>" alt="add image">
-      <?php 
-      }}
-      ?> 
-      </div>
-      </li>
-    </ul>
-  </div>    
-    <hr class="class_hr class_sm_pd">  
-    <div class="d-flex justify-content-end">
-      <a href="/attention/admin/class/class_list.php" class="btn btn-dark class_sm_ml">닫기</a>
-    </div>
-  </div>
-</div>
-
-  <script>
-    $('.class_menu').css({backgroundColor: "#252a38"});
-    $('.class_menu').find('a').css({color: 'white'});
-  </script>
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
+
+$query = "select * from class_clips where pid = '".$pid."'";
+$result = $mysqli -> query($query);
+while ($rows = $result -> fetch_array(MYSQLI_ASSOC)) {
+	$video_data[] = $rows;
+}
+
+if($video_data) { 
+	for($ii=0;$ii<(count($video_data));$ii++) { 
+?>
+
+    <tr>
+        <th>강의 영상 <?php echo $ii+1?></th>
+        <td>
+            <iframe width="560" height="315" src="<?php echo $video_data[$ii]['video_url']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+			<br>
+			<?php echo $video_data[$ii]['video_url']?>
+        </td>
+    </tr>
+<?php } 
+}
+?>
+
+
+<?php
+
+if (count((array)$file_row["imgid"]))
+{
+?>
+    <tr>
+        <th colspan="2" style="text-align:center;font-weight:bold;">추가이미지</th>
+    </tr>
+<?php
+    for ($i=0; $i < count((array)$file_row["imgid"]); $i++)
+    {
+?>
+    <tr>
+        <th>추가이미지<?php echo ($i+1)?></th>
+        <td>
+            <img src="/attention/pdata/class/<?php echo $file_row["filename"][$i]?>">
+        </td>
+    </tr>
+<?php
+    }
+}
+
+if (!empty($rs->curriculum))
+{
+    $curriculum_arr = explode("\n", trim($rs->curriculum));
+?>
+      <tr>
+          <th colspan="2" style="text-align:center;font-weight:bold;">커리큘럼</th>
+      </tr>
+
+<?php
+    for ($i=0; $i < count((array)$curriculum_arr); $i++)
+    {
+        $curriculum_info = explode("|", trim($curriculum_arr[$i]));
+?>
+    <tr>
+        <th><?php echo $curriculum_info[0]?></th>
+<?php
+        $curriculum_detail = explode(",", trim($curriculum_info[1]));
+?>
+        <td>
+<?php
+        for ($j=0; $j < count((array)$curriculum_detail); $j++)
+        {
+            echo ($j > 0 ? "<br>" : "")." - ".$curriculum_detail[$j];
+        }
+?>
+        </td>
+    </tr>
+<?php
+    }
+}
+?>
+    </tbody>
+  </table>
+  <hr>
+
+  <a href="class_up.php?pid=<?=$pid?>" class="btn btn-primary">수정</a>
+  <a href="class_ok.php?mode=del&pid=<?php echo $pid?>" type="button" class="btn btn-danger">삭제</a>
+  <a href="class_list.php" class="btn btn-secondary">목록</a>
+</div>
+<script>
+	$(function() {
+		for(const td of document.querySelectorAll('.decodeURI td')){
+			td.innerHTML = decodeURIComponent(td.innerHTML);
+		}
+	});
+</script>
+
+<?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/footer.php';
 ?>

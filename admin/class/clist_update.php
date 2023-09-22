@@ -1,22 +1,48 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/inc/dbcon.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/class/class_function.php';
 
-$pcode = isset($_POST['pcode']) ? intval($_POST['pcode']) : 0;
-$check_value = isset($_POST['check_value']) ? intval($_POST['check_value']) : 0;
-if($pcode <= 0 || ($check_value !== 0 && $check_value !== 1)){
-  die('유효하지 않은 데이터입니다.');
-}
-$query = "UPDATE class SET status = ? WHERE pid = ?";
-$result = $mysqli->prepare($query);
-if($result === false){
-    die('SQL 쿼리 준비 실패: ' . $mysqli->error);
-}
-$result->bind_param('ii', $check_value, $pcode);
+  $pid = $_REQUEST['pid'];
+  //var_dump($pid);
+  $isnew = $_REQUEST["isnew"];
+  $isbest = $_REQUEST["isbest"];
+  $isrecom = $_REQUEST["isrecom"];
+  $stat = $_REQUEST["stat"];
 
-if($result->execute()){
+/*
+  var_dump($pid);
+  echo '<hr>';
+  var_dump($ismain);
+  echo '<hr>';
+  var_dump($isnew);
+  echo '<hr>';
+  var_dump($isbest);
+  echo '<hr>';
+  var_dump($isrecom);
+  echo '<hr>';
+  var_dump($stat);
+*/
 
-} else{
-}
+  foreach($pid as $p){
+    $isnew[$p] = $inew[$p] ?? 0;
+    $isbest[$p] = $isbest[$p] ?? 0;
+    $isrecom[$p] = $isrecom[$p] ?? 0;
+    $stat[$p] = $stat[$p] ?? 0;
 
-$result->close();
-$mysqli->close();
+    $query = "UPDATE class SET isnew=".$isnew[$p].", isbest=".$isbest[$p].", isrecom=".$isrecom[$p].", status=".$stat[$p]." where pid=".$p;
+    $rs = $mysqli -> query($query) or die($mysqli -> error);
+  }
+
+  if($rs){
+    echo "<script>
+      alert('일괄 수정 되었습니다.');
+      history.back();
+    </script>";
+  } else {
+    echo "<script>
+      alert('일괄 수정 실패!');
+      history.back();
+    </script>";
+  }
+
+?>

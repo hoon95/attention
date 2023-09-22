@@ -1,20 +1,27 @@
 <?php
+  ob_start(); 
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
 
   // $pid = $_GET['pid'];
 
-  // $sql = "SELECT * FROM class WHERE pid='{$pid}'";
   $sql = "SELECT * FROM class WHERE 1=1";
   $result = $mysqli -> query($sql);
-  $rs = $result -> fetch_object();
 
-  // $result = $mysqli -> query($sql);
+  while($rs = $result -> fetch_object()){
+    $rsc[] = $rs;
+  }
 
-  // while($rs = $result -> fetch_object()){
-  //   $rsc[] = $rs;
-  // }
+  /* 테이블 전체 값 가져오기 */
+  $cnt_mem = "SELECT COUNT(*) AS count FROM members";
+  $re_mem = $mysqli -> query($cnt_mem);
+  $rs_mem = $re_mem -> fetch_object();
 
-  $sqlNotice = "SELECT * FROM notice ORDER BY idx DESC LIMIT  0, 6";
+  $cnt_sale = "SELECT COUNT(*) AS count FROM sales";
+  $re_sale = $mysqli -> query($cnt_sale);
+  $rs_sale = $re_sale -> fetch_object();
+
+  /* 공지사항 sql */
+  $sqlNotice = "SELECT * FROM notice ORDER BY idx DESC LIMIT 0, 6";
 
   $resultNotice = $mysqli -> query($sqlNotice);
   $rsNotice = $resultNotice -> fetch_object();
@@ -23,26 +30,6 @@
     $rscNotice[] = $rsNotice;
   }
   // var_dump($rscNotice);
-
-  // $sqlCoupon = "SELECT * FROM coupons WHERE 1=1";
-
-  // $resCoup = $mysqli -> query($sqlCoupon);
-  // $rsCoup = $resCoup -> fetch_object();
-
-  // while($rsCoup = $rsCoup -> fetch_object()){
-  //   $rscCoup[] = $rsCoup;
-  // }
-  if(isset($_SESSION['UID'])){
-    $userid = $_SESSION['UID'];
-  }
-
-  else{
-    echo"<script>
-  alert('로그인 후 이용해주세요.');
-  history.back();
-  </script>";
-  }
-  // var_dump($userid);
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
@@ -246,24 +233,46 @@
             </div>
           </a>
         </li>
-        <li class="col radius_medium box_shadow"></li>
+        <?php 
+        foreach ($rsc as $item) {
+          if($item -> pid == 134){
+        ?>
+        <li class="cart_add col radius_medium box_shadow">
+          <a href="/attention/user/class_view.php?pid=<?= $item->pid; ?>" class="d-block">
+            <img src="<?= $item->thumbnail; ?>" alt="">
+            <div class="best_box">
+              <p class="card_tt mb-2"><?= $item->name; ?></p>
+              <p class="text5 dark_gray mb-2">미출력</p>
+              <p class="text5 dark_gray"><?= ($item->level == 1) ? '초급' : (($item->level == 2) ? '중급' : '상급'); ?> &nbsp;|&nbsp; 
+                <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
+              </p>
+            </div>
+          </a>
+          <button type="button" name="add_cart" class="cart_btn ctBtn" value="<?= $item->pid; ?>"><i class="bi bi-cart3 icon_mint"></i></button>
+        </li>
+        <?php
+            }
+          }
+        ?>
+      
       </ul>
+
       <div class="total d-flex radius_medium">
         <div class="col text-center">
-          <img src="img/main/total_member.png" alt="">
-          <p class="text1 card_tt mt-2">5,200,000 +</p>
+          <img src="img/main/total_member.png" alt="회원 아이콘 이미지">
+          <p class="text1 card_tt mt-2"><spann class="count" data-num="<?= $rs_mem -> count; ?>"></spann> +</p>
           <p class="mt-2">회원수</p>
         </div>
         <span></span>
         <div class="col text-center">
-          <img src="img/main/total_education.png" alt="">
-          <p class="text1 card_tt mt-2">1,220,093 +</p>
+          <img src="img/main/total_education.png" alt="교육신청 아이콘 이미지">
+          <p class="text1 card_tt mt-2"><spann class="count" data-num="<?= $rs_sale -> count; ?>"></spann> +</p>
           <p class="mt-2">교육신청</p>
         </div>
         <span></span>
         <div class="col text-center">
-          <img src="img/main/total_partner.png" alt="">
-          <p class="text1 card_tt mt-2">1,293 +</p>
+          <img src="img/main/total_partner.png" alt="협력사 아이콘 이미지">
+          <p class="text1 card_tt mt-2">293 +</p>
           <p class="mt-2">협력사</p>
         </div>
       </div>
@@ -301,50 +310,74 @@
       <li>
         <p class="tt_03 ms-3">Pick! 내가 이 구역 코딩 초보</p>
         <?php 
-          if(isset($rs)){
-            // foreach($rs as $item){
+        foreach ($rsc as $item) {
+          if($item -> pid == 134){
         ?>
-        <div class="pick_card radius_medium box_shadow p-3">
-          <a href="/attention/admin/class/class_list.php?pid=134" class="d-flex">
-            <img src="<?= $rs->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
+        <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
+          <a href="/attention/user/class_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
+            <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-3">
-              <!-- <p class="card_tt mb-4"><?= $rs -> name; ?></p> -->
-              <p class="card_tt mb-4"><?php echo $rs->name; ?></p>
+              <p class="card_tt mb-4"><?= $item->name; ?></p>
               <p class="text5 dark_gray mb-3">미출력</p>
-              <p class="text5 dark_gray"><?php if($rs->level==1){echo "초급";} if($rs->level==2){echo "중급";} if($rs->level==3){echo "상급";} ?> &nbsp;|&nbsp; <span class="orange">₩<?= $rs -> price_val; ?></span></p>
+              <p class="text5 dark_gray"><?= ($item->level == 1) ? '초급' : (($item->level == 2) ? '중급' : '상급'); ?> &nbsp;|&nbsp; 
+                <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
+              </p>
             </div>
           </a>
+          <button type="button" name="add_cart" class="cart_btn col-1 p-2" value="<?= $item->pid; ?>"><i class="bi bi-cart3 icon_mint"></i></button>
         </div>
         <?php
             }
-          // }
+          }
         ?>
       </li>
       <li>
         <p class="tt_03 mt-3 ms-3">Pick! 그래도 할 줄은 안다</p>
-        <div class="pick_card radius_medium box_shadow p-3">
-          <a href="" class="d-flex">
-            <img src="img/main/new_7.png" alt="썸네일 이미지" class="col-4">
-            <div class="ms-4 mt-3">
-              <p class="card_tt mb-4">JavaScript ES6+ 제대로 알아보기</p>
-              <p class="text5 dark_gray mb-3">정재남</p>
-              <p class="text5 dark_gray">중급 &nbsp;|&nbsp; <span class="orange">₩49,000</span></p>
-            </div>
-          </a>
-        </div>
+        <?php 
+        foreach ($rsc as $item) {
+          if($item -> pid == 137){
+        ?>
+          <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
+            <a href="/attention/user/class_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
+              <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
+              <div class="ms-4 mt-3">
+                <p class="card_tt mb-4"><?= $item->name; ?></p>
+                <p class="text5 dark_gray mb-3">미출력</p>
+                <p class="text5 dark_gray"><?= ($item->level == 1) ? '초급' : (($item->level == 2) ? '중급' : '상급'); ?> &nbsp;|&nbsp; 
+                  <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
+                </p>
+              </div>
+            </a>
+            <button type="button" class="cart_btn col-1 p-2" value="<?= $item->pid; ?>"><i class="bi bi-cart3 icon_mint"></i></button>
+          </div>
+        <?php
+            }
+          }
+        ?>
       </li>
       <li>
         <p class="tt_03 mt-3 ms-3">Pick! 제법 하는데?</p>
-        <div class="pick_card radius_medium box_shadow p-3">
-          <a href="" class="d-flex">
-            <img src="img/main/new_8.png" alt="썸네일 이미지" class="col-4">
+        <?php 
+        foreach ($rsc as $item) {
+          if($item -> pid == 136){
+        ?>
+        <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
+          <a href="/attention/user/class_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
+            <img src="<?= $item->thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-3">
-              <p class="card_tt mb-4">Typescript with Vue 실전 프로젝트</p>
-              <p class="text5 dark_gray mb-3">성도희</p>
-              <p class="text5 dark_gray">고급 &nbsp;|&nbsp; <span class="orange">₩16,000</span></p>
+              <p class="card_tt mb-4"><?= $item->name; ?></p>
+              <p class="text5 dark_gray mb-3">미출력</p>
+              <p class="text5 dark_gray"><?= ($item->level == 1) ? '초급' : (($item->level == 2) ? '중급' : '상급'); ?> &nbsp;|&nbsp; 
+                <span class="orange">₩<span class="price"><?= number_format($item -> price_val); ?></span></span>
+              </p>
             </div>
           </a>
+          <button type="button" class="cart_btn col-1 p-2" value="<?= $item->pid; ?>"><i class="bi bi-cart3 icon_mint"></i></button>
         </div>
+        <?php
+            }
+          }
+        ?>
       </li>
       
     </ul>
@@ -385,17 +418,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="/attention/user/js/main.js"></script>
-
-<script>
-  $('.coup_event').click(function(){ 
-  let userid = $(this).attr('data-user');
-
-
-
-});
-</script>
-
 <?php
+  ob_end_flush();
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';
-
 ?>
