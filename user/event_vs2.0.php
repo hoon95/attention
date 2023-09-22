@@ -79,15 +79,15 @@ function rotatePanel(){
 		console.log(score+'당첨');
 		// alert(score+'당첨');
 
-		let userid =  <?php echo json_encode($userid); ?>;
+	let userid =  <?php echo json_encode($userid); ?>;
 		
 
 	
-		let data = {
+	let data = {
     userid : userid,
     cid: score
   }
-  console.log(data);
+  // console.log(data);
 
   $.ajax({
     async : false, 
@@ -102,10 +102,10 @@ function rotatePanel(){
       console.log(return_data.result);
       if(return_data.result == "1"){
         alert('쿠폰이 지급되었습니다.');
-        // location.href = "/attention/user/index.php";
+        location.href = "/attention/user/event_vs2.0.php";
       } else{
         alert('이미 발급받은 쿠폰입니다.');
-        // location.href = "/attention/user/index.php";
+        location.href = "/attention/user/index.php";
       }
     }
   });//ajax
