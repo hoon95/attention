@@ -614,3 +614,12 @@ header .login-ok-btn > div:hover > a > i {
   opacity: 1;
 	visibility: visible;
 }
+
+/* coup_event */
+.coup_event{
+  left: 50px;
+  bottom: 50px;
+}
+.coup_event img{
+  width: 100px;
+}
