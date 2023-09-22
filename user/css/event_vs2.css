@@ -1,0 +1,85 @@
+
+.container_cr {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  padding: 0;
+}
+
+#roullete {
+  position: relative;
+  display: inline-block;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: url(../img/coup/Wheel.svg) no-repeat 0 0 / 100%;
+}
+
+#roullete{
+  /* 	transition:4s; */
+  /* 	transform:rotate(-90deg); */
+    transform-origin:50% 50%;
+}
+.panel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -webkit-clip-path: polygon(0% 0%, 50% 50%, 0% 50%, 0% 0%);
+  clip-path: polygon(0% 0%, 50% 50%, 0% 50%, 0% 0%);
+}
+
+.txt_posi {
+  width: 378px;
+  height: 378px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  text-align: center;
+  transform: rotate(-67deg);
+}
+
+.pallet{
+  width: 295px;
+  height: 180px;
+}
+
+.colorBox{
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin: 1px 1px 0px 0px;
+  cursor: pointer;
+}
+.showColorBox{
+  float: left;
+  margin: 1px 1px 0px 0px;
+  text-align: center;
+}
+
+
+.arrow {
+  left: 50%;
+  position: sticky;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  border-top: 30px solid purple; /* 화살표 */
+  /* border-bottom: 30px solid purple; 하단 둥근 모서리 */
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-radius: 10px; /* 둥근 모서리 반지름 값 */
+}
+
+
+
+/* .panel.panel_1 {background: red; transform:rotate(70deg)} */
+#roullete .panel:nth-of-type(1) { transform:rotate(70deg)}
+#roullete .panel:nth-of-type(2) {  transform:rotate(115deg)}
+#roullete .panel:nth-of-type(3) {  transform:rotate(160deg)}
+#roullete .panel:nth-of-type(4) {  transform:rotate(205deg)}
+#roullete .panel:nth-of-type(5) {  transform:rotate(250deg)}
+#roullete .panel:nth-of-type(6) {  transform:rotate(295deg)}
+#roullete .panel:nth-of-type(7) {  transform:rotate(340deg)}
+#roullete .panel:nth-of-type(8) {  transform:rotate(385deg)}
+

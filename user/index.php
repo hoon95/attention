@@ -35,6 +35,7 @@
   while($rsNotice = $resultNotice -> fetch_object()){
     $rscNotice[] = $rsNotice;
   }
+  // var_dump($rscNotice);
   
   // var_dump($recentAdds);
 ?>
@@ -348,6 +349,10 @@
     </ul>
   </section>
 
+  <section class="container_cr main_mg_t coup_event_sec">
+      <a href="/attention/user/event_vs2.0.php" class="btn btn-primary">쿠폰 이벤트 참여하기</a>
+  </section>
+
   <section class="notice main_mg_t blue_Gray_back">
     <div class="container_cr d-flex align-items-center">
       <h3 class="text2 col-1">공지사항</h3>
@@ -377,7 +382,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="/attention/user/js/main.js"></script>
-
 <?php
   ob_end_flush();
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';

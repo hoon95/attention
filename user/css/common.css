@@ -88,6 +88,10 @@ body{
 .mg_bot {
   margin-bottom: var(--gap-unit);
 }
+.mg_top {
+  margin-top: var(--gap-unit);
+}
+
 .gap {
   gap: 24px;
 }
@@ -465,10 +469,10 @@ header .login-btn a+a {
   width: 80px;
 }
 
-header .login-ok-btn > a:hover > i,
+/* header .login-ok-btn > a:hover > i,
 header .login-ok-btn > div:hover > a > i {
   color: var(--mint);
-}
+} */
 
 /* login mypage */
 

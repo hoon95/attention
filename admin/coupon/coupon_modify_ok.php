@@ -8,7 +8,7 @@
   $coupon_name = $_POST['coupon_name'];
 //   $coupon_image = $_POST["coupon_image"];
   $coupon_price = $_POST["coupon_price"];
-  $regdate = $_POST["regdate"];
+  $due = $_POST["due"];
 
 
   //기존 이미지가 있는지 쿼리 조회
@@ -71,7 +71,7 @@
   $mysqli->autocommit(FALSE);//일단 바로 저장하지 못하도록
   try{
 
-    $sql = "UPDATE coupons set coupon_name='${coupon_name}', coupon_image= '${coupon_image}' , coupon_price= '${coupon_price}' , regdate= '${regdate}' where cid='{$cid}'";
+    $sql = "UPDATE coupons set coupon_name='${coupon_name}', coupon_image= '${coupon_image}' , coupon_price= '${coupon_price}' , due= '${due}' where cid='{$cid}'";
 
     $result =  $mysqli->query($sql);
   
@@ -103,7 +103,7 @@
     $mysqli->autocommit(FALSE);//일단 바로 저장하지 못하도록
     try{
 
-      $sql = "UPDATE coupons set coupon_name='${coupon_name}' , coupon_price= '${coupon_price}' , regdate= '${regdate}' where cid='{$cid}'";
+      $sql = "UPDATE coupons set coupon_name='${coupon_name}' , coupon_price= '${coupon_price}' , due= '${due}' where cid='{$cid}'";
 
       $result =  $mysqli->query($sql);
     

@@ -22,7 +22,7 @@
   $firstPageNumber = $_GET['firstPageNumber'] ?? 0 ;
 
 	/* 검색 */ 
-	var_dump($status);
+	// var_dump($status);
 
 	$search_where = '';
 	  if($status){
@@ -77,7 +77,7 @@
 
   $query = $sql.$order.$limit; //쿼리 문장 조합
 
-var_dump($query);
+  // var_dump($query);
   $result = $mysqli -> query($query);
   
   while($rs = $result -> fetch_object()){
@@ -140,12 +140,12 @@ var_dump($query);
 						<div class="coup_text">
 							<h3 class="text2"><?= $item -> coupon_name ?></h3>
 							<p class="text3">할인액: <?= $item -> coupon_price ?>원</p>
-							<p class="text4 <?php if ($item->regdate == '무제한') echo 'coup_board'; ?>">
+							<p class="text4 <?php if ($item->due == '0') echo 'coup_board'; ?>">
 								<?php 
-										if ($item->regdate == '무제한') {
+										if ($item->due == '0') {
 											echo "무기한"; 
 										} else {
-											echo "기한: " . $item->regdate . "개월";
+											echo "기한: " . $item->due . "개월";
 										}
 								?> 
 						</p>
@@ -169,7 +169,7 @@ var_dump($query);
       ?>  
       <div>
         <span>조회 결과가 없습니다.</span>
-			</div>
+	</div>
       <?php
         }  
       ?>  
@@ -253,7 +253,7 @@ var_dump($query);
 			success: function(return_data){
 				console.log(return_data.result);
 				if(return_data.result == '1'){
-					alert('변경되었습니다.');
+					// alert('변경되었습니다.');
 					location.reload();//새로고침
 				} else{
 					alert('변경에 실패되었습니다.');
