@@ -10,7 +10,7 @@
 
   $sql2 = "SELECT cp.*, usercp.* FROM user_coupons usercp 
   JOIN coupons cp ON cp.cid = usercp.couponid  
-  WHERE usercp.userid='{$couponid}' and usercp.use_max_date > Now()
+  WHERE usercp.userid='{$couponid}' and usercp.use_max_date > Now() and usercp.status=1
   ORDER BY usercp.userid DESC";
   // var_dump($sql2);
 
