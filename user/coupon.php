@@ -90,9 +90,8 @@ var_dump($sql2);
     </form>
 </main>
 
-<?php
 
-  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';
-	 
+<?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php'; 
 ?>
 

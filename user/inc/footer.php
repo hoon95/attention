@@ -63,9 +63,6 @@
     </div>
   </footer>
   <script>
-    $( function() {
-      $( "#select" ).selectmenu();
-    } );
 
     $('#recent').click(function(){
       $('#recentView').modal('show');
