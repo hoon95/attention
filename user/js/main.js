@@ -95,16 +95,17 @@ const noticeSwiper = new Swiper('.notice_silde', {
 let cart_btn = $('.cart_btn');
 
 cart_btn.each(function(){
-  $(this).click(function(e) {
-    e.preventDefault();
+  $(this).click(function() {
     // 선택된 강의의 pid 가져오기
     let pid = $(this).val();
-    let total = parseFloat($(this).closest(".cart_add").find(".price").text().replace(',', ''));
-
+    let priceText = $(this).closest(".cart_add").find(".price").text();
+    let total = (priceText.trim() === '무료') ? 0 : parseFloat(priceText.replace(',', ''));
+    
     let data = {
-        pid : pid,
-        total: total
+      pid : pid,
+      total : total
     }
+    console.log(data);
 
     $.ajax({
       async:false,

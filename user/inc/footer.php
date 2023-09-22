@@ -43,7 +43,7 @@
             foreach ($prc as $pc) {
         ?>
         <div class="radius_medium box_shadow p-3 d-flex align-items-start mb-4">
-          <a href="/attention/user/class_detail_view.php?pid=<?= $pc->pid; ?>" class="d-flex">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $pc->pid; ?>" class="d-flex">
             <img src="<?= $pc -> thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-2">
               <p class="card_tt mb-4"><?= $pc -> name; ?></p>
