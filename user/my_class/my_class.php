@@ -29,7 +29,7 @@
           foreach($rsc as $r){
         ?>
         <li class="radius_medium box_shadow p-3 position-relative">
-          <a href="/attention/user/product/product_view?pid=<?= $r->pid ?>">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $r->pid ?>">
             <p class="card_tt mb-3"><?= $r->name ?></p>
             <div class="d-flex">
               <img src="<?= $r->thumbnail ?>" alt="썸네일 이미지" class="col-5 radius_medium">
