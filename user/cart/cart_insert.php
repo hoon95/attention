@@ -1,22 +1,19 @@
 <?php
+  session_start();
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/dbcon.php';
 
   $pid = $_POST['pid'];
-  $opts = $_POST['opts'];
-  $cnt = $_POST['cnt'];
   $total = $_POST['total'];
 
   if(isset($_SESSION['UID'])){
     $userid = $_SESSION['UID'];
-    $ssid = '';
   } else{
-    $ssid = session_id();
     $userid = '';
   }
   $sql = "INSERT INTO cart (
-    pid, userid, ssid, options, cnt, regdate, total
+    pid, userid, regdate, total
   ) VALUES (
-    '{$pid}','{$userid}','{$ssid}','{$opts}',{$cnt},now(), {$total}
+    '{$pid}','{$userid}', now(), {$total}
   )";
   $result = $mysqli -> query($sql);
   if($result){

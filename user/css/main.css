@@ -169,9 +169,16 @@ section .text2 {
 .best{
   background: linear-gradient(var(--mint-bg) 360px, #fff 360px);
 }
+.ctBtn{
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  padding: 1rem;
+}
 .best .best_list li{
   overflow: hidden;
   transition: 0.3s;
+  position: relative;
 }
 .best .best_list li:hover{
   transform: translateY(-10px);
