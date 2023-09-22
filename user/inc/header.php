@@ -37,8 +37,8 @@
       </h1>
       <ul class="d-flex align-items-center menu-list text1 fw-bold">
         <li><a href="#">ABOUT</a></li>
-        <li><a href="/attention/user/product_whole_list.php">강의</a></li>
-        <li><a href="/attention/user/notice.php">공지사항</a></li>
+        <li><a href="/attention/user/class/class_whole_list.php">강의</a></li>
+        <li><a href="/attention/user/community/notice.php">공지사항</a></li>
       </ul>
 
       <?php
@@ -52,7 +52,6 @@
         </a>
         <div class="d-flex align-items-center main_admin position-relative">
           <a href="#"><i class="bi material-symbols-outlined icon_mint">face</i></a>
-
           <div class="login_mypage radius_medium p-4">
             <div class="login_content d-flex flex-column justify-content-between">
               <div class="login_box d-flex flex-column align-items-center">

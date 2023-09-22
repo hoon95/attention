@@ -1,12 +1,56 @@
 <?php
-//$product_dview_css = '<link rel="stylesheet" href="/attention/user/css/product_detail_view.css">';
-//$title = '강의 상세보기 - Code Rabbit';
-include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/class/class_function.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
-$pid = empty($_GET["pid"]) ? alert("잘못된 접근입니다.") : $_GET["pid"];
-$product_row = sql_fetch("SELECT *, (SELECT `name` FROM `category` WHERE `cid` = `class`.`cate1` LIMIT 1) AS cate1_name  FROM `class` WHERE pid = ".$pid);
+  ob_start();   
+  //$product_dview_css = '<link rel="stylesheet" href="/attention/user/css/product_detail_view.css">';
+  //$title = '강의 상세보기 - Code Rabbit';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/class/class_function.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
+  $pid = empty($_GET["pid"]) ? alert("잘못된 접근입니다.") : $_GET["pid"];
+  $product_row = sql_fetch("SELECT *, (SELECT `name` FROM `category` WHERE `cid` = `class`.`cate1` LIMIT 1) AS cate1_name  FROM `class` WHERE pid = ".$pid);
 
-$file_row = sql_fetch_array("SELECT * FROM class_image_table WHERE pid=".$pid." AND status = 1");
+  $file_row = sql_fetch_array("SELECT * FROM class_image_table WHERE pid=".$pid." AND status = 1");
+
+  
+  
+  /* 최근 본 강의 (쿠키) */
+  $sql = "SELECT * FROM class WHERE pid={$pid}";
+  $result = $mysqli->query($sql);
+  $rs = $result->fetch_object();
+
+  //쿠키 확인
+  if (!isset($_COOKIE['recent_view_pd'])){ //쿠키가 없다면 빈 배열 생성
+    $pvc = array();
+  } else {
+    $pvc = json_decode($_COOKIE['recent_view_pd'], true); //쿠키가 있으면 json값을 배열로 변경, 저장
+  }
+
+  $compareVal = $rs->pid; //현재 상품 정보와 비교할 값 (이미 본 건지)
+  $found = false; //봤던 상품인지 여부 비교할 변수
+
+  //배열 내의 각 항목과 비교
+  foreach ($pvc as $pc){
+    if ($pc['pid'] == $compareVal) {
+      $found = true;
+      break;
+    }
+  }
+
+  //현재 상품 정보를 쿠키에 저장s
+  if (!$found){
+    if (count($pvc) >= 3){ //이미 3개의 쿠키가 있다면 
+      array_shift($pvc); //배열의 첫번째 값을 지운다.
+    }
+    $pvc[] = array( //배열에 현재상품정보 추가
+      'pid' => $rs -> pid,
+      'thumbnail' => $rs -> thumbnail,
+      'name' => $rs -> name,
+      'teacher' => $rs -> teacher,
+      'level' => $rs -> level,
+      'price_val' => $rs -> price_val
+    );
+    //배열을 다시 json으로 인코딩, 쿠키 저장, 24시간 유지
+    setcookie('recent_view_pd', json_encode($pvc), time() + 86400, '/');
+    // setcookie('recent_view_pd', json_encode($pvc), time() + 86400);
+  }
 ?>
 
 <link rel="stylesheet" href="/attention/user/css/class_detail_view.css">
@@ -75,7 +119,7 @@ $file_row = sql_fetch_array("SELECT * FROM class_image_table WHERE pid=".$pid." 
 
     <section class="product_content_section">
       <div class="product_content_wrap">
-          <?php echo $product_row["content"]?>
+        <?php echo $product_row["content"]?>
         <!-- <div class="product_content_point text2"><h4>알파벳을 배우듯 웹 개발을 공부하세요.</h4></div>
         <div class="product_content_explain dark_gray">
           <div class="product_content_paragraph">
@@ -94,19 +138,17 @@ $file_row = sql_fetch_array("SELECT * FROM class_image_table WHERE pid=".$pid." 
     <section>
       <div class="product_addimg_area">
         <figure>
-<?php
-if (count((array)$file_row["imgid"]))
-{
-	for ($i=0; $i < count((array)$file_row["imgid"]); $i++)
-	{
-?>
+        <?php
+        if (count((array)$file_row["imgid"])){
+          for ($i=0; $i < count((array)$file_row["imgid"]); $i++){
+        ?>
           <div class="product_addimg">
             <img src="/attention/pdata/class/<?php echo $file_row["filename"][$i]?>" alt="">
           </div>
-<?php
-  }
-}
-?>
+        <?php
+          }
+        }
+        ?>
           <div class="product_addimg_explain text2">
             <p>특히 HTML, CSS, JavaScript는</p>
             <p>웹 개발을 시작한다면 반드시 알아야 할 언어입니다.</p>
@@ -114,69 +156,65 @@ if (count((array)$file_row["imgid"]))
         </figure>
       </div>
     </section>
-<?php
-if (!empty($product_row["video"]))
-{
-?>
+    <?php
+      if (!empty($product_row["video"])){
+    ?>
     <section class="product_video_area">
       <div class="product_video_section_title dark_gray"><h4>체험 하기</h4></div>
       <div class="product_video">
         <iframe width="560" height="315" src="<?php echo $product_row["video"]?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </section>
-<?php
-}
-?>
+    <?php
+    }
+    ?>
 
-<?php
-if (!empty($product_row["curriculum"]))
-{
-  $curriculum_arr = explode("\n", trim($product_row["curriculum"]));
-?>
+    <?php
+      if (!empty($product_row["curriculum"])){
+        $curriculum_arr = explode("\n", trim($product_row["curriculum"]));
+    ?>
     <section>
       <div class="product_course_section_title dark_gray"><h4>교육 과정</h4></div>
       <div class="product_course">
-        <div class="accordion">
-<?php
-    for ($i=0; $i < count((array)$curriculum_arr); $i++)
-    {
+      <div class="accordion">
+    <?php
+      for ($i=0; $i < count((array)$curriculum_arr); $i++){
         $curriculum_info = explode("|", trim($curriculum_arr[$i]));
         $curriculum_detail = explode(",", trim($curriculum_info[1]));
-?>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<?php echo $i?>"
-              aria-expanded="false" aria-controls="panelsStayOpen-collapse<?php echo $i?>">
-                <span class="mint">0<?php echo ($i+1)?></span>
-                <span class="dark_gray"><?php echo $curriculum_info[0]?></span>
-              </button>
-            </h2>
-            <div id="panelsStayOpen-collapse<?php echo $i?>" class="accordion-collapse collapse" style="">
-<?php
-        for ($j=0; $j < count((array)$curriculum_detail); $j++)
-        {
-?>
-              <div class="accordion-body">
-                <ul class="row">
-                  <li class="col gray"><i class="bi bi-play-circle"></i></li>
-                  <li class="col"><?php echo $curriculum_detail[$j]?></li>
-                  <li class="col"><?php echo $j+1?> / <?php echo count((array)$curriculum_detail)?></li>
-                </ul>
-              </div>
-<?php
-        }
-?>
-            </div>
-          </div>
-<?php
-    }
-?>
+    ?>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<?php echo $i?>"
+          aria-expanded="false" aria-controls="panelsStayOpen-collapse<?php echo $i?>">
+            <span class="mint">0<?php echo ($i+1)?></span>
+            <span class="dark_gray"><?php echo $curriculum_info[0]?></span>
+          </button>
+        </h2>
+      <div id="panelsStayOpen-collapse<?php echo $i?>" class="accordion-collapse collapse" style="">
+    <?php
+      for ($j=0; $j < count((array)$curriculum_detail); $j++){
+    ?>
+      <div class="accordion-body">
+        <ul class="row">
+          <li class="col gray"><i class="bi bi-play-circle"></i></li>
+          <li class="col"><?php echo $curriculum_detail[$j]?></li>
+          <li class="col"><?php echo $j+1?> / <?php echo count((array)$curriculum_detail)?></li>
+        </ul>
+      </div>
+    <?php
+      }
+    ?>
+        </div>
+      </div>
+    <?php
+      }
+    ?>
         </div>
       </div>
     </section>
-<?php
-}
-?>
+    <?php
+    }
+    ?>
   </div>
 
   <aside class="product_aside_fixed white_back">
@@ -188,14 +226,13 @@ if (!empty($product_row["curriculum"]))
       </div>
       <div>
         <div class="d-flex align-items-center product_sale_info">
-<?php
-if ($product_row["price"] == "1")
-{
-?>
-        <span class="tt_03">&#8361;</span>
-<?php
-}
-?>
+          <?php
+            if ($product_row["price"] == "1"){
+          ?>
+          <span class="tt_03">&#8361;</span>
+          <?php
+            }
+          ?>
           <p class="tt_03 product_sale_price"><?php echo $product_row["price"] == "0" ? "무료" : number_format($product_row["price_val"])?></p>
         </div>
       </div>
@@ -212,50 +249,39 @@ if ($product_row["price"] == "1")
   </aside>
 
 <script>
-$("#cart-btn").click(function () {
+  $("#cart-btn").click(function () {
     var pid = $(this).attr("data-pid");
     $.ajax({
-        type: "post",
-        url: "cart_ok.php",
-        data:
-        {
-            pid: pid
-        },
-        success: function(data)
-        {
-            var obj = JSON.parse(data);
-            if (obj.result == "success")
-            {
-                if (confirm("장바구니에 담았습니다. \n장바구니로 이동하시겠습니까?"))
-                {
-                    location.href = "../cart/cart.php";
-                }
-            }
-            else if (obj.result == "exist")
-            {
-                if (confirm("이미 담겨있는 상품입니다. \n장바구니로 이동하시겠습니까?"))
-                {
-                    location.href = "../cart/cart.php";
-                }
-            }
-            else if (obj.result == "fail")
-            {
-                alert(obj.msg);
-            }
-            else
-            {
-                alert(data);
-            }
-        },
-        error: function(jqXHR, textStatus, errorThrown)
-        {
-        	alert(errorThrown);
+      type: "post",
+      url: "cart_ok.php",
+      data:{
+        pid: pid
+      },
+      success: function(data){
+        var obj = JSON.parse(data);
+        if (obj.result == "success"){
+          if (confirm("장바구니에 담았습니다. \n장바구니로 이동하시겠습니까?")){
+            location.href = "/attention/user/cart/cart.php";
+          }
+        } else if (obj.result == "exist"){
+          if (confirm("이미 담겨있는 상품입니다. \n장바구니로 이동하시겠습니까?")){
+            location.href = "/attention/user/cart/cart.php";
+          }
+        } else if (obj.result == "fail"){
+          alert(obj.msg);
+        } else{
+          alert(data);
         }
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        alert(errorThrown);
+      }
     });
     // $_SESSION['UID']
-});
+  });
 </script>
 
 <?php
+  ob_end_flush();
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';
 ?>
