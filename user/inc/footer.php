@@ -1,3 +1,10 @@
+<div class="coup_event position-fixed d-flex align-items-start">
+  <a href="" class="d-block">
+    <img src="/attention/user/img/main/piskel_rabbit.png" alt="쿠폰 이벤트 이미지 링크">
+  </a>
+  <button class="close_btn" type="button"><i class="bi material-symbols-outlined icon_red">close</i></button>
+</div>
+
 <a href="#" class="top_btn position-fixed text-center d-block white_back">
   <i class="bi bi-chevron-up d-block mt-1 mb-1"></i>
   <p class="text-uppercase">top</p>
@@ -85,16 +92,16 @@
     });
 
     /* recent에 이미지가 포함된 경우에만 보이게 */
-    // function checkImag(){
-    //   let recentAside = $('#recent');
-    //   let recentImg = recentAside.find('img').length > 0;
-    //   if(!recentImg){
-    //     recentAside.hide();
-    //   } else{
-    //     recentAside.show(); // 이미지가 있을 경우 요소를 보이게 설정
-    //   }
-    // }
-    // setInterval(checkImag); // 페이지 내용이 변경될 때마다 함수 실행
+    function checkImag(){
+      let recentAside = $('#recent');
+      let recentImg = recentAside.find('img').length > 0;
+      if(!recentImg){
+        recentAside.hide();
+      } else{
+        recentAside.show(); // 이미지가 있을 경우 요소를 보이게 설정
+      }
+    }
+    setInterval(checkImag); // 페이지 내용이 변경될 때마다 함수 실행
 
     /* top_btn,recent */
     let recent = $('#recent'),
