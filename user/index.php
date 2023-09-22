@@ -82,15 +82,15 @@
   <section class="cate_list d-flex flex-column justify-content-center text-center container_cr">
     <h2 class="tt_03"><strong class="mint">코드래빗</strong>의 다양한 코딩 분야</h2>
     <ul class="d-flex justify-content-between text3">
-      <li><a href=""><h3 class="mb-2"># html5</h3><img src="img/main/html5.svg" alt="css"></a></li>
-      <li><a href=""><h3 class="mb-2"># css</h3><img src="img/main/css.svg" alt="css"></a></li>
-      <li><a href=""><h3 class="mb-2"># javascript</h3><img src="img/main/javascript.svg" alt="javascript"></a></li>
-      <li><a href=""><h3 class="mb-2"># typescript</h3><img src="img/main/typescript.svg" alt="typescript"></a></li>
-      <li><a href=""><h3 class="mb-2"># react</h3><img src="img/main/react.svg" alt="react"></a></li>
-      <li><a href=""><h3 class="mb-2"># flutter</h3><img src="img/main/flutter.svg" alt="flutter"></a></li>
-      <li><a href=""><h3 class="mb-2"># node.js</h3><img src="img/main/node-js.svg" alt="node.js"></a></li>
-      <li><a href=""><h3 class="mb-2"># python</h3><img src="img/main/python.svg" alt="python"></a></li>
-      <li><a href=""><h3 class="mb-2"># vue-js</h3><img src="img/main/vue-dot-js.svg" alt="vue-js"></a></li>
+      <li><a href="/attention/user/class/class_whole_list.php?s_cate1=11&s_cate2=17&s_cate3=118&page=1&s_name="><h3 class="mb-2"># html5</h3><img src="img/main/html5.svg" alt="css"></a></li>
+      <li><a href="/attention/user/class/class_whole_list.php?s_cate1=11&s_cate2=18&s_cate3=21&page=1&s_name="><h3 class="mb-2"># css</h3><img src="img/main/css.svg" alt="css"></a></li>
+      <li><a href="/attention/user/class/class_whole_list.php?s_cate1=10&s_cate2=12&s_cate3=14&page=1&s_name="><h3 class="mb-2"># javascript</h3><img src="img/main/javascript.svg" alt="javascript"></a></li>
+      <li><a href="/attention/user/class/class_whole_list.php?s_cate1=10&s_cate2=12&s_cate3=16&page=1&s_name="><h3 class="mb-2"># typescript</h3><img src="img/main/typescript.svg" alt="typescript"></a></li>
+      <li><a href="/attention/user/class/class_whole_list.php?s_cate1=10&s_cate2=12&s_cate3=42&page=1&s_name="><h3 class="mb-2"># react</h3><img src="img/main/react.svg" alt="react"></a></li>
+      <li><a href="/attention/user/class/class_whole_list.php?s_cate1=10&s_cate2=12&s_cate3=48&page=1&s_name="><h3 class="mb-2"># flutter</h3><img src="img/main/flutter.svg" alt="flutter"></a></li>
+      <li><a href="/attention/user/class/class_whole_list.php?s_cate1=10&s_cate2=23&s_cate3=47&page=1&s_name="><h3 class="mb-2"># node.js</h3><img src="img/main/node-js.svg" alt="node.js"></a></li>
+      <li><a href="/attention/user/class/class_whole_list.php?s_cate1=35&s_cate2=44&s_cate3=74&page=1&s_name="><h3 class="mb-2"># python</h3><img src="img/main/python.svg" alt="python"></a></li>
+      <li><a href="/attention/user/class/class_whole_list.php?s_cate1=10&s_cate2=12&s_cate3=43&page=1&s_name="><h3 class="mb-2"># vue-js</h3><img src="img/main/vue-dot-js.svg" alt="vue-js"></a></li>
     </ul>
   </section>
 
