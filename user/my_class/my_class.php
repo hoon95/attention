@@ -3,7 +3,7 @@
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/user_check.php';
   
   
-  $sql = "SELECT A.pid, A.name, A.cate, A.thumbnail, A.sale_end_date, A.date_val, A.price_val FROM class A JOIN sales B ON A.pid = B.pid WHERE userid='{$_SESSION['UID']}'";
+  $sql = "SELECT A.pid, A.name, A.cate, A.thumbnail, A.sale_end_date, A.date_val, A.price_val FROM class A JOIN sales B ON A.pid = B.pid WHERE B.userid='{$_SESSION['UID']}'";
   $result = $mysqli -> query($sql);
   while($rs = $result->fetch_object()){
     $rsc[]=$rs;
