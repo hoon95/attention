@@ -29,22 +29,21 @@
     }
   }
 
-  // 테스트를 위해 주석 처리해둠
-  // // 구매하기 클릭 시 장바구니 항목 비우기
-  // $csql = "DELETE FROM cart WHERE userid='{$userid}'";
-  // $cresult = $mysqli -> query($csql);
+  // 구매하기 클릭 시 장바구니 항목 비우기
+  $csql = "DELETE FROM cart WHERE userid='{$userid}'";
+  $cresult = $mysqli -> query($csql);
 
-  // // 쿠폰 사용 시 user_coupons 테이블에 상태 비활성화(다음에 사용 불가)
-  // $ucsql = "UPDATE user_coupons SET status=0 WHERE ucid={$ucid}";
-  // $ucresult = $mysqli -> query($ucsql);
+  // 쿠폰 사용 시 user_coupons 테이블에 상태 비활성화(다음에 사용 불가)
+  $ucsql = "UPDATE user_coupons SET status=0 WHERE ucid={$ucid}";
+  $ucresult = $mysqli -> query($ucsql);
 
-  // if($cresult && $ucresult){
-  //   $data = array('result' => 'ok');
-  // }else{
-  //   $data = array('result' => 'fail');
-  // }
+  if($cresult && $ucresult){
+    $data = array('result' => 'ok');
+  }else{
+    $data = array('result' => 'fail');
+  }
 
-  // echo json_encode($data);
+  echo json_encode($data);
 
 
 
