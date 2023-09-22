@@ -1,0 +1,80 @@
+.product_title_dash {padding: 0 12px;}
+.product_detail_header {background: linear-gradient(90deg, rgb(148, 44, 60), rgb(251, 198, 19));}
+.product_detail_title {
+  height: 168px; font-size: 30px; font-weight: 500;
+ }
+
+.product_detail_navtabs {border-bottom: solid 2px var(--light-gray);}
+.nav-underline {gap: 48px;}
+.nav-link {padding: 14px 0 12px 0;}
+
+.product_detail_main {margin-top: 48px;}
+.product_detail_section_title, .product_video_section_title, .product_course_section_title {
+  font-size: 22px; font-weight: 600;
+  border-bottom: solid 2px var(--light-gray);
+  padding: 0 0 12px 24px;
+  margin-bottom: 24px;
+}
+.product_greeting {padding-left: 24px;}
+.product_greeting_point {padding-bottom: 12px;}
+.product_greeting p {line-height: 24px;}
+
+.product_detail_table {font-weight: 500; font-size: 18px;}
+.product_detail_table table {
+  margin-top: 24px;
+  box-shadow: 0 0 0 1px var(--light-gray);
+  border-radius: 6px;
+  border-collapse: collapse;
+  border-style: hidden;
+  margin: 24px auto 36px;
+  background-color: #f6f6f6;
+  width: 96%;
+}
+.product_detail_table table th {
+  text-align: center; padding: 10px auto; vertical-align: middle;
+  border: 1.5px solid var(--light-gray);
+}
+.product_detail_table table td {
+  padding: 10px 0 10px 48px; line-height: 34px; width: 85%; 
+  border: 1.5px solid var(--light-gray);
+}
+
+.product_promotion_area {
+  text-align: center; margin: 0 auto; width: 96%; height: 60px;
+  font-size: var(--text1-size); font-weight: 500; line-height: 60px;
+  
+}
+
+.product_content_section {margin: 36px auto 0;}
+.product_content_wrap {padding-left: 24px; margin: 0 25%;}
+.product_content_point, .product_content_paragraph {padding-bottom: 24px; line-height: 24px;}
+
+.product_addimg {
+  width: 50%; margin: 0 auto;
+  border: solid 2px var(--light-gray); border-radius: 6px;
+}
+.product_addimg_explain {text-align: center; padding: 12px 0; line-height: 30px;}
+
+.product_video_section_title {margin-top: 24px;}
+.product_video {text-align: center;}
+.product_video video {width: 50%; padding-bottom: 36px;}
+
+.product_course {width: 85%; margin: 0 auto 144px;}
+
+.product_aside_fixed {
+  position: fixed; right: 24px; top: 218px; width: 14%;
+  border: solid 2px var(--light-gray);
+  border-radius: 12px;
+}
+.product_thumbnail img {border-top-right-radius: 12px; border-top-left-radius: 12px;}
+.product_net_price {
+  font-size: var(--text2-size); font-weight: 600; text-decoration: 2px line-through; 
+  width: 90%; margin: 0 auto; padding: 12px 0 4px;
+}
+.product_sale_info, .product_level_period, .product_share {width: 90%; margin: 0 auto;}
+.product_aside_hline {width: 90%; margin: 4px auto 12px;}
+i.bi-share-fill {font-size: 14px; margin-right: 10px;}
+.product_share_btn {border-radius: 6px; padding: 8px; width: 50%; margin-top: 4px;}
+.product_tobasket_btn {border-radius: 6px; width: 90%; padding: 10px 0;}
+.product_tobasket {text-align: center; margin: 16px 0;}
+.product_level_period th, .product_level_period td  {padding-bottom: 12px;}
