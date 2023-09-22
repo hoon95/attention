@@ -1,12 +1,10 @@
+.cart_container{
+    margin-left: calc(var(--gap-unit) * 5);
+    margin-right: calc(var(--gap-unit) * 5);
+}
 .cart_sub_title{
     margin-top: calc(var(--gap-unit) * 0.5);
     gap: calc(var(--gap-unit) * 0.5);
-}
-.cart_container{
-    margin: calc(var(--gap-unit) * 5);
-}
-h2{
-    margin-bottom: calc(var(--gap-unit) * 2);
 }
 .cart_list{
     width: 55vw;
