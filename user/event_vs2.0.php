@@ -16,7 +16,7 @@
 
 <div class="container_cr"> 
 
-	<h1 class="title">Roulette</h1>
+	<!-- <h1 class="tt_01">Roulette</h1> -->
 	<div class="arrow"></div>
 	<div class="eq8" id="roullete">
 		<?php
