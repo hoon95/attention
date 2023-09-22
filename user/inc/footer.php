@@ -1,8 +1,8 @@
 <div class="coup_event position-fixed d-flex align-items-start">
-  <a href="" class="d-block">
-    <img src="/attention/user/img/main/piskel_rabbit.png" alt="쿠폰 이벤트 이미지 링크">
-  </a>
   <button class="close_btn" type="button"><i class="bi material-symbols-outlined icon_red">close</i></button>
+  <a href="/attention/user/event_vs2.0.php" class="d-inline-block">
+    <img src="/attention/user/img/main/coup_pop.png" alt="쿠폰 이벤트 이미지 링크">
+  </a>
 </div>
 
 <a href="#" class="top_btn position-fixed text-center d-block white_back">
@@ -143,6 +143,12 @@
         window.open(url, "bizCommPop", "width=750, height=700;");
         return false;
       });
+
+    //룰렛 팝업  
+    $(".close_btn").click(function() {
+      $(this).parent().hide();
+    });
+
   </script>
 </body>
 </html>

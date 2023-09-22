@@ -1,9 +1,13 @@
+main {
+  background-color: #39CED4;
+}
 
 .container_cr {
   display: grid;
   align-content: center;
   justify-content: center;
   padding: 0;
+ 
 }
 
 #roullete {
@@ -13,13 +17,9 @@
   height: 400px;
   border-radius: 50%;
   background: url(../img/coup/Wheel.svg) no-repeat 0 0 / 100%;
+  transform-origin:50% 50%;
 }
 
-#roullete{
-  /* 	transition:4s; */
-  /* 	transform:rotate(-90deg); */
-    transform-origin:50% 50%;
-}
 .panel {
   position: absolute;
   width: 100%;
@@ -82,4 +82,18 @@
 #roullete .panel:nth-of-type(6) {  transform:rotate(295deg)}
 #roullete .panel:nth-of-type(7) {  transform:rotate(340deg)}
 #roullete .panel:nth-of-type(8) {  transform:rotate(385deg)}
+
+
+.startBtn {
+  display: inline-block;
+  width: 150px;
+  height: 68px;
+  border-radius: 50px;
+  margin: 80px auto var(--gap-unit);
+}
+
+.sub_mg_p{
+  padding-bottom: calc(var(--base-unit)*4);
+  box-sizing: border-box;
+}
 
