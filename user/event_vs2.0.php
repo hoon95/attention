@@ -5,8 +5,6 @@
 
 	$userid = $_SESSION['UID'];
 
-	var_dump($userid );
-
   $result = $mysqli -> query($sql);
   while($rs = $result -> fetch_object()){
       $rsc[]=$rs;
@@ -99,7 +97,7 @@ function rotatePanel(){
       console.log('Error:', error);
     },
     success: function(return_data){
-      console.log(return_data.result);
+      // console.log(return_data.result);
       if(return_data.result == "1"){
         alert('쿠폰이 지급되었습니다.');
         location.href = "/attention/user/event_vs2.0.php";
@@ -112,4 +110,6 @@ function rotatePanel(){
 	});
 }
 </script>
-
+<?php
+  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/footer.php';
+?>
