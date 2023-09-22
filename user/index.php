@@ -351,8 +351,8 @@
   </section>
 
   <section class="container_cr main_mg_t coup_event_sec">
-    <!--   <a href="/attention/user/event/event.php" class="btn btn-primary">쿠폰</a> -->
-    <button class="btn btn-primary coup_event" data-user="<?= $userid ?>">click Me</button>
+      <a href="/attention/user/event/event_vs2.0.php" class="btn btn-primary">쿠폰 이벤트 참여하기</a>
+    <!-- <button class="btn btn-primary coup_event" data-user="<?= $userid ?>">click Me</button> -->
   </section>
 
   <section class="notice main_mg_t blue_Gray_back">
@@ -391,31 +391,7 @@
   let userid = $(this).attr('data-user');
 
 
-  let data = {
-    userid : userid,
-    cid: 2
-  }
-  console.log(data);
 
-  $.ajax({
-    async : false, 
-    type: 'post',     
-    data: data, 
-    url: "/attention/user/event/event.php", 
-    dataType: 'json', //결과 json 객체형식
-    error: function(error){
-      console.log('Error:', error);
-    },
-    success: function(return_data){
-      if(return_data.result == "ok"){
-        alert('쿠폰이 지급되었습니다.');
-        // location.href = "/attention/user/index.php";
-      } else{
-        alert('이미 발급받은 쿠폰입니다.');
-        // location.href = "/attention/user/index.php";
-      }
-    }
-  });//ajax
 });
 </script>
 

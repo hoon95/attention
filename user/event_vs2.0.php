@@ -13,6 +13,21 @@
   }
 
 ?>
+<?php
+  $csql = "SELECT * from coupons where cid=7";
+  $cresult = $mysqli -> query($csql) or die($mysqli->error);
+  $crs = $cresult->fetch_object();
+
+  $month = $crs ->  due * 30;
+
+
+  if ($month == 0) {
+    $duedate = "무기한";
+  } else {
+      $duedate = date("Y-m-d", strtotime("+{$month} days")); // 수정된 부분
+  }
+echo $duedate;
+?>
 <link rel="stylesheet" href="/attention/user/css/event_vs2.css">
 
 <div class="container"> 
@@ -81,30 +96,33 @@ function rotatePanel(){
 		let userid =  <?php echo json_encode($userid); ?>;
 		
 
+	
 		let data = {
-			userid: userid,
-			score: score
-  	}
-		
-		$.ajax({
-			async : false, 
-			type: 'post',     
-			data: data,
-			url: 'coup_score.php',
-			dataType: 'json', //결과 json 객체형식
-			error: function(error){
-				console.log('Error:', error);
-			},
-			success: function(return_data){
-				if(return_data.result == "ok"){
-					alert('쿠폰이 지급되었습니다.');
-					// location.href = "/pudding-LMS-website/user/index.php";
-				} else{
-					alert('이미 발급받은 쿠폰입니다.');
-					// location.href = "/pudding-LMS-website/user/index.php";
-				}
-			}
-		});
+    userid : userid,
+    cid: score
+  }
+  console.log(data);
+
+  $.ajax({
+    async : false, 
+    type: 'post',     
+    data: data, 
+    url: "event/event.php", 
+    dataType: 'json', //결과 json 객체형식
+    error: function(error){
+      console.log('Error:', error);
+    },
+    success: function(return_data){
+      console.log(return_data.result);
+      if(return_data.result == "1"){
+        alert('쿠폰이 지급되었습니다.');
+        // location.href = "/attention/user/index.php";
+      } else{
+        alert('이미 발급받은 쿠폰입니다.');
+        // location.href = "/attention/user/index.php";
+      }
+    }
+  });//ajax
 	});
 }
 </script>

@@ -1,8 +1,7 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/dbcon.php';
   
-  // $userid = $_POST['uid'];
-  // $cpid = $_POST['cpid'];
+
   $userid = $_POST['userid'];
   $score = $_POST['score']; //스코어가 쿠폰 아이디
 
@@ -37,7 +36,7 @@
 
     $sql2 = "INSERT into user_coupon 
     (couponid, userid, regdate, use_max_date) values 
-    ({$couponid},'{$userid}', '{$regdate}' , '{$use_max_date}')";
+    ({$$cp -> cid},'{$userid}', {$regdate} , {$use_max_date})";
     $result2 = $mysqli -> query($sql2);
     $return_data = array("result"=>"ok"); //return_data result에 ok
     echo json_encode($return_data);

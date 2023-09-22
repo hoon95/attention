@@ -10,9 +10,9 @@
 
   $sql2 = "SELECT cp.*, usercp.* FROM user_coupons usercp 
   JOIN coupons cp ON cp.cid = usercp.couponid  
-  WHERE usercp.userid='{$couponid}'and usercp.use_max_date > Now()
+  WHERE usercp.userid='{$couponid}' and usercp.use_max_date > Now()
   ORDER BY usercp.userid DESC";
-
+var_dump($sql2);
   $result2 = $mysqli -> query($sql2);
   while($rs2 = $result2 -> fetch_object()){
       $rsc2[]=$rs2;
@@ -55,14 +55,23 @@
               <h3 class="tt_02"><?= $item->coupon_price ?><span class="text3">할인</span></h3>
               <p class="text3"><?= $item->coupon_name ?></p>
               <p class="text4">
-                <?php
+              <?php
                 if ($item->due == 0) {
                     echo '<span class="orange">무기한</span>';
                 } else {
-                    echo "<span>" . date('Y-m-d', strtotime($item->due)) . "</span>";
-                    echo "<span>" . date('Y-m-d', strtotime($item->use_max_date)) . "</span>";
+                    $month = $item->due * 30;
+
+                    if ($month == 0) {
+                        $duedate = 0;
+                    } else {
+                        $duedate = date("Y-m-d", strtotime("+{$month} days")); // 수정된 부분
+                    }
+
+                    echo "<span>" . date('Y-m-d', strtotime($item->regdate)) . "</span>";
+                    echo "<span>~</span>";
+                    echo "<span>" . $duedate . "</span>"; // 수정된 부분
                 }
-                ?>
+              ?>
               </p>
             </div>
           </div>

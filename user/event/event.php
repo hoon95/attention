@@ -22,16 +22,17 @@
     $result = $mysqli -> query($sql);
     $rc = $result->fetch_object();
 
-    var_dump($rc);
-    
+
     if(!isset($rc)){
-        user_coupon($mysqli, $userid, 2,'쿠폰이벤트');
-    }else{
-        echo "<script>
-        alert('중복된 쿠폰이 있습니다.');
-        history.back();
-        </script>";
-    }
+        user_coupon($mysqli, $userid, $cid,'쿠폰이벤트');
+        $return_data = array("result"=> '1');
+        echo json_encode($return_data);
+        exit;
+      } else{
+        $return_data = array("result"=> '0');
+        echo json_encode($return_data);
+        exit;
+      }
 
 //   userid : userid,
 //   cid: 2

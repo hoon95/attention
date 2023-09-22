@@ -7,30 +7,29 @@ function user_coupon($mysqli, $userid, $coupnum, $reason){
   $cresult = $mysqli -> query($csql) or die($mysqli->error);
   $crs = $cresult->fetch_object();
 
-  $cname = $crs -> coupon_name;
-  $cprice = $crs -> coupon_price;
+  $month = $crs ->  due * 30;
 
-  $month = ($crs ->  due)*30;
 
-  if($month == 0) {
-    $duedate = 0; 
-  } else{
-    $duedate = date("Y-m-d", strtotime(+$month));//쿠폰
+  if ($month == 0) {
+    $duedate = "무기한";
+  } else {
+      $duedate = date("Y-m-d", strtotime("+{$month} days")); // 수정된 부분
   }
+
 
 
 
 
   $ucsql = "INSERT INTO user_coupons 
     (couponid, userid, regdate, use_max_date ,reason)
-    VALUES( {$coupnum}, '{$userid}', now(), {$duedate}, '{$reason}')
+    VALUES( {$coupnum}, '{$userid}', now(), '{$duedate}', '{$reason}')
   ";
   $ucresult = $mysqli -> query($ucsql) or die($mysql->error);
 
-  echo "<script>
-    alert('쿠폰 지급 완료! ".$reason."이 발행되었습니다.');
-    // location.href= '/attention/user/index.php';
-  </script>";
+  // echo "<script>
+  //   alert('쿠폰 지급 완료! ".$reason."이 발행되었습니다.');
+  //   // location.href= '/attention/user/index.php';
+  // </script>";
 
 }
 
