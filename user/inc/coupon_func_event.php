@@ -13,7 +13,7 @@ function user_coupon($mysqli, $userid, $coupnum, $reason){
   if ($month == 0) {
     $duedate = "무기한";
   } else {
-    $duedate = date("Y-m-d", strtotime("+{$month} days")); // 수정된 부분
+    $duedate = date("Y-m-d 23:59:59", strtotime("+{$month} days")); // 수정된 부분
   }
 
 

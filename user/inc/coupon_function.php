@@ -9,7 +9,7 @@ function user_coupon($mysqli, $uid, $num, $reason){
 
   $cname = $crs -> coupon_name;
   $cprice = $crs -> coupon_price;
-  $duedate = date("Y-m-d", strtotime("+30 days"));
+  $duedate = date("Y-m-d 23:59:59", strtotime("+30 days"));
 
   $ucsql = "INSERT INTO user_coupons 
     (couponid,userid,status,use_max_date,regdate,reason)

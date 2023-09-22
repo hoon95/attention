@@ -13,11 +13,29 @@
   WHERE usercp.userid='{$couponid}' and usercp.use_max_date > Now()
   ORDER BY usercp.userid DESC";
   // var_dump($sql2);
-  
+
   $result2 = $mysqli -> query($sql2);
   while($rs2 = $result2 -> fetch_object()){
       $rsc2[]=$rs2;
   }
+
+  	
+	/* 페이지 내 검색 및 활성화 */
+	$userid = $_GET['userid']?? '';
+  $select = $_GET['select'] ?? '';
+	$due = $_GET['due'] ?? '';
+
+  $expirecps = [];
+  $expirecpsdate = strtotime('+10 days');
+  foreach ($rsc2 as $cpdate) {
+    $useMaxDatecp = strtotime($cpdate->use_max_date);
+    if ($useMaxDatecp <= $expirecpsdate) {
+      $expirecps[] = $cpdate;
+    }
+  }
+
+  // 만료쿠폰 수
+  $expirecouponcount = count($expirecps);
 
 ?>
 
@@ -27,8 +45,18 @@
     <section class="sub_mg_t coup_top">
       <h2 class="tt_01 mg_bot">쿠폰 혜택</h2>
       <div class="row coupon_top">
-          <div class="col text-center">사용 가능한 쿠폰 <span class="text1">1</span>장</div>
-          <div class="col text-center">이번 달 소멸예정 쿠폰 <span class="text1">1</span>장</div>
+          <?php
+            if (isset($rsc2)) {
+          ?>
+          <div class="col text-center">사용 가능한 쿠폰 <span class="text1 orange"><?= count($rsc2) ?? 0 ?></span>장</div>
+          <?php
+            }
+          ?>
+          <div class="col text-center">이번 달 소멸예정 쿠폰 
+            <span class="text1 mint">
+              <?= $expirecouponcount ?>
+            </span>장
+          </div>
           <div class="coup_line"></div>
       </div>
     </section>
@@ -37,9 +65,8 @@
         <h3 class="text1"> 할인쿠폰 전체</h3>
         <div class="coup_right d-flex align-items-center">
           <select name="select" id="select">
-            <option>유효기간 순</option>
-            <option>발급일 순</option>
-            <option>가나다라 순</option>
+            <option value="-1" <?php if( $regdate=='-1') {echo "selected"; } ?>>유효기간 순</option>
+            <option value="1" <?php if( $use_max_date=='1') {echo "selected"; } ?>>발급일 순</option>
           </select>
         </div>
       </div>

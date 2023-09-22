@@ -14,17 +14,16 @@
 
 <link rel="stylesheet" href="/attention/user/css/event_vs2.css">
 
-<div class="container"> 
-	<header class="header">
-		<h1 class="title">Roulette</h1>
-	</header>
+<div class="container_cr"> 
+
+	<h1 class="title">Roulette</h1>
 	<div class="arrow"></div>
 	<div class="eq8" id="roullete">
 		<?php
 			if(isset($rsc)){
 				foreach($rsc as $item){            
 		?>
-		<div class="panel panel_<?= $item -> cid ?>"><strong class="txt" data-id="<?= $item -> cid ?>"><?= $item -> cid ?></strong></div>
+		<div class="panel"><strong class="txt_posi tt_02" data-id="<?= $item -> cid ?>"><?= $item -> cid ?></strong></div>
 		<?php
         } //foreach
       } else {    
@@ -37,9 +36,6 @@
       ?>  						
 	</div>
 	<button class="startBtn">start</button>
-		<div id="panelInfoTbody"></div>
-		<div class="popup"></div>
-		<div id="resultText"></div>
 </div>
 
 
@@ -103,7 +99,7 @@ $(".main_admin").on("mouseleave" , function() {
 					location.href = "/attention/user/event_vs2.0.php";
 				} else{
 					alert('이미 발급받은 쿠폰입니다.');
-					location.href = "/attention/user/index.php";
+					location.href = "/attention/user/event_vs2.0.php";
 				}
 			}
 		});//ajax
