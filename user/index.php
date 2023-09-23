@@ -349,10 +349,6 @@
     </ul>
   </section>
 
-  <section class="container_cr main_mg_t coup_event_sec">
-      <a href="/attention/user/event_vs2.0.php" class="btn btn-primary">쿠폰 이벤트 참여하기</a>
-  </section>
-
   <section class="notice main_mg_t blue_Gray_back">
     <div class="container_cr d-flex align-items-center">
       <h3 class="text2 col-1">공지사항</h3>

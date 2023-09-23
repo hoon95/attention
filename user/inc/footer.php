@@ -1,8 +1,8 @@
 <div class="coup_event position-fixed d-flex align-items-start">
-  <a href="" class="d-block">
-    <img src="/attention/user/img/main/piskel_rabbit.png" alt="쿠폰 이벤트 이미지 링크">
-  </a>
   <button class="close_btn" type="button"><i class="bi material-symbols-outlined icon_red">close</i></button>
+  <a href="/attention/user/event_vs2.0.php" class="d-inline-block">
+    <img src="/attention/user/img/coup/coup_pop.png" alt="쿠폰 이벤트 이미지 링크">
+  </a>
 </div>
 
 <a href="#" class="top_btn position-fixed text-center d-block white_back">
@@ -69,7 +69,7 @@
         <img src="/attention/user/img/main/footer_coderabbit_logo.svg" alt="코드래빗 로고">
       </div>
       <address>
-        <p><a href="#">코드래빗 소개</a><a href="/attention/user/product_whole_list.php">코드래빗 강좌리스트</a><a href="/attention/user/notice.php">코드래빗 공지사항</a><a href="#">개인정보처리방침</a><a href="#">이용약관</a></p>
+        <p><a href="#">코드래빗 소개</a><a href="/attention/user/class/class_whole_list.php">코드래빗 강좌리스트</a><a href="/attention/user/community/notice.php">코드래빗 공지사항</a><a href="#">개인정보처리방침</a><a href="#">이용약관</a></p>
         <ul>
           <li><span>&lbbrk;주&rbbrk;코드래빗</span><span>대표자&#58; Attention</span><span class="business_number">사업자번호&#58; 000&#45;00&#45;00000</span><a href="#" class="business_address">사업자 정보 확인</a></li>
           <li><span>통신판매업&#58; 0000&#45;서울종로&#45;0000</span><span>개인정보보호책임자&#58; Attention</span><span>이메일&#58; <a href="mailto:attention804@gmail.com">attention804&commat;gmail.com</a></span></li>
@@ -143,6 +143,12 @@
         window.open(url, "bizCommPop", "width=750, height=700;");
         return false;
       });
+
+    //룰렛 팝업  
+    $(".close_btn").click(function() {
+      $(this).parent().hide();
+    });
+
   </script>
 </body>
 </html>

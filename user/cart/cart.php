@@ -1,6 +1,5 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
-  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/user_check.php';
 
   $where = '';
   if(isset($_SESSION['UID'])){
@@ -28,7 +27,7 @@
 
   <link rel="stylesheet" href="/attention/user/css/cart.css">
 
-  <div class="container_cr sub_mg_t sub_mg_b d-flex justify-content-between">
+  <div class="cart_container sub_mg_t sub_mg_b d-flex justify-content-between">
     <div class="cart_list">
       <h2 class="tt_01 text-center">장바구니</h2>
       <table class="table">
@@ -193,7 +192,7 @@
     $('.cart_continue').click(function(){
       let result = confirm('강의 리스트로 이동하시겠습니까?');
       if(result){
-        location.href = "/attention/user/index.php";
+        location.href = "/attention/user/class/class_whole_list.php";
       }
     });
     // 쿠폰 적용하기
