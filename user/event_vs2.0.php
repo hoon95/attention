@@ -5,6 +5,7 @@
 
 	$userid = $_SESSION['UID'];
 
+
   $result = $mysqli -> query($sql);
   while($rs = $result -> fetch_object()){
       $rsc[]=$rs;
@@ -16,7 +17,7 @@
 
 <div class="container_cr"> 
 
-	<h1 class="title">Roulette</h1>
+	<!-- <h1 class="tt_01">Roulette</h1> -->
 	<div class="arrow"></div>
 	<div class="eq8" id="roullete">
 		<?php
@@ -59,6 +60,13 @@ $(".main_admin").on("mouseleave" , function() {
 
 	startBtn.click(function(e){
 		rotatePanel();
+		
+		let userid =  <?php echo json_encode($userid); ?>;
+
+		if(!userid) {
+			alert('로그인 후 이용해주세요.');
+			location.href = "/attention/user/event_vs2.0.php";
+		}
 	});
 
 	function rotatePanel(){
@@ -68,14 +76,18 @@ $(".main_admin").on("mouseleave" , function() {
 		
 		roullete.animate({transform:'rotate(3000deg)'},4000,function(){
 			randeg = ranNum*deg;
-			score = ranNum + 2;
-			roullete.css({transform:`rotate(-${randeg}deg)`});	
-			console.log(score+'당첨');
-			// alert(score+'당첨');
+			score = ranNum + 1;
+			roullete.css({transform:`rotate(-${randeg}deg)`});
+				
+			// console.log(score+'당첨');
+			setTimeout(()=>{
+				alert(score+'번 쿠폰에 당첨되었습니다.');
+			},100);
+
 
 		let userid =  <?php echo json_encode($userid); ?>;
-			
 
+	
 		
 		let data = {
 			userid : userid,
