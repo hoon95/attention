@@ -194,7 +194,7 @@ if (!empty($class_row["curriculum"][0]))
 ?>
               <div class="accordion-body">
                 <ul class="row">
-                  <li class="col gray"><button class="class_youtube_btn" data-link="<?= $class_row['video_url'][$j] ?>"><i class="bi bi-play-circle d-none"></i></button></li>
+                  <li class="col gray"><button class="class_youtube_btn" data-link="<?= $class_row['video_url'][$j] ?>"><i class="bi bi-play-circle play_hidden"></i></button></li>
                   <li class="col"><?php echo $curriculum_detail[$j]?></li>
                   <li class="col"><?php echo $j+1?> / <?php echo count((array)$curriculum_detail)?></li>
                 </ul>
@@ -292,27 +292,35 @@ if ($class_row["price"][0] == "1")
   });
   // 재생 버튼 클릭 시 새 창으로 비디오 생성
   $('.class_youtube_btn').click(function(){
-    let youtube_link = $(this).attr('data-link');
-    let playHistory = {
+    if($('.class_youtube_btn').find('i').hasClass('play_hidden') == false){
+      let youtube_link = $(this).attr('data-link');
+      let playHistory = {
         link: youtube_link,
         timestamp: new Date().toISOString()
-    };
-    localStorage.setItem('playHistory', JSON.stringify(playHistory));
-    
-    window.open(youtube_link, '_blank');
-    location.reload();
+      };
+      localStorage.setItem('playHistory', JSON.stringify(playHistory));
+      
+      window.open(youtube_link, '_blank');
+      location.reload();
+    }else{
+      alert('강의 구매 후 시청 가능합니다.')
+    }
   })
 
   let recent_video_data = localStorage.getItem('playHistory');
-  if (recent_video_data) {
+  if(recent_video_data){
     let recent_video = JSON.parse(recent_video_data).link; // 문자열에서 객체로 변환 후 link 속성 가져오기
 
     // 이어보기 버튼 추가
-    $('.product_course').append('<button id="continue" class="d-flex justify-content-start align-items-center g-3"><i class="bi bi-play-circle d-none"></i></button>');
+    $('.product_course').append('<button id="continue" class="class_youtube_btn d-flex justify-content-start align-items-center g-3"><i class="bi bi-play-circle play_hidden"></i></button>');
 
     // 이어보기 버튼 클릭 시 최근 비디오 재생
     $('#continue').click(function(){
+      if($(this).find('i').hasClass('play_hidden') == false){
         window.open(recent_video, '_blank');
+      }else{
+        alert('강의 구매 후 시청 가능합니다')
+      }
     });
   }
 
@@ -324,10 +332,12 @@ if ($class_row["price"][0] == "1")
   fetch(`https://www.googleapis.com/youtube/v3/videos?id=${video_id}&key=${apiKey}&part=snippet`)
     .then(response => response.json())
     .then(data => {
-        if (data.items && data.items.length > 0) {
-            const title = data.items[0].snippet.title;
-            $('#continue').find('i').text('이어보기 : '+title);
-        } else {
+        if(data.items && data.items.length > 0){
+            let title = data.items[0].snippet.title;
+            if($('#continue').find('i').hasClass('play_hidden') == false){
+              $('#continue').find('i').text('이어보기 : '+title);
+            }
+        }else{
             console.log("영상 불러오기 실패");
         }
     })
@@ -352,7 +362,7 @@ if ($class_row["price"][0] == "1")
         var_dump($item->cnt);
         if($item->cnt !="0"){
           echo "<script>
-          $('.bi-play-circle').removeClass('d-none')
+          $('.bi-play-circle').removeClass('play_hidden')
           </script>";
         }
       }
