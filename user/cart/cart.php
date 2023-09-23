@@ -1,6 +1,5 @@
 <?php
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
-  require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/user_check.php';
 
   $where = '';
   if(isset($_SESSION['UID'])){

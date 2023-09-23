@@ -9,7 +9,7 @@ if(isset($_SESSION['UID'])){
 <link rel="stylesheet"href="/attention/user/css/login.css">
 <div class="container_cr">
       <div class="login">
-        <h1 class="">로그인</h1>
+        <h2>로그인</h2>
         <form action="login_ok.php" method="POST">
           <div>
             <input type="text" class="form-control login_id" id="userid" name="userid" placeholder="아이디" required>
