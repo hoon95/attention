@@ -2,9 +2,9 @@
 function sql_query($sql)
 {
     $hostname = 'localhost';
-    $dbuserid = 'hoon95';
-    $dbpasswd = 'mafakkeo55!';
-    $dbname = 'hoon95';
+    $dbuserid = 'coderabbit';
+    $dbpasswd = 'rabbit9595!!';
+    $dbname = 'coderabbit';
 
     $connect = @mysqli_connect($hostname, $dbuserid, $dbpasswd, $dbname);  
     // $mysqli = new mysqli($hostname, $dbuserid, $dbpasswd, $dbname);
