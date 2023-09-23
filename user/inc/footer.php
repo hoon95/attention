@@ -1,7 +1,7 @@
 <div class="coup_event position-fixed d-flex align-items-start">
   <button class="close_btn" type="button"><i class="bi material-symbols-outlined icon_red">close</i></button>
   <a href="/attention/user/event_vs2.0.php" class="d-inline-block">
-    <img src="/attention/user/img/main/coup_pop.png" alt="쿠폰 이벤트 이미지 링크">
+    <img src="/attention/user/img/coup/coup_pop.png" alt="쿠폰 이벤트 이미지 링크">
   </a>
 </div>
 
@@ -43,7 +43,7 @@
             foreach ($prc as $pc) {
         ?>
         <div class="radius_medium box_shadow p-3 d-flex align-items-start mb-4">
-          <a href="/attention/user/class_detail_view.php?pid=<?= $pc->pid; ?>" class="d-flex">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $pc->pid; ?>" class="d-flex">
             <img src="<?= $pc -> thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-2">
               <p class="card_tt mb-4"><?= $pc -> name; ?></p>

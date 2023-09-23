@@ -193,7 +193,7 @@
     $('.cart_continue').click(function(){
       let result = confirm('강의 리스트로 이동하시겠습니까?');
       if(result){
-        location.href = "/attention/user/index.php";
+        location.href = "/attention/user/class/class_whole_list.php";
       }
     });
     // 쿠폰 적용하기
