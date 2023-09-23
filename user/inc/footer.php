@@ -104,22 +104,27 @@
     setInterval(checkImag); // 페이지 내용이 변경될 때마다 함수 실행
 
     /* top_btn,recent */
-    let recent = $('#recent'),
+    let pageHeight = $(document).height(), //페이지 전체 높이
+        recent = $('#recent'),
         topBtn = $('.top_btn'),
         windowHeight = $(window).height(),
         topOffset = windowHeight / 3,
         topScroll = 0;
 
-    $(window).scroll(() => {
-      topScroll = $(window).scrollTop();
-      if (topScroll > topOffset) {
-        recent.addClass('active');
-        topBtn.addClass('active');
-      } else {
-        recent.removeClass('active');
-        topBtn.removeClass('active');
-      }
-    });
+    if (pageHeight <= 1400) { // 페이지 높이가 1400이하라면
+      recent.addClass('active');
+    } else{                   // 페이지 높이가 1400이상이면 스크롤 이벤트
+      $(window).scroll(() => {
+        topScroll = $(window).scrollTop();
+        if (topScroll > topOffset) {
+          recent.addClass('active');
+          topBtn.addClass('active');
+        } else {
+          recent.removeClass('active');
+          topBtn.removeClass('active');
+        }
+      });
+    }
 
     topBtn.on('click', function(e){
       e.preventDefault();
