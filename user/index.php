@@ -35,9 +35,6 @@
   while($rsNotice = $resultNotice -> fetch_object()){
     $rscNotice[] = $rsNotice;
   }
-  // var_dump($rscNotice);
-  
-  // var_dump($recentAdds);
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
@@ -297,7 +294,7 @@
         <span></span>
         <div class="col text-center">
           <img src="img/main/total_partner.png" alt="협력사 아이콘 이미지">
-          <p class="text1 card_tt mt-2"><spann class="count" data-num="293"></spann> +</p>
+          <p class="text1 card_tt mt-2">293 +</p>
           <p class="mt-2">협력사</p>
         </div>
       </div>
