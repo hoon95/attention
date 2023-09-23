@@ -38,7 +38,7 @@
         <div class="d-flex justify-content-between sns">
           <img src="/attention/user/img/main/kakaotalk.svg" alt="카카오톡 로고">
           <img src="/attention/user/img/main/band.svg" alt="밴드 로고">
-          <img src="/attention/user/img/main/instagram.svg" alt="인스타그램 로고">
+          <img src="/attention/user/img/main/Instagram.svg" alt="인스타그램 로고">
           <img src="/attention/user/img/main/facebook.svg" alt="페이스북 로고">
         </div>
       </div>
