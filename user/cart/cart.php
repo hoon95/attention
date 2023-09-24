@@ -120,6 +120,9 @@
 
   <script src="/attention/user/js/jquery.number.min.js"></script>
   <script>
+    $(function(){
+      $('#recent').remove();
+    })
     function cartCalc(){
         let subtotal = 0;
         $('.cart_area tr').each(function(){
