@@ -1,6 +1,6 @@
 <?php
-//$product_wlist_css = '<link rel="stylesheet" href="/attention/user/css/product_whole_list.css">';
-//$title = '전체 강의리스트 - Code Rabbit';
+// $product_wlist_css = '<link rel="stylesheet" href="/attention/user/css/product_whole_list.css">';
+$title = '전체 강의리스트 - Code Rabbit';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/class/class_function.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
 
@@ -310,6 +310,7 @@ function search_form()
     var f = document.s_form;
     f.submit();
 }
+
 </script>
 
 <?php

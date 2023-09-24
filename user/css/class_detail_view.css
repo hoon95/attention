@@ -3,10 +3,16 @@
 .product_detail_title {
   height: 168px; font-size: 30px; font-weight: 500;
  }
+ 
+ /* .product_detail_header {position: sticky; top: 0;}
+ .product_datial_title {position: sticky; height: 50px; font-size: 20px; line-height: 50px; padding-left: 36px;} */
 
 .product_detail_navtabs {border-bottom: solid 2px var(--light-gray);}
 .nav-underline {gap: 48px;}
-.nav-link {padding: 14px 0 12px 0;}
+.nav-underline li:first-of-type {margin-left: 36px;}
+.nav-link {padding: 14px 0 12px 0; color: var(--dark_gray);}
+.nav {--bs-nav-link-hover-color: var(--mint);}
+.nav-link:focus, .nav-link:hover {--bs-link-hover-color: var(--mint);}
 
 .product_detail_main {margin-top: 48px;}
 .product_detail_section_title, .product_video_section_title, .product_course_section_title {
@@ -47,13 +53,16 @@
 
 .product_content_section {margin: 36px auto 0;}
 .product_content_wrap {padding-left: 24px; margin: 0 25%;}
+.product_content_wrap p {line-height: 24px;}
 .product_content_point, .product_content_paragraph {padding-bottom: 24px; line-height: 24px;}
 
 .product_addimg {
   width: 50%; margin: 0 auto;
-  border: solid 2px var(--light-gray); border-radius: 6px;
+  /* border: solid 2px var(--light-gray); border-radius: 6px; */
+  text-align: center;
 }
 .product_addimg_explain {text-align: center; padding: 12px 0; line-height: 30px;}
+.product_addimg img {width: 60%; margin-top: 24px;}
 
 .product_video_section_title {margin-top: 24px;}
 .product_video {text-align: center;}
@@ -62,7 +71,7 @@
 .product_course {width: 85%; margin: 0 auto 144px;}
 
 .product_aside_fixed {
-  position: fixed; right: 24px; top: 218px; width: 14%;
+  position: fixed; right: 24px; top: 160px; width: 14%;
   border: solid 2px var(--light-gray);
   border-radius: 12px;
 }
@@ -74,12 +83,31 @@
 .product_sale_info, .product_level_period, .product_share {width: 90%; margin: 0 auto;}
 .product_aside_hline {width: 90%; margin: 4px auto 12px;}
 i.bi-share-fill {font-size: 14px; margin-right: 10px;}
-.product_share_btn {border-radius: 6px; padding: 8px; width: 50%; margin-top: 4px;}
+.product_share_btn {border-radius: 6px; padding: 8px; width: 100%; margin-top: 4px; text-align: center;}
 .product_tobasket_btn {border-radius: 6px; width: 90%; padding: 10px 0;}
 .product_tobasket {text-align: center; margin: 16px 0;}
 .product_level_period th, .product_level_period td  {padding-bottom: 12px;}
 
-/* 영상 재생버튼 양식 */
+.accordion-item {border: 2px solid var(--light-gray);}
+.accordion {
+  --bs-accordion-border-color: var(--light-gray);
+  --bs-accordion-acitve-bg: rgba(42,193,188,.5);
+  --bs-accordion-btn-focus-border-color: rgba(42,193,188,.5);
+  --bs-accordion-btn-focus-box-shadow: rgba(42,193,188,.5);
+}
+.accordion-button:not(.collapsed) {background-color: rgba(42,193,188,.5);}
+div.accordion-body {border: 1px solid var(--light-gray); padding-left: 0;}
+#continue {margin-top: 24px;}
+#continue i::before {padding-right: 8px;}
+
+.class_course_title {font-weight: 500;}
+.class_lecture_list li:first-of-type {padding-left: 0; padding-right: 8px; text-align: end;}
+.class_lecture_list li:nth-of-type(2) {text-align: start; padding-left: 0;}
+.class_lecture_list li:last-of-type {text-align:end; padding-right: 34px;}
+
+#recent {bottom: 108px;}
+.top_btn {bottom: 48px;}
+
 .play_hidden{
   color: var(--gray) !important;
 }
