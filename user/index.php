@@ -107,14 +107,14 @@
       <!-- Slides -->
       <div class="swiper-slide slide1">
         <div class="container_cr">
-          <h3 class="tt_00 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3>
-          <p class="text1">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p>
+          <!-- <h3 class="tt_00 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3> -->
+          <!-- <p class="text1">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p> -->
         </div>
       </div>
       <div class="swiper-slide slide2">
         <div class="container_cr">
-          <h3 class="tt_00 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3>
-          <p class="text1">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p>
+          <!-- <h3 class="tt_00 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3> -->
+          <!-- <p class="text1">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p> -->
         </div>
       </div>
       <div class="swiper-slide slide3">
@@ -282,19 +282,19 @@
       <div class="total d-flex radius_medium">
         <div class="col text-center">
           <img src="img/main/total_member.png" alt="회원 아이콘 이미지">
-          <p class="text1 card_tt mt-2"><spann class="count" data-num="<?= $rs_mem -> count; ?>"></spann> +</p>
+          <p class="text1 card_tt mt-2"><span class="count" data-num="<?= $rs_mem -> count; ?>"></span> +</p>
           <p class="mt-2">회원수</p>
         </div>
-        <span></span>
+        <span class="span"></span>
         <div class="col text-center">
           <img src="img/main/total_education.png" alt="교육신청 아이콘 이미지">
-          <p class="text1 card_tt mt-2"><spann class="count" data-num="<?= $rs_sale -> count; ?>"></spann> +</p>
+          <p class="text1 card_tt mt-2"><span class="count" data-num="<?= $rs_sale -> count; ?>"></span> +</p>
           <p class="mt-2">교육신청</p>
         </div>
-        <span></span>
+        <span class="span"></span>
         <div class="col text-center">
           <img src="img/main/total_partner.png" alt="협력사 아이콘 이미지">
-          <p class="text1 card_tt mt-2">293 +</p>
+          <p class="text1 card_tt mt-2"><span class="count" data-num="293"></span> +</p>
           <p class="mt-2">협력사</p>
         </div>
       </div>

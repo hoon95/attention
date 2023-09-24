@@ -359,7 +359,6 @@ if ($class_row["price"][0] == "1")
       $rsc[]=$rs;
       }
       foreach($rsc as $item){
-        var_dump($item->cnt);
         if($item->cnt !="0"){
           echo "<script>
           $('.bi-play-circle').removeClass('play_hidden')
