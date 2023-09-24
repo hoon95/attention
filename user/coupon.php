@@ -91,7 +91,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <a href="coupon.php"><h3 class="text1"> 할인쿠폰 전체</h3></a>
         <div class="coup_right d-flex align-items-center">
-            <form action="" id="sort">
+            <form action="#" id="sort">
               <select name="sort" id="select">
                 <option value="use_max_date"  <?php if($sort== 'use_max_date') {echo "selected"; } ?> >유효기간 순</option>
                 <option value="regdate"  <?php if($sort== 'regdate') {echo "selected"; } ?>>발급일 순</option>
@@ -100,7 +100,7 @@
         </div>
       </div>
     </section>
-    <form action="" method="" class="mg_top sub_mg_b">
+    <form action="#" class="mg_top sub_mg_b">
         <div class="row row-cols-3 coup_list gap">
           <?php
           if (isset($rsc2)) {
