@@ -58,6 +58,9 @@
 .cate_list ul{
   margin-top: calc(var(--base-unit)*1.5);
 }
+.cate_list li:hover h3 {
+  color: var(--mint);
+}
 /* /cate_list */
 
 .mg_bot2 {
