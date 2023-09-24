@@ -1,54 +1,31 @@
-.class_ss_mt{
-  margin-top: 10px;
+div.class_view_main {border-radius: 6px;}
+#thumb img{width: 420px; height: 236px;}  /* 160 * 104*/
+.class_view_thumbarea {width: 50%;}
+.class_view_addimg img {width: 320px; height: 220px;}
+div.class_view_main {padding: 2.5%; border-radius: 6px;}
+.class_view_row {padding-bottom: 24px;}
+.class_view_row p {font-size: 14px; line-height: 24px;}
+h3 {font-weight: bold; width: 88px;}
+h4 {line-height: 24px;}
+.class_view_name, .class_view_level, .class_view_price, .class_view_subname, .class_view_cate {width: 32%;}
+.class_view_student p {line-height: 24px; padding-left: 72px; font-size: var(--text4-size);}
+hr {color: var(--light-gray); margin: 0 0 24px 0;}
+div.class_view_thumbarea, div.class_view_mainvd {display: inline-block;}
+div.class_view_greetcon, div.class_view_cotent, p.class_view_thumb, p.class_view_video {margin-left: 72px;}
+p.class_view_lecurl {line-height: 236px;}
+.class_view_lecvideo iframe {border: 1px solid;}
+.class_lecvd_area {
+  padding: 24px 2.5%;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
-.class_m_pd{
-  padding-bottom: 40px;
-}
-.class_sm_pd{
-  padding-bottom: 20px;
-}
-.class_v_img{
-  margin-right: 94px;
-  width: 178px;
-  height: 122px;
-  object-fit: cover;
-}
-.class_bold{
-  font-weight: 700;
-}
-.class_bold span{
-  font-weight: 400;
-}
-/* 임시 */
-.class_level_tag{
-  border: 2px solid var(--orange);
-  border-radius: 3px;
-  padding: 0 12px;
-  font-size: 15px;
-}
-.class_hr{
-  color: var(--gray);
-}
-.address_color{
-  color: #0000FF;
-  text-decoration: underline;
-  text-decoration-color: #0000FF;
-}
-.class_into{
-  word-spacing: 2px;
-  line-height: 150%;
-}
-.class_tl{
+.class_course_explain * {font-size: var(--text4-size);}
+.class_course_explain {padding-left: 96px;}
+/* .class_status_option {display: none;} */
+mark {
+  background-color: rgba(42,193,188,.5);
+  width: 86px;
   display: inline-block;
-  width: 116px;
-}
-.class_tl2{
-   display: inline-block;
-  width: 134px;
-}
-.class_view_img img{
-  margin-right: 40px;
-  width: 162px;
-  height: 108px;
-  object-fit: cover;
+  text-align: center;
+  padding: 4px 0;
 }

@@ -1,101 +1,23 @@
-.table{
-  padding: 0;
-  margin: 0;
-}
-.table>:not(caption)>*>*{
-  padding: 0;
-}
-.class_table tr{
+.class_tocate_btn, .class_add_btn, .class_search_btn, .class_reset_btn {text-wrap: nowrap;}
+.class_cate_filter {width: 100%;}
+.class_cate_filter div {width: 36%;}
+.form-check-input {width: 20px !important; margin: 0;}
+label.form-check-label {line-height: 20px;}
+.input-group {width: 30%;}
+
+#search_keyword {width: 280px; height: 40px;}
+.class_add_btn {width: 128px;}
+
+.class_admin_thumb {width: 120px; height: 78px;}
+div.class_admin_item {
+  border-radius: 6px !important; padding: 12px 24px;
   box-shadow: 4px 5px 17px 0px rgba(0, 0, 0, 0.15);
-  margin-bottom: 7px;
-  padding: 20px 26px 20px 39px;
-  border-radius: 12px;
 }
-.form-control{
-  display: inline-block;
-  width: 232px;
-}
-.class_ss_mt{
-  margin-top: 10px;
-}
-.class_m_mt{
-  margin-top: 20px;
-}
-.class_ss_mb{
-  margin-bottom: 10px;
-}
-.class_sm_m{
-  margin-bottom: 20px;
-}
-.class_ss_bb{
-  margin-bottom: 36px;
-}
-.class_ss_ml{
-  margin-left: 15.75px;
-}
-.class_s_mr{
-  margin-right: 14px;
-}
-.class_sm_mr{
-  margin-right: 16px;
-}
-.class_b_mr{
-  margin-right: 44px;
-}
-.class_sm_mtb{
-  padding: 20px 0 20px 48px;
-}
-.class_mtb{
-  padding: 20px 0 20px;
-}
-.class_m_pd{
-  padding-bottom: 40px;
-}
-.class_list_img img{
-  display: inline-block;
-}
-.class_level_tag{
-  border: 2px solid var(--orange);
-  border-radius: 3px;
-  padding: 0 12px;
-  margin-left: 14px;
-}
-.class_level_tag, .class_date_tag{
-  font-size: 15px;
-}
-.class_p_val{
-  font-size: 15px;
-}
-.class_date_tag{
-  margin-left: 8px;
-}
-.class_button>div:first-child{
-  margin-bottom: 31px;
-}
-.class_delete{
-  padding-left: 5px;
-  color: var(--dark);
-  font-size: 24px;
-}
-.pagination{
-  margin-top: 13px;
-}
-.class_list_item{
-  cursor: pointer;
-  
-}
-.class_list_item img{
-  width: 112px;
-  height: 112px;
-  object-fit: contain;
-}
-#pcode3-button {
-  margin-top: 0;
-}
-.ui-selectmenu-text{
-  text-align: center;
-}
-#pcode3_1-button{
-  color: var(--dark-gray);
-  font-weight: 700;
-}
+.class_admin_name {font-size: var(--text2-size); font-weight: 600;}
+.class_admin_level {border: 2px solid var(--orange); padding: 4px 8px; font-size: 14px; font-weight: 600; height: 26px;}
+.class_status_option {margin: auto 0;}
+.class_main_info {width: 60%;}
+.admin_display_option {width: 22%;}
+.class_status_option {width: 12%;}
+.class_modi_del {width: 6%;}
+.class_allmodi_btn {text-align: right;}
