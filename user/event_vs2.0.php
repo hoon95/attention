@@ -15,29 +15,32 @@
 
 <link rel="stylesheet" href="/attention/user/css/event_vs2.css">
 
-<div class="container_cr"> 
+<main class="coup_rolue_box sub_mg_p">
+	<div class="coup_rolue_banner"><img src="img/coup/coup_banner.png" alt="룰렛배너"></div>
+	<div class="container_cr"> 
 
-	<!-- <h1 class="tt_01">Roulette</h1> -->
-	<div class="arrow"></div>
-	<div class="eq8" id="roullete">
+		<button class="tt_03 btn btn-dark startBtn">START</button>
+		<div class="arrow"></div>
+		<div class="eq8" id="roullete">
+			<?php
+				if(isset($rsc)){
+					foreach($rsc as $item){            
+			?>
+			<div class="panel"><strong class="txt_posi tt_02" data-id="<?= $item -> cid ?>"><?= ($item -> cid) -1 ?></strong></div>
+			<?php
+			} //foreach
+		} else {    
+		?>  
+			<div>
+				<span>조회 결과가 없습니다.</span>
+			</div>
 		<?php
-			if(isset($rsc)){
-				foreach($rsc as $item){            
-		?>
-		<div class="panel"><strong class="txt_posi tt_02" data-id="<?= $item -> cid ?>"><?= ($item -> cid) -1 ?></strong></div>
-		<?php
-        } //foreach
-      } else {    
-      ?>  
-		<div>
-			<span>조회 결과가 없습니다.</span>
+			}  
+		?>  						
 		</div>
-      <?php
-        }  
-      ?>  						
 	</div>
-	<button class="startBtn">start</button>
-</div>
+</main>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
