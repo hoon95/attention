@@ -333,7 +333,7 @@
         <p class="tt_03 ms-3">Pick! 내가 이 구역 코딩 초보</p>
         <?php 
         foreach ($rsc as $item) {
-          if($item -> pid == 113){
+          if($item -> pid == "113"){
         ?>
         <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
           <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
@@ -357,7 +357,7 @@
         <p class="tt_03 mt-3 ms-3">Pick! 그래도 할 줄은 안다</p>
         <?php 
         foreach ($rsc as $item) {
-          if($item -> pid == 105){
+          if($item -> pid == "105"){
         ?>
           <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
             <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
@@ -381,7 +381,7 @@
         <p class="tt_03 mt-3 ms-3">Pick! 제법 하는데?</p>
         <?php 
         foreach ($rsc as $item) {
-          if($item -> pid == 232){
+          if($item -> pid == "232"){
         ?>
         <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
           <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
