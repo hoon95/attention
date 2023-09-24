@@ -3,7 +3,7 @@
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/user_check.php';
   
   
-  $sql = "SELECT A.pid, A.name, A.cate, A.thumbnail, A.sale_end_date, A.date_val, A.price_val FROM class A JOIN sales B ON A.pid = B.pid WHERE B.userid='{$_SESSION['UID']}'";
+  $sql = "SELECT A.pid, A.name, A.cate, A.thumbnail, A.sale_end_date, A.date_val, A.price_val, A.teacher FROM class A JOIN sales B ON A.pid = B.pid WHERE B.userid='{$_SESSION['UID']}'";
   $result = $mysqli -> query($sql);
 
   if(isset($result)){
@@ -12,7 +12,7 @@
     }
   }
 
-  $class_query = "SELECT A.name, COUNT(A.sid) AS average_class, MAX(B.thumbnail) AS thumbnail, MAX(B.sale_end_date) AS sale_end_date, MAX(B.date_val) AS date_val FROM sales A JOIN class B ON A.pid = B.pid GROUP BY A.name ORDER BY average_class DESC LIMIT 3";
+  $class_query = "SELECT A.name, COUNT(A.sid) AS average_class, MAX(B.thumbnail) AS thumbnail, MAX(B.sale_end_date) AS sale_end_date, MAX(B.date_val) AS date_val, MAX(B.teacher) as teacher FROM sales A JOIN class B ON A.pid = B.pid GROUP BY A.name ORDER BY average_class DESC LIMIT 3";
   $class_result = $mysqli->query($class_query);
 
   if(isset($class_result)){
@@ -39,7 +39,7 @@
             <div class="d-flex">
               <img src="<?= $r->thumbnail ?>" alt="썸네일 이미지" class="col-5 radius_medium">
               <div class="ps-4 col">
-                <p class="text5 dark_gray py-3">코드캠프</p>
+                <p class="text5 dark_gray py-3"><?= $r->teacher ?></p>
                 <p class="text5 dark_gray">기한 : 
                   <?php if($r->sale_end_date == '0'){echo '무기한';}else{echo $r->date_val; ?>개월<?php }; ?>
                 </p>
@@ -61,11 +61,11 @@
         <?php foreach($class as $cs){ ?>
         <li class="radius_medium box_shadow p-3 position-relative">
           <a href="">
-            <p class="card_tt mb-3"><?=  $cs->name ?></p>
+            <p class="card_tt mb-3"><?= $cs->name ?></p>
             <div class="d-flex">
               <img src="<?= $cs->thumbnail ?>" alt="썸네일 이미지" class="col-5 radius_medium">
               <div class="ps-4 col">
-                <p class="text5 dark_gray py-3">코드캠프</p>
+                <p class="text5 dark_gray py-3"><?= $cs->teacher ?></p>
                 <p class="text5 dark_gray">기한 : 
                   <?php if($cs->sale_end_date == '0'){echo '무기한';}else{echo $cs->date_val; ?>개월<?php }; ?>
                 </p>
