@@ -89,7 +89,7 @@ form .row-cols-3>* {
   width: 32.07%;
 }
 
-.coup_list > div {
+.coup_list > .col {
   display: inline-block;
   height: 192px;
   padding: 32px 10px;

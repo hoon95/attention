@@ -623,7 +623,8 @@ header .login-ok-btn > div:hover > a > i {
 .coup_event{
   left: 50px;
   bottom: 50px;
+  z-index: 100;
 }
 .coup_event img{
-  width: 150px;
+  width: 125px;
 }
