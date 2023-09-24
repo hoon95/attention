@@ -193,10 +193,10 @@ if (!empty($class_row["curriculum"][0]))
         for ($j=0; $j < count((array)$curriculum_detail); $j++){
 ?>
               <div class="accordion-body">
-                <ul class="row">
+                <ul class="row d-flex align-items-center justify-content-between class_lecture_list">
                   <li class="col gray"><button class="class_youtube_btn" data-link="<?= $class_row['video_url'][$j] ?>"><i class="bi bi-play-circle play_hidden"></i></button></li>
-                  <li class="col"><?php echo $curriculum_detail[$j]?></li>
-                  <li class="col"><?php echo $j+1?> / <?php echo count((array)$curriculum_detail)?></li>
+                  <li class="col-7"><?php echo $curriculum_detail[$j]?></li>
+                  <li class="col-4"><?php echo $j+1?> / <?php echo count((array)$curriculum_detail)?></li>
                 </ul>
               </div>
 
@@ -345,7 +345,6 @@ if ($class_row["price"][0] == "1")
         console.log("Error fetching video info:", error);
     });
 
-  
   </script>
 
 <?php
