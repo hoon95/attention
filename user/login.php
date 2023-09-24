@@ -6,7 +6,7 @@ if(isset($_SESSION['UID'])){
     location.href = '/attention/user/index.php';</script>";
 }
 ?>
-<link rel="stylesheet"href="/attention/user/css/login.css">
+<link rel="stylesheet" href="/attention/user/css/login.css">
 <div class="container_cr">
       <div class="login">
         <h2>로그인</h2>
