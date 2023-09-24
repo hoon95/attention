@@ -50,23 +50,25 @@ const newSwiper = new Swiper(".new-slide", {
 /* /new slide */
 
 /* best-total */
+let hasCounted = false;
+
 $(window).scroll(function () {
-  const bestOffset = $('.total').offset().top;
-  const windowHeight = $(window).height();
-  const scrollPoint = $(window).scrollTop();
+  let bestOffset = $('.total').offset().top,
+      windowHeight = $(window).height(),
+      scrollPoint = $(window).scrollTop();
 
   // total 요소가 화면 안에 들어왔을 때 실행
-  if (scrollPoint + windowHeight >= bestOffset) {
-    $('.count').each(function () { //숫자 카운트 애니메이션
-      const $this = $(this),
-            countTo = $this.attr('data-num');
+  if (scrollPoint + windowHeight >= bestOffset && !hasCounted){
+    hasCounted = true; // 카운트가 한 번 실행되면 hasCounted를 true로 설정하여 중복 실행을 막음
+    $('.count').each(function(){ //숫자 카운트 애니메이션
+      let $this = $(this),
+          countTo = $this.attr('data-num');
 
-      $({ countNum: $this.text() }).stop().animate({
-        countNum: countTo
-      }, {
-        duration: 3000,
+      $({countNum: $this.text()}).stop().animate({
+        countNum: countTo},{
+        duration: 3000, 
         easing: 'linear',
-        step: function () {
+        step: function (){
           $this.text(Math.floor(this.countNum));
         },
         complete: function () {
@@ -74,7 +76,6 @@ $(window).scroll(function () {
         }
       });
     });
-    // $(window).off('scroll');
   }
 });
 /* /best-total */
