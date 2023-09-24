@@ -4,7 +4,7 @@ const mainSwiper = new Swiper(".banner-slide", {
     centeredSlides: true,
     loop: true,
     autoplay: {
-      delay: 2500,
+      delay: 4000,
       disableOnInteraction: false,
     },
     pagination: {
@@ -106,7 +106,7 @@ cart_btn.each(function(){
       pid : pid,
       total : total
     }
-    console.log(data);
+    console.log("data: " + data);
 
     $.ajax({
       async:false,
