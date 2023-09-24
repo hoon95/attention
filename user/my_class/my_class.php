@@ -56,7 +56,7 @@
     
     <section class="mt-5 sub_mg_b">
       <h3 class="tt_02">이런 강의는 어떠세요?</h3>
-      <p class="text2 gray mt-2">샘플 강의를 들어보세요!</p>
+      <p class="text2 gray mt-2">코드래빗의 인기강좌를 만나보세요!</p>
       <ul class="my_list d-flex flex-wrap justify-content-between mt-4 gap-4">
         <?php foreach($class as $cs){ ?>
         <li class="radius_medium box_shadow p-3 position-relative">
