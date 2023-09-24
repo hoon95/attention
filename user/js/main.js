@@ -172,3 +172,9 @@ closeBtn.click(function(){
   }
 });
 /* /popup */
+
+
+/* roullete popoup*/
+$(".roullete_close_btn").click(function() {
+  $(this).closest('.coup_event').css({ visibility: "hidden" });
+})

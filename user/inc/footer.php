@@ -1,7 +1,7 @@
 <div class="coup_event position-fixed d-flex align-items-start">
-  <button class="close_btn" type="button"><i class="bi material-symbols-outlined icon_red">close</i></button>
+  <!-- <button class="roullete_close_btn" type="button"><i class="bi material-symbols-outlined icon_red">close</i></button> -->
   <a href="/attention/user/event_vs2.0.php" class="d-inline-block">
-    <img src="/attention/user/img/coup/coup_pop.png" alt="쿠폰 이벤트 이미지 링크">
+    <img src="/attention/user/img/coup/coup_pop1.svg" alt="쿠폰 이벤트 이미지 링크">
   </a>
 </div>
 
@@ -148,11 +148,6 @@
         window.open(url, "bizCommPop", "width=750, height=700;");
         return false;
       });
-
-    //룰렛 팝업  
-    $(".close_btn").click(function() {
-      $(this).parent().hide();
-    });
 
   </script>
 </body>
