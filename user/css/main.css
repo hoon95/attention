@@ -7,7 +7,7 @@
   height: 62vh;
   padding: 82px;
   box-sizing: border-box;
-  background: url(../img/main/banner_1.png) no-repeat center / cover;
+  background: url(../img/main/main_banner2.png) no-repeat center / cover;
 }
 
 .banner .swiper-slide .text1{
@@ -19,7 +19,7 @@
 }
 
 .banner .slide2 {
-  background-image: url(../img/main/banner_2.png);
+  background-image: url(../img/main/main_banner1.gif);
 }
 
 .banner .slide3 {
@@ -212,7 +212,7 @@ section .text2 {
 .total img{
   width: 80px;
 }
-.total span{
+.total .span{
   border: 1px solid var(--mint);
   margin: var(--base-unit) 0;
 }
