@@ -119,8 +119,8 @@
       </div>
       <div class="swiper-slide slide3">
         <div class="container_cr">
-          <h3 class="tt_00 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3>
-          <p class="text1">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p>
+          <!-- <h3 class="tt_00 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3> -->
+          <!-- <p class="text1">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p> -->
         </div>
       </div>
     </div>
@@ -308,14 +308,16 @@
       <div>
         <div class="d-flex gap-4 mt-5">
           <img src="img/main/icon_playstore.png" alt="playstore 아이콘">
-          <img src="img/main/icon_qr_android.svg" alt="qr코드 아이콘">
+          <!-- <img src="img/main/icon_qr_android.svg" alt="qr코드 아이콘"> -->
+          <img src="img/main/qr_admin.png" alt="qr코드 아이콘">
         </div>
         <p class="mt-3 text-center">Android</p>
       </div>
       <div>
         <div class="d-flex gap-4 mt-5">
           <img src="img/main/icon_appstore.png" alt="appstore 아이콘">
-          <img src="img/main/icon_qr_ios.svg" alt="qr코드 아이콘">
+          <!-- <img src="img/main/icon_qr_ios.svg" alt="qr코드 아이콘"> -->
+          <img src="img/main/qr_user.png" alt="qr코드 아이콘">
         </div>
         <p class="mt-3 text-center">ios</p>
       </div>
