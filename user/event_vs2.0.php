@@ -3,8 +3,11 @@
 
 	$sql = "SELECT * FROM coupons ORDER BY cid LIMIT 1, 8";
 
-	$userid = $_SESSION['UID'];
-
+    // if(isset($_SESSION['UID'])){
+    //     $userid = $_SESSION['UID'];
+    // }
+	
+    $userid = $_SESSION['UID'];
 
   $result = $mysqli -> query($sql);
   while($rs = $result -> fetch_object()){
@@ -52,7 +55,6 @@
 	let score;
 
 	startBtn.click(function(e){
-		rotatePanel();
 		
 		let userid =  <?php echo json_encode($userid); ?>;
 
@@ -60,9 +62,11 @@
 			alert('로그인 후 이용해주세요.');
 			location.href = "/attention/user/event_vs2.0.php";
 		}
+
+        rotatePanel(userid);
 	});
 
-	function rotatePanel(){
+	function rotatePanel(userid){
     let ranNum = (Math.floor(Math.random()*10))%8;
 
     roullete.animate({transform:'rotate(3000deg)'},4000,function(){
@@ -71,6 +75,7 @@
         roullete.css({transform:`rotate(-${randeg}deg)`});
         // console.log(score+'당첨');
 
+   
         let userid = <?php echo json_encode($userid); ?>;
 
         if (!userid) {
