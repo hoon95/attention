@@ -5,15 +5,20 @@
   
   $sql = "SELECT A.pid, A.name, A.cate, A.thumbnail, A.sale_end_date, A.date_val, A.price_val FROM class A JOIN sales B ON A.pid = B.pid WHERE B.userid='{$_SESSION['UID']}'";
   $result = $mysqli -> query($sql);
-  while($rs = $result->fetch_object()){
-    $rsc[]=$rs;
+
+  if(isset($result)){
+    while($rs = $result->fetch_object()){
+      $rsc[]=$rs;
+    }
   }
 
-  $class_query = "SELECT A.name, COUNT(A.sid) AS average_class, B.thumbnail, B.sale_end_date, B.date_val FROM sales A JOIN class B ON A.pid = B.pid GROUP BY A.name ORDER BY average_class DESC LIMIT 3";
+  $class_query = "SELECT A.name, COUNT(A.sid) AS average_class, MAX(B.thumbnail) AS thumbnail, MAX(B.sale_end_date) AS sale_end_date, MAX(B.date_val) AS date_val FROM sales A JOIN class B ON A.pid = B.pid GROUP BY A.name ORDER BY average_class DESC LIMIT 3";
   $class_result = $mysqli->query($class_query);
 
-  while($class_object = $class_result->fetch_object()){
-      $class[] = $class_object;
+  if(isset($class_result)){
+    while($class_object = $class_result->fetch_object()){
+        $class[] = $class_object;
+    }
   }
 ?>
   <link rel="stylesheet" href="/attention/user/css/my_class.css">
@@ -43,7 +48,7 @@
           </a>
         </li>
         <?php }}else{?>
-          <p>현재 수강 중인 강의가 없습니다</p>
+          <li>현재 수강 중인 강의가 없습니다</li>
         <?php } ?>
         <!-- /강의 출력 -->
       </ul>

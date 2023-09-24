@@ -1,7 +1,7 @@
 <div class="coup_event position-fixed d-flex align-items-start">
   <button class="close_btn" type="button"><i class="bi material-symbols-outlined icon_red">close</i></button>
   <a href="/attention/user/event_vs2.0.php" class="d-inline-block">
-    <img src="/attention/user/img/main/coup_pop.png" alt="쿠폰 이벤트 이미지 링크">
+    <img src="/attention/user/img/coup/coup_pop.png" alt="쿠폰 이벤트 이미지 링크">
   </a>
 </div>
 
@@ -43,7 +43,7 @@
             foreach ($prc as $pc) {
         ?>
         <div class="radius_medium box_shadow p-3 d-flex align-items-start mb-4">
-          <a href="/attention/user/class_detail_view.php?pid=<?= $pc->pid; ?>" class="d-flex">
+          <a href="/attention/user/class/class_detail_view.php?pid=<?= $pc->pid; ?>" class="d-flex">
             <img src="<?= $pc -> thumbnail; ?>" alt="썸네일 이미지" class="col-4">
             <div class="ms-4 mt-2">
               <p class="card_tt mb-4"><?= $pc -> name; ?></p>
@@ -69,7 +69,7 @@
         <img src="/attention/user/img/main/footer_coderabbit_logo.svg" alt="코드래빗 로고">
       </div>
       <address>
-        <p><a href="#">코드래빗 소개</a><a href="/attention/user/product_whole_list.php">코드래빗 강좌리스트</a><a href="/attention/user/notice.php">코드래빗 공지사항</a><a href="#">개인정보처리방침</a><a href="#">이용약관</a></p>
+        <p><a href="#">코드래빗 소개</a><a href="/attention/user/class/class_whole_list.php">코드래빗 강좌리스트</a><a href="/attention/user/community/notice.php">코드래빗 공지사항</a><a href="#">개인정보처리방침</a><a href="#">이용약관</a></p>
         <ul>
           <li><span>&lbbrk;주&rbbrk;코드래빗</span><span>대표자&#58; Attention</span><span class="business_number">사업자번호&#58; 000&#45;00&#45;00000</span><a href="#" class="business_address">사업자 정보 확인</a></li>
           <li><span>통신판매업&#58; 0000&#45;서울종로&#45;0000</span><span>개인정보보호책임자&#58; Attention</span><span>이메일&#58; <a href="mailto:attention804@gmail.com">attention804&commat;gmail.com</a></span></li>
@@ -104,22 +104,27 @@
     setInterval(checkImag); // 페이지 내용이 변경될 때마다 함수 실행
 
     /* top_btn,recent */
-    let recent = $('#recent'),
+    let pageHeight = $(document).height(), //페이지 전체 높이
+        recent = $('#recent'),
         topBtn = $('.top_btn'),
         windowHeight = $(window).height(),
         topOffset = windowHeight / 3,
         topScroll = 0;
 
-    $(window).scroll(() => {
-      topScroll = $(window).scrollTop();
-      if (topScroll > topOffset) {
-        recent.addClass('active');
-        topBtn.addClass('active');
-      } else {
-        recent.removeClass('active');
-        topBtn.removeClass('active');
-      }
-    });
+    if (pageHeight <= 1400) { // 페이지 높이가 1400이하라면
+      recent.addClass('active');
+    } else{                   // 페이지 높이가 1400이상이면 스크롤 이벤트
+      $(window).scroll(() => {
+        topScroll = $(window).scrollTop();
+        if (topScroll > topOffset) {
+          recent.addClass('active');
+          topBtn.addClass('active');
+        } else {
+          recent.removeClass('active');
+          topBtn.removeClass('active');
+        }
+      });
+    }
 
     topBtn.on('click', function(e){
       e.preventDefault();

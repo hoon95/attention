@@ -95,16 +95,17 @@ const noticeSwiper = new Swiper('.notice_silde', {
 let cart_btn = $('.cart_btn');
 
 cart_btn.each(function(){
-  $(this).click(function(e) {
-    e.preventDefault();
+  $(this).click(function() {
     // 선택된 강의의 pid 가져오기
     let pid = $(this).val();
-    let total = parseFloat($(this).closest(".cart_add").find(".price").text().replace(',', ''));
-
+    let priceText = $(this).closest(".cart_add").find(".price").text();
+    let total = (priceText.trim() === '무료') ? 0 : parseFloat(priceText.replace(',', ''));
+    
     let data = {
-        pid : pid,
-        total: total
+      pid : pid,
+      total : total
     }
+    console.log(data);
 
     $.ajax({
       async:false,
@@ -129,3 +130,45 @@ cart_btn.each(function(){
   });
 });
 /* /add cart */
+
+/* popup */
+let popup = $('#popup'),
+    closeBtn = popup.find('#close'),
+    dayCheck = popup.find('#daycheck');
+      
+//쿠키생성
+function setCookie(name, value, day){
+  let date = new Date();
+  date.setDate(date.getDate()+day);   
+  document.cookie = `${name}=${value};expires=${date.toUTCString()}`;
+}
+
+//쿠키 확인
+function cookieCheck(name){
+  let cookieArr = document.cookie.split(';');
+  let visited = false;
+
+  for(let cookie of cookieArr){
+    if(cookie.search(name) > -1){
+      visited = true;
+      break;
+    }
+  }
+  //visited 값이 false면 dialog 보이게
+  if(!visited){
+    popup.attr('open','');
+  } else {
+    popup.removeAttr("open");
+  }
+}
+cookieCheck('Rabbit');
+
+closeBtn.click(function(){
+  popup.removeAttr('open');
+  if(dayCheck.prop("checked")){
+    setCookie('Rabbit','code', 1);
+  }else{
+    setCookie('Rabbit','code', -1);
+  }
+});
+/* /popup */

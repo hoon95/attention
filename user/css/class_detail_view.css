@@ -79,3 +79,7 @@ i.bi-share-fill {font-size: 14px; margin-right: 10px;}
 .product_tobasket {text-align: center; margin: 16px 0;}
 .product_level_period th, .product_level_period td  {padding-bottom: 12px;}
 
+/* 영상 재생버튼 양식 */
+.play_hidden{
+  color: var(--gray) !important;
+}

@@ -257,4 +257,52 @@ section .text2 {
   font-weight: bold;
 }
 
+/* Popup */
+#popup{
+  width: 500px;
+  position: fixed;
+  top: 20px;
+  margin-left: 250px;
+  border: 5px solid var(--mint);
+  padding: calc(var(--base-unit)*1.5);
+  border: 3px solid var(--mint);
+  border-radius: 3px;
+  z-index: 9999;
+}
+#popup p{
+  padding: 1%;
+}
+#popup p.text1{
+  font-weight: 700;
+  line-height: 1.5;
+}
+#popup hr{
+  border: 1px solid var(--mint);
+  margin: 15px 0; 
+  opacity: .5;
+}
+#popup #daycheck{
+  width: 20px !important;
+  height: 20px !important;
+}
+#popup a{
+  /* box-shadow: inset 0 -8px 0 #fec5c9; */
+  color: var(--red);
+  font-weight: 700;
+}
+#popup i.bi-github{
+  font-size: var(--text2-size);
+}
+#popup button{
+  width: 60px;
+  height: 55px;
+  margin-top: -30px;
+  margin-bottom: 10px;
+}
+#popup button img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 /* 혜영 end */

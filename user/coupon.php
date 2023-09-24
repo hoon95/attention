@@ -29,10 +29,12 @@
 
   $expirecps = [];
   $expirecpsdate = strtotime('+10 days');
-  foreach ($rsc2 as $cpdate) {
-    $useMaxDatecp = strtotime($cpdate->use_max_date);
-    if ($useMaxDatecp <= $expirecpsdate) {
-      $expirecps[] = $cpdate;
+  if(isset($rsc2)){
+    foreach ($rsc2 as $cpdate) {
+      $useMaxDatecp = strtotime($cpdate->use_max_date);
+      if ($useMaxDatecp <= $expirecpsdate) {
+        $expirecps[] = $cpdate;
+      }
     }
   }
 
@@ -67,13 +69,16 @@
     <section class="sub_mg_t coup_top">
       <h2 class="tt_01 mg_bot">쿠폰 혜택</h2>
       <div class="row coupon_top">
-          <?php
-            if (isset($rsc2)) {
-          ?>
-          <div class="col text-center">사용 가능한 쿠폰 <span class="text1 orange"><?= count($rsc2) ?? 0 ?></span>장</div>
-          <?php
-            }
-          ?>
+          <div class="col text-center">사용 가능한 쿠폰 
+            <span class="text1 orange">
+              <?php 
+              if(isset($rsc2)){
+                echo count($rsc2);
+              }else{
+                echo 0;
+              }
+              ?>
+            </span>장</div>
           <div class="col text-center">이번 달 소멸예정 쿠폰 
             <span class="text1 mint">
               <?= $expirecouponcount ?>
