@@ -1,12 +1,11 @@
 <h1 align="center">Team Attention 3,4차 프로젝트  👋</h1>
 
-> 사이트 명 : Code Rabbit<br /> 쉽고 재밌게 배우는 코딩!<br /> 껑충껑충 성장하는 나!
+> <h3>사이트 명 : Code Rabbit</h3>☝️ 쉽고 재밌게 배우는 코딩! <br>✌️ 껑충껑충 성장하는 나!
 
 ## 📝 프로젝트 기간
 
-3차 `2023.08.21 ~ 2023.09.08`
-4차 `2023.09.08 ~ 2023.09.25`
-
+3차 LMS 관리자 페이지 `2023.08.21 ~ 2023.09.08`<br>
+4차 LMS 유저 페이지 `2023.09.08 ~ 2023.09.25`
 
 ## 🚀 구현 스택
 <span>
@@ -21,7 +20,7 @@
 </span>
 
 
-## 👤팀 구성
+## 🐰 팀 구성
 
 **팀장 : [김다훈](https://github.com/hoon95)**<br />
 팀원 : [기서은](https://github.com/rltjdms) 
@@ -38,12 +37,12 @@ Feel free to check [issues page](https://github.com/kefranabg/readme-md-generato
 ## Author
 
 
-## ✨기획, 디자인
+## 🎨 기획, 디자인
 
 <p><b>기획 : </b>팀원 전체</p>
 <p><b>디자인 : </b>구현 담당자</p>
 
-## ✨구현
+## 🌈 구현
 <p><b>김*훈 :</b>
       <a href="/attention/user/member/signup.php"> 회원가입/계정찾기</a>(A),
       <a href="/attention/user/cart/cart.php"> 장바구니</a>(A),
