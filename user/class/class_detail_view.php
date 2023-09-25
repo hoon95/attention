@@ -1,6 +1,6 @@
 <?php
 //$product_dview_css = '<link rel="stylesheet" href="/attention/user/css/product_detail_view.css">';
-//$title = '강의 상세보기 - Code Rabbit';
+$title = '강의 상세보기 - Code Rabbit';
 include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/class/class_function.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
 $pid = empty($_GET["pid"]) ? alert("잘못된 접근입니다.") : $_GET["pid"];
@@ -74,23 +74,20 @@ $class_row = sql_fetch_array("
   <div class="product_detail_navtabs">
     <ul class="nav nav-underline container">
       <li class="nav-item">
-        <a class="nav-link text5" aria-current="page" href="#">강의소개</a>
+        <a href="#강의소개" class="nav-link text5" aria-current="page" href="#">강의소개</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text5" href="#">체험하기</a>
+        <a href="#체험하기" class="nav-link text5" href="#">체험하기</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text5" href="#">강사소개</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text5" href="#">교육과정</a>
+        <a href="#교육과정" class="nav-link text5" href="#">교육과정</a>
       </li>
     </ul>
   </div>
 
   <div class="container product_detail_main">
     <section class="dark_gray">
-      <div class="product_detail_section_title"><h4>강의 소개</h4></div>
+      <div class="product_detail_section_title" id="강의소개"><h4>강의 소개</h4></div>
       <div class="product_greeting">
         <p class="product_greeting_point text2"><?php echo $class_row["greeting"][0]?></p>
         <div class="product_greeing_explain text3">
@@ -145,10 +142,6 @@ $class_row = sql_fetch_array("
           }
         }
         ?>
-          <div class="product_addimg_explain text2">
-            <p>특히 HTML, CSS, JavaScript는</p>
-            <p>웹 개발을 시작한다면 반드시 알아야 할 언어입니다.</p>
-          </div>
         </figure>
       </div>
     </section>
@@ -156,7 +149,7 @@ $class_row = sql_fetch_array("
 if (!empty($class_row["video"][0]))
 {
 ?>
-    <section class="product_video_area">
+    <section class="product_video_area" id="체험하기">
       <div class="product_video_section_title dark_gray"><h4>체험 하기</h4></div>
       <div class="product_video">
         <iframe width="560" height="315" src="<?php echo $class_row["video"][0]?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -171,7 +164,7 @@ if (!empty($class_row["curriculum"][0]))
 {
   $curriculum_arr = explode("\n", trim($class_row["curriculum"][0]));
 ?>
-    <section>
+    <section id="교육과정">
       <div class="product_course_section_title dark_gray"><h4>교육 과정</h4></div>
       <div class="product_course">
       <div class="accordion">
@@ -184,8 +177,8 @@ if (!empty($class_row["curriculum"][0]))
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse<?php echo $i?>"
               aria-expanded="false" aria-controls="panelsStayOpen-collapse<?php echo $i?>">
-                <span class="mint">0<?php echo ($i+1)?></span>
-                <span class="dark_gray"><?php echo $curriculum_info[0]?></span>
+                <span class="mint me-3">0<?php echo ($i+1)?></span>
+                <span class="dark_gray class_course_title"><?php echo $curriculum_info[0]?></span>
               </button>
             </h2>
             <div id="panelsStayOpen-collapse<?php echo $i?>" class="accordion-collapse collapse" style="">
@@ -193,10 +186,10 @@ if (!empty($class_row["curriculum"][0]))
         for ($j=0; $j < count((array)$curriculum_detail); $j++){
 ?>
               <div class="accordion-body">
-                <ul class="row">
+                <ul class="row d-flex align-items-center justify-content-between class_lecture_list">
                   <li class="col gray"><button class="class_youtube_btn" data-link="<?= $class_row['video_url'][$j] ?>"><i class="bi bi-play-circle play_hidden"></i></button></li>
-                  <li class="col"><?php echo $curriculum_detail[$j]?></li>
-                  <li class="col"><?php echo $j+1?> / <?php echo count((array)$curriculum_detail)?></li>
+                  <li class="col-7"><?php echo $curriculum_detail[$j]?></li>
+                  <li class="col-4"><?php echo $j+1?> / <?php echo count((array)$curriculum_detail)?></li>
                 </ul>
               </div>
 
@@ -244,7 +237,7 @@ if ($class_row["price"][0] == "1")
         </tbody>
       </table>
       <div class="text4 product_share"><button type="button" class="product_share_btn dark_gray blue_Gray_back"><i class="bi bi-share-fill"></i>공유</button></div>
-      <div class="text4 product_tobasket"><button type="button" id="cart-btn" data-pid="<?php echo $pid?>" class="product_tobasket_btn white mint_back" >장바구니로 가기</button></div>
+      <div class="text4 product_tobasket"><button type="button" id="cart-btn" data-pid="<?php echo $pid?>" class="product_tobasket_btn white mint_back" >장바구니에 담기</button></div>
     </div>
   </aside>
 
@@ -345,7 +338,6 @@ if ($class_row["price"][0] == "1")
         console.log("Error fetching video info:", error);
     });
 
-  
   </script>
 
 <?php
@@ -359,7 +351,6 @@ if ($class_row["price"][0] == "1")
       $rsc[]=$rs;
       }
       foreach($rsc as $item){
-        var_dump($item->cnt);
         if($item->cnt !="0"){
           echo "<script>
           $('.bi-play-circle').removeClass('play_hidden')

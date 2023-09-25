@@ -76,10 +76,6 @@
   border-radius: 12px;
 }
 .product_thumbnail img {border-top-right-radius: 12px; border-top-left-radius: 12px;}
-.product_net_price {
-  font-size: var(--text2-size); font-weight: 600; text-decoration: 2px line-through; 
-  width: 90%; margin: 0 auto; padding: 12px 0 4px;
-}
 .product_sale_info, .product_level_period, .product_share {width: 90%; margin: 0 auto;}
 .product_aside_hline {width: 90%; margin: 4px auto 12px;}
 i.bi-share-fill {font-size: 14px; margin-right: 10px;}

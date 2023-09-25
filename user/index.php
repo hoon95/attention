@@ -58,12 +58,11 @@
   <hr>
   <div>
     <p><b>업무분장</b></p>
-    <p><b>기획 : </b>내용추가 필요</p>
-    <p><b>디자인 : </b>내용추가 필요</p>
+    <p><b>기획 : </b>팀원 전체</p>
+    <p><b>디자인 : </b>구현 담당자</p>
     <p class="mt-2"><b>- 구현 완료 페이지 -</b></p>
     <p><b>김*훈 :</b>
-      <a href=""> 로그인</a>(B),
-      <a href=""> 회원가입</a>(A),
+      <a href=""> 회원가입/계정찾기</a>(A),
       <a href=""> 장바구니</a>(A),
       <a href=""> 내 강의실</a>(B)
     </p>
@@ -335,7 +334,7 @@
         <p class="tt_03 ms-3">Pick! 내가 이 구역 코딩 초보</p>
         <?php 
         foreach ($rsc as $item) {
-          if($item -> pid == 113){
+          if($item -> pid == "113"){
         ?>
         <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
           <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
@@ -359,7 +358,7 @@
         <p class="tt_03 mt-3 ms-3">Pick! 그래도 할 줄은 안다</p>
         <?php 
         foreach ($rsc as $item) {
-          if($item -> pid == 105){
+          if($item -> pid == "105"){
         ?>
           <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
             <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">
@@ -383,7 +382,7 @@
         <p class="tt_03 mt-3 ms-3">Pick! 제법 하는데?</p>
         <?php 
         foreach ($rsc as $item) {
-          if($item -> pid == 232){
+          if($item -> pid == "232"){
         ?>
         <div class="cart_add pick_card radius_medium box_shadow p-3 d-flex justify-content-between align-items-end">
           <a href="/attention/user/class/class_detail_view.php?pid=<?= $item->pid; ?>" class="d-flex col-11">

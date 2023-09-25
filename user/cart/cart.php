@@ -8,14 +8,18 @@
 
   $sql = "SELECT A.pid, A.cate, A.thumbnail, A.name, A.price_val, A.level, A.sale_end_date, A.date_val, B.cartid FROM class A JOIN cart B ON A.pid = B.pid WHERE $where";
   $result = $mysqli -> query($sql);
-  while($rs = $result->fetch_object()){
-      $rsc[]=$rs;
+  if($result){
+    while($rs = $result->fetch_object()){
+        $rsc[]=$rs;
+    }
   }
 
   $sql2 = "SELECT A.coupon_name, B.ucid, A.coupon_price FROM coupons A JOIN user_coupons B ON A.cid = B.couponid  WHERE B.userid = '{$_SESSION['UID']}' AND B.use_max_date > now() AND A.status = 1 AND B.status = 1";
   $result2 = $mysqli -> query($sql2);
-  while($rs2 = $result2 -> fetch_object()){
-      $rsc2[]=$rs2;
+  if($result2){
+    while($rs2 = $result2 -> fetch_object()){
+        $rsc2[]=$rs2;
+    }
   }
 
   if(isset($rsc)){

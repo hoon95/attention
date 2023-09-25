@@ -61,7 +61,7 @@
                 <div class="content">
                   <h2>[Code Rabbit] 비밀번호를 변경하세요</h2>
                   <p>비밀번호 변경 페이지로 이동합니다</p>
-                  <a href="http://hoon95.dothome.co.kr/attention/user/member/change_pw.php?mid='.$mid.'">비밀번호 변경</a>
+                  <a href="http://localhost/attention/user/member/change_pw.php?mid='.$mid.'">비밀번호 변경</a>
                 </div>
             </body>
             </html>

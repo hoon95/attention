@@ -11,9 +11,9 @@
     $userid = '';
   }
   $sql = "INSERT INTO cart (
-    pid, userid, regdate, total
+    pid, userid, regdate
   ) VALUES (
-    '{$pid}','{$userid}', now(), {$total}
+    '{$pid}','{$userid}', now()
   )";
   $result = $mysqli -> query($sql);
   if($result){
