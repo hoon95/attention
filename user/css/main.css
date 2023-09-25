@@ -33,7 +33,7 @@
 
 .main-pager {
   position: absolute;
-  left: 6%;
+  left: calc(50% + -59px);
   bottom: 10%;
   padding: 5px;
   color: var(--white);
