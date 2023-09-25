@@ -3,11 +3,15 @@
 
 	$sql = "SELECT * FROM coupons ORDER BY cid LIMIT 1, 8";
 
-    // if(isset($_SESSION['UID'])){
-    //     $userid = $_SESSION['UID'];
-    // }
-	
-    $userid = $_SESSION['UID'];
+    if(isset($_SESSION['UID'])){
+        $userid = $_SESSION['UID'];
+    }
+    else {
+         $userid = '';
+    }
+	//var_dump($_SESSION['UID']);
+
+    // $userid = $_SESSION['UID'];
 
   $result = $mysqli -> query($sql);
   while($rs = $result -> fetch_object()){
@@ -57,8 +61,8 @@
 	startBtn.click(function(e){
 		
 		let userid =  <?php echo json_encode($userid); ?>;
-
-		if(!userid) {
+        // let useridfalse = userid.indexOf('null');
+		if(userid == '') {
 			alert('로그인 후 이용해주세요.');
 			location.href = "/attention/user/event_vs2.0.php";
 		}
@@ -78,7 +82,7 @@
    
         let userid = <?php echo json_encode($userid); ?>;
 
-        if (!userid) {
+        if (userid == '') {
             alert('로그인 후 이용해주세요.');
             location.href = "/attention/user/event_vs2.0.php";
             return; // 로그인되지 않은 경우 함수 종료
