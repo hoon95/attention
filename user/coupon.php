@@ -7,11 +7,17 @@
 	}
 
   $couponid = $_SESSION['UID'];
+  	/* 페이지 내 검색 및 활성화 */
+	$userid = $_GET['userid']?? '';
+  $select = $_GET['select'] ?? '';
+	$due = $_GET['due'] ?? '';
+
+  $sort = $_GET['sort']?? 'regdate';
 
   $sql2 = "SELECT cp.*, usercp.* FROM user_coupons usercp 
   JOIN coupons cp ON cp.cid = usercp.couponid  
   WHERE usercp.userid='{$couponid}' and usercp.use_max_date > Now() and usercp.status=1
-  ORDER BY usercp.userid DESC";
+  ORDER BY {$sort} desc";
   // var_dump($sql2);
 
   $result2 = $mysqli -> query($sql2);
@@ -20,12 +26,7 @@
   }
 
   	
-	/* 페이지 내 검색 및 활성화 */
-	$userid = $_GET['userid']?? '';
-  $select = $_GET['select'] ?? '';
-	$due = $_GET['due'] ?? '';
 
-  $sort = $_GET['sort']?? 'regdate';
 
   $expirecps = [];
   $expirecpsdate = strtotime('+10 days');
@@ -41,24 +42,6 @@
   // 만료쿠폰 수
   $expirecouponcount = count($expirecps);
 
-  // $couponid = $_GET['couponid']?? '';
- 
-  $usql = "SELECT * from user_coupons where 1=1";
- 
-  //  $usql .= $search_where;
- 
-   $order = " order by {$sort} desc";//최근순 정렬
-  //  $limit = " limit $statLimit, $endLimit";
- 
-   $query = $usql.$order; //쿼리 문장 조합
- 
-  //  var_dump($query);
-
-   $result = $mysqli -> query($query);
-   
-   while($rs = $result -> fetch_object()){
-     $rsc[] = $rs;
-   }
   // var_dump($rsc);
    /* 사용가능한 쿠폰, 소멸예정 */
 ?>
