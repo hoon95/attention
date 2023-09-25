@@ -1,4 +1,5 @@
 <?php
+$title = '로그인 - Code Rabbit';
 require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
 
 if(isset($_SESSION['UID'])){

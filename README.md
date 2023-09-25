@@ -4,7 +4,8 @@
 
 ## 📝 프로젝트 기간
 
-`2023.08.21 ~ 2023.09.08`
+3차 `2023.08.21 ~ 2023.09.08`
+4차 `2023.09.08 ~ 2023.09.25`
 
 
 ## 🚀 구현 스택
@@ -23,10 +24,10 @@
 ## 👤팀 구성
 
 **팀장 : [김다훈](https://github.com/hoon95)**<br />
-팀원 : [기서은](https://github.com/hoon95) 
-[천혜영](https://github.com/hoon95)
-[한수연](https://github.com/hoon95)
-[한지희](https://github.com/hoon95)
+팀원 : [기서은](https://github.com/rltjdms) 
+[천혜영](https://github.com/HyeYoungee)
+[한수연](https://github.com/SOOSLOANE)
+[한지희](https://github.com/jijihui22)
 
 ## 🤝 Contributing
 
@@ -39,7 +40,34 @@ Feel free to check [issues page](https://github.com/kefranabg/readme-md-generato
 
 ## ✨기획, 디자인
 
-ㅇㅇㅇ
+<p><b>기획 : </b>팀원 전체</p>
+<p><b>디자인 : </b>구현 담당자</p>
+
+## ✨구현
+<p><b>김*훈 :</b>
+      <a href="/attention/user/member/signup.php"> 회원가입/계정찾기</a>(A),
+      <a href="/attention/user/cart/cart.php"> 장바구니</a>(A),
+      <a href="/attention/user/my_class/my_class.php"> 내 강의실</a>(B)
+    </p>
+    <p><b>기*은 :</b>
+      <a href="/attention/user/index.php"> 메인</a>(F),
+      <a href="/attention/user/coupon.php"> 쿠폰함</a>(A),
+      <a href="/attention/user/event_vs2.0.php"> 쿠폰 이벤트</a>(A)
+    </p>
+    <p><b>천*영 :</b>
+      <a href="/attention/user/index.php"> 메인</a>(A),
+      <a href="/attention/user/community/notice.php"> 공지사항</a>(A),
+      <a href="/attention/user/my_class/my_class.php"> 내 강의실</a>(F)
+    </p>
+    <p><b>한*연 :</b>
+      <a href="/attention/user/class/class_whole_list.php"> 강의</a>(A),
+      <a href="/attention/user/class/class_detail_view.php?pid=72"> 강의 상세</a>(A)
+    </p>
+    <p><b>한*희 :</b>
+      <a href="/attention/user/index.php"> 푸터</a>(F),
+      <a href="/attention/user/login.php"> 로그인</a>(A)
+    </p>
+    <p class="text5">F: Front / B: Back / A: All</p>
 
 ---
 작성중❤️

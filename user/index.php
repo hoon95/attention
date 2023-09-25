@@ -1,4 +1,5 @@
 <?php
+  $title = 'HOME - Code Rabbit';
   ob_start(); 
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
   
@@ -58,32 +59,31 @@
   <hr>
   <div>
     <p><b>업무분장</b></p>
-    <p><b>기획 : </b>내용추가 필요</p>
-    <p><b>디자인 : </b>내용추가 필요</p>
+    <p><b>기획 : </b>팀원 전체</p>
+    <p><b>디자인 : </b>구현 담당자</p>
     <p class="mt-2"><b>- 구현 완료 페이지 -</b></p>
     <p><b>김*훈 :</b>
-      <a href=""> 로그인</a>(B),
-      <a href=""> 회원가입</a>(A),
-      <a href=""> 장바구니</a>(A),
-      <a href=""> 내 강의실</a>(B)
+      <a href="/attention/user/member/signup.php"> 회원가입/계정찾기</a>(A),
+      <a href="/attention/user/cart/cart.php"> 장바구니</a>(A),
+      <a href="/attention/user/my_class/my_class.php"> 내 강의실</a>(B)
     </p>
     <p><b>기*은 :</b>
-      <a href=""> 메인</a>(F),
-      <a href=""> 쿠폰함</a>(A),
-      <a href=""> 쿠폰 이벤트</a>(A)
+      <a href="/attention/user/index.php"> 메인</a>(F),
+      <a href="/attention/user/coupon.php"> 쿠폰함</a>(A),
+      <a href="/attention/user/event_vs2.0.php"> 쿠폰 이벤트</a>(A)
     </p>
     <p><b>천*영 :</b>
-      <a href=""> 메인</a>(A),
-      <a href=""> 공지사항</a>(A),
-      <a href=""> 내 강의실</a>(F)
+      <a href="/attention/user/index.php"> 메인</a>(A),
+      <a href="/attention/user/community/notice.php"> 공지사항</a>(A),
+      <a href="/attention/user/my_class/my_class.php"> 내 강의실</a>(F)
     </p>
     <p><b>한*연 :</b>
-      <a href=""> 강의</a>(A),
-      <a href=""> 강의 상세</a>(A)
+      <a href="/attention/user/class/class_whole_list.php"> 강의</a>(A),
+      <a href="/attention/user/class/class_detail_view.php?pid=72"> 강의 상세</a>(A)
     </p>
     <p><b>한*희 :</b>
-      <a href=""> 푸터</a>(F),
-      <a href=""> 로그인</a>(F)
+      <a href="/attention/user/index.php"> 푸터</a>(F),
+      <a href="/attention/user/login.php"> 로그인</a>(A)
     </p>
     <p class="text5">F: Front / B: Back / A: All</p>
   </div>
@@ -119,8 +119,8 @@
       </div>
       <div class="swiper-slide slide3">
         <div class="container_cr">
-          <h3 class="tt_00 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3>
-          <p class="text1">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p>
+          <!-- <h3 class="tt_00 mg_bot">디자인 트렌드 끝판왕,<br>Figma와 Blender 타파하기</h3> -->
+          <!-- <p class="text1">다양한 직군과 효율적으로 협업하고<br>무료로 3D 모델링까지 배워요!</p> -->
         </div>
       </div>
     </div>
@@ -308,14 +308,16 @@
       <div>
         <div class="d-flex gap-4 mt-5">
           <img src="img/main/icon_playstore.png" alt="playstore 아이콘">
-          <img src="img/main/icon_qr_android.svg" alt="qr코드 아이콘">
+          <!-- <img src="img/main/icon_qr_android.svg" alt="qr코드 아이콘"> -->
+          <img src="img/main/qr_admin.png" alt="qr코드 아이콘">
         </div>
         <p class="mt-3 text-center">Android</p>
       </div>
       <div>
         <div class="d-flex gap-4 mt-5">
           <img src="img/main/icon_appstore.png" alt="appstore 아이콘">
-          <img src="img/main/icon_qr_ios.svg" alt="qr코드 아이콘">
+          <!-- <img src="img/main/icon_qr_ios.svg" alt="qr코드 아이콘"> -->
+          <img src="img/main/qr_user.png" alt="qr코드 아이콘">
         </div>
         <p class="mt-3 text-center">ios</p>
       </div>

@@ -1,4 +1,5 @@
 <?php
+  $title = '장바구니 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
 
   $where = '';
@@ -66,7 +67,7 @@
               </div>
             </td>
             <td class="cart_product_price text1 number"><span><?= $item->price_val ?></span></td>
-            <td class="cart_product_cancel text-end"><button class="cart_item_del"><i class="bi bi-x-square"></i></button></td>
+            <td class="cart_product_cancel text-end"><button class="cart_item_del"><i class="bi bi-x-square icon_red"></i></button></td>
           </tr>
           <?php }}else{ ?>
             <tr class="d-flex justify-content-center align-items-center">

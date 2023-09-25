@@ -19,11 +19,12 @@
 }
 
 .banner .slide2 {
-  background-image: url(../img/main/main_banner1.gif);
+  /* background-image: url(../img/main/main_banner1.gif); */
+  background-image: url(../img/main/main_banner1_img.png);
 }
 
 .banner .slide3 {
-  background-image: url(../img/main/banner_3.png);
+  background-image: url(../img/main/main_banner3.png);
 }
 
 .main-play{
@@ -32,7 +33,7 @@
 
 .main-pager {
   position: absolute;
-  left: 6%;
+  left: calc(50% + -59px);
   bottom: 10%;
   padding: 5px;
   color: var(--white);
@@ -229,7 +230,7 @@ section .text2 {
   line-height: 1.25;
 }
 .event .app_box{
-  width: 40%;
+  width: 45%;
 }
 
 /* pick */
