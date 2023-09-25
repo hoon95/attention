@@ -1,4 +1,5 @@
 <?php
+  $title = '내 강의실 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/user_check.php';
   

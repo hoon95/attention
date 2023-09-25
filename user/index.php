@@ -1,4 +1,5 @@
 <?php
+  $title = 'HOME - Code Rabbit';
   ob_start(); 
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
   

@@ -1,4 +1,5 @@
 <?php
+  $title = '비밀번호 변경 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
   $mid = $_GET['mid'];
 ?>

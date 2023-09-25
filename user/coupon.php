@@ -1,4 +1,5 @@
 <?php
+  $title = '쿠폰함 - Code Rabbit';
   require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
   
 	$where = '';
