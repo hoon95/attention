@@ -1,7 +1,10 @@
-<h1 align="center">Team Attention 3,4차 프로젝트  👋</h1>
+<h1>Team : Attention</h1>
+<div align="center">
+  <img src="https://i.postimg.cc/DfX5958C/Code-Rabbit.png">
+  <h2>3rd,4th LMS site creation Project</h2>
 
-> <h3>사이트 명 : Code Rabbit</h3>☝️ 쉽고 재밌게 배우는 코딩! <br>✌️ 껑충껑충 성장하는 나!
-
+> <h3>사이트 명 : Code Rabbit </h3>☝️ 쉽고 재밌게 배우는 코딩! <br>✌️ 껑충껑충 성장하는 나!
+</div>
 <br>
 
 ## 📝 프로젝트 기간
