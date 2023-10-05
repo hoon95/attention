@@ -52,19 +52,18 @@
   <hr>
   <div>
     <p><b>업무분장</b></p>
-    <p><b>기획 :</b></p>
-    <p><b>디자인 :</b></p>
+    <p><b>기획 :</b> 팀원 전체</p>
+    <p><b>디자인 :</b> 구현 담당자</p>
     <p class="mt-2"><b>- 구현 완료 페이지 -</b></p>
-    <p><b>김*훈 :</b><a> 로그인</a>, <a>대시보드</a>, <a>매출관리</a>, <a>회원관리</a>
-    </p>
-    <p><b>기*은 :</b><a> 쿠폰관리 </a>(조회, 등록, 수정)</p>
-    <p><b>천*영 :</b><a> 공지사항 </a>(조회, 등록, 수정, 상세보기)</p>
-    <p><b>한*연 :</b><a> 카테고리 </a>(조회, 등록, 수정)</p>
-    <!-- <p><b>한*희 :</b><a> 강좌관리 </a>(조회, 등록, 수정, 상세보기)</p> -->
-    <p><b>한*희 :</b><a> 강좌관리 </a>(조회)</p>
+    <p><b>김다훈 :</b><a> 로그인</a>, <a href="./dashboard/index.php">대시보드</a>, <a href="./sales/sales_list.php">매출관리</a>, <a href="./member/member_list.php">회원관리</a></p>
+    <p><b>기서은 :</b><a href="./coupon/coupon_list.php"> 쿠폰관리 </a>(조회, 등록, 수정)</p>
+    <p><b>천혜영 :</b><a href="./notice/notice.php"> 공지사항 </a>(조회, 등록, 수정, 상세보기)</p>
+    <p><b>한수연 :</b><a href="./category/category.php"> 카테고리 </a>(조회, 등록, 수정)</p>
+    <p><b>한지희 :</b><a href="./class/class_list.php"> 강좌관리 </a>(조회)</p>
   </div>
   <hr>
   <p class="text4">아이디 : admin / 비밀번호 : 1111</p>
+  <p><a href="http://hoon95.dothome.co.kr/attention/user/index.php" target="_blank" class="text4 icon_mint">사용자 페이지 가기</a></p>
 
   <div class="mt-4 d-flex justify-content-between">
     <div class="d-flex align-items-center gap-2">
