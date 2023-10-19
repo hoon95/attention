@@ -27,23 +27,29 @@
     $member_exit = "SELECT DATE_FORMAT(regdate, '%Y-%m-%d') as date, COUNT(*) as cnt FROM members WHERE DATE_FORMAT(regdate, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURDATE() AND status='탈퇴' GROUP BY DATE_FORMAT(regdate, '%Y-%m-%d') ORDER BY DATE_FORMAT(regdate, '%Y-%m-%d') ASC";
     $member_exit_result = $mysqli->query($member_exit);
 
-    while($member_object = $member_result->fetch_assoc()){
-        $member[] = $member_object;
+    if(isset($member_result)){
+        while($member_object = $member_result->fetch_assoc()){
+            $member[] = $member_object;
+        }
+        $member_date = [];
+        $member_new = [];
     }
-    $member_date = [];
-    $member_new = [];
 
     while($member_exit_object = $member_exit_result->fetch_assoc()){
         $exit_num[] = $member_exit_object;
     }
     $member_ex = [];
 
-    foreach($member as $m){
-        array_push($member_date, $m['date']);
-        array_push($member_new, $m['cnt']);
+    if(isset($member)){
+        foreach($member as $m){
+            array_push($member_date, $m['date']);
+            array_push($member_new, $m['cnt']);
+        }
     }
-    foreach($exit_num as $ex){
-        array_push($member_ex, $ex['cnt']);
+    if(isset($exit_num)){
+        foreach($exit_num as $ex){
+            array_push($member_ex, $ex['cnt']);
+        }
     }
 ?>
 
@@ -133,7 +139,11 @@
         <div class="box_shadow radius_medium">
             <h3 class="text1 member_num">신규/탈퇴 회원</h3>
             <div class="d-flex member_in text1">
-                <span><?= $member_new[6] ?></span>명
+                <span><?php 
+                if(isset($member_new[6])){
+                    echo $member_new[6];
+                }
+                ?></span>명
             </div>
             <div class="gray member_date">
                 <span>(</span>
@@ -152,21 +162,25 @@
 <script src="/attention/admin/js/jquery.number.min.js"></script>
 <script src="/attention/admin/js/index.js"></script>
 <script>
-    $('.dash_menu').css({backgroundColor: "#252a38"});
-    $('.dash_menu').find('a').css({color: 'white'});
-    let currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() - 6);
-    let ago = currentDate.toISOString().split('T')[0];
-    $('.member_date_ago').text(ago);
-    $('.member_date_now').text(today);
+$('.dash_menu').css({
+    backgroundColor: "#252a38"
+});
+$('.dash_menu').find('a').css({
+    color: 'white'
+});
+let currentDate = new Date();
+currentDate.setDate(currentDate.getDate() - 6);
+let ago = currentDate.toISOString().split('T')[0];
+$('.member_date_ago').text(ago);
+$('.member_date_now').text(today);
 
-    const mlabel = <?= json_encode($member_date) ?>;
-    const mdata = {
-        labels: mlabel,
-        datasets:[{
-            label: '신규 회원 수',
-            data: <?= json_encode($member_new) ?>,
-            backgroundColor: [
+const mlabel = <?= json_encode($member_date) ?>;
+const mdata = {
+    labels: mlabel,
+    datasets: [{
+        label: '신규 회원 수',
+        data: <?= json_encode($member_new) ?>,
+        backgroundColor: [
             'rgba(42, 193, 188, 0.2)',
             'rgba(42, 193, 188, 0.2)',
             'rgba(42, 193, 188, 0.2)',
@@ -174,8 +188,8 @@
             'rgba(42, 193, 188, 0.2)',
             'rgba(42, 193, 188, 0.2)',
             'rgba(42, 193, 188, 0.2)'
-            ],
-            hoverBackgroundColor:[
+        ],
+        hoverBackgroundColor: [
             'rgba(42, 193, 188, 0.5)',
             'rgba(42, 193, 188, 0.5)',
             'rgba(42, 193, 188, 0.5)',
@@ -183,8 +197,8 @@
             'rgba(42, 193, 188, 0.5)',
             'rgba(42, 193, 188, 0.5)',
             'rgba(42, 193, 188, 0.5)'
-            ],
-            hoverBorderColor:[
+        ],
+        hoverBorderColor: [
             'rgba(42, 193, 188, 0.5)',
             'rgba(42, 193, 188, 0.5)',
             'rgba(42, 193, 188, 0.5)',
@@ -192,8 +206,8 @@
             'rgba(42, 193, 188, 0.5)',
             'rgba(42, 193, 188, 0.5)',
             'rgba(42, 193, 188, 0.5)'
-            ],
-            borderColor: [
+        ],
+        borderColor: [
             'rgb(42, 193, 188)',
             'rgb(42, 193, 188)',
             'rgb(42, 193, 188)',
@@ -201,9 +215,9 @@
             'rgb(42, 193, 188)',
             'rgb(42, 193, 188)',
             'rgb(42, 193, 188)'
-            ],
-            borderWidth: 1
-        },{
+        ],
+        borderWidth: 1
+    }, {
         label: '탈퇴 회원 수',
         data: <?= json_encode($member_ex) ?>,
         backgroundColor: [
@@ -215,7 +229,7 @@
             'rgba(255, 99, 132, 0.2)',
             'rgba(255, 99, 132, 0.2)'
         ],
-        hoverBackgroundColor:[
+        hoverBackgroundColor: [
             'rgba(255, 99, 132, 0.5)',
             'rgba(255, 99, 132, 0.5)',
             'rgba(255, 99, 132, 0.5)',
@@ -224,7 +238,7 @@
             'rgba(255, 99, 132, 0.5)',
             'rgba(255, 99, 132, 0.5)'
         ],
-        hoverBorderColor:[
+        hoverBorderColor: [
             'rgba(255, 99, 132, 0.5)',
             'rgba(255, 99, 132, 0.5)',
             'rgba(255, 99, 132, 0.5)',
@@ -244,14 +258,14 @@
         ],
         borderWidth: 1
     }]
-    }
-    const mconfig = {
+}
+const mconfig = {
     type: 'bar',
     data: mdata
-    };
+};
 
-  let mchart = document.querySelector('#member_chart');
-  const stackedBar = new Chart(mchart, mconfig);
+let mchart = document.querySelector('#member_chart');
+const stackedBar = new Chart(mchart, mconfig);
 // /가입/탈퇴 회원 막대 그래프
 </script>
 <?php
