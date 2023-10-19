@@ -1,0 +1,25 @@
+INSERT INTO sales (sid, pid, name, userid, price, regdate)
+SELECT
+NULL,
+NULL,
+CASE
+WHEN RAND() < 0.125 THEN 'React'
+WHEN RAND() < 0.25 THEN 'Vue'
+WHEN RAND() < 0.375 THEN 'JAVA'
+WHEN RAND() < 0.5 THEN 'HTML'
+WHEN RAND() < 0.625 THEN 'CSS'
+WHEN RAND() < 0.75 THEN 'JavaScript'
+WHEN RAND() < 0.875 THEN 'Redux'
+ELSE 'Python'
+END AS random_name,
+SUBSTRING(MD5(RAND()) FROM 1 FOR RAND()*6 + 5) AS random_userid,
+CASE
+WHEN RAND() < 0.1667 THEN 50000
+WHEN RAND() < 0.3333 THEN 60000
+WHEN RAND() < 0.5 THEN 70000
+WHEN RAND() < 0.6667 THEN 80000
+WHEN RAND() < 0.8333 THEN 90000
+ELSE 100000
+END AS random_price,
+DATE_FORMAT(NOW() - INTERVAL FLOOR(RAND() * 60) DAY, '%Y-%m-%d %H:%i:%s') AS random_date
+FROM dual;
