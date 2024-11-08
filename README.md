@@ -4,11 +4,13 @@
   <h3>LMS(학습지원시스템) Project</h3>
 
 3rd : **[Code Rabbit_admin page](http://hoon95.dothome.co.kr/attention/admin/login.php)**  
-4th : **[Code Rabbit_user page](http://hoon95.dothome.co.kr/attention/user/index.php)**  
+4th : **[Code Rabbit_user page](http://hoon95.dothome.co.kr/attention/user/index.php)**
 
 </div>
 
 ## 📝 프로젝트 개요
+
+<img src="./main.png">
 
 <h3>기획의도</h3>
 ☝️ 쉽고 재밌게 배우는 코딩!  
@@ -23,6 +25,7 @@
 <br>
 
 ## 🚀 구현 스택
+
 <span>
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white">
@@ -40,7 +43,7 @@
 ## 🐰 팀 구성
 
 **팀장 : [김다훈](https://github.com/hoon95)**<br />
-팀원 : [기서은](https://github.com/rltjdms) 
+팀원 : [기서은](https://github.com/rltjdms)
 [천혜영](https://github.com/HyeYoungee)
 [한수연](https://github.com/SOOSLOANE)
 [한지희](https://github.com/jijihui22)
@@ -49,11 +52,11 @@
 
 ## 🎨 기획, 디자인
 
-**[3rd 발표자료 Figma](https://www.figma.com/file/10UMk7aVCAB6EPqeRh8F59/Code-Rabbit-%EA%B4%80%EB%A6%AC%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80?type=design&node-id=0-1&mode=design&t=2cKKBt7VoRvGPZMf-0)** | 
+**[3rd 발표자료 Figma](https://www.figma.com/file/10UMk7aVCAB6EPqeRh8F59/Code-Rabbit-%EA%B4%80%EB%A6%AC%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80?type=design&node-id=0-1&mode=design&t=2cKKBt7VoRvGPZMf-0)** |
 **[4th 발표자료 Figma](https://www.figma.com/file/ODlTPVhE5OwtLyh4Lk1DwZ/Code-Rabbit-%EC%82%AC%EC%9A%A9%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80?type=design&mode=design&t=2cKKBt7VoRvGPZMf-0)**  
 <br>
 <b>기획 : </b>팀원 전체  
-<b>디자인 : </b>구현 담당자  
+<b>디자인 : </b>구현 담당자
 
 <br>
 
@@ -76,6 +79,5 @@
 | **천혜영** | 메인페이지(A), 공지사항(A), 내 강의실(F) |
 | **한수연** | 강의(A), 강의상세(A) |
 | **한지희** | 메인-푸터(F), 로그인(A) |
-  
-F: Front / B: Back / A: All
 
+F: Front / B: Back / A: All
