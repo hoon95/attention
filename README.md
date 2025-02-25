@@ -2,6 +2,8 @@
 
 > 누구나 쉽고 빠르게 배우는 코딩 플랫폼
 
+![image](/public/admin/1.png)
+
 <br>
 
 ### 🔗 [사용자 페이지 보러가기](http://hoon95.dothome.co.kr/attention/user/index.php)
@@ -10,13 +12,11 @@
 
 <br>
 
-```
-쉽고 재미있게 코딩을 배우고 성장할 수 있도록 돕는 학습 플랫폼
+## 📺 프로젝트 소개
 
-관리자, 유저 페이지로 구성되어있으며 사용자가 편리하게 학습을 진행할 수 있도록 다양한 기능을 제공합니다.
-```
+**_쉽고 재미있게 코딩을 배우고 성장할 수 있도록 돕는 학습 플랫폼_**
 
-## 프로젝트 소개
+**관리자, 유저 페이지**로 구성되어있으며 사용자가 편리하게 학습을 진행할 수 있도록 다양한 기능을 제공합니다.
 
 <br>
 
@@ -38,7 +38,7 @@
 
 <br>
 
-### 🚀 서버 아키텍처
+### ⚙️ 서버 아키텍처
 
 ![image](/public/architecture.png)
 
@@ -58,21 +58,26 @@
 
 ### 🎨 스토리보드 & 와이어프레임
 
-<br>
-
-### 📖 와이어프레임
+🔗 [Figma 보러가기](https://www.figma.com/design/10UMk7aVCAB6EPqeRh8F59/Code-Rabbit-%EA%B4%80%EB%A6%AC%EC%9E%90-%ED%8E%98%EC%9D%B4%EC%A7%80?node-id=0-1&t=bHT2UZRUcxSssBqp-1)
 
 <br>
 
-<br>
-💻📺🎨✔️🔗👨‍💻🛠📥⚙️🤝📖📜📞📌
+### 💻 주요 기능
+
+<table>
+  <tr>
+    <td><img src="/public/admin/2.png" width="200"></td>
+    <td><img src="/public/admin/3.png" width="200"></td>
+  </tr>
+</table>
+
 <br>
 
 ### 🌈 팀원 소개
 
 <br>
 
-| Name    | 👑 김다훈(팀장장)                    | 기서은                                 | 천혜영                                       | 한수연                                     | 한지희                                     |
+| Name    | 👑 김다훈(팀장)                      | 기서은                                 | 천혜영                                       | 한수연                                     | 한지희                                     |
 | ------- | ------------------------------------ | -------------------------------------- | -------------------------------------------- | ------------------------------------------ | ------------------------------------------ |
 | Profile | [@hoon95](https://github.com/hoon95) | [@rltjdms](https://github.com/rltjdms) | [@HyeYoungee](https://github.com/HyeYoungee) | [@SOOSLOANE](https://github.com/SOOSLOANE) | [@jijihui22](https://github.com/jijihui22) |
 
@@ -94,4 +99,8 @@
 
 F: Front / B: Back / A: All
 
+<br>
+
+<br>
+💻📺🎨✔️🔗👨‍💻🛠📥⚙️🤝📖📜📞📌
 <br>
