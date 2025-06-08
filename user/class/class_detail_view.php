@@ -5,6 +5,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/attention/admin/class/class_function.ph
 require_once $_SERVER['DOCUMENT_ROOT'].'/attention/user/inc/header.php';
 $pid = empty($_GET["pid"]) ? alert("잘못된 접근입니다.") : $_GET["pid"];
 
+$apiKey = getenv('YOUTUBE_API_KEY');
+
 $class_row = sql_fetch_array("
     SELECT 
         class.*,
@@ -320,7 +322,7 @@ if ($class_row["price"][0] == "1")
   // 이어보기 제목(가장 최근에 본 강의) 출력
   let video_url = localStorage.getItem('playHistory');
   let video_id = video_url.split('/embed/')[1].split('?')[0];  // URL에서 비디오 ID 추출
-  let apiKey = "AIzaSyCSUUhBllrzg0OL4FHyl5L04JBtrx1pQic";  // API 키(Google Cloud Console)
+  let apiKey = "<?= $apiKey ?>";  // API 키(Google Cloud Console)
 
   fetch(`https://www.googleapis.com/youtube/v3/videos?id=${video_id}&key=${apiKey}&part=snippet`)
     .then(response => response.json())
